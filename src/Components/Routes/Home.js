@@ -4,6 +4,7 @@ const Home = () => {
   return (
     <>
       <Slider />
+      <h1>Carousel done</h1>
     </>
   );
 };
