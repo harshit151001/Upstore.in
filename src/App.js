@@ -20,7 +20,7 @@ function App() {
       <Ancestor>
         <Navbar />
         <Switch>
-          <Route exact path="/home" component={Home}></Route>
+          <Route exact path="/" component={Home}></Route>
           <Route exact path="/aboutus" component={Aboutus}></Route>
           <Route
             exact
