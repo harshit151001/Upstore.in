@@ -1,9 +1,9 @@
 import React from 'react';
-import Carousel from '../Carousel/Carousel';
+import Slider from '../Carousel/Slider';
 const Home = () => {
   return (
     <>
-      <Carousel />
+      <Slider />
     </>
   );
 };
