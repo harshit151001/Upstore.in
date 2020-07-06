@@ -7,7 +7,6 @@ const Button = styled.button`
   background: #ff6700;
   border-radius: 5px;
   font-size: 1.5rem;
-
   transition: all 2s;
   &:focus {
     outline: none;

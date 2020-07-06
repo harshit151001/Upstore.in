@@ -1,50 +1,213 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
+//DESKTOP NAVBAR
+/*********************************************************************/
 const DesktopNav = styled.div`
   display: flex;
   width: 100vw;
-  background: #004e98;
-  height: 8vh;
+  background: white;
+  height: 9vh;
   align-items: center;
+  box-shadow: 2px 10px 21px 6px rgba(0, 0, 0, 0.5);
+  font-size: 28px;
   position: fixed;
   top: 0;
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid aliceblue;
   z-index: 100;
+
   div {
-    height: 8vh;
+    height: 9vh;
     width: 68%;
-    display: flex;
+    display: flex !important;
     align-items: center;
-    color: #ebebeb;
-    font-size: 1.8em;
-    justify-content: space-between;
+    color: black;
+    form {
+      display: flex;
+      height: 6vh;
+      input {
+        font-size: 24px;
+        border: none;
+        outline: none;
+        background: #f5f5f6;
+        width: 85%;
+        &:focus {
+          border: 1px solid black;
+        }
+      }
+      button {
+        outline: none;
+        border: none;
+        font-size: 24px;
+        color: black;
+        background: #f5f5f6;
+        border-left: 1px solid rgb(100, 100, 100);
+        width: 15%;
+        &:nth-child(2):hover {
+          background: hsla(278, 100%, 50%, 1);
+          color: #f5f5f6;
+        }
+      }
+      &:nth-child(1) {
+        width: 34%;
+        input {
+          border-radius: 5px 0 0 5px;
+          background: #f5f5f6; /*remove after activating*/
+        }
+        button {
+          opacity: 0.8; /*remove after activating*/
+          cursor: pointer;
+        }
+      }
+      &:nth-child(2) {
+        width: 66%;
+        button {
+          border-radius: 0px 5px 5px 0px;
+          cursor: pointer;
+        }
+      }
+    }
     &:not(:nth-child(2)) {
       width: 16% !important;
-      padding: 0 1.5% 0 1.5%;
+      padding: 0 1% 0 1%;
       background: transparent;
+      justify-content: space-around;
     }
   }
 `;
+/*********************************************************************/
+
+//DESKTOP DROPDOWNS
+/*********************************************************************/
+const CategoriesDropdown = styled.div`
+  position: fixed;
+  padding-top: 9vh;
+  top: -600px;
+  left: 10%;
+  width: 280px;
+  height: 600px;
+  background: red;
+  z-index: 20;
+  transition: all 0.2s ease-out;
+`;
+const AccountsDropdown = styled.div`
+  position: fixed;
+  padding-top: 9vh;
+  top: -600px;
+  right: 10%;
+  width: 280px;
+  height: 600px;
+  background: red;
+  z-index: 20;
+  transition: all 0.2s ease-out;
+`;
+const CartDropdown = styled.div`
+  position: fixed;
+  padding-top: 9vh;
+  top: -600px;
+  right: 0;
+  width: 280px;
+  height: 600px;
+  background: red;
+  z-index: 20;
+  transition: all 0.2s ease-out;
+`;
+
+/*********************************************************************/
 
 function Desktop() {
+  /****************************/
+  const [x, SetX] = useState(0);
+  const a = () => SetX(600);
+  const b = () => SetX(0);
+  /****************************/
+  const [y, SetY] = useState(0);
+  const c = () => SetY(600);
+  const d = () => SetY(0);
+  /****************************/
+  const [z, SetZ] = useState(0);
+  const e = () => SetZ(600);
+  const f = () => SetZ(0);
+  /****************************/
+
   return (
-    <DesktopNav>
-      <div>
-        <span>Upstore</span>
-        <span>
-          <i class="fa fa-th" aria-hidden="true"></i>
-        </span>
-      </div>
-      <div></div>
-      <div>
-        <span>
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-        </span>
-        <span></span>
-      </div>
-      <span></span>
-    </DesktopNav>
+    <>
+      <DesktopNav>
+        <div>
+          <span style={{ transform: 'translateY(-4px)' }}>
+            <p>
+              <span
+                style={{
+                  color: 'hsla(278, 100%, 50%, 1)',
+                  'font-family': 'Pacifico',
+                }}
+              >
+                Up
+              </span>
+              store
+            </p>
+          </span>
+          <span
+            style={{ height: '8vh', display: 'flex', alignItems: 'center' }}
+            onMouseOver={a}
+            onMouseLeave={b}
+          >
+            <i class="fa fa-th" aria-hidden="true"></i>
+          </span>
+        </div>
+
+        <div>
+          <form action="">
+            <input type="text" placeholder="Aurangabad" disabled="disabled" />
+            <button disabled="disabled">
+              <i class="fa fa-map" aria-hidden="true"></i>
+            </button>
+          </form>
+          <form action="">
+            <input type="text" placeholder="Search..." />
+            <button disabled="">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </form>
+        </div>
+        <div>
+          <span
+            style={{ height: '8vh', display: 'flex', alignItems: 'center' }}
+            onMouseOver={c}
+            onMouseLeave={d}
+          >
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+          </span>
+          <span
+            style={{ height: '8vh', display: 'flex', alignItems: 'center' }}
+          >
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+          </span>
+          <span
+            style={{ height: '8vh', display: 'flex', alignItems: 'center' }}
+            onMouseOver={e}
+            onMouseLeave={f}
+          >
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          </span>
+        </div>
+      </DesktopNav>
+      <CategoriesDropdown
+        onMouseOver={a}
+        onMouseLeave={b}
+        style={{ transform: `translateY(${x}px)` }}
+      />
+      <AccountsDropdown
+        onMouseOver={c}
+        onMouseLeave={d}
+        style={{ transform: `translateY(${y}px)` }}
+      />
+      <CartDropdown
+        onMouseOver={e}
+        onMouseLeave={f}
+        style={{ transform: `translateY(${z}px)` }}
+      />
+    </>
   );
 }
 
