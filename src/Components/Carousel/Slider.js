@@ -59,15 +59,12 @@ function Slider() {
     <ImgComp src={i5} />,
   ];
   const [x, setX] = useState(0);
-  //useEffect(()=>{
-  //setInterval(goLeft , 1500);
-  //})
+
   const goLeft = () => {
     x === 0 ? setX(-100 * (sliderArr.length - 1)) : setX(x + 100);
   };
 
   const goRight = () => {
-    //console.log(x);
     x === -100 * (sliderArr.length - 1) ? setX(0) : setX(x - 100);
   };
   return (
