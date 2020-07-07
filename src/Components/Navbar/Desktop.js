@@ -8,6 +8,7 @@ const DesktopNav = styled.div`
   width: 100vw;
   background: white;
   height: 9vh;
+  font-family: 'Roboto', sans-serif;
   align-items: center;
   box-shadow: 2px 10px 21px 6px rgba(0, 0, 0, 0.5);
   font-size: 28px;
@@ -135,11 +136,15 @@ function Desktop() {
       <DesktopNav>
         <div>
           <span style={{ transform: 'translateY(-4px)' }}>
-            <p>
+            <p
+              style={{
+                fontFamily: 'Roboto',
+              }}
+            >
               <span
                 style={{
                   color: 'hsla(278, 100%, 50%, 1)',
-                  'font-family': 'Pacifico',
+                  fontFamily: 'Pacifico',
                 }}
               >
                 Up
@@ -152,7 +157,7 @@ function Desktop() {
             onMouseOver={a}
             onMouseLeave={b}
           >
-            <i class="fa fa-th" aria-hidden="true"></i>
+            <i className="fa fa-th" aria-hidden="true"></i>
           </span>
         </div>
 
@@ -160,13 +165,13 @@ function Desktop() {
           <form action="">
             <input type="text" placeholder="Aurangabad" disabled="disabled" />
             <button disabled="disabled">
-              <i class="fa fa-map" aria-hidden="true"></i>
+              <i className="fa fa-map" aria-hidden="true"></i>
             </button>
           </form>
           <form action="">
             <input type="text" placeholder="Search..." />
             <button disabled="">
-              <i class="fa fa-search" aria-hidden="true"></i>
+              <i className="fa fa-search" aria-hidden="true"></i>
             </button>
           </form>
         </div>
@@ -176,19 +181,19 @@ function Desktop() {
             onMouseOver={c}
             onMouseLeave={d}
           >
-            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            <i className="fa fa-user-circle" aria-hidden="true"></i>
           </span>
           <span
             style={{ height: '8vh', display: 'flex', alignItems: 'center' }}
           >
-            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            <i className="fa fa-shopping-bag" aria-hidden="true"></i>
           </span>
           <span
             style={{ height: '8vh', display: 'flex', alignItems: 'center' }}
             onMouseOver={e}
             onMouseLeave={f}
           >
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
           </span>
         </div>
       </DesktopNav>

@@ -1,6 +1,6 @@
 //library
 import React, { useEffect, useState } from 'react';
-import { Fragment } from 'react';
+
 //custom
 import Mobile from './Mobile';
 import Desktop from './Desktop';
@@ -43,9 +43,7 @@ function Navbar() {
     height: '9vh',
   };
   const { width } = useWindowDimensions();
-  return (
-    <Fragment style={style}>{width < 991 ? <Mobile /> : <Desktop />}</Fragment>
-  );
+  return <div style={style}>{width < 991 ? <Mobile /> : <Desktop />}</div>;
 }
 
 export default Navbar;

@@ -65,8 +65,10 @@ function Slider() {
   };
 
   const goRight = () => {
+    console.log(sliderArr);
     x === -100 * (sliderArr.length - 1) ? setX(0) : setX(x - 100);
   };
+
   return (
     <Sliderbox>
       {sliderArr.map((item, index) => {
@@ -77,10 +79,10 @@ function Slider() {
         );
       })}
       <Move style={{ left: '.5rem' }} onClick={goLeft}>
-        <i class="fa fa-angle-left" aria-hidden="true"></i>
+        <i className="fa fa-angle-left" aria-hidden="true"></i>
       </Move>
       <Move style={{ right: '.5rem' }} onClick={goRight}>
-        <i class="fa fa-angle-right" aria-hidden="true"></i>
+        <i className="fa fa-angle-right" aria-hidden="true"></i>
       </Move>
     </Sliderbox>
   );
