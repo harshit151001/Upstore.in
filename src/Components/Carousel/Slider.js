@@ -51,13 +51,13 @@ const Move = styled.button`
 `;
 
 function Slider() {
-  let sliderArr = [
+  const [sliderArr, setSliderArr] = useState([
     <ImgComp src={i3} />,
     <ImgComp src={i2} />,
     <ImgComp src={i1} />,
     <ImgComp src={i4} />,
     <ImgComp src={i5} />,
-  ];
+  ]);
   const [x, setX] = useState(0);
 
   const goLeft = () => {
@@ -66,6 +66,7 @@ function Slider() {
 
   const goRight = () => {
     x === -100 * (sliderArr.length - 1) ? setX(0) : setX(x - 100);
+    setSliderArr((prev) => prev.push(prev.shift()));
   };
   return (
     <Sliderbox>

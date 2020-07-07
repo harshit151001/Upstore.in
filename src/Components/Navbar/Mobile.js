@@ -1,12 +1,7 @@
 import React from 'react';
-
+import SideMenu from 'react-sidemenu';
 function Mobile() {
-  return (
-    <>
-      <div></div>
-      <div></div>
-    </>
-  );
+  return <></>;
 }
 
 export default Mobile;
