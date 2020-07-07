@@ -52,9 +52,9 @@ const Move = styled.button`
 
 function Slider() {
   let sliderArr = [
-    <ImgComp src={i1} />,
-    <ImgComp src={i2} />,
     <ImgComp src={i3} />,
+    <ImgComp src={i2} />,
+    <ImgComp src={i1} />,
     <ImgComp src={i4} />,
     <ImgComp src={i5} />,
   ];
