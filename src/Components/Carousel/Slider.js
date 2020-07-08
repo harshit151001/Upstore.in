@@ -52,13 +52,7 @@ const Move = styled.button`
 `;
 
 function Slider() {
-  const sliderArr = [
-    <ImgComp src={i3} />,
-    <ImgComp src={i2} />,
-    <ImgComp src={i1} />,
-    <ImgComp src={i4} />,
-    <ImgComp src={i5} />,
-  ];
+  const sliderArr = [i3, i2, i1, i4, i5];
   const [x, setX] = useState(0);
 
   const goLeft = () => {
@@ -66,7 +60,6 @@ function Slider() {
   };
 
   const goRight = () => {
-    console.log(sliderArr);
     x === -100 * (sliderArr.length - 1) ? setX(0) : setX(x - 100);
   };
 
@@ -75,7 +68,7 @@ function Slider() {
       {sliderArr.map((item, index) => {
         return (
           <Slide key={index} style={{ transform: `translateX(${x}%)` }}>
-            {item}
+            <ImgComp src={item} />
           </Slide>
         );
       })}
