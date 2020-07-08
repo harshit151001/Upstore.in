@@ -86,7 +86,7 @@ const CategoriesDropdown = styled.div`
   left: 10%;
   width: 280px;
   height: 600px;
-  background: red;
+  background: #f5f5f6;
   z-index: 20;
   transition: all 0.2s ease-out;
 `;
@@ -97,7 +97,7 @@ const AccountsDropdown = styled.div`
   right: 10%;
   width: 280px;
   height: 600px;
-  background: red;
+  background: #f5f5f6;
   z-index: 20;
   transition: all 0.2s ease-out;
 `;
@@ -108,7 +108,7 @@ const CartDropdown = styled.div`
   right: 0;
   width: 280px;
   height: 600px;
-  background: red;
+  background: #f5f5f6;
   z-index: 20;
   transition: all 0.2s ease-out;
 `;
@@ -152,7 +152,7 @@ function Desktop() {
             </p>
           </span>
           <span
-            style={{ height: '8vh', display: 'flex', alignItems: 'center' }}
+            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
             onMouseOver={a}
             onMouseLeave={b}
           >
@@ -176,19 +176,19 @@ function Desktop() {
         </div>
         <div>
           <span
-            style={{ height: '8vh', display: 'flex', alignItems: 'center' }}
+            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
             onMouseOver={c}
             onMouseLeave={d}
           >
             <i className="fa fa-user-circle" aria-hidden="true"></i>
           </span>
           <span
-            style={{ height: '8vh', display: 'flex', alignItems: 'center' }}
+            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
           >
             <i className="fa fa-shopping-bag" aria-hidden="true"></i>
           </span>
           <span
-            style={{ height: '8vh', display: 'flex', alignItems: 'center' }}
+            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
             onMouseOver={e}
             onMouseLeave={f}
           >
@@ -196,16 +196,21 @@ function Desktop() {
           </span>
         </div>
       </DesktopNav>
+
       <CategoriesDropdown
         onMouseOver={a}
         onMouseLeave={b}
         style={{ transform: `translateY(${x}px)` }}
-      />
+      >
+        <h1>harshitshukla</h1>
+      </CategoriesDropdown>
+
       <AccountsDropdown
         onMouseOver={c}
         onMouseLeave={d}
         style={{ transform: `translateY(${y}px)` }}
       />
+
       <CartDropdown
         onMouseOver={e}
         onMouseLeave={f}
