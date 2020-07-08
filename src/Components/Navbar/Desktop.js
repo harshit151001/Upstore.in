@@ -16,7 +16,6 @@ const DesktopNav = styled.div`
   top: 0;
   border-bottom: 1px solid aliceblue;
   z-index: 100;
-
   div {
     height: 9vh;
     width: 68%;

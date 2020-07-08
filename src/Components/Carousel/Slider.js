@@ -20,6 +20,7 @@ const Sliderbox = styled.div`
   align-items: center;
   overflow: hidden;
   background: black;
+  z-index: 1;
 `;
 
 const Slide = styled.div`
