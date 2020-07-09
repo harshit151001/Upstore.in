@@ -8,6 +8,7 @@ import Home from './Components/Routes/Home';
 import err from './err';
 import Aboutus from './Components/Routes/Aboutus';
 import Termsandcondition from './Components/Routes/Termsandcondition';
+import Loginsignuppage from './Components/Routes/Loginsignuppage';
 
 function App() {
   const Ancestor = styled.div`
@@ -27,6 +28,7 @@ function App() {
             path="/termsandcondition"
             component={Termsandcondition}
           ></Route>
+          <Route exact path="/login" component={Loginsignuppage}></Route>
           <Route component={err}></Route>
         </Switch>
       </Ancestor>

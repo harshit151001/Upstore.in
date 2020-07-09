@@ -7,7 +7,7 @@ const Mobilenav = styled.div`
   position: fixed;
   align-items: center;
   justify-content: center;
-  box-shadow: 2px 3px 10px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 8px 6px rgba(0, 0, 0, 0.3);
   top: 0;
   display: flex;
   div {
