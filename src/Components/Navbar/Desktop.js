@@ -200,7 +200,9 @@ function Desktop() {
       <CategoriesDropdown
         onMouseOver={a}
         onMouseLeave={b}
-        style={{ transform: `translateY(${x}px)` }}
+        style={{
+          transform: `translateY(${x}px)`,
+        }}
       >
         <h1>harshitshukla</h1>
       </CategoriesDropdown>
@@ -208,13 +210,17 @@ function Desktop() {
       <AccountsDropdown
         onMouseOver={c}
         onMouseLeave={d}
-        style={{ transform: `translateY(${y}px)` }}
+        style={{
+          transform: `translateY(${y}px)`,
+        }}
       />
 
       <CartDropdown
         onMouseOver={e}
         onMouseLeave={f}
-        style={{ transform: `translateY(${z}px)` }}
+        style={{
+          transform: `translateY(${z}px)`,
+        }}
       />
     </>
   );

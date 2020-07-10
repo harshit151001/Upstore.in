@@ -28,7 +28,7 @@ function App() {
             path="/termsandcondition"
             component={Termsandcondition}
           ></Route>
-          <Route exact path="/login" component={Loginsignuppage}></Route>
+          <Route exact path="/loginsignup" component={Loginsignuppage}></Route>
           <Route component={err}></Route>
         </Switch>
       </Ancestor>
