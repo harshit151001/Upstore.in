@@ -21,7 +21,6 @@ const Mobilenav = styled.div`
     fontfamily: Roboto;
   }
 `;
-const Drawer = styled.div``;
 
 function Mobile() {
   return (
