@@ -134,10 +134,11 @@ function Desktop() {
     <>
       <DesktopNav>
         <div>
-          <span style={{ transform: 'translateY(-4px)' }}>
+          <span>
             <p
               style={{
                 fontFamily: 'Roboto',
+                margin: '0px',
               }}
             >
               <span
