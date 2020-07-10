@@ -16,26 +16,25 @@ const [index, setIndex] = useState(0);
 const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
-  return  <Carousel interval={2000}  activeIndex={index} onSelect={handleSelect}  style={{height: '30vw'}}>
+  return  <Carousel interval={1000}  activeIndex={index} onSelect={handleSelect}>
 <Carousel.Item>
     <ImgComp
-      className="d-block w-100 h-30"
+      className="d-block w-100 "
       src={i1}
       alt={`First slide`}
-      
-    />
+      />
     
   </Carousel.Item>
   <Carousel.Item>
     <ImgComp
-      className="d-block w-100 h-30"
+      className="d-block w-100"
       src={i2}
       alt={`Second slide`}
     />
   </Carousel.Item>
   <Carousel.Item>
     <ImgComp
-      className="d-block w-100 h-30"
+      className="d-block w-100 "
       src={i3}
       alt={`Third slide`}
     />
@@ -43,7 +42,7 @@ const handleSelect = (selectedIndex, e) => {
   </Carousel.Item>
   <Carousel.Item>
     <ImgComp
-      className="d-block w-100 h-30"
+      className="d-block w-100"
       src={i4}
       alt={`Fourth slide`}
     />
@@ -51,7 +50,7 @@ const handleSelect = (selectedIndex, e) => {
   </Carousel.Item>
   <Carousel.Item>
     <ImgComp
-      className="d-block w-100 h-30"
+      className="d-block w-100"
       src={i5}
       alt={`Fifth slide`}
     />

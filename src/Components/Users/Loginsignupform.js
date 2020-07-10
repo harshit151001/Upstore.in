@@ -53,9 +53,14 @@ const Button = styled.button`
   color: white;
   border-radius: 4px;
 `;
+const Formbox = styled.div`
+width: 95%;
+margin: auto;
+align-items: center;
+`;
 
 const Loginsignupform = () => {
-  const methods = ['Log in/Sign up', 'Log in with email', 'Register'];
+  const methods = [{type:"Log in/Sign up",information: "*login with phone number" }, {type:'Log in with email', information: ""},{type:'Register', information: ""}];
   const [form, setForm] = useState(0);
 
   const clickHandler = (idx) => {
@@ -73,11 +78,13 @@ const Loginsignupform = () => {
               }}
               key={index}
             >
-              {item}
+              {item.type}
             </Button>
           ))}
         </Buttonbox>
-        <div>
+        <h3 style={{textAlign: 'center',color: '#ec436f'}}>{methods[form].type}</h3>
+        <h6 style={{textAlign: 'center', color: 'black'}}>{methods[form].information}</h6>
+        <Formbox>
           {form === 0 ? (
             <Loginwithphone />
           ) : form === 1 ? (
@@ -85,7 +92,7 @@ const Loginsignupform = () => {
           ) : (
             <Register />
           )}
-        </div>
+        </Formbox>
       </Formwrapper>
     </Wrapper>
   );
