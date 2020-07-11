@@ -1,10 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Slider from '../Carousel/Slider';
+//import Carousell from '../Cards/Carousel';
+import Loginmodal from '../Modals/Loginmodal'
+
 
 const Home = () => {
+
+ const [modalShow, setModalShow] = React.useState(false);
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setModalShow(true)
+  }, 5000);
+  return () => clearTimeout(timer);
+}, []);
+
   return (
     <>
       <Slider />
+      <Loginmodal show={modalShow}
+        onHide={() => setModalShow(false)}/>
     </>
   );
 };
