@@ -54,6 +54,7 @@ const Button = styled.button`
   border-radius: 4px;
 `;
 const Formbox = styled.div`
+<<<<<<< HEAD
   width: 95%;
   margin: auto;
   align-items: center;
@@ -65,12 +66,26 @@ const Loginsignupform = () => {
     { type: 'Log in with email', information: '' },
     { type: 'Register', information: '' },
   ];
+=======
+width: 95%;
+margin: auto;
+align-items: center;
+`;
+
+const Loginsignupform = () => {
+  const methods = [{type:"Log in with Mobile Number",information: "*login with phone number" }, {type:'Log in with email', information: ""},{type:'Register Email', information: ""}];
+>>>>>>> 73a79e3cc20c269c79db2c495eb0682777acc862
   const [form, setForm] = useState(0);
 
   const clickHandler = (idx) => {
     setForm(idx);
   };
+<<<<<<< HEAD
   const active = (idx, form) => (idx === form ? { background: 'blue' } : {});
+=======
+
+const active = (idx,form) => (idx==form? {background: 'blue'}:{})
+>>>>>>> 73a79e3cc20c269c79db2c495eb0682777acc862
 
   return (
     <Wrapper>
@@ -78,8 +93,12 @@ const Loginsignupform = () => {
         <Buttonbox>
           {methods.map((item, index) => (
             <Button
+<<<<<<< HEAD
               style={active(index, form)}
               onClick={() => {
+=======
+              onClick={() => { 
+>>>>>>> 73a79e3cc20c269c79db2c495eb0682777acc862
                 clickHandler(index);
               }}
               key={index}
@@ -88,12 +107,17 @@ const Loginsignupform = () => {
             </Button>
           ))}
         </Buttonbox>
+<<<<<<< HEAD
         <h3 style={{ textAlign: 'center', color: '#ec436f' }}>
           {methods[form].type}
         </h3>
         <h6 style={{ textAlign: 'center', color: 'black' }}>
           {methods[form].information}
         </h6>
+=======
+        <h3 style={{textAlign: 'center',color: '#ec436f'}}>{methods[form].type}</h3>
+        <h6 style={{textAlign: 'center', color: 'black'}}>{methods[form].information}</h6>
+>>>>>>> 73a79e3cc20c269c79db2c495eb0682777acc862
         <Formbox>
           {form === 0 ? (
             <Loginwithphone />

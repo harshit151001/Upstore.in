@@ -2,6 +2,7 @@ import React from 'react';
 
 const Loginwithphone = () => {
   return <><form>
+<<<<<<< HEAD
   <div className="form-group">
     <label htmlFor="exampleInputNumber">Mobile Number</label>
     <input type="phone" className="form-control" id="exampleInputEmail1" aria-describedby="eHelp" placeholder="Enter your phone number"/>
@@ -16,6 +17,17 @@ const Loginwithphone = () => {
     <label className="form-check-label" for="exampleCheck1">Keep me signed in</label>
   </div>
   <button type="submit" className="btn btn-primary">Submit</button>
+=======
+  <div class="form-group">
+    <label for="exampleInputEmail1"></label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Mobile Number*"/>
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+    <label class="form-check-label" for="exampleCheck1">Keep me signed in</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+>>>>>>> 73a79e3cc20c269c79db2c495eb0682777acc862
 </form></>;
 };
 
