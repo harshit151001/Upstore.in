@@ -82,7 +82,7 @@ const Loginsignupform = () => {
         <Buttonbox>
           {methods.map((item, index) => (
             <Button
-              className={active()}
+              style={active(index, form)}
               onClick={() => {
                 clickHandler(index);
               }}

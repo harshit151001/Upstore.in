@@ -11,7 +11,7 @@ const DesktopNav = styled.div`
   font-family: 'Roboto', sans-serif;
   align-items: center;
   box-shadow: 2px 3px 10px 6px rgba(0, 0, 0, 0.3);
-  font-size: 28px;
+  font-size: 26px;
   position: fixed;
   top: 0;
   border-bottom: 1px solid aliceblue;
@@ -24,7 +24,7 @@ const DesktopNav = styled.div`
     color: black;
     form {
       display: flex;
-      height: 6vh;
+      height: 5vh;
       input {
         font-size: 24px;
         border: none;
@@ -145,6 +145,7 @@ function Desktop() {
                 style={{
                   color: 'hsla(278, 100%, 50%, 1)',
                   fontFamily: 'Pacifico',
+                  fontSize: '30px'
                 }}
               >
                 Up

@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const About = styled.div`
-  position: absolute;
-  top: 8vh;
+  top: 9vh;
   width: 100%;
   background: aliceblue;
   box-sizing: border-box;
+  padding-top: 10vh;
   align-items: center;
   justify-content: center;
   display: flex;
