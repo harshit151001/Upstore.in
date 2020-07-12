@@ -139,6 +139,7 @@ function Desktop() {
               style={{
                 fontFamily: 'Roboto',
                 margin: '0px',
+                transform: 'translateY(-2px)'
               }}
             >
               <span
