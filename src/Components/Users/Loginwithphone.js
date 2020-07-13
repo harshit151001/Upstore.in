@@ -4,23 +4,27 @@ const Loginwithphone = () => {
   return (
     <>
       <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1"></label>
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1"></label>
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Mobile Number*"
           />
         </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
+        <div className="form-check">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id="exampleCheck1"
+          />
+          <label className="form-check-label" htmlFor="exampleCheck1">
             Keep me signed in
           </label>
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </form>

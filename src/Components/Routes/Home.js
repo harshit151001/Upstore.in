@@ -4,7 +4,8 @@ import Slider from '../Carousel/Slider';
 import Loginmodal from '../Modals/Loginmodal';
 import { isAutheticated } from '../../auth/helper/index';
 import Productcard from '../Products/Cards/Productcard';
-import Categorycard from '../Categories/Cards/Categorycard';
+
+import Categorylist from '../Categories/List/Categorylist';
 
 const Home = () => {
   const [modalShow, setModalShow] = React.useState(false);
@@ -19,11 +20,14 @@ const Home = () => {
   return (
     <>
       <Slider />
-      {!isAutheticated() && (
-        <Loginmodal show={modalShow} onHide={() => setModalShow(false)} />
-      )}
+
+      <Loginmodal
+        show={modalShow && !isAutheticated()}
+        onHide={() => setModalShow(false)}
+      />
+
       <Productcard />
-      <Categorycard />
+      <Categorylist />
     </>
   );
 };
