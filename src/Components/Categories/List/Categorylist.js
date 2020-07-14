@@ -5,13 +5,27 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import API from '../../../backend';
 
-const Div = styled.div`
+
+const Categorybox = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  justify-content: space-between;
+  padding-right: 7%;
+  padding-left: 7%;
+  background: #f5f5f6;
+  div:nth-child(1){
+    width: 100%;
+    min-height: 15vh;
+    display: flex;
+    flex-direction: column;
+    color: rgba(20,20,20)
+   
+  }
+  div:nth-child(2){
+   display: grid;
+   
+  }
+
 `;
 
 const Categorylist = () => {
@@ -24,22 +38,30 @@ const Categorylist = () => {
   }, []);
 
   return (
-    <div style={{ margin: '10px 3% 10px 3%', background: 'white' }}>
+    <Categorybox>
       <div>
         <h1 style={{ marginTop: '20px', marginBottom: '20px' }}>
-          What do you want...
+          Select what you want to shop for...
         </h1>
+        <span style={{ 
+      height: '6px',
+      width: '12%',
+      background:'#ec436f',
+      borderRadius: '3px'
+    }}></span>
       </div>
+      <div>
       {data.map(({ name, imagePath, _id }) => {
         return (
-          <Div key={_id}>
+          <div key={_id}>
             <Link to={`/product/${_id}`}>
               <Categorycard name={name} path={imagePath} id={_id} />
             </Link>
-          </Div>
+          </div>
         );
       })}
-    </div>
+      </div>
+    </Categorybox>
   );
 };
 

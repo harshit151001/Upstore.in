@@ -18,17 +18,15 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
       <Slider />
 
       <Loginmodal
         show={modalShow && !isAutheticated()}
         onHide={() => setModalShow(false)}
       />
-
-      <Productcard />
       <Categorylist />
-    </>
+ <Productcard />   </div>
   );
 };
 

@@ -6,22 +6,24 @@ import { Link } from 'react-router-dom';
 const DesktopNav = styled.div`
   display: flex;
   width: 100vw;
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
   height: 9vh;
-  font-family: 'Roboto', sans-serif;
-  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  margin: auto;
   box-shadow: 2px 3px 10px 6px rgba(0, 0, 0, 0.3);
   font-size: 25px;
   position: fixed;
+  justify-content: center;
   top: 0;
   border-bottom: 1px solid aliceblue;
   z-index: 100;
   div {
     height: 9vh;
-    width: 68%;
+    width: 60%;
     display: flex !important;
     align-items: center;
-    color: black;
+    color: rgba(20, 20, 20);
     form {
       display: flex;
       height: 5vh;
@@ -32,26 +34,26 @@ const DesktopNav = styled.div`
         background: #f5f5f6;
         width: 85%;
         &:focus {
-          border: 1px solid black;
+          border: 2px solid rgba(20, 20, 20);
+          background: transparent;
         }
       }
       button {
         outline: none;
         border: none;
         font-size: 22px;
-        color: black;
+        color: rgba(20, 20, 20);
         background: #f5f5f6;
-        border-left: 1px solid rgb(100, 100, 100);
         width: 15%;
         &:nth-child(2):hover {
-          background: hsla(278, 100%, 50%, 1);
+          background: #ec436f;
           color: #f5f5f6;
         }
       }
       &:nth-child(1) {
         width: 34%;
         input {
-          border-radius: 5px 0 0 5px;
+          border-radius: 8px 0 0 8px;
           background: #f5f5f6; /*remove after activating*/
         }
         button {
@@ -62,15 +64,15 @@ const DesktopNav = styled.div`
       &:nth-child(2) {
         width: 66%;
         button {
-          border-radius: 0px 5px 5px 0px;
+          border-radius: 0px 8px 8px 0px;
           cursor: pointer;
         }
       }
     }
     &:not(:nth-child(2)) {
-      width: 16% !important;
+      width: 15% !important;
       background: transparent;
-      justify-content: space-between;
+      justify-content: space-around;
     }
   }
 `;
@@ -132,21 +134,20 @@ function Desktop() {
   return (
     <>
       <DesktopNav>
-        <div style={{ paddingLeft: '25px', paddingRight: '10px' }}>
+        <div>
           <Link to="/" style={{ textDecoration: 'none' }}>
-            <span >
+            <span>
               <p
                 style={{
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Poppins',
                   margin: '0px',
                   transform: 'translateY(-4px)',
-                 
-                  color: 'black',
+                  color: 'rgba(20,20,20)',
                 }}
               >
                 <span
                   style={{
-                    color: 'hsla(278, 100%, 50%, 1)',
+                    color: '#ec436f',
                     fontFamily: 'Pacifico',
                     fontSize: '30px',
                     textDecoration: 'none',
@@ -181,7 +182,7 @@ function Desktop() {
             </button>
           </form>
         </div>
-        <div style={{ paddingLeft: '10px', paddingRight: '25px' }}>
+        <div>
           <span
             style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
             onMouseOver={c}

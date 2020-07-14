@@ -1,13 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
 body {
 	margin: 0;
 	/*padding-top: 9vh;*/
-	font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	box-sizing: border-box;
 	font-size: 15px;
-	font-weight: 300;
-	
+	font-weight: 300;	
 }
 ::placeholder {
 	color: #282c3f;
