@@ -11,7 +11,7 @@ import err from './err';
 import Aboutus from './Components/Routes/Aboutus';
 import Termsandcondition from './Components/Routes/Termsandcondition';
 import Loginsignuppage from './Components/Routes/Loginsignuppage';
-
+import Products from './Components/Routes/Products';
 function App() {
   const Ancestor = styled.div`
     width: 100vw;
@@ -31,6 +31,7 @@ function App() {
             component={Termsandcondition}
           ></Route>
           <Route exact path="/loginsignup" component={Loginsignuppage}></Route>
+          <Route exact path="/product/:categoryid" component={Products}></Route>
           <Route component={err}></Route>
         </Switch>
       </Ancestor>

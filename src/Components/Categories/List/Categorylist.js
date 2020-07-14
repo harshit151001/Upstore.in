@@ -3,6 +3,7 @@ import axios from 'axios';
 import Categorycard from '../Cards/Categorycard';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import API from '../../../backend';
 
 const Div = styled.div`
   width: 100%;
@@ -17,7 +18,7 @@ const Categorylist = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://159.65.159.82:8000/api/categories/').then((response) => {
+    axios.get(`${API}/api/categories/`).then((response) => {
       setData(response.data.categories);
     });
   }, []);
@@ -29,15 +30,15 @@ const Categorylist = () => {
           What do you want...
         </h1>
       </div>
-      <Div>
-        {data.map(({ name, imagePath, _ID }) => {
-          return (
-            <Link to={`/category/${_ID}`}>
-              <Categorycard name={name} path={imagePath} id={_ID} key={_ID} />
+      {data.map(({ name, imagePath, _id }) => {
+        return (
+          <Div key={_id}>
+            <Link to={`/product/${_id}`}>
+              <Categorycard name={name} path={imagePath} id={_id} />
             </Link>
-          );
-        })}
-      </Div>
+          </Div>
+        );
+      })}
     </div>
   );
 };

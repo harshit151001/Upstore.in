@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 //DESKTOP NAVBAR
 /*********************************************************************/
 const DesktopNav = styled.div`
@@ -133,26 +133,31 @@ function Desktop() {
     <>
       <DesktopNav>
         <div style={{ paddingLeft: '25px', paddingRight: '10px' }}>
-          <span>
-            <p
-              style={{
-                fontFamily: 'Roboto',
-                margin: '0px',
-                transform: 'translateY(-4px)',
-              }}
-            >
-              <span
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <span >
+              <p
                 style={{
-                  color: 'hsla(278, 100%, 50%, 1)',
-                  fontFamily: 'Pacifico',
-                  fontSize: '30px',
+                  fontFamily: 'Roboto',
+                  margin: '0px',
+                  transform: 'translateY(-4px)',
+                 
+                  color: 'black',
                 }}
               >
-                Up
-              </span>
-              store
-            </p>
-          </span>
+                <span
+                  style={{
+                    color: 'hsla(278, 100%, 50%, 1)',
+                    fontFamily: 'Pacifico',
+                    fontSize: '30px',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Up
+                </span>
+                store
+              </p>
+            </span>
+          </Link>
           <span
             style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
             onMouseOver={a}
