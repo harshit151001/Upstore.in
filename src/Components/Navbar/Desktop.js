@@ -69,9 +69,8 @@ const DesktopNav = styled.div`
     }
     &:not(:nth-child(2)) {
       width: 16% !important;
-      padding: 0 1% 0 1%;
       background: transparent;
-      justify-content: space-around;
+      justify-content: space-between;
     }
   }
 `;
@@ -133,13 +132,13 @@ function Desktop() {
   return (
     <>
       <DesktopNav>
-        <div>
+        <div style={{ paddingLeft: '25px', paddingRight: '10px' }}>
           <span>
             <p
               style={{
                 fontFamily: 'Roboto',
                 margin: '0px',
-                transform: 'translateY(-3px)',
+                transform: 'translateY(-4px)',
               }}
             >
               <span
@@ -177,7 +176,7 @@ function Desktop() {
             </button>
           </form>
         </div>
-        <div>
+        <div style={{ paddingLeft: '10px', paddingRight: '25px' }}>
           <span
             style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
             onMouseOver={c}
