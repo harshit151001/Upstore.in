@@ -1,5 +1,5 @@
 import API from '../../backend';
-import axios from 'axios';
+//import axios from 'axios';
 export const signup = async (user) => {
   try {
     const response = await fetch(`${API}/api/signupEmail`, {
