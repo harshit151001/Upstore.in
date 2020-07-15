@@ -3,7 +3,6 @@ import Slider from '../Carousel/Slider';
 //import Carousell from '../Cards/Carousel';
 import Loginmodal from '../Modals/Loginmodal';
 import { isAutheticated } from '../../auth/helper/index';
-import Productcard from '../Products/Cards/Productcard';
 
 import Categorylist from '../Categories/List/Categorylist';
 
@@ -18,7 +17,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+    <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
       <Slider />
 
       <Loginmodal
@@ -26,7 +25,7 @@ const Home = () => {
         onHide={() => setModalShow(false)}
       />
       <Categorylist />
- <Productcard />   </div>
+    </div>
   );
 };
 

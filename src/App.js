@@ -31,7 +31,7 @@ function App() {
             component={Termsandcondition}
           ></Route>
           <Route exact path="/loginsignup" component={Loginsignuppage}></Route>
-          <Route exact path="/product/:categoryid" component={Products}></Route>
+          <Route path="/product/:categoryid" component={Products}></Route>
           <Route component={err}></Route>
         </Switch>
       </Ancestor>
@@ -40,3 +40,4 @@ function App() {
 }
 
 export default App;
+//!always list flexible paths last because they can interfere other paths.
