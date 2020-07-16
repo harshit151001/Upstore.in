@@ -28,7 +28,7 @@ const Categorylist = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API}/api/categories/`).then((response) => {
+    axios.get(`${API}/api/categories/`).then(response => {
       setData(response.data.categories);
     });
   }, []);
@@ -36,15 +36,13 @@ const Categorylist = () => {
   return (
     <Categorybox>
       <div>
-        <h1 style={{ marginTop: '20px', marginBottom: '20px' }}>
-          Select what you want to shop for...
-        </h1>
+        <h1 style={{ marginTop: '20px', marginBottom: '20px' }}>Select what you want to shop for...</h1>
         <span
           style={{
             height: '6px',
             width: '12%',
             background: '#ec436f',
-            borderRadius: '3px',
+            borderRadius: '3px'
           }}
         ></span>
       </div>
@@ -52,7 +50,7 @@ const Categorylist = () => {
         {data.map(({ name, imagePath, _id }) => {
           return (
             <div key={_id}>
-              <Link to={`/product/${_id}`}>
+              <Link to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}>
                 <Categorycard name={name} path={imagePath} id={_id} />
               </Link>
             </div>

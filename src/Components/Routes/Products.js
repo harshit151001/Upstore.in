@@ -1,10 +1,12 @@
 import React from 'react';
-import Productcard from '../Products/Cards/Productcard';
-const Products = (props) => {
-  console.log(props);
+import Productlist from '../Products/List/Productlist';
+import { withRouter } from 'react-router-dom';
+
+const Products = props => {
+  const { categoryId } = props.match.params;
   return (
     <div>
-      <Productcard />{' '}
+      <Productlist categoryId={categoryId} />{' '}
     </div>
   );
 };
