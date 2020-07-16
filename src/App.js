@@ -51,9 +51,9 @@ function App() {
             ></Route>
             <Route component={err}></Route>
           </Switch>
-          <Footer />
         </div>
       </BrowserRouter>
+      <Footer />
     </appContext.Provider>
   );
 }

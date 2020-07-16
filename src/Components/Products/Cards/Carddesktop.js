@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Carddesktop.scss';
 const Carddesktop = ({ price, path, id }) => {
   const src = path.substr(6);
   return (

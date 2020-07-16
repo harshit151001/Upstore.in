@@ -20,10 +20,10 @@ header span {
 
 /* The footer is fixed to the bottom of the page */
 
-footer {
+/* footer {
   position: fixed;
   bottom: 0;
-}
+} */
 
 @media (max-height: 800px) {
   footer {
