@@ -1,45 +1,59 @@
-import React from 'react';
-import styled from 'styled-components';
+//!library
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import axios from 'axios';
+//!Css import
 import './custom.scss';
-
+//Components most likely
 import Navbar from './Components/Navbar/Navbar';
-
+//!routes
 import Home from './Components/Routes/Home';
 import err from './err';
 import Aboutus from './Components/Routes/Aboutus';
 import Termsandcondition from './Components/Routes/Termsandcondition';
 import Loginsignuppage from './Components/Routes/Loginsignuppage';
 import Products from './Components/Routes/Products';
-//import Productlist from './Components/Products/List/Productlist';
+//!appContext
+import appContext from './Statemanagement/Createcontext';
+//!API
+import API from './backend';
+
 function App() {
-  const Ancestor = styled.div`
-    width: 100vw;
-    overflow-x: hidden;
-    min-height: 200vh;
-  `;
+  const [categorydata, setcategoryData] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${API}/api/categories/`).then((response) => {
+      setcategoryData(response.data.categories);
+    });
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Ancestor>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <Route exact path="/aboutus" component={Aboutus}></Route>
-          <Route
-            exact
-            path="/termsandcondition"
-            component={Termsandcondition}
-          ></Route>
-          <Route exact path="/loginsignup" component={Loginsignuppage}></Route>
-          <Route
-            path="/products/:categoryId/5eff8e76d75ecb3735b243b1"
-            component={Products}
-          ></Route>
-          <Route component={err}></Route>
-        </Switch>
-      </Ancestor>
-    </BrowserRouter>
+    <appContext.Provider value={categorydata}>
+      <BrowserRouter>
+        <div style={{ width: '100vw', overflowX: 'hidden' }}>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+            <Route exact path="/aboutus" component={Aboutus}></Route>
+            <Route
+              exact
+              path="/termsandcondition"
+              component={Termsandcondition}
+            ></Route>
+            <Route
+              exact
+              path="/loginsignup"
+              component={Loginsignuppage}
+            ></Route>
+            <Route
+              path="/products/:categoryId/5eff8e76d75ecb3735b243b1"
+              component={Products}
+            ></Route>
+            <Route component={err}></Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </appContext.Provider>
   );
 }
 

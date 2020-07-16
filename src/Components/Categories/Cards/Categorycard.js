@@ -1,16 +1,50 @@
+//!library
 import React from 'react';
+import styled from 'styled-components';
+//!host adress
+import API from '../../../backend';
 
-const Categorycard = ({ name, path, id }) => {
+const Box = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 300px;
+  height: 90px;
+  border: 1px solid black;
+`;
+
+const Categorycard = ({ name, path }) => {
   const src = path.substr(6);
   return (
-    <div className="card bg-dark text-danger" style={{ width: '150px', height: '150px' }} key={id}>
-      <img src={`http://159.65.159.82:8000${src}`} style={{ background: 'aliceblue' }} className="card-img" alt="{name}" />
-      <div className="card-img-overlay">
-        <h4 style={{ display: 'none' }} className="card-title">
-          {name}
-        </h4>
+    <Box>
+      <div
+        style={{
+          width: '40%',
+          height: '100%',
+          display: 'flex',
+          placeItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <img
+          style={{ width: '36%', height: '90px' }}
+          src={`${API}/${src}`}
+          alt={name}
+        />
       </div>
-    </div>
+      <div
+        style={{
+          width: '60%',
+          height: '100%',
+          display: 'flex',
+          placeItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <h5 className="card-title">{name}</h5>
+      </div>
+    </Box>
   );
 };
 
