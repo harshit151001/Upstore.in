@@ -12,12 +12,14 @@ import Aboutus from './Components/Routes/Aboutus';
 import Termsandcondition from './Components/Routes/Termsandcondition';
 import Loginsignuppage from './Components/Routes/Loginsignuppage';
 import Products from './Components/Routes/Products';
-<<<<<<< HEAD
+
 import Footer from './Components/Footer/Footer';
 
-=======
-//import Productlist from './Components/Products/List/Productlist';
->>>>>>> 50871169be02346a55a78a6878561dc159662d3a
+
+
+
+
+
 function App() {
   const Ancestor = styled.div`
     width: 100vw;
