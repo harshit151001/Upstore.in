@@ -1,5 +1,13 @@
 import API from '../../backend';
 //import axios from 'axios';
+
+// export const signup = (user) => {
+//   axios
+//     .post(`${API}/api/signupEmail`, JSON.stringify(user))
+//     .then((response) => console.log(response))
+//     .catch((error) => console.log(error));
+// };
+
 export const signup = async (user) => {
   try {
     const response = await fetch(`${API}/api/signupEmail`, {
@@ -14,10 +22,6 @@ export const signup = async (user) => {
   } catch (err) {
     return console.log(err);
   }
-  // return axios
-  //   .post(`${API}/api/signupEmail`, JSON.stringify(user))
-  //   .then((res) => res.json())
-  //   .catch((err) => console.log(err));
 };
 
 export const signin = async (user) => {

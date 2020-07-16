@@ -13,11 +13,13 @@ const Productlist = ({ categoryId, cityId }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1`).then(response => {
-      setData(response.data.products);
-      console.log(data);
-    });
-  }, []);
+    axios
+      .get(`${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1`)
+      .then((response) => {
+        setData(response.data.products);
+        console.log(data);
+      });
+  }, [categoryId, data]);
 
   return (
     <Productbox>
