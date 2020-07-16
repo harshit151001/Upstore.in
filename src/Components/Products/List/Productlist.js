@@ -7,6 +7,7 @@ import API from '../../../backend';
 
 const Productbox = styled.div`
   display: flex;
+  flex-direction: row;
 `;
 
 const Productlist = ({ categoryId, cityId }) => {
