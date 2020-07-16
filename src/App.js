@@ -12,7 +12,14 @@ import Aboutus from './Components/Routes/Aboutus';
 import Termsandcondition from './Components/Routes/Termsandcondition';
 import Loginsignuppage from './Components/Routes/Loginsignuppage';
 import Products from './Components/Routes/Products';
-//import Productlist from './Components/Products/List/Productlist';
+
+import Footer from './Components/Footer/Footer';
+
+
+
+
+
+
 function App() {
   const Ancestor = styled.div`
     width: 100vw;
@@ -38,6 +45,7 @@ function App() {
           ></Route>
           <Route component={err}></Route>
         </Switch>
+        <Footer />
       </Ancestor>
     </BrowserRouter>
   );
