@@ -1,10 +1,14 @@
 import React from 'react';
-const Carddesktop = ({ price, path, id }) => {
+import Addtocart from '../../Buttons/Addtocart';
+import { Link } from 'react-router-dom';
+const Carddesktop = ({ name, price, path, id }) => {
   const src = path.substr(6);
   return (
     <div key={id}>
       <div style={{ width: '250px', height: '320px', background: ' green' }}>
-        <img src={`http://159.65.159.82:8000${src}`} alt="placeholder" />
+        <Link to={`/product/${id}`}>
+          <img src={`http://159.65.159.82:8000${src}`} alt="placeholder" />
+        </Link>
       </div>
       <div style={{ width: '250px', height: 'auto' }}>
         <h4>product name</h4>
@@ -17,7 +21,7 @@ const Carddesktop = ({ price, path, id }) => {
             <p>RS. mrp dicount. 10%</p>
           </div>
           <div>
-            <button>Add to cart</button>
+            <Addtocart src={src} name={name} price={price} id={id} />
           </div>
         </div>
       </div>

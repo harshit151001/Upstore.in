@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import appContext from '../../Statemanagement/Createcontext';
+import appContext from '../../Statemanagement/appContext';
 //DESKTOP NAVBAR
 /*********************************************************************/
 const DesktopNav = styled.div`
@@ -219,8 +219,16 @@ function Desktop() {
         <ul>
           {categoryData.map(({ name, _id }) => {
             return (
-              <div key={_id}>
-                <Link to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}>
+              <div key={_id} style={{ display: 'block' }}>
+                <Link
+                  className="deschhjb"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'rgb(20,20,20)',
+                    fontFamily: 'Poppins',
+                  }}
+                  to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
+                >
                   {name}
                 </Link>
               </div>
