@@ -190,9 +190,14 @@ function Desktop() {
             <i className="fa fa-user-circle" aria-hidden="true"></i>
           </span>
           <span
-            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+            style={{
+              height: '9vh',
+              display: 'flex',
+              alignItems: 'center',
+              color: '#ec436f',
+            }}
           >
-            <i className="fa fa-shopping-bag" aria-hidden="true"></i>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
           </span>
           <span
             style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
