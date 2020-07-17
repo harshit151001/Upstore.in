@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
+//!api
+import API from './backend';
 //!Css import
 import './custom.scss';
 //Components most likely
@@ -16,7 +18,6 @@ import Products from './Components/Routes/Products';
 import Footer from './Components/Footer/Footer';
 //!context
 import appContext from './Statemanagement/Createcontext';
-import API from './backend';
 
 function App() {
   const [categorydata, setcategoryData] = useState([]);
