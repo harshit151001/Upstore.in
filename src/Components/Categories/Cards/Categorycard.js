@@ -20,8 +20,8 @@ const Categorycard = ({ name, path }) => {
           <Row style={{ margin: 'auto', justifyContent: 'center' }}>
             <img
               style={{
-                width: '8vw',
-                height: '8vw',
+                width: '50px',
+                height: '50px',
                 margin: '1vw',
                 minHeight: '60px',
                 minWidth: '60px',
