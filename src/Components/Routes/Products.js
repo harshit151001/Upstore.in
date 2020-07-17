@@ -5,7 +5,7 @@ const Products = (props) => {
   const { categoryId } = props.match.params;
   return (
     <div>
-      <Productlist categoryId={categoryId} />{' '}
+      <Productlist categoryId={categoryId} />
     </div>
   );
 };

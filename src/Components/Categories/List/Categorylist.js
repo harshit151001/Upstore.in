@@ -1,7 +1,7 @@
 //!library
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+
 //!components
 import appContext from '../../../Statemanagement/Createcontext';
 import Categorycard from '../Cards/Categorycard';
@@ -9,7 +9,7 @@ import Categorycard from '../Cards/Categorycard';
 const Categorylist = () => {
   const categorydata = useContext(appContext);
   return (
-    <section sty>
+    <section>
       {categorydata.map(({ name, imagePath, _id }) => {
         return (
           <div key={_id} style={{ width: '280px', height: '90px' }}>

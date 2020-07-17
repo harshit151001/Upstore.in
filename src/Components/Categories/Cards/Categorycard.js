@@ -23,8 +23,6 @@ const Categorycard = ({ name, path }) => {
           width: '40%',
           height: '100%',
           display: 'flex',
-          placeItems: 'center',
-          justifyContent: 'center',
         }}
       >
         <img
@@ -34,15 +32,15 @@ const Categorycard = ({ name, path }) => {
         />
       </div>
       <div
-        style={{
-          width: '60%',
-          height: '100%',
-          display: 'flex',
-          placeItems: 'center',
-          justifyContent: 'center',
-        }}
+      //!| style={{
+      //!|   height: '100%',
+      //!|   display: 'flex',
+      //!|   placeItems: 'center',
+      //!|   justifyContent: 'center',
+      //!|   textAlign: 'right',
+      //!| }}
       >
-        <h5 className="card-title">{name}</h5>
+        <p className="card-title">{name}</p>
       </div>
     </Box>
   );
