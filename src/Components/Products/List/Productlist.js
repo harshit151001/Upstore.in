@@ -37,3 +37,4 @@ const Productlist = ({ categoryId, cityId }) => {
 };
 
 export default Productlist;
+
