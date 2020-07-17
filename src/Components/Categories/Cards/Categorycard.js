@@ -3,48 +3,23 @@ import React from 'react';
 import styled from 'styled-components';
 //!host adress
 import API from '../../../backend';
-
-const Box = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  width: 300px;
-  height: 90px;
-  border: 1px solid black;
-`;
+import { Row, Col, Card, Container } from 'react-bootstrap';
 
 const Categorycard = ({ name, path }) => {
   const src = path.substr(6);
   return (
-    <Box>
-      <div
-        style={{
-          width: '40%',
-          height: '100%',
-          display: 'flex',
-          placeItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <img
-          style={{ width: '36%', height: '90px' }}
-          src={`${API}/${src}`}
-          alt={name}
-        />
-      </div>
-      <div
-        style={{
-          width: '60%',
-          height: '100%',
-          display: 'flex',
-          placeItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <h5 className="card-title">{name}</h5>
-      </div>
-    </Box>
+    <Card style={{ boxShadow: 'white 1px 1px 0px, violet 2px 0px 13px, pink 4px 10px 21px', margin: '2vw' }}>
+      <Row>
+        <Col>
+          <Row style={{ margin: 'auto', justifyContent: 'center' }}>
+            <img style={{ width: '10vw', height: '7vw', margin: '1vw', minHeight: '60px', minWidth: '50px' }} src={`${API}/${src}`} alt={name} />
+          </Row>
+          <Row style={{ margin: 'auto', justifyContent: 'center' }}>
+            <h5 style={{ textAlign: 'center', color: 'grey' }}>{name}</h5>
+          </Row>
+        </Col>
+      </Row>
+    </Card>
   );
 };
 
