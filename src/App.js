@@ -53,8 +53,8 @@ function App() {
             <Route component={err}></Route>
           </Switch>
         </div>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </appContext.Provider>
   );
 }
