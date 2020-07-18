@@ -1,34 +1,35 @@
 import React from 'react';
 
 import Addtocart from '../../Buttons/Addtocart';
-
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Price = styled.p`
   color: grey;
-  font-size: 22px;
+  font-size: 15px;
+  margin-bottom: 1px;
 `;
 const Card = styled.div`
   
   max-width: 300px;
+  max-height: 100px
   margin: auto;
   text-align: center;
   font-family: arial;
-   border: 1px solid grey;
   transition: 0.3s;
 `;
 const Button = styled.button`
   border: none;
   outline: 0;
-  padding: 12px;
-  color: white;
+  padding: 2px;
+  margin-bottom: 5px;
+  color: #ec436f;
   background-color: #000;
   text-align: center;
   cursor: pointer;
+  font-weight: bolder;
   width: 90%;
   font-size: 18px;
-
   :hover {
     opacity: 0.7;
   }
@@ -45,17 +46,20 @@ const Carddesktop = ({ price, path, id }) => {
   return (
     <Card key={id}>
       <Link style={{ textDecoration: 'none' }} to={`/product/${id}`}>
-        <Img src={`http://159.65.159.82:8000${src}`} alt="Denim Jeans" />
+        <div style={{ height: '350px', display: 'block' }}>
+          <img src={`http://159.65.159.82:8000${src}`} style={{ height: '100%', width: '100%', objectFit: 'cover' }} alt="Denim Jeans" />
+        </div>
       </Link>
-      
-      <Price>$19.99</Price>
-      <p> Nike Prozone Aurangabad</p>
+
+      <Price>
+        Rs.{price} <strike>$24.5</strike> (40% Off)
+      </Price>
+      <small style={{ marginBottom: 0 }}> Nike Prozone Aurangabad</small>
       <p>
-    <Addtocart source={src}  price={price} id={id} />
+        {/* <Addtocart source={src} price={price} id={id} /> */}
         <Button>Add to Cart</Button>
       </p>
     </Card>
-
   );
 };
 

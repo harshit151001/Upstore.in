@@ -25,32 +25,30 @@ import dispatchContext from './Statemanagement/dispatchContext';
 import appReducer from './Statemanagement/appReducer';
 
 function App() {
-
   const initialState = {
-    Cart:[],
-    Wishlist: [],
-
+    Cart: [],
+    Wishlist: []
   };
-  
-const [state, dispatch] = useImmerReducer(appReducer, initialState);
-  
-const [categorydata, setcategoryData] = useState([]);
 
-useEffect(()=>{
-if (typeof window !== undefined){
-      localStorage.setItem('Cart', JSON.stringify(state.Cart));
-}
-},[state.Cart]);
-console.log(state.Cart)
+  const [state, dispatch] = useImmerReducer(appReducer, initialState);
+
+  const [categorydata, setcategoryData] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API}/api/categories/`).then((response) => {
+    if (typeof window !== undefined) {
+      localStorage.setItem('Cart', JSON.stringify(state.Cart));
+    }
+  }, [state.Cart]);
+  console.log(state.Cart);
+
+  useEffect(() => {
+    axios.get(`${API}/api/categories/`).then(response => {
       setcategoryData(response.data.categories);
     });
   }, []);
 
   return (
-    <appContext.Provider value={{state, categorydata}}>
+    <appContext.Provider value={{ state, categorydata }}>
       <dispatchContext.Provider value={dispatch}>
         <BrowserRouter>
           <div style={{ width: '100vw', overflowX: 'hidden' }}>
@@ -58,20 +56,9 @@ console.log(state.Cart)
             <Switch>
               <Route exact path="/" component={Home}></Route>
               <Route exact path="/aboutus" component={Aboutus}></Route>
-              <Route
-                exact
-                path="/termsandcondition"
-                component={Termsandcondition}
-              ></Route>
-              <Route
-                exact
-                path="/loginsignup"
-                component={Loginsignuppage}
-              ></Route>
-              <Route
-                path="/products/:categoryId/5eff8e76d75ecb3735b243b1"
-                component={Products}
-              ></Route>
+              <Route exact path="/termsandcondition" component={Termsandcondition}></Route>
+              <Route exact path="/loginsignup" component={Loginsignuppage}></Route>
+              <Route path="/products/:categoryId/5eff8e76d75ecb3735b243b1" component={Products}></Route>
               <Route path="/productpage" component={Productpage}></Route>
               <Route component={err}></Route>
             </Switch>
