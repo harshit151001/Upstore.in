@@ -115,7 +115,7 @@ const CartDropdown = styled.div`
 /*********************************************************************/
 
 function Desktop() {
-  const categoryData = useContext(appContext);
+  const { categorydata } = useContext(appContext);
   /****************************/
   const [x, SetX] = useState(0);
   const a = () => SetX(620);
@@ -197,7 +197,7 @@ function Desktop() {
               color: '#ec436f',
             }}
           >
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <i className="fa fa-heart-o" aria-hidden="true"></i>
           </span>
           <span
             style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
@@ -217,7 +217,7 @@ function Desktop() {
         }}
       >
         <ul>
-          {categoryData.map(({ name, _id }) => {
+          {categorydata.map(({ name, _id }) => {
             return (
               <div key={_id} style={{ display: 'block' }}>
                 <Link
