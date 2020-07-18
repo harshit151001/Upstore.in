@@ -9,13 +9,7 @@ import Categorycard from '../Cards/Categorycard';
 import { Row, Col } from 'react-bootstrap';
 
 const Categorylist = () => {
-  // const { width } = useWindowDimensions();
-  // const [x, setX] = useState(100);
-  // setX(() => {
-  //   return width > 991 ? 92.5 : 100;
-  // });
-
-  const categorydata = useContext(appContext);
+  const {categorydata} = useContext(appContext);
   return (
     <Row style={{ width: `92.5%`, margin: 'auto' }}>
       {categorydata.map(({ name, imagePath, _id }) => {

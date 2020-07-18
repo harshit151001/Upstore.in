@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Productcard from '../Cards/Carddesktop';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import API from '../../../backend';
 import { Row, Col } from 'react-bootstrap';
 
-const Productbox = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+// const Productbox = styled.div`
+//   display: flex;
+//   flex-direction: row;
+// `;
 
 const Productlist = ({ categoryId, cityId }) => {
   const [data, setData] = useState([]);
@@ -24,8 +24,8 @@ const Productlist = ({ categoryId, cityId }) => {
       <Row style={{ margin: 'auto' }}>
         {data.map(({ price, images, _id }) => {
           return (
-            <Col xs={6} md={3} key={_id} style={{ padding: 0 }}>
-              <Productcard key={_id} price={price} path={images[0]} id={_id} />;
+            <Col xs={6} md={4} lg={3} key={_id} style={{ padding: 0 }}>
+              <Productcard key={_id} price={price} path={images[0]} id={_id} />
             </Col>
           );
         })}

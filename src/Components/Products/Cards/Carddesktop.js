@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Addtocart from '../../Buttons/Addtocart';
-import { Row, Col, Container } from 'react-bootstrap';
+
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -10,12 +10,12 @@ const Price = styled.p`
   font-size: 22px;
 `;
 const Card = styled.div`
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  
   max-width: 300px;
   margin: auto;
   text-align: center;
   font-family: arial;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+   border: 1px solid grey;
   transition: 0.3s;
 `;
 const Button = styled.button`
@@ -33,19 +33,25 @@ const Button = styled.button`
     opacity: 0.7;
   }
 `;
+const Img = styled.img`
+width: 100%;
+object-fit:cover;
+height:100%;
+} 
+`;
 
 const Carddesktop = ({ price, path, id }) => {
   const src = path.substr(6);
   return (
     <Card key={id}>
       <Link style={{ textDecoration: 'none' }} to={`/product/${id}`}>
-        <img src={`http://159.65.159.82:8000${src}`} style={{ height: '200px', width: '200px' }} alt="Denim Jeans" />
+        <Img src={`http://159.65.159.82:8000${src}`} alt="Denim Jeans" />
       </Link>
       
       <Price>$19.99</Price>
       <p> Nike Prozone Aurangabad</p>
       <p>
-    <Addtocart src={src} name={name} price={price} id={id} />
+    <Addtocart source={src}  price={price} id={id} />
         <Button>Add to Cart</Button>
       </p>
     </Card>
