@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Addtocart from '../../Buttons/Addtocart';
-import { Row, Col, Container } from 'react-bootstrap';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -39,17 +38,18 @@ const Carddesktop = ({ price, path, id }) => {
   return (
     <Card key={id}>
       <Link style={{ textDecoration: 'none' }} to={`/product/${id}`}>
-        <img src={`http://159.65.159.82:8000${src}`} style={{ height: '200px', width: '200px' }} alt="Denim Jeans" />
+        <div style={{ height: '300px', display: 'block' }}>
+          <img src={`http://159.65.159.82:8000${src}`} style={{ height: '100%', width: '100%', objectFit: 'cover' }} alt="Denim Jeans" />
+        </div>
       </Link>
-      
+
       <Price>$19.99</Price>
       <p> Nike Prozone Aurangabad</p>
       <p>
-    <Addtocart src={src} name={name} price={price} id={id} />
+        {/* <Addtocart src={src} name={name} price={price} id={id} /> */}
         <Button>Add to Cart</Button>
       </p>
     </Card>
-
   );
 };
 

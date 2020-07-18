@@ -20,18 +20,17 @@ const Productlist = ({ categoryId, cityId }) => {
   }, [categoryId, data]);
 
   return (
-      <>
+    <>
       <Row style={{ margin: 'auto' }}>
         {data.map(({ price, images, _id }) => {
           return (
-            <Col xs={6} md={3} key={_id} style={{ padding: 0 }}>
-              <Productcard key={_id} price={price} path={images[0]} id={_id} />;
+            <Col xs={6} md={4} lg={3} key={_id} style={{ padding: 0 }}>
+              <Productcard key={_id} price={price} path={images[0]} id={_id} />
             </Col>
           );
         })}
       </Row>
     </>
-    
   );
 };
 
