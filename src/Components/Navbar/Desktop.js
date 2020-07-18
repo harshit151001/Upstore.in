@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import appContext from '../../Statemanagement/Createcontext';
+import appContext from '../../Statemanagement/appContext';
 //DESKTOP NAVBAR
 /*********************************************************************/
 const DesktopNav = styled.div`
@@ -35,8 +35,7 @@ const DesktopNav = styled.div`
         background: #f5f5f6;
         width: 85%;
         &:focus {
-          border: 2px solid rgba(20, 20, 20);
-          background: transparent;
+          border: 1px solid rgba(50, 50, 50);
         }
       }
       button {
@@ -87,9 +86,10 @@ const CategoriesDropdown = styled.div`
   top: -600px;
   left: 10%;
   width: 280px;
-  background: #f5f5f6;
+  background: #ffffff;
   z-index: 20;
   transition: all 0.2s ease-out;
+  border: 1px solid grey;
 `;
 const AccountsDropdown = styled.div`
   position: fixed;
@@ -118,15 +118,15 @@ function Desktop() {
   const categoryData = useContext(appContext);
   /****************************/
   const [x, SetX] = useState(0);
-  const a = () => SetX(600);
+  const a = () => SetX(620);
   const b = () => SetX(0);
   /****************************/
   const [y, SetY] = useState(0);
-  const c = () => SetY(600);
+  const c = () => SetY(620);
   const d = () => SetY(0);
   /****************************/
   const [z, SetZ] = useState(0);
-  const e = () => SetZ(600);
+  const e = () => SetZ(620);
   const f = () => SetZ(0);
   /****************************/
 
@@ -141,7 +141,7 @@ function Desktop() {
                   fontFamily: 'Poppins',
                   margin: '0px',
                   transform: 'translateY(-4px)',
-                  color: 'rgba(20,20,20)'
+                  color: 'rgba(20,20,20)',
                 }}
               >
                 <span
@@ -149,7 +149,7 @@ function Desktop() {
                     color: '#ec436f',
                     fontFamily: 'Pacifico',
                     fontSize: '30px',
-                    textDecoration: 'none'
+                    textDecoration: 'none',
                   }}
                 >
                   Up
@@ -158,7 +158,11 @@ function Desktop() {
               </p>
             </span>
           </Link>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={a} onMouseLeave={b}>
+          <span
+            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+            onMouseOver={a}
+            onMouseLeave={b}
+          >
             <i className="fa fa-th" aria-hidden="true"></i>
           </span>
         </div>
@@ -178,13 +182,28 @@ function Desktop() {
           </form>
         </div>
         <div>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={c} onMouseLeave={d}>
+          <span
+            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+            onMouseOver={c}
+            onMouseLeave={d}
+          >
             <i className="fa fa-user-circle" aria-hidden="true"></i>
           </span>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }}>
-            <i className="fa fa-shopping-bag" aria-hidden="true"></i>
+          <span
+            style={{
+              height: '9vh',
+              display: 'flex',
+              alignItems: 'center',
+              color: '#ec436f',
+            }}
+          >
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
           </span>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
+          <span
+            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+            onMouseOver={e}
+            onMouseLeave={f}
+          >
             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
           </span>
         </div>
@@ -194,12 +213,26 @@ function Desktop() {
         onMouseOver={a}
         onMouseLeave={b}
         style={{
-          transform: `translateY(${x}px)`
+          transform: `translateY(${x}px)`,
         }}
       >
         <ul>
           {categoryData.map(({ name, _id }) => {
-            return <li key={_id}>{name}</li>;
+            return (
+              <div key={_id} style={{ display: 'block' }}>
+                <Link
+                  className="deschhjb"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'rgb(20,20,20)',
+                    fontFamily: 'Poppins',
+                  }}
+                  to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
+                >
+                  {name}
+                </Link>
+              </div>
+            );
           })}
         </ul>
       </CategoriesDropdown>
@@ -208,7 +241,7 @@ function Desktop() {
         onMouseOver={c}
         onMouseLeave={d}
         style={{
-          transform: `translateY(${y}px)`
+          transform: `translateY(${y}px)`,
         }}
       />
 
@@ -216,7 +249,7 @@ function Desktop() {
         onMouseOver={e}
         onMouseLeave={f}
         style={{
-          transform: `translateY(${z}px)`
+          transform: `translateY(${z}px)`,
         }}
       />
     </>

@@ -1,21 +1,39 @@
 import React from 'react';
 import './Footer.css';
-
+import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <>
       <footer className="footer-distributed" style={{ position: 'sticky' }}>
         <div className="footer-left">
-          <img src="img/logo.png" alt="Logo placeholder" />
-          <h3>
-            About<span>Eduonix</span>
-          </h3>
-
-          <p className="footer-links">
-            <a href="/">Home</a>|<a href="/">Blog</a>|<a href="/">About</a>|<a href="/">Contact</a>
+          <p
+            style={{
+              fontFamily: 'Poppins',
+              margin: '0px',
+              transform: 'translateY(-4px)',
+              color: 'rgba(20,20,20)',
+              fontSize: '26px',
+            }}
+          >
+            <span
+              style={{
+                color: '#ec436f',
+                fontFamily: 'Pacifico',
+                fontSize: '30px',
+                textDecoration: 'none',
+              }}
+            >
+              Up
+            </span>
+            store
           </p>
 
-          <p className="footer-company-name">© 2019 Eduonix Learning Solutions Pvt. Ltd.</p>
+          <p className="footer-links">
+            <Link href="/">Home</Link> | <Link href="/">About us</Link> |{' '}
+            <Link href="/">Terms and conditions</Link>
+          </p>
+
+          <p className="footer-company-name">© 2019 Upstore Pvt. Ltd.</p>
         </div>
 
         <div className="footer-center">
@@ -29,19 +47,22 @@ function Footer() {
 
           <div>
             <i className="fa fa-phone"></i>
-            <p>+91 22-27782183</p>
+            <p>+91 8459252535</p>
           </div>
           <div>
             <i className="fa fa-envelope"></i>
             <p>
-              <a href="mailto:support@eduonix.com">support@eduonix.com</a>
+              <a style={{ color: '#ec436f' }} href="mailto:support@eduonix.com">
+                shukladeshpande@gmail.com
+              </a>
             </p>
           </div>
         </div>
         <div className="footer-right">
           <p className="footer-company-about">
             <span>About the company</span>
-            We offer training and skill building courses across Technology, Design, Management, Science and Humanities.
+            We offer training and skill building courses across Technology,
+            Design, Management, Science and Humanities.
           </p>
           <div className="footer-icons">
             <a href="/">

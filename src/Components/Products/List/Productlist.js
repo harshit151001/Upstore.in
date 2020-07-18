@@ -20,7 +20,7 @@ const Productlist = ({ categoryId, cityId }) => {
   }, [categoryId, data]);
 
   return (
-    <>
+      <>
       <Row style={{ margin: 'auto' }}>
         {data.map(({ price, images, _id }) => {
           return (
@@ -31,6 +31,7 @@ const Productlist = ({ categoryId, cityId }) => {
         })}
       </Row>
     </>
+    
   );
 };
 
