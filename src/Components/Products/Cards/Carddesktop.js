@@ -16,7 +16,6 @@ const Card = styled.div`
   margin: auto;
   text-align: center;
   font-family: arial;
-   border: 1px solid grey;
   transition: 0.3s;
 `;
 const Button = styled.button`
@@ -47,7 +46,7 @@ const Carddesktop = ({ price, path, id }) => {
   return (
     <Card key={id}>
       <Link style={{ textDecoration: 'none' }} to={`/product/${id}`}>
-        <div style={{ height: '300px', display: 'block' }}>
+        <div style={{ height: '350px', display: 'block' }}>
           <img src={`http://159.65.159.82:8000${src}`} style={{ height: '100%', width: '100%', objectFit: 'cover' }} alt="Denim Jeans" />
         </div>
       </Link>
@@ -57,7 +56,7 @@ const Carddesktop = ({ price, path, id }) => {
       </Price>
       <small style={{ marginBottom: 0 }}> Nike Prozone Aurangabad</small>
       <p>
-        <Addtocart source={src} price={price} id={id} />
+        {/* <Addtocart source={src} price={price} id={id} /> */}
         <Button>Add to Cart</Button>
       </p>
     </Card>
