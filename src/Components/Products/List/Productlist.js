@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Productcard from '../Cards/Carddesktop';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import API from '../../../backend';
+import { Row, Col } from 'react-bootstrap';
 
 const Productbox = styled.div`
   display: flex;
@@ -20,21 +20,18 @@ const Productlist = ({ categoryId, cityId }) => {
   }, [categoryId, data]);
 
   return (
-    <Productbox>
-      <div>
+    <>
+      <Row style={{ margin: 'auto' }}>
         {data.map(({ price, images, _id }) => {
           return (
-            <div key={_id}>
-              <Link to={`/product/${_id}`}>
-                <Productcard price={price} path={images[0]} id={_id} />
-              </Link>
-            </div>
+            <Col xs={6} md={3} key={_id} style={{ padding: 0 }}>
+              <Productcard key={_id} price={price} path={images[0]} id={_id} />;
+            </Col>
           );
         })}
-      </div>
-    </Productbox>
+      </Row>
+    </>
   );
 };
 
 export default Productlist;
-
