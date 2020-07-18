@@ -12,12 +12,12 @@ const Productbox = styled.div`
 
 const Productlist = ({ categoryId, cityId }) => {
   const [data, setData] = useState([]);
-
   useEffect(() => {
     axios.get(`${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1`).then(response => {
+      console.log(response);
       setData(response.data.products);
     });
-  }, [categoryId, data]);
+  }, [categoryId]);
 
   return (
     <>
