@@ -27,7 +27,7 @@ import appReducer from './Statemanagement/appReducer';
 function App() {
   const initialState = {
     Cart: [],
-    Wishlist: []
+    Wishlist: [],
   };
 
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
@@ -39,12 +39,24 @@ function App() {
       localStorage.setItem('Cart', JSON.stringify(state.Cart));
     }
   }, [state.Cart]);
-  console.log(state.Cart);
 
+  // useEffect(() => {
+  //   axios.get(`${API}/api/categories/`).then((response) => {
+  //     setcategoryData(response.data.categories);
+  //   });
+  // }, []);
   useEffect(() => {
-    axios.get(`${API}/api/categories/`).then(response => {
-      setcategoryData(response.data.categories);
-    });
+    let mounted = true;
+    const loadData = async () => {
+      const response = await axios.get(`${API}/api/categories/`);
+      if (mounted) {
+        setcategoryData(response.data.categories);
+      }
+    };
+    loadData();
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return (
@@ -56,9 +68,20 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home}></Route>
               <Route exact path="/aboutus" component={Aboutus}></Route>
-              <Route exact path="/termsandcondition" component={Termsandcondition}></Route>
-              <Route exact path="/loginsignup" component={Loginsignuppage}></Route>
-              <Route path="/products/:categoryId/5eff8e76d75ecb3735b243b1" component={Products}></Route>
+              <Route
+                exact
+                path="/termsandcondition"
+                component={Termsandcondition}
+              ></Route>
+              <Route
+                exact
+                path="/loginsignup"
+                component={Loginsignuppage}
+              ></Route>
+              <Route
+                path="/products/:categoryId/5eff8e76d75ecb3735b243b1/"
+                component={Products}
+              ></Route>
               <Route path="/productpage" component={Productpage}></Route>
               <Route component={err}></Route>
             </Switch>
