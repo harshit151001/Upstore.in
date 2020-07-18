@@ -10,13 +10,13 @@ const Price = styled.p`
   margin-bottom: 1px;
 `;
 const Card = styled.div`
-  
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
   max-height: 100px
   margin: auto;
   text-align: center;
   font-family: arial;
-   border: 1px solid grey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 `;
 const Button = styled.button`
@@ -35,12 +35,6 @@ const Button = styled.button`
     opacity: 0.7;
   }
 `;
-const Img = styled.img`
-width: 100%;
-object-fit:cover;
-height:100%;
-} 
-`;
 
 const Carddesktop = ({ price, path, id }) => {
   const src = path.substr(6);
@@ -57,7 +51,7 @@ const Carddesktop = ({ price, path, id }) => {
       </Price>
       <small style={{ marginBottom: 0 }}> Nike Prozone Aurangabad</small>
       <p>
-        <Addtocart source={src} price={price} id={id} />
+        {/* <Addtocart src={src} name={name} price={price} id={id} /> */}
         <Button>Add to Cart</Button>
       </p>
     </Card>

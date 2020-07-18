@@ -3,7 +3,6 @@ const appReducer = (draft, action) => {
     case 'Addtocart':
       draft.Cart.push(action.value);
       break;
-
     default:
       break;
   }

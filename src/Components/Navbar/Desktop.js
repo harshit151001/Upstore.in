@@ -115,7 +115,7 @@ const CartDropdown = styled.div`
 /*********************************************************************/
 
 function Desktop() {
-  const categoryData = useContext(appContext);
+  const { categorydata } = useContext(appContext);
   /****************************/
   const [x, SetX] = useState(0);
   const a = () => SetX(620);
@@ -205,7 +205,7 @@ function Desktop() {
         }}
       >
         <ul>
-          {categoryData.map(({ name, _id }) => {
+          {categorydata.map(({ name, _id }) => {
             return (
               <div key={_id} style={{ display: 'block' }}>
                 <Link

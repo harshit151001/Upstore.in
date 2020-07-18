@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Productcard from '../Cards/Carddesktop';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import API from '../../../backend';
 import { Row, Col } from 'react-bootstrap';
 
-const Productbox = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+// const Productbox = styled.div`
+//   display: flex;
+//   flex-direction: row;
+// `;
 
 const Productlist = ({ categoryId, cityId }) => {
   const [data, setData] = useState([]);

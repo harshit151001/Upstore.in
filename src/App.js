@@ -31,8 +31,15 @@ function App() {
   };
 
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
-  // console.log(state.Cart);
+
   const [categorydata, setcategoryData] = useState([]);
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      localStorage.setItem('Cart', JSON.stringify(state.Cart));
+    }
+  }, [state.Cart]);
+  console.log(state.Cart);
 
   useEffect(() => {
     axios.get(`${API}/api/categories/`).then(response => {
@@ -41,7 +48,7 @@ function App() {
   }, []);
 
   return (
-    <appContext.Provider value={(state, categorydata)}>
+    <appContext.Provider value={{ state, categorydata }}>
       <dispatchContext.Provider value={dispatch}>
         <BrowserRouter>
           <div style={{ width: '100vw', overflowX: 'hidden' }}>
