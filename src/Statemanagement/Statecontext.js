@@ -7,10 +7,12 @@ import { useImmerReducer } from 'use-immer';
 export const appContext = createContext();
 export const dispatchContext = createContext();
 
-export const Statecontext = (props) => {
+
+export const Statecontext = props => {
   const initialState = {
     Cart: [],
     Wishlist: [],
+    loggedIn: Boolean(localStorage.getItem('Upstorejwt'))
   };
 
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
@@ -26,7 +28,10 @@ export const Statecontext = (props) => {
   useEffect(() => {
     let mounted = true;
     const loadData = async () => {
+
+
       const response = await axios.get(`${API}/api/categories/`);
+
       if (mounted) {
         setcategoryData(response.data.categories);
       }
@@ -39,9 +44,13 @@ export const Statecontext = (props) => {
 
   return (
     <appContext.Provider value={{ state, categorydata }}>
+
+     
+
       <dispatchContext.Provider value={dispatch}>
         {props.children}
       </dispatchContext.Provider>
+
     </appContext.Provider>
   );
 };
