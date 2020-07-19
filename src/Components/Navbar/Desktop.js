@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import appContext from '../../Statemanagement/appContext';
+import { appContext } from '../../Statemanagement/Statecontext';
 //DESKTOP NAVBAR
 /*********************************************************************/
 const DesktopNav = styled.div`
@@ -141,7 +141,7 @@ function Desktop() {
                   fontFamily: 'Poppins',
                   margin: '0px',
                   transform: 'translateY(-4px)',
-                  color: 'rgba(20,20,20)'
+                  color: 'rgba(20,20,20)',
                 }}
               >
                 <span
@@ -149,7 +149,7 @@ function Desktop() {
                     color: '#ec436f',
                     fontFamily: 'Pacifico',
                     fontSize: '30px',
-                    textDecoration: 'none'
+                    textDecoration: 'none',
                   }}
                 >
                   Up
@@ -158,7 +158,11 @@ function Desktop() {
               </p>
             </span>
           </Link>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={a} onMouseLeave={b}>
+          <span
+            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+            onMouseOver={a}
+            onMouseLeave={b}
+          >
             <i className="fa fa-th" aria-hidden="true"></i>
           </span>
         </div>
@@ -178,7 +182,11 @@ function Desktop() {
           </form>
         </div>
         <div>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={c} onMouseLeave={d}>
+          <span
+            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+            onMouseOver={c}
+            onMouseLeave={d}
+          >
             <i className="fa fa-user-circle" aria-hidden="true"></i>
           </span>
           <span
@@ -186,12 +194,16 @@ function Desktop() {
               height: '9vh',
               display: 'flex',
               alignItems: 'center',
-              color: '#ec436f'
+              color: '#ec436f',
             }}
           >
             <i className="fa fa-heart-o" aria-hidden="true"></i>
           </span>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
+          <span
+            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+            onMouseOver={e}
+            onMouseLeave={f}
+          >
             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
           </span>
         </div>
@@ -201,7 +213,7 @@ function Desktop() {
         onMouseOver={a}
         onMouseLeave={b}
         style={{
-          transform: `translateY(${x}px)`
+          transform: `translateY(${x}px)`,
         }}
       >
         <ul>
@@ -213,7 +225,7 @@ function Desktop() {
                   style={{
                     textDecoration: 'none',
                     color: 'rgb(20,20,20)',
-                    fontFamily: 'Poppins'
+                    fontFamily: 'Poppins',
                   }}
                   to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
                 >
@@ -229,7 +241,7 @@ function Desktop() {
         onMouseOver={c}
         onMouseLeave={d}
         style={{
-          transform: `translateY(${y}px)`
+          transform: `translateY(${y}px)`,
         }}
       />
 
@@ -237,7 +249,7 @@ function Desktop() {
         onMouseOver={e}
         onMouseLeave={f}
         style={{
-          transform: `translateY(${z}px)`
+          transform: `translateY(${z}px)`,
         }}
       />
     </>

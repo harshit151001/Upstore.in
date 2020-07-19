@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 //!custom hook
 //!import useWindowDimensions from '../../../customapis/useWindowDimensions';
 //!components
-import appContext from '../../../Statemanagement/appContext';
+import { appContext } from '../../../Statemanagement/Statecontext';
 import Categorycard from '../Cards/Categorycard';
 import { Row, Col } from 'react-bootstrap';
 
 const Categorylist = () => {
-  const {categorydata} = useContext(appContext);
+  const { categorydata } = useContext(appContext);
   return (
     <Row style={{ width: `92.5%`, margin: 'auto' }}>
       {categorydata.map(({ name, imagePath, _id }) => {
