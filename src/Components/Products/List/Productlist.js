@@ -8,7 +8,6 @@ import { Row, Col } from 'react-bootstrap';
 
 const queryString = require('query-string');
 
-
 const Productlist = ({ categoryId, cityId }) => {
   const parsed = queryString.parse(window.location.search);
   const [totalPages, setTotalPages] = useState(1);
@@ -33,28 +32,16 @@ const Productlist = ({ categoryId, cityId }) => {
       });
   }, [categoryId, currentPage]);
 
-
   console.log(totalPages);
   return (
     <>
       <Row style={{ margin: 'auto' }}>
-        <button
-          onClick={() => {
-            setX(false);
-          }}
-        >
-          page 2
-        </button>
+        <button>page 2</button>
         {data
           ? data.map(({ price, images, _id }) => {
               return (
                 <Col xs={6} md={4} lg={3} key={_id} style={{ padding: 0 }}>
-                  <Productcard
-                    key={_id}
-                    price={price}
-                    path={images[0]}
-                    id={_id}
-                  />
+                  <Productcard key={_id} price={price} path={images[0]} id={_id} />
                 </Col>
               );
             })
