@@ -1,45 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
-
-import { signin, authenticate, isAutheticated } from '../../auth/helper/index';
+import { appContext, dispatchContext } from '../../Statemanagement/Statecontext';
+import { signin, authenticate } from '../../auth/helper/index';
 
 const Loginwithemail = () => {
+  const loginContext = useContext(appContext);
+  const dispatchLogin = useContext(dispatchContext);
   const [values, setValues] = useState({
     email: '',
     password: '',
     error: '',
     loading: false,
-    didRedirect: false,
+    didRedirect: false
   });
 
   const { email, password, error, loading } = values;
 
-  const handleChange = (name) => (event) => {
+  const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
     signin({ email, password })
-      .then((data) => {
+      .then(data => {
         if (data.error) {
           setValues({ ...values, error: data.error, loading: false });
         } else {
           authenticate(data, () => {
             setValues({
               ...values,
-              didRedirect: true,
+              didRedirect: true
             });
+            dispatchLogin({ type: 'login' });
           });
         }
       })
-      .catch(console.log('signin request failed'));
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const performRedirect = () => {
     //TODO: do a redirect here
-    if (isAutheticated()) {
+    console.log(loginContext.state.loggedIn);
+    if (loginContext.state.loggedIn) {
       return <Redirect to="/" />;
     }
   };
@@ -58,10 +64,7 @@ const Loginwithemail = () => {
     return (
       <div className="row">
         <div className="col-md-6 offset-sm-3 text-left">
-          <div
-            className="alert alert-danger"
-            style={{ display: error ? '' : 'none' }}
-          >
+          <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
             {error}
           </div>
         </div>
@@ -76,36 +79,17 @@ const Loginwithemail = () => {
       <form>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            onChange={handleChange('email')}
-            value={email}
-          />
+          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={handleChange('email')} value={email} />
           <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
           </small>
         </div>
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password"
-            onChange={handleChange('password')}
-            value={password}
-          />
+          <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={handleChange('password')} value={password} />
         </div>
         <div className="form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
+          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
           <label className="form-check-label" htmlFor="exampleCheck1">
             Keep me signed in
           </label>

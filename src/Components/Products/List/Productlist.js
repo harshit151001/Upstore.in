@@ -34,6 +34,7 @@ const Productlist = ({ categoryId, cityId }) => {
       .catch((err) => {
         console.log(err);
       });
+
   }, [categoryId, currentPage, totalPages]);
 
   console.log(totalPages);
@@ -44,12 +45,7 @@ const Productlist = ({ categoryId, cityId }) => {
           ? data.map(({ price, images, _id }) => {
               return (
                 <Col xs={6} md={4} lg={3} key={_id} style={{ padding: 0 }}>
-                  <Productcard
-                    key={_id}
-                    price={price}
-                    path={images[0]}
-                    id={_id}
-                  />
+                  <Productcard key={_id} price={price} path={images[0]} id={_id} />
                 </Col>
               );
             })

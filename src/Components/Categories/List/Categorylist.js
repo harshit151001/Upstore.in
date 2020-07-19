@@ -2,11 +2,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-//!components
-import Categorycard from '../Cards/Categorycard';
-import { Row, Col } from 'react-bootstrap';
+
 
 import { appContext } from '../../../Statemanagement/Statecontext';
+
+import Categorycard from '../Cards/Categorycard';
+import { Row, Col } from 'react-bootstrap';
 
 const Categorylist = () => {
   const { categorydata } = useContext(appContext);

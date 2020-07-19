@@ -42,21 +42,21 @@ export const signin = async (user) => {
 // export const signin = user => {
 //   return user =>
 //     axios
-//       .post(`${API}/api/signinEmail`, { body: JSON.stringify(user) })
+//       .post(`${API}/api/signinEmail`, { email: user.email, password: user.password })
 //       .then(response => console.log(response))
 //       .catch(error => console.log(error));
 // };
 
-export const authenticate = (data, next) => {
+export const authenticate = async (data, next) => {
   if (typeof window !== 'undefined') {
-    localStorage.setItem('jwt', JSON.stringify(data));
+    await localStorage.setItem('Upstorejwt', JSON.stringify(data));
     next();
   }
 };
 
 export const signout = async (next) => {
   if (typeof window !== 'undefined') {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem('Upstorejwt');
     next();
 
     try {
@@ -74,8 +74,8 @@ export const isAutheticated = () => {
   if (typeof window == 'undefined') {
     return false;
   }
-  if (localStorage.getItem('jwt')) {
-    return JSON.parse(localStorage.getItem('jwt'));
+  if (localStorage.getItem('Upstorejwt')) {
+    return JSON.parse(localStorage.getItem('Upstorejwt'));
   } else {
     return false;
   }
