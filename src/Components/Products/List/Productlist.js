@@ -36,7 +36,6 @@ const Productlist = ({ categoryId, cityId }) => {
   return (
     <>
       <Row style={{ margin: 'auto' }}>
-        <button>page 2</button>
         {data
           ? data.map(({ price, images, _id }) => {
               return (

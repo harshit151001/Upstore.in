@@ -17,27 +17,26 @@ export const Statecontext = props => {
 
   const [categorydata, setcategoryData] = useState([]);
 
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      localStorage.setItem('Cart', JSON.stringify(state.Cart));
-    }
-  }, [state.Cart]);
-
   // useEffect(() => {
-  //   let mounted = true;
-  // const loadData = async () => {
-  //   const response = await axios.get(`${API}/api/categories`);
-  //   console.log(response);
-  //   if (mounted) {
-  //     setcategoryData(response.data.categories);
+  //   if (typeof window !== undefined) {
+  //     localStorage.setItem('Cart', JSON.stringify(state.Cart));
   //   }
-  // };
-  // loadData();
-  // return () => {
-  //   mounted = false;
-  // };
+  // }, [state.Cart]);
 
-  // }, []);
+  useEffect(() => {
+    let mounted = true;
+    const loadData = async () => {
+      const response = await axios.get(`${API}/api/categories`);
+      console.log(response);
+      if (mounted) {
+        setcategoryData(response.data.categories);
+      }
+    };
+    loadData();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <appContext.Provider value={{ state, categorydata }}>
