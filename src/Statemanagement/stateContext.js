@@ -10,24 +10,26 @@ export const dispatchContext = createContext();
 export const Statecontext = props => {
   const initialState = {
     Cart: [],
-    Wishlist: []
+    Wishlist: [],
+    loggedIn: Boolean(localStorage.getItem('Upstorejwt'))
   };
 
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
 
   const [categorydata, setcategoryData] = useState([]);
 
-  // useEffect(() => {
-  //   if (typeof window !== undefined) {
-  //     localStorage.setItem('Cart', JSON.stringify(state.Cart));
-  //   }
-  // }, [state.Cart]);
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      localStorage.setItem('Cart', JSON.stringify(state.Cart));
+    }
+  }, [state.Cart]);
 
   useEffect(() => {
     let mounted = true;
     const loadData = async () => {
       const response = await axios.get(`${API}/api/categories`);
       console.log(response);
+
       if (mounted) {
         setcategoryData(response.data.categories);
       }

@@ -1,11 +1,9 @@
 //!library
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 //!custom hook
 //!import useWindowDimensions from '../../../customapis/useWindowDimensions';
 //!components
-import axios from 'axios';
-import API from '../../../backend';
 import { appContext } from '../../../Statemanagement/Statecontext';
 
 import Categorycard from '../Cards/Categorycard';

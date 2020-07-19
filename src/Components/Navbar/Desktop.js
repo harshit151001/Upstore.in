@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-import { appContext } from '../../Statemanagement/Statecontext';
 
 //DESKTOP NAVBAR
 /*********************************************************************/
