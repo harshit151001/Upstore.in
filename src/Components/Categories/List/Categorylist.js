@@ -1,8 +1,7 @@
 //!library
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-//!custom hook
-//!import useWindowDimensions from '../../../customapis/useWindowDimensions';
+
 //!components
 import Categorycard from '../Cards/Categorycard';
 import { Row, Col } from 'react-bootstrap';
