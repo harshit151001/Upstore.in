@@ -19,6 +19,7 @@ import Loginsignuppage from './Components/Routes/Loginsignuppage';
 import Products from './Components/Routes/Products';
 import Productpage from './Components/Routes/Productpage';
 //!context
+
 import { Statecontext } from './Statemanagement/Statecontext';
 // ?import dispatchContext from './Statemanagement/dispatchContext';
 //!Reducer
@@ -55,6 +56,7 @@ function App() {
   // }, []);
 
   return (
+
     <Statecontext>
       <BrowserRouter>
         <div style={{ width: '100vw', overflowX: 'hidden' }}>
@@ -83,6 +85,7 @@ function App() {
         <Footer />
       </BrowserRouter>
     </Statecontext>
+
   );
 }
 

@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
 import { appContext } from '../../Statemanagement/Statecontext';
+
 //DESKTOP NAVBAR
 /*********************************************************************/
 const DesktopNav = styled.div`
