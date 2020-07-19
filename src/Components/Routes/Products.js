@@ -4,9 +4,8 @@ import { Row, Col } from 'react-bootstrap';
 import WelcomeBanner from '../WelcomeBanner/WelcomeBanner';
 import Filters from '../Filters/Filters';
 import useWindowDimensions from '../../customapis/useWindowDimensions';
-import Paging from '../../Components/Pagination/Pagination';
 
-const Products = props => {
+const Products = (props) => {
   const { categoryId } = props.match.params;
   const { width } = useWindowDimensions();
   return (
@@ -23,7 +22,6 @@ const Products = props => {
           <Productlist categoryId={categoryId} />
         </Col>
       </Row>
-      <Paging />
     </>
   );
 };
