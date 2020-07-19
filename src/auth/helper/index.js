@@ -1,28 +1,28 @@
 import API from '../../backend';
 import axios from 'axios';
 
-export const signup = user => {
-  axios
-    .post(`${API}/api/signupEmail`, JSON.stringify(user))
-    .then(response => console.log(response))
-    .catch(error => console.log(error));
-};
-
-// export const signup = async (user) => {
-//   try {
-//     const response = await fetch(`${API}/api/signupEmail`, {
-//       method: 'POST',
-//       headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(user),
-//     });
-//     return response.json();
-//   } catch (err) {
-//     return console.log(err);
-//   }
+// export const signup = user => {
+//   axios
+//     .post(`${API}/api/signupEmail`, JSON.stringify(user))
+//     .then(response => console.log(response))
+//     .catch(error => console.log(error));
 // };
+
+export const signup = async user => {
+  try {
+    const response = await fetch(`${API}/api/signupEmail`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+    return response.json();
+  } catch (err) {
+    return console.log(err);
+  }
+};
 
 export const signin = async user => {
   try {

@@ -19,11 +19,10 @@ import Products from './Components/Routes/Products';
 import Footer from './Components/Footer/Footer';
 import Productpage from './Components/Routes/Productpage';
 //!context
-import appContext from './Statemanagement/appContext';
+import appContext from './Statemanagement/stateContext';
 import dispatchContext from './Statemanagement/dispatchContext';
 //!Reducer
 import appReducer from './Statemanagement/appReducer';
-
 function App() {
   const initialState = {
     Cart: [],
@@ -60,6 +59,7 @@ function App() {
               <Route exact path="/loginsignup" component={Loginsignuppage}></Route>
               <Route path="/products/:categoryId/5eff8e76d75ecb3735b243b1" component={Products}></Route>
               <Route path="/productpage" component={Productpage}></Route>
+
               <Route component={err}></Route>
             </Switch>
           </div>

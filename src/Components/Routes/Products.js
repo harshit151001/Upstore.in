@@ -23,7 +23,6 @@ const Products = props => {
           <Productlist categoryId={categoryId} />
         </Col>
       </Row>
-      <Paging />
     </>
   );
 };
