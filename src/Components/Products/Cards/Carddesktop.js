@@ -48,7 +48,11 @@ const Carddesktop = ({ price, path, id }) => {
     <Card key={id}>
       <Link style={{ textDecoration: 'none' }} to={`/product/${id}`}>
         <div style={{ height: '350px', display: 'block' }}>
-          <Img src={`http://159.65.159.82:8000${src}`} style={{ height: '100%', width: '100%', objectFit: 'cover' }} alt="Denim Jeans" />
+          <Img
+            src={`http://159.65.159.82:8000${src}`}
+            style={{ height: '100%', width: '100%', objectFit: 'cover' }}
+            alt="Denim Jeans"
+          />
         </div>
       </Link>
 
@@ -57,7 +61,7 @@ const Carddesktop = ({ price, path, id }) => {
       </Price>
       <small style={{ marginBottom: 0 }}> Nike Prozone Aurangabad</small>
       <p>
-        {/* <Addtocart source={path} price={price} id={id} /> */}
+        <Addtocart source={path} price={price} id={id} />
         <Button>Add to Cart</Button>
       </p>
     </Card>
