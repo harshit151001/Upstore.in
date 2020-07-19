@@ -1,5 +1,4 @@
 import API from '../../backend';
-import axios from 'axios';
 
 // export const signup = user => {
 //   axios
@@ -8,15 +7,15 @@ import axios from 'axios';
 //     .catch(error => console.log(error));
 // };
 
-export const signup = async user => {
+export const signup = async (user) => {
   try {
     const response = await fetch(`${API}/api/signupEmail`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(user),
     });
     return response.json();
   } catch (err) {
@@ -24,15 +23,15 @@ export const signup = async user => {
   }
 };
 
-export const signin = async user => {
+export const signin = async (user) => {
   try {
     const response = await fetch(`${API}/api/signinEmail`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(user),
     });
     return response.json();
   } catch (err) {
@@ -55,14 +54,14 @@ export const authenticate = (data, next) => {
   }
 };
 
-export const signout = async next => {
+export const signout = async (next) => {
   if (typeof window !== 'undefined') {
     localStorage.removeItem('jwt');
     next();
 
     try {
       const response = await fetch(`${API}/signout`, {
-        method: 'GET'
+        method: 'GET',
       });
       return console.log(response);
     } catch (err) {

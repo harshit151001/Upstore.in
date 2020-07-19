@@ -1,13 +1,9 @@
 //!library
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-//? import axios from 'axios';
-//? import { useImmerReducer } from 'use-immer';
-//!api
-//? import API from './backend';
 //!Css import
 import './custom.scss';
-//Components most likely
+//!Components most likely
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 //!routes
@@ -19,44 +15,10 @@ import Loginsignuppage from './Components/Routes/Loginsignuppage';
 import Products from './Components/Routes/Products';
 import Productpage from './Components/Routes/Productpage';
 //!context
-
 import { Statecontext } from './Statemanagement/Statecontext';
-// ?import dispatchContext from './Statemanagement/dispatchContext';
-//!Reducer
-//? import appReducer from './Statemanagement/appReducer';
 
 function App() {
-  // const initialState = {
-  //   Cart: [],
-  //   Wishlist: [],
-  // };
-
-  // const [state, dispatch] = useImmerReducer(appReducer, initialState);
-
-  // const [categorydata, setcategoryData] = useState([]);
-
-  // useEffect(() => {
-  //   if (typeof window !== undefined) {
-  //     localStorage.setItem('Cart', JSON.stringify(state.Cart));
-  //   }
-  // }, [state.Cart]);
-
-  // useEffect(() => {
-  //   let mounted = true;
-  //   const loadData = async () => {
-  //     const response = await axios.get(`${API}/api/categories/`);
-  //     if (mounted) {
-  //       setcategoryData(response.data.categories);
-  //     }
-  //   };
-  //   loadData();
-  //   return () => {
-  //     mounted = false;
-  //   };
-  // }, []);
-
   return (
-
     <Statecontext>
       <BrowserRouter>
         <div style={{ width: '100vw', overflowX: 'hidden' }}>
@@ -85,7 +47,6 @@ function App() {
         <Footer />
       </BrowserRouter>
     </Statecontext>
-
   );
 }
 

@@ -8,7 +8,6 @@ import { Row, Col } from 'react-bootstrap';
 
 const queryString = require('query-string');
 
-
 const Productlist = ({ categoryId, cityId }) => {
   const parsed = queryString.parse(window.location.search);
   const [totalPages, setTotalPages] = useState(1);
@@ -18,8 +17,12 @@ const Productlist = ({ categoryId, cityId }) => {
 
   useEffect(() => {
     axios
-      .get(`${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage || 1}`)
-      .then(response => {
+      .get(
+        `${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
+          currentPage || 1
+        }`
+      )
+      .then((response) => {
         console.log(response);
 
         window.scroll(0, 0);
@@ -28,23 +31,15 @@ const Productlist = ({ categoryId, cityId }) => {
         }
         return setData(response.data.products);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-  }, [categoryId, currentPage]);
-
+  }, [categoryId, currentPage, totalPages]);
 
   console.log(totalPages);
   return (
     <>
       <Row style={{ margin: 'auto' }}>
-        <button
-          onClick={() => {
-            setX(false);
-          }}
-        >
-          page 2
-        </button>
         {data
           ? data.map(({ price, images, _id }) => {
               return (
@@ -61,7 +56,11 @@ const Productlist = ({ categoryId, cityId }) => {
           : null}
       </Row>
 
-      <Link to={`/products/5f0b5855a8495d29230e5a26/5eff8e76d75ecb3735b243b1?page=${currentPage - 1 || 1}`}>
+      <Link
+        to={`/products/5f0b5855a8495d29230e5a26/5eff8e76d75ecb3735b243b1?page=${
+          currentPage - 1 || 1
+        }`}
+      >
         <button
           onClick={() => {
             if (currentPage > 1) {
@@ -73,7 +72,11 @@ const Productlist = ({ categoryId, cityId }) => {
         </button>
       </Link>
 
-      <Link to={`/products/5f0b5855a8495d29230e5a26/5eff8e76d75ecb3735b243b1?page=${totalPages > currentPage ? currentPage + 1 : totalPages}`}>
+      <Link
+        to={`/products/5f0b5855a8495d29230e5a26/5eff8e76d75ecb3735b243b1?page=${
+          totalPages > currentPage ? currentPage + 1 : totalPages
+        }`}
+      >
         <button
           onClick={() => {
             if (currentPage < 2) {
