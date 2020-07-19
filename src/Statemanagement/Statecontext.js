@@ -35,9 +35,6 @@ export const Statecontext = (props) => {
     return () => {
       mounted = false;
     };
-    // axios
-    //   .get(`${API}/api/categories/`)
-    //   .then((res) => console.log(res.data.categories));
   }, []);
 
   return (
