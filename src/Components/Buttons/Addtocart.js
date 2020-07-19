@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import dispatchContext from '../../Statemanagement/dispatchContext';
+import { dispatchContext } from '../../Statemanagement/Statecontext';
 const Button = styled.button``;
 
 const Addtocart = props => {
