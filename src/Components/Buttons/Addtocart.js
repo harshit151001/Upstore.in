@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { dispatchContext } from '../../Statemanagement/Statecontext';
 const Button = styled.button``;
 
-const Addtocart = props => {
+const Addtocart = (props) => {
   const cartDispatch = useContext(dispatchContext);
   const addtocart = () => {
-    cartDispatch({ type: 'Addtocart', value: { ...props } });
+    cartDispatch({ type: 'ADDTOCART', value: { ...props } });
   };
   return (
     <Button

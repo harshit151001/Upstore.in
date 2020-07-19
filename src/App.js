@@ -1,12 +1,9 @@
 //!library
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-//!api
-//? import API from './backend';
 //!Css import
 import './custom.scss';
-//Components most likely
+//!Components most likely
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 //!routes
@@ -18,10 +15,8 @@ import Loginsignuppage from './Components/Routes/Loginsignuppage';
 import Products from './Components/Routes/Products';
 import Productpage from './Components/Routes/Productpage';
 //!context
-
 import { Statecontext } from './Statemanagement/Statecontext';
 
-//!Reducer
 
 function App() {
   return (

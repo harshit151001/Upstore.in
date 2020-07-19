@@ -1,6 +1,6 @@
 const appReducer = (draft, action) => {
   switch (action.type) {
-    case 'Addtocart':
+    case 'ADDTOCART':
       draft.Cart.push(action.value);
       break;
     case 'login':

@@ -5,7 +5,7 @@ import WelcomeBanner from '../WelcomeBanner/WelcomeBanner';
 import Filters from '../Filters/Filters';
 import useWindowDimensions from '../../customapis/useWindowDimensions';
 
-const Products = props => {
+const Products = (props) => {
   const { categoryId } = props.match.params;
   const { width } = useWindowDimensions();
   return (
