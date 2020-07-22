@@ -13,7 +13,9 @@ const Categorycard = ({ name, path }) => {
         boxShadow:
           'white 1px 1px 0px,rgba(0,0,0,0.3) 2px 0px 13px, rgba(0,0,0,0.3) 4px 10px 21px',
         margin: '2vw',
+        minHeight: '130px'
       }}
+      className="hoveroncategory"
     >
       <Row>
         <Col>

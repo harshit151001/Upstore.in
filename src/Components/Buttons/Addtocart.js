@@ -14,7 +14,7 @@ const Addtocart = (props) => {
         addtocart(props);
       }}
     >
-      Add to carte
+      Add to cart
     </Button>
   );
 };

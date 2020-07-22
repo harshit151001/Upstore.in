@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
+
 //DESKTOP NAVBAR
 /*********************************************************************/
 const DesktopNav = styled.div`
@@ -35,7 +36,7 @@ const DesktopNav = styled.div`
         background: #f5f5f6;
         width: 85%;
         &:focus {
-          border: 1px solid rgba(50, 50, 50);
+          border: 1px solid #ec436f;
         }
       }
       button {
@@ -252,7 +253,7 @@ function Desktop() {
         style={{
           transform: `translateY(${z}px)`,
         }}
-      />
+      ></CartDropdown>
     </>
   );
 }

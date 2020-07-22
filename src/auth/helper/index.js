@@ -1,11 +1,6 @@
 import API from '../../backend';
 
-// export const signup = user => {
-//   axios
-//     .post(`${API}/api/signupEmail`, JSON.stringify(user))
-//     .then(response => console.log(response))
-//     .catch(error => console.log(error));
-// };
+
 
 export const signup = async (user) => {
   try {

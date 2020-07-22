@@ -1,19 +1,19 @@
 //!library
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-
+import Categorycard from '../Cards/Categorycard';
+import { Row, Col } from 'react-bootstrap';
 
 
 import { appContext } from '../../../Statemanagement/Statecontext';
 
-import Categorycard from '../Cards/Categorycard';
-import { Row, Col } from 'react-bootstrap';
+
 
 const Categorylist = () => {
   const { categorydata } = useContext(appContext);
 
   return (
-    <Row style={{ width: `92.5%`, margin: 'auto' }}>
+    <Row style={{ width: `92.5vw`, margin: 'auto' }}>
       {categorydata.map(({ name, imagePath, _id }) => {
         return (
           <Col xs={6} md={4} key={_id}>

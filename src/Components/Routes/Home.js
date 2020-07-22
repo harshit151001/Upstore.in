@@ -5,6 +5,7 @@ import Loginmodal from '../Modals/Loginmodal';
 import { appContext } from '../../Statemanagement/Statecontext';
 
 import Categorylist from '../Categories/List/Categorylist';
+import Cartlist from '../Cart/Cartlist';
 
 const Home = () => {
   const MainContext = useContext(appContext);
@@ -20,6 +21,7 @@ const Home = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
       <Slider />
+      <Cartlist />
 
       <Loginmodal
         show={modalShow && !MainContext.state.loggedIn}
