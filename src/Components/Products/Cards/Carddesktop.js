@@ -41,7 +41,7 @@ height:100%;
 } 
 `;
 
-const Carddesktop = ({ price, path, id }) => {
+const Carddesktop = ({ name, size, price, path, id }) => {
   const src = path.substr(6);
 
   return (
@@ -61,7 +61,7 @@ const Carddesktop = ({ price, path, id }) => {
       </Price>
       <small style={{ marginBottom: 0 }}> Nike Prozone Aurangabad</small>
       <p>
-        <Addtocart source={path} price={price} id={id} />
+        <Addtocart id={id} />
         <Button>Add to Cart</Button>
       </p>
     </Card>

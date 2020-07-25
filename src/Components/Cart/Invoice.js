@@ -37,7 +37,7 @@ const Invoice = () => {
         </div>
         <div className="row">
           <div className="col-12">
-            <button type="button" class="btn btn-danger btn mt-3 btn-block">
+            <button type="button" className="btn btn-danger btn mt-3 btn-block">
               <strong>place order</strong>
             </button>
           </div>

@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom';
 import Categorycard from '../Cards/Categorycard';
 import { Row, Col } from 'react-bootstrap';
 
-
 import { appContext } from '../../../Statemanagement/Statecontext';
 
-
-
 const Categorylist = () => {
-  const { categorydata } = useContext(appContext);
+  const { state } = useContext(appContext);
+  const { categorydata } = state;
 
   return (
     <Row style={{ width: `92.5vw`, margin: 'auto' }}>

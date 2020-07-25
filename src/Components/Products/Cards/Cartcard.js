@@ -1,9 +1,34 @@
 import React from 'react';
-import i2 from '../../Images/i2.jpg';
-const Cartcard = () => {
+import Remove from '../../Buttons/Remove';
+// import Addtowishlist from '../../Buttons/Remove';
+import API from '../../../backend';
+const Cartcard = (props) => {
+  const { product, quantity } = props;
+
+  const {
+    _id,
+    name,
+    shopName,
+    price,
+    stock,
+    category,
+    city,
+    shopId,
+    discount,
+    size,
+    photos,
+  } = product;
+
   return (
-    <div class="card mt-3">
-      <div class="card-body">
+    <div
+      className="card mt-3"
+      shopId={shopId}
+      city={city}
+      size={size}
+      category={category}
+      stock={stock}
+    >
+      <div className="card-body">
         <div
           className="row no-gutters"
           style={{ display: 'flex', flexWrap: 'nowrap' }}
@@ -15,21 +40,21 @@ const Cartcard = () => {
                 height: '148px',
                 objectFit: 'cover',
               }}
-              src={i2}
-              class="card-img"
-              alt="..."
+              src={`${API}${photos[0].substr(6)}`}
+              className="card-img"
+              alt={name}
             />
           </div>
           <div className="w-100" style={{ paddingLeft: '10px' }}>
-            <h5>Product name</h5>
+            <h5>{name}</h5>
             <div className="d-flex w-100 justify-content-between">
               <span>
-                <p className="small text-muted ">
-                  Sold by: prozone, nike aurngabad
-                </p>
+                <p className="small text-muted ">Sold by: {shopName}</p>
               </span>
               <span>
-                <strong className="d-none d-sm-block">&#x20b9;333.00</strong>
+                <strong className="d-none d-sm-block">
+                  &#x20b9;{(price * discount) / 100}
+                </strong>
               </span>
             </div>
             <div className="d-flex w-100 mt-0 justify-content-between">
@@ -43,8 +68,9 @@ const Cartcard = () => {
                   <input
                     type="text"
                     style={{ width: '30px' }}
-                    value="1"
+                    value={quantity}
                     className=""
+                    // onChange={}
                   />
                 </span>
                 <span>
@@ -56,26 +82,28 @@ const Cartcard = () => {
               <span>
                 <p className="text-muted d-none d-sm-block">
                   <span>
-                    <s>&#x20b9;1000</s>{' '}
+                    <s>&#x20b9;{price}</s>{' '}
                   </span>
                   <span className="small" style={{ color: 'red' }}>
                     {' '}
-                    60% off
+                    {discount}
                   </span>
                 </p>
               </span>
             </div>
             <div className="d-flex mt-2">
               <span>
-                <strong className="d-block d-sm-none">&#x20b9;333.00</strong>
+                <strong className="d-block d-sm-none">
+                  &#x20b9;{(price * discount) / 100}
+                </strong>
               </span>
               <p className="text-muted d-block d-sm-none ml-1">
                 <span>
-                  <s>&#x20b9;1000</s>{' '}
+                  <s>&#x20b9;{price}</s>{' '}
                 </span>
                 <span className="small" style={{ color: 'red' }}>
                   {' '}
-                  60% off
+                  {discount}
                 </span>
               </p>
             </div>
@@ -84,12 +112,8 @@ const Cartcard = () => {
         <hr />
         <div className="row">
           <div className="col-12">
-            <button
-              type="button"
-              class="btn btn-danger btn-light text-muted btn-block "
-            >
-              Remove
-            </button>
+            <Remove id={_id}>Remove</Remove>
+            {/* <Addtowishlist id={_id}>Move to wishlist</Addtowishlist> */}
           </div>
         </div>
       </div>

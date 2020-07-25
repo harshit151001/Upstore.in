@@ -1,45 +1,43 @@
-import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
-import API from '../backend';
+import React, { createContext, useEffect } from 'react';
 import appReducer from './appReducer';
-import { useImmerReducer } from 'use-immer';
-//import useThunkReducer from '../customapis/useThunkReducer';
+import useThunkReducer from '../customapis/useThunkReducer';
+import { getCart, getWishlist, getCategories } from '../App/helper/index';
+
 export const appContext = createContext();
 export const dispatchContext = createContext();
 
 export const Statecontext = (props) => {
   const initialState = {
-    Cart: [],
-    Wishlist: [],
+    categorydata: [],
+    cart: [],
+    wishlist: [],
     loggedIn: Boolean(localStorage.getItem('Upstorejwt')),
+    loading: false,
   };
 
-  const [state, dispatch] = useImmerReducer(appReducer, initialState);
-
-  const [categorydata, setcategoryData] = useState([]);
-
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      localStorage.setItem('Cart', JSON.stringify(state.Cart));
-    }
-  }, [state.Cart]);
+  const [state, dispatch] = useThunkReducer(appReducer, initialState);
 
   useEffect(() => {
     let mounted = true;
-    const loadData = async () => {
-      const response = await axios.get(`${API}/api/categories/`);
+    const getcategorycartwishlist = () => {
       if (mounted) {
-        setcategoryData(response.data.categories);
+        dispatch(getCategories);
+        if (state.loggedIn) {
+          dispatch(getCart);
+          dispatch(getWishlist);
+        }
       }
     };
-    loadData();
+    getcategorycartwishlist();
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [dispatch, state.loggedIn]);
+  // console.log(`Cart: ${state.cart}`);
+  // console.log(`Wishlist:' ${state.cart}`);
 
   return (
-    <appContext.Provider value={{ state, categorydata }}>
+    <appContext.Provider value={{ state }}>
       <dispatchContext.Provider value={dispatch}>
         {props.children}
       </dispatchContext.Provider>

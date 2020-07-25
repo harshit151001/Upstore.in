@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
-
+import { isAutheticated } from '../../auth/helper/index';
 //DESKTOP NAVBAR
 /*********************************************************************/
 const DesktopNav = styled.div`
@@ -116,7 +116,10 @@ const CartDropdown = styled.div`
 /*********************************************************************/
 
 function Desktop() {
-  const { categorydata } = useContext(appContext);
+  const { state } = useContext(appContext);
+  const { categorydata } = state;
+  const { user } = isAutheticated();
+  const { _id } = user;
   /****************************/
   const [x, SetX] = useState(0);
   const a = () => SetX(620);
@@ -200,13 +203,18 @@ function Desktop() {
           >
             <i className="fa fa-heart-o" aria-hidden="true"></i>
           </span>
-          <span
-            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
-            onMouseOver={e}
-            onMouseLeave={f}
+          <Link
+            to={`/cart/${_id}`}
+            style={{ textDecoration: 'none', color: 'inherit' }}
           >
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-          </span>
+            <span
+              style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+              onMouseOver={e}
+              onMouseLeave={f}
+            >
+              <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+            </span>
+          </Link>
         </div>
       </DesktopNav>
 

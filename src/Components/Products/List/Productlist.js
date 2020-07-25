@@ -16,36 +16,43 @@ const Productlist = ({ categoryId, cityId }) => {
   const [currentPage, setCurrentPage] = useState(parseInt(parsed.page) || 1);
 
   useEffect(() => {
-    axios
-      .get(
+    let mounted = true;
+    const loadandsetdata = async () => {
+      const response = await axios.get(
         `${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
           currentPage || 1
         }`
-      )
-      .then((response) => {
-        console.log(response);
-
+      );
+      if (mounted) {
         window.scroll(0, 0);
         if (totalPages === 1) {
           setTotalPages(Math.ceil(response.data.totalCount / 10));
         }
-        return setData(response.data.products);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
+        setData(response.data.products);
+        console.log(response.data.products);
+      }
+    };
+    loadandsetdata();
+    return () => {
+      mounted = false;
+    };
   }, [categoryId, currentPage, totalPages]);
 
-  console.log(totalPages);
   return (
     <>
       <Row style={{ margin: 'auto' }}>
         {data
-          ? data.map(({ price, images, _id }) => {
+          ? data.map(({ name, size, price, images, _id }) => {
               return (
                 <Col xs={6} md={4} lg={3} key={_id} style={{ padding: 0 }}>
-                  <Productcard key={_id} price={price} path={images[0]} id={_id} />
+                  <Productcard
+                    key={_id}
+                    price={price}
+                    path={images[0]}
+                    id={_id}
+                    name={name}
+                    size={size}
+                  />
                 </Col>
               );
             })

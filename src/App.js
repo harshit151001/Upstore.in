@@ -6,6 +6,7 @@ import './custom.scss';
 //!Components most likely
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
+import Loader from './Components/Loader/Loader';
 //!routes
 import Home from './Components/Routes/Home';
 import err from './err';
@@ -24,6 +25,7 @@ function App() {
       <BrowserRouter>
         <div style={{ width: '100vw', overflowX: 'hidden' }}>
           <Navbar />
+          <Loader />
           <Switch>
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/aboutus" component={Aboutus}></Route>
@@ -42,7 +44,7 @@ function App() {
               component={Products}
             ></Route>
             <Route path="/productpage" component={Productpage}></Route>
-            <Route path="/cart" component={Cart}></Route>
+            <Route path="/cart/:userId" component={Cart}></Route>
             <Route component={err}></Route>
           </Switch>
         </div>
@@ -53,4 +55,3 @@ function App() {
 }
 
 export default App;
-//!always list flexible paths last because they can interfere other paths.
