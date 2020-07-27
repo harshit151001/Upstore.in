@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
 import { isAutheticated } from '../../auth/helper/index';
-//DESKTOP NAVBAR
-/*********************************************************************/
+
+//DESKTOP NAVBAR//
+//*********************************************************************//
 const DesktopNav = styled.div`
   display: flex;
   width: 100vw;
@@ -77,10 +78,10 @@ const DesktopNav = styled.div`
     }
   }
 `;
-/*********************************************************************/
+//*********************************************************************//
 
-//DESKTOP DROPDOWNS
-/*********************************************************************/
+//DESKTOP DROPDOWNS//
+//*********************************************************************//
 const CategoriesDropdown = styled.div`
   position: fixed;
   padding-top: 9vh;
@@ -113,26 +114,26 @@ const CartDropdown = styled.div`
   transition: all 0.2s ease-out;
 `;
 
-/*********************************************************************/
+//*********************************************************************//
 
 function Desktop() {
   const { state } = useContext(appContext);
   const { categorydata } = state;
   const { user } = isAutheticated();
   const { _id } = user;
-  /****************************/
+  //****************************//
   const [x, SetX] = useState(0);
   const a = () => SetX(620);
   const b = () => SetX(0);
-  /****************************/
+  //****************************//
   const [y, SetY] = useState(0);
   const c = () => SetY(620);
   const d = () => SetY(0);
-  /****************************/
+  //****************************//
   const [z, SetZ] = useState(0);
   const e = () => SetZ(620);
   const f = () => SetZ(0);
-  /****************************/
+  //****************************//
 
   return (
     <>

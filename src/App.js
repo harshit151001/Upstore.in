@@ -16,6 +16,7 @@ import Loginsignuppage from './Components/Routes/Loginsignuppage';
 import Products from './Components/Routes/Products';
 import Productpage from './Components/Routes/Productpage';
 import Cart from './Components/Routes/Cart';
+import Addresses from './Components/Routes/Addresses';
 //!context
 import { Statecontext } from './Statemanagement/Statecontext';
 
@@ -45,6 +46,7 @@ function App() {
             ></Route>
             <Route path="/productpage" component={Productpage}></Route>
             <Route path="/cart/:userId" component={Cart}></Route>
+            <Route path="/address" component={Addresses}></Route>
             <Route component={err}></Route>
           </Switch>
         </div>
