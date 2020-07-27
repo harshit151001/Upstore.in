@@ -16,13 +16,13 @@ export const Statecontext = (props) => {
   };
 
   const [state, dispatch] = useThunkReducer(appReducer, initialState);
-
+  let { loggedIn } = state;
   useEffect(() => {
     let mounted = true;
     const getcategorycartwishlist = () => {
       if (mounted) {
         dispatch(getCategories);
-        if (state.loggedIn) {
+        if (loggedIn) {
           dispatch(getCart);
           dispatch(getWishlist);
         }
@@ -32,9 +32,7 @@ export const Statecontext = (props) => {
     return () => {
       mounted = false;
     };
-  }, [dispatch, state.loggedIn]);
-  // console.log(`Cart: ${state.cart}`);
-  // console.log(`Wishlist:' ${state.cart}`);
+  }, [dispatch, loggedIn]);
 
   return (
     <appContext.Provider value={{ state }}>

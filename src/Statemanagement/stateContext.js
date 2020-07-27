@@ -6,23 +6,23 @@ import { getCart, getWishlist, getCategories } from '../App/helper/index';
 export const appContext = createContext();
 export const dispatchContext = createContext();
 
-export const Statecontext = props => {
+export const Statecontext = (props) => {
   const initialState = {
     categorydata: [],
     cart: [],
     wishlist: [],
     loggedIn: Boolean(localStorage.getItem('Upstorejwt')),
-    loading: false
+    loading: false,
   };
 
   const [state, dispatch] = useThunkReducer(appReducer, initialState);
-
+  let { loggedIn } = state;
   useEffect(() => {
     let mounted = true;
     const getcategorycartwishlist = () => {
       if (mounted) {
         dispatch(getCategories);
-        if (state.loggedIn) {
+        if (loggedIn) {
           dispatch(getCart);
           dispatch(getWishlist);
         }
@@ -32,13 +32,13 @@ export const Statecontext = props => {
     return () => {
       mounted = false;
     };
-  }, [dispatch, state.loggedIn]);
-  // console.log(`Cart: ${state.cart}`);
-  // console.log(`Wishlist:' ${state.cart}`);
+  }, [dispatch, loggedIn]);
 
   return (
     <appContext.Provider value={{ state }}>
-      <dispatchContext.Provider value={dispatch}>{props.children}</dispatchContext.Provider>
+      <dispatchContext.Provider value={dispatch}>
+        {props.children}
+      </dispatchContext.Provider>
     </appContext.Provider>
   );
 };
