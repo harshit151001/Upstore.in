@@ -28,7 +28,9 @@ function App() {
   return (
     <Statecontext>
       <BrowserRouter>
-        <div style={{ width: '100vw', overflowX: 'hidden' }}>
+        <div
+          style={{ width: '100vw', minHeight: '100vh', overflowX: 'hidden' }}
+        >
           <Navbar />
           <Loader />
           <Switch>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <>
-      <footer className="footer-distributed" style={{ position: 'sticky' }}>
+      <footer className="footer-distributed" style={{}}>
         <div className="footer-left">
           <p
             style={{
@@ -12,7 +12,7 @@ function Footer() {
               margin: '0px',
               transform: 'translateY(-4px)',
               color: 'rgba(20,20,20)',
-              fontSize: '26px'
+              fontSize: '26px',
             }}
           >
             <span
@@ -20,7 +20,7 @@ function Footer() {
                 color: '#ec436f',
                 fontFamily: 'Pacifico',
                 fontSize: '30px',
-                textDecoration: 'none'
+                textDecoration: 'none',
               }}
             >
               Up
@@ -29,7 +29,8 @@ function Footer() {
           </p>
 
           <p className="footer-links">
-            <Link to="/">Home</Link> | <Link to="/">About us</Link> | <Link to="/">Terms and conditions</Link>
+            <Link to="/">Home</Link> | <Link to="/">About us</Link> |{' '}
+            <Link to="/">Terms and conditions</Link>
           </p>
 
           <p className="footer-company-name">© 2019 Upstore Pvt. Ltd.</p>
@@ -60,7 +61,8 @@ function Footer() {
         <div className="footer-right">
           <p className="footer-company-about">
             <span>About the company</span>
-            We offer training and skill building courses across Technology, Design, Management, Science and Humanities.
+            We offer training and skill building courses across Technology,
+            Design, Management, Science and Humanities.
           </p>
           <div className="footer-icons">
             <a href="/">

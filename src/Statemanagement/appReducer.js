@@ -10,13 +10,13 @@ const appReducer = (draft, action) => {
         draft.cart.push(item);
       }
       break;
-    case 'UPDATECART':
-      draft.cart = action.payload.filter((item) => item.wishlist === 0);
-      break;
     case 'GETWISHLIST':
       for (const item of action.payload) {
         draft.wishlist.push(item);
       }
+      break;
+    case 'UPDATECART':
+      draft.cart = action.payload.filter((item) => item.wishlist === 0);
       break;
     case 'UPDATEWISHLIST':
       draft.wishlist = action.payload.filter((item) => item.wishlist === 1);
@@ -26,11 +26,12 @@ const appReducer = (draft, action) => {
         (item) => item.product._id !== action.payload
       );
       break;
-    case 'MOVEDTOWISHLIST':
-      draft.cart = draft.cart.filter(
+    case 'REMOVEDFROMWISHLIST':
+      draft.wishlist = draft.wishlist.filter(
         (item) => item.product._id !== action.payload
       );
       break;
+
     case 'LOADING':
       draft.loading = true;
       break;

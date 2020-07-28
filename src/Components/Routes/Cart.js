@@ -19,7 +19,12 @@ const Cart = () => {
                   <strong>My shopping bag:{`(${cart.length} items)`}</strong>
                 </div>
                 <div className="col-4  my-auto text-right">
-                  <strong>&#x20b9; 1000</strong>
+                  <strong>
+                    &#x20b9;
+                    {cart
+                      .map((items) => items.product.price)
+                      .reduce((prev, current) => prev + current, 0)}
+                  </strong>
                 </div>
               </div>
             </div>
@@ -38,7 +43,11 @@ const Cart = () => {
           ))}
         </div>
         <div className="col-lg-3">
-          <Invoice />
+          {cart
+            .map((items) => items.product.price)
+            .reduce((prev, current) => prev + current, 0) ? (
+            <Invoice />
+          ) : null}
         </div>
       </div>
     </div>

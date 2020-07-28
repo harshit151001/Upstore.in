@@ -1,6 +1,6 @@
 header {
   text-align: center;
-  padding-top: 100px;
+  /* padding-top: 100vh; */
   margin-bottom: 190px;
 }
 
@@ -17,9 +17,9 @@ header h1 {
   bottom: 0;
 } */
 
-@media (max-height: 800px) {
+@media (max-height:1200px) {
   footer {
-    position: static;
+    paddingTop: 100vh;
   }
   header {
     padding-top: 40px;

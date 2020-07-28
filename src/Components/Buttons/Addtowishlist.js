@@ -42,7 +42,7 @@ const Addtowishlist = (props) => {
           response.json().then(function (data) {
             console.log(data.products);
             dispatch({ type: 'UPDATEWISHLIST', payload: data.products });
-            dispatch({ type: 'MOVEDTOWISHLIST', payload: id });
+            dispatch({ type: 'REMOVEDFROMCART', payload: id });
             dispatch({ type: 'LOADED' });
           });
         })
