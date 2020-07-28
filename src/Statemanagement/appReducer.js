@@ -26,6 +26,11 @@ const appReducer = (draft, action) => {
         (item) => item.product._id !== action.payload
       );
       break;
+    case 'MOVEDTOWISHLIST':
+      draft.cart = draft.cart.filter(
+        (item) => item.product._id !== action.payload
+      );
+      break;
     case 'LOADING':
       draft.loading = true;
       break;

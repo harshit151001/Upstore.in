@@ -1,6 +1,6 @@
 import React from 'react';
 import Remove from '../../Buttons/Remove';
-// import Addtowishlist from '../../Buttons/Remove';
+import Addtowishlist from '../../Buttons/Addtowishlist';
 import API from '../../../backend';
 const Cartcard = (props) => {
   const { product, quantity } = props;
@@ -17,8 +17,9 @@ const Cartcard = (props) => {
     discount,
     size,
     photos,
+    markedPrice,
   } = product;
-
+  console.log(product);
   return (
     <div
       className="card mt-3"
@@ -52,9 +53,7 @@ const Cartcard = (props) => {
                 <p className="small text-muted ">Sold by: {shopName}</p>
               </span>
               <span>
-                <strong className="d-none d-sm-block">
-                  &#x20b9;{(price * discount) / 100}
-                </strong>
+                <strong className="d-none d-sm-block">&#x20b9;{price}</strong>
               </span>
             </div>
             <div className="d-flex w-100 mt-0 justify-content-between">
@@ -82,24 +81,22 @@ const Cartcard = (props) => {
               <span>
                 <p className="text-muted d-none d-sm-block">
                   <span>
-                    <s>&#x20b9;{price}</s>{' '}
+                    <s>&#x20b9;{markedPrice}</s>{' '}
                   </span>
                   <span className="small" style={{ color: 'red' }}>
                     {' '}
-                    {discount}
+                    {Math.round(((markedPrice - price) * 100) / markedPrice)} %
                   </span>
                 </p>
               </span>
             </div>
             <div className="d-flex mt-2">
               <span>
-                <strong className="d-block d-sm-none">
-                  &#x20b9;{(price * discount) / 100}
-                </strong>
+                <strong className="d-block d-sm-none">&#x20b9;{price}</strong>
               </span>
               <p className="text-muted d-block d-sm-none ml-1">
                 <span>
-                  <s>&#x20b9;{price}</s>{' '}
+                  <s>&#x20b9;{markedPrice}</s>{' '}
                 </span>
                 <span className="small" style={{ color: 'red' }}>
                   {' '}
@@ -113,7 +110,7 @@ const Cartcard = (props) => {
         <div className="row">
           <div className="col-12">
             <Remove id={_id}>Remove</Remove>
-            {/* <Addtowishlist id={_id}>Move to wishlist</Addtowishlist> */}
+            <Addtowishlist id={_id}>Move to wishlist</Addtowishlist>
           </div>
         </div>
       </div>

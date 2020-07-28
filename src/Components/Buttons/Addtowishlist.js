@@ -42,6 +42,7 @@ const Addtowishlist = (props) => {
           response.json().then(function (data) {
             console.log(data.products);
             dispatch({ type: 'UPDATEWISHLIST', payload: data.products });
+            dispatch({ type: 'MOVEDTOWISHLIST', payload: id });
             dispatch({ type: 'LOADED' });
           });
         })
@@ -51,6 +52,7 @@ const Addtowishlist = (props) => {
 
   return (
     <button
+      className="btn btn-danger btn-light text-muted btn-block"
       onClick={() => {
         addToWishlist(props.id);
       }}

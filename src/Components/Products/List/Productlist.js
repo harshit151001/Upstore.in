@@ -29,7 +29,7 @@ const Productlist = ({ categoryId, cityId }) => {
           setTotalPages(Math.ceil(response.data.totalCount / 10));
         }
         setData(response.data.products);
-        //!console.log(response.data.products);
+        console.log(response.data.products);
       }
     };
     loadandsetdata();
