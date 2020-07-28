@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
-import { postNumber } from '../../auth/helper/index';
+import React, { useContext, useState } from 'react';
+import { appContext, dispatchContext } from '../../Statemanagement/Statecontext';
+import { OTPVerify, authenticate } from '../../auth/helper/index';
 
-const Loginwithphone = props => {
+const VerifyOTP = props => {
+  const loginContext = useContext(appContext);
+  const dispatchLogin = useContext(dispatchContext);
+
+  const { phoneNumber, session_id } = props.location.state;
+
   const [values, setValues] = useState({
-    phoneNumber: '',
+    OTP: '',
     error: '',
     loading: false,
     didRedirect: false
   });
 
-  const { phoneNumber, error, loading } = values;
+  const { OTP, error, loading } = values;
 
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -20,14 +25,25 @@ const Loginwithphone = props => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
 
-    postNumber({ phoneNumber }).then(response => {
-      console.log(response);
-      const { session_id } = response;
-      return props.history.push({
-        pathname: '/OTP',
-        state: { phoneNumber, session_id }
+    OTPVerify({ phoneNumber, session_id, OTP })
+      .then(data => {
+        console.log(data);
+
+        if (data.error) {
+          setValues({ ...values, error: data.error, loading: false });
+        } else {
+          authenticate(data, () => {
+            dispatchLogin({ type: 'login' });
+          });
+        }
+
+        return props.history.push({
+          pathname: '/'
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
-    });
   };
 
   const loadingMessage = () => {
@@ -51,14 +67,16 @@ const Loginwithphone = props => {
       </div>
     );
   };
+
   return (
     <>
       {loadingMessage()}
       {errorMessage()}
       <form>
         <div className="form-group">
-          <label htmlFor="MobileNumber"></label>
-          <input type="text" value={phoneNumber} onChange={handleChange('phoneNumber')} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Mobile Number*" />
+          <label htmlFor="OTP"></label>
+
+          <input type="text" className="form-control" aria-describedby="emailHelp" value={OTP} onChange={handleChange('OTP')} placeholder="OTP*" />
         </div>
         <div className="form-check">
           <input type="checkbox" className="form-check-input" id="exampleCheck1" />
@@ -75,4 +93,4 @@ const Loginwithphone = props => {
   );
 };
 
-export default withRouter(Loginwithphone);
+export default VerifyOTP;

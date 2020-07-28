@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
 import { isAutheticated } from '../../auth/helper/index';
-
-//DESKTOP NAVBAR//
-//*********************************************************************//
+//DESKTOP NAVBAR
+/*********************************************************************/
 const DesktopNav = styled.div`
   display: flex;
   width: 100vw;
@@ -78,10 +77,10 @@ const DesktopNav = styled.div`
     }
   }
 `;
-//*********************************************************************//
+/*********************************************************************/
 
-//DESKTOP DROPDOWNS//
-//*********************************************************************//
+//DESKTOP DROPDOWNS
+/*********************************************************************/
 const CategoriesDropdown = styled.div`
   position: fixed;
   padding-top: 9vh;
@@ -114,26 +113,47 @@ const CartDropdown = styled.div`
   transition: all 0.2s ease-out;
 `;
 
-//*********************************************************************//
+/*********************************************************************/
 
 function Desktop() {
   const { state } = useContext(appContext);
   const { categorydata } = state;
-  const { user } = isAutheticated();
-  const { _id } = user;
-  //****************************//
+
+  /****************************/
   const [x, SetX] = useState(0);
   const a = () => SetX(620);
   const b = () => SetX(0);
-  //****************************//
+  /****************************/
   const [y, SetY] = useState(0);
   const c = () => SetY(620);
   const d = () => SetY(0);
-  //****************************//
+  /****************************/
   const [z, SetZ] = useState(0);
   const e = () => SetZ(620);
   const f = () => SetZ(0);
-  //****************************//
+  /****************************/
+
+  const cartIcon = () => {
+    if (state.loggedIn) {
+      const { user } = isAutheticated();
+      const { _id } = user;
+      return (
+        <Link to={`/cart/${_id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
+            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+          </span>
+        </Link>
+      );
+    } else {
+      return (
+        <Link to="/loginsignup" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
+            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+          </span>
+        </Link>
+      );
+    }
+  };
 
   return (
     <>
@@ -146,7 +166,7 @@ function Desktop() {
                   fontFamily: 'Poppins',
                   margin: '0px',
                   transform: 'translateY(-4px)',
-                  color: 'rgba(20,20,20)',
+                  color: 'rgba(20,20,20)'
                 }}
               >
                 <span
@@ -154,7 +174,7 @@ function Desktop() {
                     color: '#ec436f',
                     fontFamily: 'Pacifico',
                     fontSize: '30px',
-                    textDecoration: 'none',
+                    textDecoration: 'none'
                   }}
                 >
                   Up
@@ -163,11 +183,7 @@ function Desktop() {
               </p>
             </span>
           </Link>
-          <span
-            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
-            onMouseOver={a}
-            onMouseLeave={b}
-          >
+          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={a} onMouseLeave={b}>
             <i className="fa fa-th" aria-hidden="true"></i>
           </span>
         </div>
@@ -187,11 +203,7 @@ function Desktop() {
           </form>
         </div>
         <div>
-          <span
-            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
-            onMouseOver={c}
-            onMouseLeave={d}
-          >
+          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={c} onMouseLeave={d}>
             <i className="fa fa-user-circle" aria-hidden="true"></i>
           </span>
           <span
@@ -199,23 +211,12 @@ function Desktop() {
               height: '9vh',
               display: 'flex',
               alignItems: 'center',
-              color: '#ec436f',
+              color: '#ec436f'
             }}
           >
             <i className="fa fa-heart-o" aria-hidden="true"></i>
           </span>
-          <Link
-            to={`/cart/${_id}`}
-            style={{ textDecoration: 'none', color: 'inherit' }}
-          >
-            <span
-              style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
-              onMouseOver={e}
-              onMouseLeave={f}
-            >
-              <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-            </span>
-          </Link>
+          {cartIcon()}
         </div>
       </DesktopNav>
 
@@ -223,7 +224,7 @@ function Desktop() {
         onMouseOver={a}
         onMouseLeave={b}
         style={{
-          transform: `translateY(${x}px)`,
+          transform: `translateY(${x}px)`
         }}
       >
         <ul>
@@ -236,7 +237,7 @@ function Desktop() {
                   style={{
                     textDecoration: 'none',
                     color: 'rgb(20,20,20)',
-                    fontFamily: 'Poppins',
+                    fontFamily: 'Poppins'
                   }}
                   to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
                 >
@@ -252,7 +253,7 @@ function Desktop() {
         onMouseOver={c}
         onMouseLeave={d}
         style={{
-          transform: `translateY(${y}px)`,
+          transform: `translateY(${y}px)`
         }}
       />
 
@@ -260,7 +261,7 @@ function Desktop() {
         onMouseOver={e}
         onMouseLeave={f}
         style={{
-          transform: `translateY(${z}px)`,
+          transform: `translateY(${z}px)`
         }}
       ></CartDropdown>
     </>

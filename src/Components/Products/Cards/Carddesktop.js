@@ -1,8 +1,9 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
+import { appContext } from '../../../Statemanagement/Statecontext';
 import Addtocart from '../../Buttons/Addtocart';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import API from '../../../backend';
 
 const Price = styled.p`
   color: grey;
@@ -43,16 +44,13 @@ height:100%;
 
 const Carddesktop = ({ name, size, price, path, id }) => {
   const src = path.substr(6);
+  const { state } = useContext(appContext);
 
   return (
     <Card key={id}>
       <Link style={{ textDecoration: 'none' }} to={`/product/${id}`}>
         <div style={{ height: '350px', display: 'block' }}>
-          <Img
-            src={`http://159.65.159.82:8000${src}`}
-            style={{ height: '100%', width: '100%', objectFit: 'cover' }}
-            alt="Denim Jeans"
-          />
+          <Img src={`${API}${src}`} style={{ height: '100%', width: '100%', objectFit: 'cover' }} alt="Denim Jeans" />
         </div>
       </Link>
 
@@ -61,7 +59,8 @@ const Carddesktop = ({ name, size, price, path, id }) => {
       </Price>
       <small style={{ marginBottom: 0 }}> Nike Prozone Aurangabad</small>
       <p>
-        <Addtocart id={id} />
+        {state.loggedIn && <Addtocart id={id} />}
+
         <Button>Add to Cart</Button>
       </p>
     </Card>
