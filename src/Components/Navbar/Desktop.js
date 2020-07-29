@@ -155,28 +155,6 @@ function Desktop(props) {
     };
   }, [enteredFilter, inputRef]);
 
-  const cartIcon = () => {
-    if (state.loggedIn) {
-      const { user } = isAutheticated();
-      const { _id } = user;
-      return (
-        <Link to={`/cart/${_id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-          </span>
-        </Link>
-      );
-    } else {
-      return (
-        <Link to="/loginsignup" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-          </span>
-        </Link>
-      );
-    }
-  };
-
   return (
     <>
       <DesktopNav>
@@ -227,9 +205,11 @@ function Desktop(props) {
           </form>
         </div>
         <div>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={c} onMouseLeave={d}>
-            <i className="fa fa-user-circle" aria-hidden="true"></i>
-          </span>
+          <Link to="/userdashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={c} onMouseLeave={d}>
+              <i className="fa fa-user-circle" aria-hidden="true"></i>
+            </span>
+          </Link>
           <span
             style={{
               height: '9vh',
@@ -240,7 +220,11 @@ function Desktop(props) {
           >
             <i className="fa fa-heart-o" aria-hidden="true"></i>
           </span>
-          {cartIcon()}
+          <Link to={!state.loggedIn ? '/loginsignup' : `/cart/${isAutheticated().user._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
+              <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+            </span>
+          </Link>
         </div>
       </DesktopNav>
 
