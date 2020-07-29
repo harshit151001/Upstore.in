@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
@@ -115,7 +115,7 @@ const CartDropdown = styled.div`
 
 /*********************************************************************/
 
-function Desktop() {
+function Desktop(props) {
   const { state } = useContext(appContext);
   const { categorydata } = state;
 
@@ -133,27 +133,27 @@ function Desktop() {
   const f = () => SetZ(0);
   /****************************/
 
-  const cartIcon = () => {
-    if (state.loggedIn) {
-      const { user } = isAutheticated();
-      const { _id } = user;
-      return (
-        <Link to={`/cart/${_id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-          </span>
-        </Link>
-      );
-    } else {
-      return (
-        <Link to="/loginsignup" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-          </span>
-        </Link>
-      );
-    }
-  };
+  const [enteredFilter, setEnteredFilter] = useState('');
+
+  const inputRef = useRef();
+  console.log(enteredFilter);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (inputRef.current.value && enteredFilter === inputRef.current.value) {
+        const query = enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
+        fetch('http://localhost:8000/api/search/products/5eff8e76d75ecb3735b243b1' + query).then(response => {
+          response
+            .json()
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+        });
+      }
+    }, 500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [enteredFilter, inputRef]);
 
   return (
     <>
@@ -196,16 +196,20 @@ function Desktop() {
             </button>
           </form>
           <form action="">
-            <input type="text" placeholder="Search..." />
-            <button disabled="">
-              <i className="fa fa-search" aria-hidden="true"></i>
-            </button>
+            <input ref={inputRef} type="text" value={enteredFilter} onChange={event => setEnteredFilter(event.target.value)} />
+            <Link to={`/products/search/5eff8e76d75ecb3735b243b1?page=1&&search=` + enteredFilter}>
+              <button disabled="">
+                <i className="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </Link>
           </form>
         </div>
         <div>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={c} onMouseLeave={d}>
-            <i className="fa fa-user-circle" aria-hidden="true"></i>
-          </span>
+          <Link to="/userdashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={c} onMouseLeave={d}>
+              <i className="fa fa-user-circle" aria-hidden="true"></i>
+            </span>
+          </Link>
           <span
             style={{
               height: '9vh',
@@ -216,7 +220,11 @@ function Desktop() {
           >
             <i className="fa fa-heart-o" aria-hidden="true"></i>
           </span>
-          {cartIcon()}
+          <Link to={!state.loggedIn ? '/loginsignup' : `/cart/${isAutheticated().user._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
+              <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+            </span>
+          </Link>
         </div>
       </DesktopNav>
 

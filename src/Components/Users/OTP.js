@@ -1,9 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { appContext, dispatchContext } from '../../Statemanagement/Statecontext';
+import { dispatchContext } from '../../Statemanagement/Statecontext';
 import { OTPVerify, authenticate } from '../../auth/helper/index';
 
 const VerifyOTP = props => {
-  const loginContext = useContext(appContext);
   const dispatchLogin = useContext(dispatchContext);
 
   const { phoneNumber, session_id } = props.location.state;

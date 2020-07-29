@@ -2,10 +2,6 @@ import axios from 'axios';
 import { isAutheticated } from '../../auth/helper/index';
 import API from '../../backend';
 
-//***********************************************//
-
-//***********************************************//
-
 export const getCart = async dispatch => {
   const { token, user } = isAutheticated();
 

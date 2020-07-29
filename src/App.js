@@ -19,7 +19,7 @@ import Cart from './Components/Routes/Cart';
 import Addresses from './Components/Routes/Addresses';
 import Userpage from './Components/Routes/Userpage';
 import PrivateRoute from './auth/helper/PrivateRoute';
-import Productsearch from './Components/Products/List/Productsearch';
+
 import OTP from './Components/Users/OTP';
 
 //!context
@@ -41,8 +41,7 @@ function App() {
             <PrivateRoute path="/userdashboard/orders" component={Userpage}></PrivateRoute>
             <PrivateRoute path="/userdashboard/address" component={Userpage}></PrivateRoute>
             <PrivateRoute path="/userdashboard" component={Userpage}></PrivateRoute>
-            <Route path="/searchlist/products" component={Productsearch}></Route>
-            <Route path="/products/:categoryId/5eff8e76d75ecb3735b243b1/" component={Products}></Route>
+            <Route path="/products/:categoryId/5eff8e76d75ecb3735b243b1" component={Products}></Route>
             <Route path="/productpage" component={Productpage}></Route>
             <Route path="/cart/:userId" component={Cart}></Route>
             <Route path="/address" component={Addresses}></Route>

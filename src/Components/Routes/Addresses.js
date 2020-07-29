@@ -1,6 +1,5 @@
 import React from 'react';
 import Addresslist from '../Address/Addresslist';
-import Addressform from '../Address/Addressform';
 import Invoice from '../Cart/Invoice';
 
 const Addresses = () => {
@@ -15,9 +14,7 @@ const Addresses = () => {
                   <h4 className="my-auto">Select or add new adress</h4>
                 </div>
                 <div className="col-4 my-auto">
-                  <button className="btn btn-outline-danger float-right">
-                    Add new address
-                  </button>
+                  <button className="btn btn-outline-danger float-right">Add new address</button>
                 </div>
               </div>
             </div>
