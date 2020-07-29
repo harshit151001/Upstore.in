@@ -1,10 +1,8 @@
 const appReducer = (draft, action) => {
   switch (action.type) {
     case 'GETCATEGORIES':
-      for (const item of action.payload) {
-        // draft.categorydata.push(item);
-        draft.categorydata = action.payload;
-      }
+      draft.categorydata = action.payload;
+
       break;
     case 'GETCART':
       for (const item of action.payload) {

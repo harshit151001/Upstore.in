@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
@@ -115,7 +115,7 @@ const CartDropdown = styled.div`
 
 /*********************************************************************/
 
-function Desktop() {
+function Desktop(props) {
   const { state } = useContext(appContext);
   const { categorydata } = state;
 
@@ -132,6 +132,28 @@ function Desktop() {
   const e = () => SetZ(620);
   const f = () => SetZ(0);
   /****************************/
+
+  const [enteredFilter, setEnteredFilter] = useState('');
+
+  const inputRef = useRef();
+  console.log(enteredFilter);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (inputRef.current.value && enteredFilter === inputRef.current.value) {
+        const query = enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
+        fetch('http://localhost:8000/api/search/products/5eff8e76d75ecb3735b243b1' + query).then(response => {
+          response
+            .json()
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+        });
+      }
+    }, 500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [enteredFilter, inputRef]);
 
   const cartIcon = () => {
     if (state.loggedIn) {
@@ -196,10 +218,12 @@ function Desktop() {
             </button>
           </form>
           <form action="">
-            <input type="text" placeholder="Search..." />
-            <button disabled="">
-              <i className="fa fa-search" aria-hidden="true"></i>
-            </button>
+            <input ref={inputRef} type="text" value={enteredFilter} onChange={event => setEnteredFilter(event.target.value)} />
+            <Link to={`/products/search/5eff8e76d75ecb3735b243b1?page=1&&search=` + enteredFilter}>
+              <button disabled="">
+                <i className="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </Link>
           </form>
         </div>
         <div>

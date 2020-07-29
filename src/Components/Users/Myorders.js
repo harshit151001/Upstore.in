@@ -23,6 +23,7 @@ const Myorders = () => {
         if (mounted) {
           window.scroll(0, 0);
           setData(response);
+          console.log(response);
         }
       });
     };
@@ -35,34 +36,37 @@ const Myorders = () => {
 
   return (
     <>
-      {data.map(order => {
+      {data.map((order, count) => {
         console.log(order.products[0].name);
         const { products } = order;
-        return products.map(prodDocument => {
-          const { count, product } = prodDocument;
-          const { name, shopName, photos, price, _id } = product;
-          let src = photos[0].substr(6);
-          console.log(API + photos[0].substr(6));
-          return (
-            <>
-              <div key={_id} style={{ marginLeft: '250px' }}>
-                <Card>
-                  <Row>
-                    <Col>
-                      <img style={{ maxWidth: '15vw', maxHeight: '15vw' }} src={`${API}${src}`} alt="Product"></img>
-                    </Col>
-                    <Col>
-                      <h4>{name}</h4>
-                      <h4>{shopName}</h4>
-                      <h4>{price}</h4>
-                      <h4>{count}</h4>
-                    </Col>
-                  </Row>
-                </Card>
-              </div>
-            </>
-          );
-        });
+        return (
+          <div key={count}>
+            {products.map(prodDocument => {
+              const { count, product } = prodDocument;
+              const { name, shopName, photos, price, _id } = product;
+              console.log(_id);
+              let src = photos[0].substr(6);
+              console.log(API + photos[0].substr(6));
+              return (
+                <div key={_id} style={{ marginLeft: '250px' }}>
+                  <Card>
+                    <Row>
+                      <Col>
+                        <img style={{ maxWidth: '15vw', maxHeight: '15vw' }} src={`${API}${src}`} alt="Product"></img>
+                      </Col>
+                      <Col>
+                        <h4>{name}</h4>
+                        <h4>{shopName}</h4>
+                        <h4>{price}</h4>
+                        <h4>{count}</h4>
+                      </Col>
+                    </Row>
+                  </Card>
+                </div>
+              );
+            })}
+          </div>
+        );
       })}
     </>
   );
