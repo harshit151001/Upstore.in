@@ -15,7 +15,7 @@ width: 80%;
   
 }
 `;
-const Addressform = props => {
+const Addressform = (props) => {
   const { token, user } = isAutheticated();
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
@@ -26,7 +26,7 @@ const Addressform = props => {
     address: '',
     error: '',
     loading: false,
-    didRedirect: false
+    didRedirect: false,
   });
 
   useEffect(() => {
@@ -36,19 +36,19 @@ const Addressform = props => {
       fetch(`${API}/api/user/${user._id}`, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       })
-        .then(response => {
+        .then((response) => {
           response.json().then(function (data) {
             const { adresses, name, phoneNumber } = data;
-            setValues(values => {
+            setValues((values) => {
               return { ...values, name, phoneNumber };
             });
             setData(adresses);
           });
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
 
       if (mounted) {
         window.scroll(0, 0);
@@ -61,7 +61,7 @@ const Addressform = props => {
     };
   }, []);
 
-  const deleteHandler = index => {
+  const deleteHandler = (index) => {
     let newAddressArray = data;
     newAddressArray.splice(index, 1);
 
@@ -70,23 +70,26 @@ const Addressform = props => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ adresses: newAddressArray })
+      body: JSON.stringify({ adresses: newAddressArray }),
     })
-      .then(response => {
+      .then((response) => {
         response.json().then(function (data) {
           console.log(data);
           setData(data.adresses);
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
     if (building && address && name && phoneNumber) {
-      console.log([...data, `${building}, ${address}, CONTACT:${name}-> ${phoneNumber}`]);
+      console.log([
+        ...data,
+        `${building}, ${address}, CONTACT:${name}-> ${phoneNumber}`,
+      ]);
       setShow(false);
       setValues({ ...values, error: false, loading: true });
       fetch(`${API}/api/user/${user._id}`, {
@@ -94,25 +97,30 @@ const Addressform = props => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ adresses: [...data, `${building}, ${address}, CONTACT:${name}-> ${phoneNumber}`] })
+        body: JSON.stringify({
+          adresses: [
+            ...data,
+            `${building}, ${address}, CONTACT:${name}-> ${phoneNumber}`,
+          ],
+        }),
       })
-        .then(response => {
+        .then((response) => {
           response.json().then(function (data) {
             console.log(data);
             setData(data.adresses);
           });
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     } else {
       setValues({ ...values, error: 'You cannot leave any field empty!' });
     }
   };
 
-  const { name, phoneNumber, building, address, error, loading } = values;
+  const { name, phoneNumber, building, address, error } = values;
 
-  const handleChange = name => event => {
+  const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
@@ -129,19 +137,39 @@ const Addressform = props => {
             <div>{error}</div>
             <div>
               <label htmlFor="InputName">CONTACT PERSON NAME</label>
-              <input type="text" className="form-control" onChange={handleChange('name')} value={name} />
+              <input
+                type="text"
+                className="form-control"
+                onChange={handleChange('name')}
+                value={name}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="InputContact">CONTACT DETAIL</label>
-              <input onChange={handleChange('phoneNumber')} value={phoneNumber} type="text" className="form-control" />
+              <input
+                onChange={handleChange('phoneNumber')}
+                value={phoneNumber}
+                type="text"
+                className="form-control"
+              />
             </div>
             <div className="form-group">
               <label htmlFor="InputBuilding">FLAT,FLOOR,BUILDING NAME*</label>
-              <input onChange={handleChange('building')} value={building} type="text" className="form-control" />
+              <input
+                onChange={handleChange('building')}
+                value={building}
+                type="text"
+                className="form-control"
+              />
             </div>
             <div className="form-group">
               <label htmlFor="InputAddress">ADDRESS*</label>
-              <input onChange={handleChange('address')} value={address} type="text" className="form-control" />
+              <input
+                onChange={handleChange('address')}
+                value={address}
+                type="text"
+                className="form-control"
+              />
             </div>
 
             <button onClick={onSubmit} className="btn btn-primary">
@@ -158,8 +186,9 @@ const Addressform = props => {
                   <Card
                     key={index}
                     style={{
-                      boxShadow: 'white 1px 1px 0px,rgba(0,0,0,0.3) 2px 0px 13px, rgba(0,0,0,0.3) 4px 10px 21px',
-                      margin: '2vw'
+                      boxShadow:
+                        'white 1px 1px 0px,rgba(0,0,0,0.3) 2px 0px 13px, rgba(0,0,0,0.3) 4px 10px 21px',
+                      margin: '2vw',
                     }}
                   >
                     <button

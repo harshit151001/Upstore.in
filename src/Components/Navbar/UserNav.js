@@ -39,11 +39,13 @@ const CloseButton = styled.p`
   cursor: pointer;
 `;
 
-const UserNav = props => {
+const UserNav = (props) => {
   const { width } = useWindowDimensions();
   const [navWidth, setNavWidth] = useState(props.initialWidth);
   const [height, setHeight] = useState(props.initialHeight);
-  const [leftPosition, setLeftPosition] = useState(`${width > 1400 ? '-20vw' : '0'}`);
+  const [leftPosition, setLeftPosition] = useState(
+    `${width > 1400 ? '-20vw' : '0'}`
+  );
 
   const closeNav = () => {
     setNavWidth(props.initialWidth || '0');
@@ -59,7 +61,7 @@ const UserNav = props => {
     height: `${height || '100%'}`,
     marginTop: `${props.marginTop || '0'}`,
     textAlign: `${props.textAlign || 'center'}`,
-    left: leftPosition
+    left: leftPosition,
   };
 
   return (
@@ -79,7 +81,9 @@ const UserNav = props => {
         }}
         onClick={closeNav}
       >
-        {width < 990 && <CloseButton>&times;</CloseButton>}
+        {width < 990 && (
+          <CloseButton style={{ marginTop: '6vh' }}>&times;</CloseButton>
+        )}
         {props.children}
       </Sidenav>
     </>

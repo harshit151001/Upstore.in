@@ -141,12 +141,16 @@ function Desktop(props) {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (inputRef.current.value && enteredFilter === inputRef.current.value) {
-        const query = enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
-        fetch('http://localhost:8000/api/search/products/5eff8e76d75ecb3735b243b1' + query).then(response => {
+        const query =
+          enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
+        fetch(
+          'http://localhost:8000/api/search/products/5eff8e76d75ecb3735b243b1' +
+            query
+        ).then((response) => {
           response
             .json()
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
         });
       }
     }, 500);
@@ -166,7 +170,7 @@ function Desktop(props) {
                   fontFamily: 'Poppins',
                   margin: '0px',
                   transform: 'translateY(-4px)',
-                  color: 'rgba(20,20,20)'
+                  color: 'rgba(20,20,20)',
                 }}
               >
                 <span
@@ -174,7 +178,7 @@ function Desktop(props) {
                     color: '#ec436f',
                     fontFamily: 'Pacifico',
                     fontSize: '30px',
-                    textDecoration: 'none'
+                    textDecoration: 'none',
                   }}
                 >
                   Up
@@ -183,7 +187,11 @@ function Desktop(props) {
               </p>
             </span>
           </Link>
-          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={a} onMouseLeave={b}>
+          <span
+            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+            onMouseOver={a}
+            onMouseLeave={b}
+          >
             <i className="fa fa-th" aria-hidden="true"></i>
           </span>
         </div>
@@ -196,17 +204,36 @@ function Desktop(props) {
             </button>
           </form>
           <form action="">
-            <input ref={inputRef} type="text" value={enteredFilter} onChange={event => setEnteredFilter(event.target.value)} />
-            <Link to={`/products/search/5eff8e76d75ecb3735b243b1?page=1&&search=` + enteredFilter}>
-              <button disabled="">
+            <input
+              ref={inputRef}
+              type="text"
+              value={enteredFilter}
+              onChange={(event) => setEnteredFilter(event.target.value)}
+            />
+
+            <button disabled="">
+              <Link
+                to={
+                  `/products/search/5eff8e76d75ecb3735b243b1?page=1&&search=` +
+                  enteredFilter
+                }
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
                 <i className="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </Link>
+              </Link>
+            </button>
           </form>
         </div>
         <div>
-          <Link to="/userdashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={c} onMouseLeave={d}>
+          <Link
+            to="/userdashboard"
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            <span
+              style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+              onMouseOver={c}
+              onMouseLeave={d}
+            >
               <i className="fa fa-user-circle" aria-hidden="true"></i>
             </span>
           </Link>
@@ -215,13 +242,24 @@ function Desktop(props) {
               height: '9vh',
               display: 'flex',
               alignItems: 'center',
-              color: '#ec436f'
+              color: '#ec436f',
             }}
           >
             <i className="fa fa-heart-o" aria-hidden="true"></i>
           </span>
-          <Link to={!state.loggedIn ? '/loginsignup' : `/cart/${isAutheticated().user._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
+          <Link
+            to={
+              !state.loggedIn
+                ? '/loginsignup'
+                : `/cart/${isAutheticated().user._id}`
+            }
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            <span
+              style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+              onMouseOver={e}
+              onMouseLeave={f}
+            >
               <i className="fa fa-shopping-cart" aria-hidden="true"></i>
             </span>
           </Link>
@@ -232,7 +270,7 @@ function Desktop(props) {
         onMouseOver={a}
         onMouseLeave={b}
         style={{
-          transform: `translateY(${x}px)`
+          transform: `translateY(${x}px)`,
         }}
       >
         <ul>
@@ -245,7 +283,7 @@ function Desktop(props) {
                   style={{
                     textDecoration: 'none',
                     color: 'rgb(20,20,20)',
-                    fontFamily: 'Poppins'
+                    fontFamily: 'Poppins',
                   }}
                   to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
                 >
@@ -261,7 +299,7 @@ function Desktop(props) {
         onMouseOver={c}
         onMouseLeave={d}
         style={{
-          transform: `translateY(${y}px)`
+          transform: `translateY(${y}px)`,
         }}
       />
 
@@ -269,7 +307,7 @@ function Desktop(props) {
         onMouseOver={e}
         onMouseLeave={f}
         style={{
-          transform: `translateY(${z}px)`
+          transform: `translateY(${z}px)`,
         }}
       ></CartDropdown>
     </>
