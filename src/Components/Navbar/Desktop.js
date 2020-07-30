@@ -83,32 +83,32 @@ const DesktopNav = styled.div`
 /*********************************************************************/
 const CategoriesDropdown = styled.div`
   position: fixed;
-  padding-top: 9vh;
+  margin-top: 6.5vh;
+  border-top: 10px solid #ff658c;
   top: -600px;
   left: 10%;
   width: 280px;
-  background: #ffffff;
+
   z-index: 20;
   transition: all 0.2s ease-out;
-  border: 1px solid grey;
 `;
 const AccountsDropdown = styled.div`
   position: fixed;
-  padding-top: 9vh;
+  margin-top: 6vh;
   top: -600px;
   right: 10%;
   width: 280px;
-  background: #f5f5f6;
+
   z-index: 20;
   transition: all 0.2s ease-out;
 `;
 const CartDropdown = styled.div`
   position: fixed;
-  padding-top: 9vh;
+  margin-top: 6vh;
   top: -600px;
   right: 0;
   width: 280px;
-  background: #f5f5f6;
+
   z-index: 20;
   transition: all 0.2s ease-out;
 `;
@@ -273,26 +273,28 @@ function Desktop(props) {
           transform: `translateY(${x}px)`,
         }}
       >
-        <ul>
-          {' '}
-          {categorydata.map(({ name, _id }) => {
-            return (
-              <div key={_id} style={{ display: 'block' }}>
-                <Link
-                  className="deschhjb"
-                  style={{
-                    textDecoration: 'none',
-                    color: 'rgb(20,20,20)',
-                    fontFamily: 'Poppins',
-                  }}
-                  to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
-                >
-                  {name}
-                </Link>
-              </div>
-            );
-          })}{' '}
-        </ul>
+        {categorydata.map(({ name, _id }) => {
+          return (
+            <button
+              type="button"
+              className="btn btn-light d-block w-100 text-left deschhjb"
+              style={{ borderRadius: '0' }}
+              key={_id}
+            >
+              <Link
+                className="deschhjb"
+                style={{
+                  textDecoration: 'none',
+                  fontFamily: 'poppins',
+                  color: 'inherit',
+                }}
+                to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
+              >
+                {name}
+              </Link>
+            </button>
+          );
+        })}
       </CategoriesDropdown>
 
       <AccountsDropdown

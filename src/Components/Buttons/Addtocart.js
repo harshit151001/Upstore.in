@@ -52,7 +52,7 @@ const Addtocart = props => {
           addToCart(props.id);
         }}
       >
-        Add to cart
+       {props.children}
       </button>
     );
   }

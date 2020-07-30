@@ -1,39 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import Productlist from '../Products/List/Productlist';
 import { Link } from 'react-router-dom';
-import { Row, Col } from 'react-bootstrap';
 import WelcomeBanner from '../WelcomeBanner/WelcomeBanner';
 import Filters from '../Filters/Filters';
-import useWindowDimensions from '../../customapis/useWindowDimensions';
-import axios from 'axios';
+import Axios from 'axios';
 import API from '../../backend';
 const queryString = require('query-string');
 
-const Products = props => {
+const Products = (props) => {
   const { categoryId } = props.match.params;
-  const { width } = useWindowDimensions();
+
 
   const parsed = queryString.parse(window.location.search);
   const [totalPages, setTotalPages] = useState(1);
   const [data, setData] = useState([]);
-
   const [currentPage, setCurrentPage] = useState(parseInt(parsed.page) || 1);
 
   useEffect(() => {
     let mounted = true;
     const loadandsetdata = async () => {
       if (parsed.search) {
-        const response = await axios.get(`${API}/api/search/products/5eff8e76d75ecb3735b243b1?search=${parsed.search}&&page=${currentPage}`);
+        const response = await Axios.get(
+          `${API}/api/search/products/5eff8e76d75ecb3735b243b1?search=${parsed.search}&&page=${currentPage}`
+        );
         if (mounted) {
           window.scroll(0, 0);
-
           setTotalPages(Math.ceil(response.data.totalCount / 2));
-
           setData(response.data.products);
           console.log(response.data.products);
         }
       } else {
-        const response = await axios.get(`${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage || 1}`);
+        const response = await Axios.get(
+          `${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
+            currentPage || 1
+          }`
+        );
         if (mounted) {
           window.scroll(0, 0);
 
@@ -52,37 +53,67 @@ const Products = props => {
   return (
     <>
       <WelcomeBanner />
-      <Row>
-        {width > 760 && (
-          <Col xs={0} md={2} lg={2}>
+
+
+      <div className="container-fluid">
+        <div className="row mt-3 w-100 no-gutters">
+          <div className="col-2 d-none d-lg-block w-100 no-gutters">
             <Filters />
-          </Col>
-        )}
+          </div>
+          <div className=" col-12 col-lg-10 w-100 no-gutters">
+            <div className="row align-content-around no-gutters">
+             <Productlist categoryId={categoryId} data={data} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12 d-flex justify-content-center mt-5">
+          <button
+            onClick={() => {
+              if (currentPage > 1) {
+                setCurrentPage(currentPage - 1);
+              }
+            }}
+            className="btn btn-light mr-2"
+          >
+            {currentPage > 1 ? (
+              <Link
+                to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
+                  currentPage - 1 || 1
+                }${parsed.search ? `&&search=` + parsed.search : ''}`}
+              >
+                {' '}
+                back
+              </Link>
+            ) : (
+              'back'
+            )}
+          </button>
 
-        <Col xs={12} md={10} lg={10} style={{ marginTop: '2vw' }}>
-          <Productlist categoryId={categoryId} data={data} />
-        </Col>
-      </Row>
-
-      <button
-        onClick={() => {
-          if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-          }
-        }}
-      >
-        {currentPage > 1 ? <Link to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage - 1 || 1}${parsed.search ? `&&search=` + parsed.search : ''}`}> back</Link> : 'back'}
-      </button>
-
-      <button
-        onClick={() => {
-          if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-          }
-        }}
-      >
-        {currentPage < totalPages ? <Link to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${totalPages > currentPage ? currentPage + 1 : totalPages}${parsed.search ? `&&search=` + parsed.search : ''}`}> next</Link> : 'next'}
-      </button>
+          <button
+            onClick={() => {
+              if (currentPage < totalPages) {
+                setCurrentPage(currentPage + 1);
+              }
+            }}
+            className="btn btn-light ml-2"
+          >
+            {currentPage < totalPages ? (
+              <Link
+                to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
+                  totalPages > currentPage ? currentPage + 1 : totalPages
+                }${parsed.search ? `&&search=` + parsed.search : ''}`}
+              >
+                {' '}
+                next
+              </Link>
+            ) : (
+              'next'
+            )}
+          </button>
+        </div>
+      </div>
     </>
   );
 };

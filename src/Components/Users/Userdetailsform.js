@@ -93,7 +93,7 @@ const Userdetailsform = (props) => {
       })
       .catch((err) => console.log(err));
   };
-  // eslint-disable-next-line
+  //eslint-disable-next-line
   const { name, email, password, phoneNumber, error, loading } = values;
 
   const handleChange = (name) => (event) => {

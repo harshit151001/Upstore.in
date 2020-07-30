@@ -24,43 +24,77 @@ const MenuItems = styled.div`
   transition: 0.3s;
 `;
 
-const Userdashboard = props => {
+const Userdashboard = (props) => {
   const { width } = useWindowDimensions();
   console.log(props.match.path);
 
   return (
-    <>
-      <Row style={{ justifyContent: 'center' }}>
-        <div>
-          <UserNav initialHeight={width < 990 ? '0' : '100%'} finalHeight={'100%'} height={'100%'} textAlign={width < 990 ? 'center' : 'left'} marginTop={''} finalWidth={width > 990 ? '30%' : ''} initialWidth={width < 990 ? '0' : '30%'}>
-            <Link style={{ textDecoration: 'none' }} to="/userdashboard/details">
-              <MenuItems>Details</MenuItems>
-            </Link>
-            <Link style={{ textDecoration: 'none' }} to="/userdashboard/orders">
-              <MenuItems>Orders</MenuItems>
-            </Link>
-            <Link style={{ textDecoration: 'none' }} to="/userdashboard/address">
-              <MenuItems>Addresses</MenuItems>
-            </Link>
-            <Link style={{ textDecoration: 'none' }} to="/support">
-              <MenuItems>Support</MenuItems>
-            </Link>
-          </UserNav>
-        </div>
+    <Row style={{ justifyContent: 'center' }}>
+      <div>
+        <UserNav
+          initialHeight={width < 990 ? '0' : '100%'}
+          finalHeight={'100%'}
+          height={'100%'}
+          textAlign={width < 990 ? 'center' : 'left'}
+          marginTop={''}
+          finalWidth={width > 990 ? '30%' : ''}
+          initialWidth={width < 990 ? '0' : '30%'}
+        >
+          <Link style={{ textDecoration: 'none' }} to="/userdashboard/details">
+            <MenuItems>Details</MenuItems>
+          </Link>
+          <Link style={{ textDecoration: 'none' }} to="/userdashboard/orders">
+            <MenuItems>Orders</MenuItems>
+          </Link>
+          <Link style={{ textDecoration: 'none' }} to="/userdashboard/address">
+            <MenuItems>Addresses</MenuItems>
+          </Link>
+          <Link style={{ textDecoration: 'none' }} to="/support">
+            <MenuItems>Support</MenuItems>
+          </Link>
+        </UserNav>
+      </div>
 
-        <Wrapper>
-          <Col lg={8} md={10} sm={12} style={props.match.path === '/userdashboard/details' || props.match.path === '/userdashboard' ? { display: 'inline-block' } : { display: 'none' }}>
-            <Userdetailsform />
-          </Col>
-          <Col lg={8} md={10} sm={12} style={props.match.path === '/userdashboard/orders' ? { display: 'inline-block' } : { display: 'none' }}>
-            <Myorders />
-          </Col>
-          <Col lg={8} md={10} sm={12} style={props.match.path === '/userdashboard/address' ? { display: 'inline-block' } : { display: 'none' }}>
-            <Addressform />
-          </Col>
-        </Wrapper>
-      </Row>
-    </>
+      <Wrapper>
+        <Col
+          lg={8}
+          md={10}
+          sm={12}
+          style={
+            props.match.path === '/userdashboard/details' ||
+            props.match.path === '/userdashboard'
+              ? { display: 'inline-block' }
+              : { display: 'none' }
+          }
+        >
+          <Userdetailsform />
+        </Col>
+        <Col
+          lg={8}
+          md={10}
+          sm={12}
+          style={
+            props.match.path === '/userdashboard/orders'
+              ? { display: 'inline-block' }
+              : { display: 'none' }
+          }
+        >
+          <Myorders />
+        </Col>
+        <Col
+          lg={8}
+          md={10}
+          sm={12}
+          style={
+            props.match.path === '/userdashboard/address'
+              ? { display: 'inline-block' }
+              : { display: 'none' }
+          }
+        >
+          <Addressform />
+        </Col>
+      </Wrapper>
+    </Row>
   );
 };
 
