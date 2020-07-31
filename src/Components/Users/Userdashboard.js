@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
 const MenuItems = styled.div`
   font-size: 50px;
-  color: #818181;
+  color: #ffffffe6;
   display: block;
   transition: 0.3s;
 `;
@@ -41,7 +41,7 @@ const Userdashboard = (props) => {
           initialWidth={width < 990 ? '0' : '30%'}
         >
           <Link style={{ textDecoration: 'none' }} to="/userdashboard/details">
-            <MenuItems>Details</MenuItems>
+            <MenuItems style={{textColor:'#ec436f'}}>Details</MenuItems>
           </Link>
           <Link style={{ textDecoration: 'none' }} to="/userdashboard/orders">
             <MenuItems>Orders</MenuItems>

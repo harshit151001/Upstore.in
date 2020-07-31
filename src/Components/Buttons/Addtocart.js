@@ -56,7 +56,13 @@ const Addtocart = props => {
       </button>
     );
   }else{
-    return <button>Add to cart</button>
+    return (
+      <button
+       
+      >
+       add to cart
+      </button>
+    );
   }
 };
 

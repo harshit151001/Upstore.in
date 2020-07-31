@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Invoice from '../Cart/Invoice';
 import Cartcard from '../Products/Cards/Cartcard';
 
@@ -7,6 +7,9 @@ import { appContext } from '../../Statemanagement/Statecontext';
 const Cart = () => {
   const { state } = useContext(appContext);
   const { cart } = state;
+  useEffect(()=>{
+    window.scroll(0,0)
+  },[])
 
   return (
     <div className="container-xl">

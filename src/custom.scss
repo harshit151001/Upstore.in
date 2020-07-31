@@ -24,20 +24,18 @@ a {
   text-decoration: none;
 }
 
-
-
 //!importing bootstrap
 @import '~bootstrap/scss/bootstrap.scss';
 .hoveroncategory {
-	transition: all 0.3s ease;
-  &:hover{
-    background: rgba(200,200,200,0.2);}
+  transition: all 0.3s ease;
+  &:hover {
+    background: rgba(200, 200, 200, 0.2);
   }
-.deschhjb{
+}
+.deschhjb {
   transition: 0.1s ease-out;
-  &:hover{
+  &:hover {
     color: #ec436f !important;
     font-weight: bold !important ;
-    
   }
 }
