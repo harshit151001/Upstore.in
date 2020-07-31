@@ -30,20 +30,43 @@ function App() {
   return (
     <Statecontext>
       <BrowserRouter>
-        <div style={{ width: '100vw', minHeight: '100vh', overflowX: 'hidden' }}>
+        <div style={{ width: '100vw', minHeight: '90vh', overflowX: 'hidden' }}>
           <Navbar />
           <Loader />
           <Switch>
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/aboutus" component={Aboutus}></Route>
-            <Route exact path="/termsandcondition" component={Termsandcondition}></Route>
-            <Route exact path="/loginsignup" component={Loginsignuppage}></Route>
-            <PrivateRoute path="/userdashboard/details" component={Userpage}></PrivateRoute>
-            <PrivateRoute path="/userdashboard/orders" component={Userpage}></PrivateRoute>
-            <PrivateRoute path="/userdashboard/address" component={Userpage}></PrivateRoute>
-            <PrivateRoute path="/userdashboard" component={Userpage}></PrivateRoute>
+            <Route
+              exact
+              path="/termsandcondition"
+              component={Termsandcondition}
+            ></Route>
+            <Route
+              exact
+              path="/loginsignup"
+              component={Loginsignuppage}
+            ></Route>
+            <PrivateRoute
+              path="/userdashboard/details"
+              component={Userpage}
+            ></PrivateRoute>
+            <PrivateRoute
+              path="/userdashboard/orders"
+              component={Userpage}
+            ></PrivateRoute>
+            <PrivateRoute
+              path="/userdashboard/address"
+              component={Userpage}
+            ></PrivateRoute>
+            <PrivateRoute
+              path="/userdashboard"
+              component={Userpage}
+            ></PrivateRoute>
             <PrivateRoute path="/wishlist" component={Wishlist}></PrivateRoute>
-            <Route path="/products/:categoryId/5eff8e76d75ecb3735b243b1" component={Products}></Route>
+            <Route
+              path="/products/:categoryId/5eff8e76d75ecb3735b243b1"
+              component={Products}
+            ></Route>
             <Route path="/productpage" component={Productpage}></Route>
             <Route path="/products/:categoryId" component={Products}></Route>
             <Route path="/cart/:userId" component={Cart}></Route>

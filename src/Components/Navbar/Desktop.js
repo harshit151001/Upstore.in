@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
-import API from '../../backend'
+import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
 //DESKTOP NAVBAR
 /*********************************************************************/
@@ -14,7 +14,7 @@ const DesktopNav = styled.div`
   height: 9vh;
   font-family: 'Poppins', sans-serif;
   margin: auto;
-  box-shadow: 2px 3px 10px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.3);
   font-size: 25px;
   position: fixed;
   justify-content: center;
@@ -85,11 +85,10 @@ const DesktopNav = styled.div`
 const CategoriesDropdown = styled.div`
   position: fixed;
   margin-top: 6.5vh;
-  border-top: 10px solid #ff658c;
+  border-top: 10px solid #ec436f;
   top: -600px;
   left: 10%;
   width: 280px;
-
   z-index: 20;
   transition: all 0.2s ease-out;
 `;
@@ -145,8 +144,7 @@ function Desktop(props) {
         const query =
           enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
         fetch(
-          `${API}/api/search/products/5eff8e76d75ecb3735b243b1` +
-            query
+          `${API}/api/search/products/5eff8e76d75ecb3735b243b1` + query
         ).then((response) => {
           response
             .json()
@@ -204,27 +202,22 @@ function Desktop(props) {
               <i className="fa fa-map" aria-hidden="true"></i>
             </button>
           </form>
-          <form  action="">
+          <form action="">
             <input
               ref={inputRef}
-              
               value={enteredFilter}
               onChange={(event) => setEnteredFilter(event.target.value)}
             />
-
-            
-              <Link
-                to={
-                  `/products/search?page=1&&search=` +
-                  enteredFilter
-                }
-                style={{ textDecoration: 'none', color: 'inherit' }}
-              >
-                <button  disabled="">
+ <button disabled="">
+            <Link
+              to={`/products/search?page=1&&search=` + enteredFilter}
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
+             
                 <i className="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </Link>
-           
+              
+            </Link>
+            </button>
           </form>
         </div>
         <div>
@@ -244,16 +237,16 @@ function Desktop(props) {
             to="/wishlist"
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
-          <span
-            style={{
-              height: '9vh',
-              display: 'flex',
-              alignItems: 'center',
-              color: '#ec436f',
-            }}
-          >
-            <i className="fa fa-heart-o" aria-hidden="true"></i>
-          </span>
+            <span
+              style={{
+                height: '9vh',
+                display: 'flex',
+                alignItems: 'center',
+                color: '#ec436f',
+              }}
+            >
+              <i className="fa fa-heart-o" aria-hidden="true"></i>
+            </span>
           </Link>
           <Link
             to={

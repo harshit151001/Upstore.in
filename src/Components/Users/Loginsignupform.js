@@ -48,7 +48,7 @@ const Button = styled.button`
   border: none;
   font-size: 1.2rem;
   color: black;
-  font-family: 'Roboto';
+  font-family: 'poppins';
   background: #ec436f;
   color: white;
   border-radius: 4px;
@@ -74,7 +74,7 @@ const Loginsignupform = () => {
     setForm(idx);
   };
 
-  const active = (idx, form) => (idx === form ? { background: 'blue' } : {});
+  const active = (idx, form) => (idx === form ? { background: 'green' } : {});
 
   return (
     <Wrapper>

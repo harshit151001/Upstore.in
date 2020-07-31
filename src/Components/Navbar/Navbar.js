@@ -8,7 +8,7 @@ import useWindowDimensions from '../../customapis/useWindowDimensions';
 
 function Navbar() {
   const style = {
-    fontFamily: 'MuseoModerno',
+    fontFamily: 'poppins',
     top: '0',
     width: '92vw',
     height: '9vh',

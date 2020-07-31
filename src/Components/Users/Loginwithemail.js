@@ -5,7 +5,7 @@ import {
   dispatchContext,
 } from '../../Statemanagement/Statecontext';
 import { signin, authenticate } from '../../auth/helper/index';
-// import { classes } from 'Forms.module.css';
+
 const Loginwithemail = () => {
   const loginContext = useContext(appContext);
   const dispatchLogin = useContext(dispatchContext);
@@ -124,7 +124,7 @@ const Loginwithemail = () => {
         </button>
       </form>
       {performRedirect()}
-      <p>{JSON.stringify(values)}</p>
+      {/* <p>{JSON.stringify(values)}</p> */}
     </>
   );
 };
