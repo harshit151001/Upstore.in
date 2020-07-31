@@ -3,11 +3,12 @@ import Productcard from '../Cards/Carddesktop';
 
 
 const Productlist = ({data, categoryId}) => {
-
+console.log(data)
   return <>
     {
       data.map((product)=>{
-        return<Productcard product={product} categoryId={categoryId} key={product._id}/>
+       
+        return<Productcard product={product.product?product.product:product} categoryId={categoryId} key={product._id}/>
       })
     }</>;
 };

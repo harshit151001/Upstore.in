@@ -12,6 +12,7 @@ const Home = () => {
   const [modalShow, setModalShow] = React.useState(false);
 
   useEffect(() => {
+    window.scroll(0,0)
     const timer = setTimeout(() => {
       setModalShow(true);
     }, 5000);

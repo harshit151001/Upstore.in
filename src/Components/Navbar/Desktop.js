@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
+import API from '../../backend'
 import { isAutheticated } from '../../auth/helper/index';
 //DESKTOP NAVBAR
 /*********************************************************************/
@@ -144,7 +145,7 @@ function Desktop(props) {
         const query =
           enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
         fetch(
-          'http://localhost:8000/api/search/products/5eff8e76d75ecb3735b243b1' +
+          `${API}/api/search/products/5eff8e76d75ecb3735b243b1` +
             query
         ).then((response) => {
           response
@@ -203,25 +204,27 @@ function Desktop(props) {
               <i className="fa fa-map" aria-hidden="true"></i>
             </button>
           </form>
-          <form action="">
+          <form  action="">
             <input
               ref={inputRef}
-              type="text"
+              
               value={enteredFilter}
               onChange={(event) => setEnteredFilter(event.target.value)}
             />
 
-            <button disabled="">
+            
               <Link
                 to={
-                  `/products/search/5eff8e76d75ecb3735b243b1?page=1&&search=` +
+                  `/products/search?page=1&&search=` +
                   enteredFilter
                 }
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
+                <button  disabled="">
                 <i className="fa fa-search" aria-hidden="true"></i>
+                </button>
               </Link>
-            </button>
+           
           </form>
         </div>
         <div>
@@ -237,6 +240,10 @@ function Desktop(props) {
               <i className="fa fa-user-circle" aria-hidden="true"></i>
             </span>
           </Link>
+          <Link
+            to="/wishlist"
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
           <span
             style={{
               height: '9vh',
@@ -247,6 +254,7 @@ function Desktop(props) {
           >
             <i className="fa fa-heart-o" aria-hidden="true"></i>
           </span>
+          </Link>
           <Link
             to={
               !state.loggedIn
@@ -316,4 +324,4 @@ function Desktop(props) {
   );
 }
 
-export default Desktop;
+export default withRouter(Desktop);
