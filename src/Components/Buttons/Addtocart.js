@@ -55,6 +55,8 @@ const Addtocart = props => {
        {props.children}
       </button>
     );
+  }else{
+    return <button>Add to cart</button>
   }
 };
 

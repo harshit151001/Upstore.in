@@ -34,7 +34,7 @@ padding-top: 15vw;
 
 const CloseButton = styled.p`
   color: red;
-  fon-size: 63px;
+  font-size: 63px;
   margin-top: 0;
   cursor: pointer;
 `;

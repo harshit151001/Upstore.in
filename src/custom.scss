@@ -34,7 +34,7 @@ a {
     background: rgba(200,200,200,0.2);}
   }
 .deschhjb{
-  transition: 0.2s ;
+  transition: 0.1s ease-out;
   &:hover{
     color: #ec436f !important;
     font-weight: bold !important ;

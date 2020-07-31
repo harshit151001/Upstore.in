@@ -1,87 +1,91 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useContext } from 'react';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { Link } from 'react-router-dom';
-const MobileNav = styled.div`
-  display: flex;
-  width: 100vw;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(5px);
-  height: 9vh;
-  font-family: 'Poppins', sans-serif;
-  margin: auto;
-  box-shadow: 2px 3px 10px 6px rgba(0, 0, 0, 0.3);
-  font-size: 25px;
-  position: fixed;
-  justify-content: center;
-  top: 0;
-  border-bottom: 1px solid aliceblue;
-  z-index: 100;
-  div {
-    width: 92%;
-    height: 100%;
-    align-items: center;
-    display: flex;
-  }
-`;
-const Span = styled.span`
-  height: 9vh;
-  align-items: center;
-  display: flex;
-`;
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { appContext } from '../../Statemanagement/Statecontext';
 
-const Mobile = () => {
-  return (
-    <MobileNav>
-      <div>
-        <div>
-          <span>
-            <i className="fa fa-bars" aria-hidden="true" />
-          </span>
-          <Link to="/" style={{ textDecoration: 'none', marginLeft: '8px' }}>
-            <span>
-              <p
+export default function Mobile() {
+  const { state } = useContext(appContext);
+  const { categorydata } = state;
+
+  const [style, setStyle] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+    setStyle({ ...style, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <div
+      style={{ width: '280px' }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {['Inbox', 'Starred'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <List>
+        {categorydata.map(({ name, _id }) => {
+          return (
+            <button
+              type="button"
+              className="btn btn-light d-block w-100 text-left deschhjb"
+              style={{ borderRadius: '0' }}
+              key={_id}
+            >
+              <Link
+                className="deschhjb"
                 style={{
-                  fontFamily: 'Poppins',
-                  margin: '0px',
-                  transform: 'translateY(-2px)',
-                  color: 'rgba(20,20,20)',
+                  textDecoration: 'none',
+                  fontFamily: 'poppins',
+                  color: 'inherit',
                 }}
+                to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
               >
-                <span
-                  style={{
-                    color: '#ec436f',
-                    fontFamily: 'Pacifico',
-                    fontSize: '30px',
-                    textDecoration: 'none',
-                  }}
-                >
-                  Up
-                </span>
-                store
-              </p>
-            </span>
-          </Link>
-        </div>
-        <div
-          style={{
-            justifyContent: 'flex-end',
-            display: 'flex',
-            flexDirection: 'row',
-          }}
-        >
-          <Span>
-            <i className="fa fa-search"></i>
-          </Span>
-          <Span>
-            <i className="fa fa-search"></i>
-          </Span>
-          <Span>
-            <i className="fa fa-search"></i>
-          </Span>
-        </div>
-      </div>
-    </MobileNav>
+                {name}
+              </Link>
+            </button>
+          );
+        })}
+      </List>
+    </div>
   );
-};
 
-export default Mobile;
+  return (
+    <div>
+      {['left'].map((anchor) => (
+        <React.Fragment key={anchor}>
+          <div style={{ position: 'fixed', top: '0', zIndex: '100' }}>
+            <button onClick={toggleDrawer(anchor, true)}>{anchor}</button>
+          </div>
+          <SwipeableDrawer
+            anchor={anchor}
+            open={style[anchor]}
+            onClose={toggleDrawer(anchor, false)}
+            onOpen={toggleDrawer(anchor, true)}
+          >
+            {list(anchor)}
+          </SwipeableDrawer>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
