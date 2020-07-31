@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import i1 from '../Images/i1.jpg';
 import { appContext } from '../../Statemanagement/Statecontext';
 
 export default function Mobile() {
@@ -36,11 +35,24 @@ export default function Mobile() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <div style={{ width: '94%', height: '80px', alignItems: 'center' }}>
+          <img
+            style={{
+              width: '75px',
+              height: '75px',
+              marginTop: '5px',
+              marginLeft: '8px',
+            }}
+            src={i1}
+            alt="..."
+            class="rounded-circle"
+          />
+          {true ? (
+            <button style={{ marginLeft: '10px' }}>login</button>
+          ) : (
+            <p style={{ marginLeft: '10px' }}>hi harshit</p>
+          )}
+        </div>
       </List>
       <List>
         {categorydata.map(({ name, _id }) => {
