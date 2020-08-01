@@ -147,14 +147,7 @@ export default function Mobile() {
                     />
                   </span>
                 </Link>
-                <Link
-                  to={
-                    !state.loggedIn
-                      ? '/wishlist'
-                      : `/wishlist/${isAutheticated().user._id}`
-                  }
-                  style={{ textDecoration: 'none', color: 'inherit' }}
-                >
+                <Link style={{ textDecoration: 'none', color: 'inherit' }}>
                   <span className="mr-2">
                     <FavoriteBorderRoundedIcon
                       style={{ color: 'rgba(20,20,20)', fontSize: '28px' }}
