@@ -12,7 +12,7 @@ const Categorycard = ({ name, path }) => {
       style={{
         margin: '2vw',
         minHeight: '130px',
-        boxShadow:'white 1px 1px 0px,rgba(0,0,0,0.3) 1px 0px 5px, rgba(0,0,0,0.3) 2px 5px 5px',
+        boxShadow: '0px 0px 4px 1px rgba(97,97,97,0.3)',
       }}
       className="hoveroncategory"
     >

@@ -91,8 +91,7 @@ export default function Mobile() {
               top: '0',
               zIndex: '100',
               width: '100vw',
-              boxShadow:
-                'white 1px 1px 0px,rgba(0,0,0,0.3) 1px 0px 5px, rgba(0,0,0,0.3) 2px 5px 5px',
+              boxShadow: '0px 0px 4px 2px rgba(97,97,97, 0.3)',
               height: '9vh',
               backdropFilter: 'blur(5px)',
               background: 'rgba(255, 255, 255, 0.9)',
@@ -113,5 +112,3 @@ export default function Mobile() {
     </div>
   );
 }
-
-

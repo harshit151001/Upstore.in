@@ -21,7 +21,7 @@ const DesktopNav = styled.div`
   height: 9vh;
   font-family: 'Poppins', sans-serif;
   margin: auto;
-  box-shadow: 0px 0px 5px 2px rgba(97, 97, 97, 0.3);
+  box-shadow: 0px 0px 5px 3px rgba(97, 97, 97, 0.3);
   font-size: 25px;
   position: fixed;
   justify-content: center;
