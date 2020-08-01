@@ -5,11 +5,13 @@ import List from '@material-ui/core/List';
 import i1 from '../Images/i1.jpg';
 import { appContext } from '../../Statemanagement/Statecontext';
 import { isAutheticated } from '../../auth/helper/index';
+import Input from '@material-ui/core/Input';
 //icons
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
+import KeyboardBackspaceRoundedIcon from '@material-ui/icons/KeyboardBackspaceRounded';
 export default function Mobile() {
   const { state } = useContext(appContext);
   const { categorydata } = state;
@@ -20,6 +22,35 @@ export default function Mobile() {
     bottom: false,
     right: false,
   });
+  const [searchStyles, setSearchStyles] = React.useState({
+    position: 'fixed',
+    alignItems: 'center',
+    height: '9vh',
+    fontSize: '28px',
+    display: 'none',
+    transition: 'all 0.4s ease',
+    background: 'white',
+    width: '0px',
+  });
+  const handleSearch = () => {
+    setSearchStyles({
+      position: 'fixed',
+      alignItems: 'center',
+      height: '9vh',
+      fontSize: '28px',
+      display: 'flex',
+      transform: 'translate(-5vw,-9vh)',
+      zIndex: '12000',
+      background: 'white',
+      width: '100%',
+    });
+  };
+  const closeSearch = () => {
+    setSearchStyles({
+      display: 'none',
+      width: '0px',
+    });
+  };
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -142,7 +173,7 @@ export default function Mobile() {
                 <Link>
                   <span className="mr-2">
                     <SearchRoundedIcon
-                      onClick={toggleDrawer(anchor, true)}
+                      onClick={handleSearch}
                       style={{ color: 'rgba(20,20,20)', fontSize: '28px' }}
                     />
                   </span>
@@ -169,6 +200,22 @@ export default function Mobile() {
                   </span>
                 </Link>
               </div>
+            </div>
+            <div
+              className="col-12 w-100 ml-0 justify-content-center"
+              style={searchStyles}
+            >
+              <span className="mr-2">
+                <KeyboardBackspaceRoundedIcon
+                  onClick={closeSearch}
+                  style={{ fontSize: '35px' }}
+                />
+              </span>
+              <Input
+                style={{ width: '100%', fontSize: '26px' }}
+                placeholder="search for products..."
+                inputProps={{ 'aria-label': 'description' }}
+              />
             </div>
           </div>
           <SwipeableDrawer
