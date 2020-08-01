@@ -4,6 +4,13 @@ import { Link, withRouter } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
+//Icons
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
+import GpsFixedRoundedIcon from '@material-ui/icons/GpsFixedRounded';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
+import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 //DESKTOP NAVBAR
 /*********************************************************************/
 const DesktopNav = styled.div`
@@ -14,7 +21,7 @@ const DesktopNav = styled.div`
   height: 9vh;
   font-family: 'Poppins', sans-serif;
   margin: auto;
-  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 5px 2px rgba(97, 97, 97, 0.3);
   font-size: 25px;
   position: fixed;
   justify-content: center;
@@ -47,6 +54,7 @@ const DesktopNav = styled.div`
         color: rgba(20, 20, 20);
         background: #f5f5f6;
         width: 15%;
+        transition: all 0.3s ease;
         &:nth-child(2):hover {
           background: #ec436f;
           color: #f5f5f6;
@@ -191,7 +199,7 @@ function Desktop(props) {
             onMouseOver={a}
             onMouseLeave={b}
           >
-            <i className="fa fa-th" aria-hidden="true"></i>
+            <AppsRoundedIcon />
           </span>
         </div>
 
@@ -199,7 +207,7 @@ function Desktop(props) {
           <form action="">
             <input type="text" placeholder="Aurangabad" disabled="disabled" />
             <button disabled="disabled">
-              <i className="fa fa-map" aria-hidden="true"></i>
+              <GpsFixedRoundedIcon />
             </button>
           </form>
           <form action="">
@@ -208,15 +216,13 @@ function Desktop(props) {
               value={enteredFilter}
               onChange={(event) => setEnteredFilter(event.target.value)}
             />
- <button disabled="">
-            <Link
-              to={`/products/search?page=1&&search=` + enteredFilter}
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-             
-                <i className="fa fa-search" aria-hidden="true"></i>
-              
-            </Link>
+            <button disabled="">
+              <Link
+                to={`/products/search?page=1&&search=` + enteredFilter}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                <SearchRoundedIcon />
+              </Link>
             </button>
           </form>
         </div>
@@ -230,7 +236,7 @@ function Desktop(props) {
               onMouseOver={c}
               onMouseLeave={d}
             >
-              <i className="fa fa-user-circle" aria-hidden="true"></i>
+              <AccountCircleOutlinedIcon />
             </span>
           </Link>
           <Link
@@ -245,7 +251,7 @@ function Desktop(props) {
                 color: '#ec436f',
               }}
             >
-              <i className="fa fa-heart-o" aria-hidden="true"></i>
+              <FavoriteBorderRoundedIcon />
             </span>
           </Link>
           <Link
@@ -261,7 +267,8 @@ function Desktop(props) {
               onMouseOver={e}
               onMouseLeave={f}
             >
-              <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+              {/* <i className="fa fa-shopping-cart" aria-hidden="true"></i> */}
+              <ShoppingCartOutlinedIcon />
             </span>
           </Link>
         </div>

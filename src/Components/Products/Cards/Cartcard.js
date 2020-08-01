@@ -2,6 +2,8 @@ import React from 'react';
 import Remove from '../../Buttons/Remove';
 import Addtowishlist from '../../Buttons/Addtowishlist';
 import API from '../../../backend';
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
 const Cartcard = (props) => {
   const { product, quantity } = props;
 
@@ -27,6 +29,10 @@ const Cartcard = (props) => {
       city={city}
       size={size}
       category={category}
+      style={{
+        boxShadow: '0px 0px 4px 1px rgba(97,97,97,0.24)',
+        border: 'none',
+      }}
       stock={stock}
     >
       <div className="card-body">
@@ -59,8 +65,8 @@ const Cartcard = (props) => {
             <div className="d-flex w-100 mt-0 justify-content-between">
               <span className="d-flex ">
                 <span>
-                  <button>
-                    <i className="fa fa-plus"></i>
+                  <button className="btn btn-light">
+                    <AddRoundedIcon />
                   </button>
                 </span>
                 <span>
@@ -68,13 +74,13 @@ const Cartcard = (props) => {
                     type="text"
                     style={{ width: '30px' }}
                     value={quantity}
-                    className=""
+                    className="btn"
                     // onChange={}
                   />
                 </span>
                 <span>
-                  <button>
-                    <i className="fa fa-minus"></i>
+                  <button className="btn btn-light">
+                    <RemoveRoundedIcon />
                   </button>
                 </span>
               </span>

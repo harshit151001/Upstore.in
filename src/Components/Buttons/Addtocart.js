@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
-import { appContext, dispatchContext } from '../../Statemanagement/Statecontext';
+import {
+  appContext,
+  dispatchContext,
+} from '../../Statemanagement/Statecontext';
 import { isAutheticated } from '../../auth/helper/index';
 import API from '../../backend';
 
-const Addtocart = props => {
+const Addtocart = (props) => {
   const { state } = useContext(appContext);
   const dispatch = useContext(dispatchContext);
   const { cart } = state;
@@ -11,8 +14,8 @@ const Addtocart = props => {
   if (state.loggedIn) {
     const { token, user } = isAutheticated();
     const { _id } = user;
-    const addToCart = id => {
-      let filteredCart = cart.filter(item => item.product._id === id);
+    const addToCart = (id) => {
+      let filteredCart = cart.filter((item) => item.product._id === id);
       if (filteredCart.length === 1) {
         alert('product already exists in your cart');
       }
@@ -23,7 +26,7 @@ const Addtocart = props => {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
             userId: _id,
@@ -31,19 +34,19 @@ const Addtocart = props => {
               {
                 product: id,
                 wishlist: 0,
-                quantity: 1
-              }
-            ]
-          })
+                quantity: 1,
+              },
+            ],
+          }),
         })
-          .then(response => {
+          .then((response) => {
             response.json().then(function (data) {
               dispatch({ type: 'UPDATECART', payload: data.products });
               dispatch({ type: 'REMOVEDFROMWISHLIST', payload: id });
               dispatch({ type: 'LOADED' });
             });
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
     };
     return (
@@ -52,17 +55,11 @@ const Addtocart = props => {
           addToCart(props.id);
         }}
       >
-       {props.children}
+        {props.children}
       </button>
     );
-  }else{
-    return (
-      <button
-       
-      >
-       add to cart
-      </button>
-    );
+  } else {
+    return <button>add to cart</button>;
   }
 };
 

@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './custom.scss';
 //!Components most likely
 import Navbar from './Components/Navbar/Navbar';
-import Footer from './Components/Footer/Footer';
+
 import Loader from './Components/Loader/Loader';
 //!routes
 import Home from './Components/Routes/Home';
@@ -75,7 +75,6 @@ function App() {
             <Route component={err}></Route>
           </Switch>
         </div>
-        <Footer />
       </BrowserRouter>
     </Statecontext>
   );

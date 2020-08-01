@@ -12,7 +12,10 @@ const Productcard = ({ product, categoryId }) => {
 
   return (
     <div className="card p-2 col-12 shadow-sm col-sm-6" key={_id}>
-      <div className="row no-gutters" style={{ display: 'flex', flexWrap: 'nowrap' }}>
+      <div
+        className="row no-gutters"
+        style={{ display: 'flex', flexWrap: 'nowrap' }}
+      >
         <div>
           <Img src={`${API}${src}`} alt={name} />
         </div>
@@ -21,8 +24,7 @@ const Productcard = ({ product, categoryId }) => {
             <strong>{name}</strong>
           </p>
           <p className="small text-muted mt-0 pt-0">Sold by: shop name</p>
-
-          <Addtocart id={_id} />
+          <Addtocart id={_id}>Add to cart</Addtocart>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import Slider from '../Carousel/Slider';
 //import Carousell from '../Cards/Carousel';
 import Loginmodal from '../Modals/Loginmodal';
 import { appContext } from '../../Statemanagement/Statecontext';
-
+import Footer from '../Footer/Footer';
 import Categorylist from '../Categories/List/Categorylist';
 //import Cartlist from '../Cart/Cartlist';
 
@@ -12,7 +12,7 @@ const Home = () => {
   const [modalShow, setModalShow] = React.useState(false);
 
   useEffect(() => {
-    window.scroll(0,0)
+    window.scroll(0, 0);
     const timer = setTimeout(() => {
       setModalShow(true);
     }, 5000);
@@ -28,6 +28,7 @@ const Home = () => {
         onHide={() => setModalShow(false)}
       />
       <Categorylist />
+      <Footer />
     </div>
   );
 };
