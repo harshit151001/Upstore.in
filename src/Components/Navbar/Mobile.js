@@ -27,8 +27,8 @@ export default function Mobile() {
     alignItems: 'center',
     height: '9vh',
     fontSize: '28px',
+    zIndex: '-1',
     display: 'none',
-    transition: 'all 0.4s ease',
     background: 'white',
     width: '0px',
   });
@@ -203,7 +203,7 @@ export default function Mobile() {
             </div>
             <div
               className="col-12 w-100 ml-0 justify-content-center"
-              style={searchStyles}
+              style={{ ...searchStyles }}
             >
               <span className="mr-2">
                 <KeyboardBackspaceRoundedIcon

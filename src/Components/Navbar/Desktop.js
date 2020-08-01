@@ -11,6 +11,7 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
+import IconButton from '@material-ui/core/IconButton';
 //DESKTOP NAVBAR
 /*********************************************************************/
 const DesktopNav = styled.div`
@@ -199,7 +200,11 @@ function Desktop(props) {
             onMouseOver={a}
             onMouseLeave={b}
           >
-            <AppsRoundedIcon />
+            <IconButton
+              style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}
+            >
+              <AppsRoundedIcon />
+            </IconButton>
           </span>
         </div>
 
@@ -228,50 +233,61 @@ function Desktop(props) {
           </form>
         </div>
         <div>
-          <Link
-            to="/userdashboard"
-            style={{ textDecoration: 'none', color: 'inherit' }}
+          <IconButton
+            style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}
           >
-            <span
-              style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
-              onMouseOver={c}
-              onMouseLeave={d}
+            <Link
+              to="/userdashboard"
+              style={{ textDecoration: 'none', color: 'inherit' }}
             >
-              <AccountCircleOutlinedIcon />
-            </span>
-          </Link>
-          <Link
-            to="/wishlist"
-            style={{ textDecoration: 'none', color: 'inherit' }}
+              <span
+                style={{ display: 'flex', alignItems: 'center' }}
+                onMouseOver={c}
+                onMouseLeave={d}
+              >
+                <AccountCircleOutlinedIcon />
+              </span>
+            </Link>
+          </IconButton>
+          <IconButton
+            style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}
           >
-            <span
-              style={{
-                height: '9vh',
-                display: 'flex',
-                alignItems: 'center',
-                color: '#ec436f',
-              }}
+            <Link
+              to="/wishlist"
+              style={{ textDecoration: 'none', color: 'inherit' }}
             >
-              <FavoriteBorderRoundedIcon />
-            </span>
-          </Link>
-          <Link
-            to={
-              !state.loggedIn
-                ? '/loginsignup'
-                : `/cart/${isAutheticated().user._id}`
-            }
-            style={{ textDecoration: 'none', color: 'inherit' }}
+              <span
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: '#ec436f',
+                }}
+              >
+                <FavoriteBorderRoundedIcon />
+              </span>
+            </Link>
+          </IconButton>
+          <IconButton
+            style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}
           >
-            <span
-              style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
-              onMouseOver={e}
-              onMouseLeave={f}
+            <Link
+              to={
+                !state.loggedIn
+                  ? '/loginsignup'
+                  : `/cart/${isAutheticated().user._id}`
+              }
+              style={{ textDecoration: 'none', color: 'inherit' }}
             >
-              {/* <i className="fa fa-shopping-cart" aria-hidden="true"></i> */}
-              <ShoppingCartOutlinedIcon />
-            </span>
-          </Link>
+              <span
+                style={{ display: 'flex', alignItems: 'center' }}
+                onMouseOver={e}
+                onMouseLeave={f}
+              >
+                {/* <i className="fa fa-shopping-cart" aria-hidden="true"></i> */}
+                <ShoppingCartOutlinedIcon />
+              </span>
+            </Link>
+          </IconButton>
         </div>
       </DesktopNav>
 
