@@ -11,7 +11,13 @@ const Categorylist = () => {
   const { categorydata } = state;
 
   return (
-    <Row style={{ width: `92.5vw`, margin: 'auto' }}>
+    <Row
+      style={{
+        margin: 'auto',
+        background: '#fafafa',
+        padding: '4vw',
+      }}
+    >
       {categorydata.map(({ name, imagePath, _id }) => {
         return (
           <Col xs={6} md={4} key={_id}>

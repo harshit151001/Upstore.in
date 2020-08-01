@@ -32,7 +32,9 @@ const Categorycard = ({ name, path }) => {
             />
           </Row>
           <Row style={{ margin: 'auto', justifyContent: 'center' }}>
-            <h5 style={{ textAlign: 'center', color: 'grey' }}>{name}</h5>
+            <strong style={{ textAlign: 'center', color: 'grey' }}>
+              {name}
+            </strong>
           </Row>
         </Col>
       </Row>

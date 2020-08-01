@@ -62,7 +62,10 @@ function App() {
               path="/userdashboard"
               component={Userpage}
             ></PrivateRoute>
-            <PrivateRoute path="/wishlist" component={Wishlist}></PrivateRoute>
+            <PrivateRoute
+              path="/wishlist/:userId"
+              component={Wishlist}
+            ></PrivateRoute>
             <Route
               path="/products/:categoryId/5eff8e76d75ecb3735b243b1"
               component={Products}

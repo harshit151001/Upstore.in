@@ -214,6 +214,7 @@ function Desktop(props) {
             <input
               ref={inputRef}
               value={enteredFilter}
+              placeholder="search for products..."
               onChange={(event) => setEnteredFilter(event.target.value)}
             />
             <button disabled="">

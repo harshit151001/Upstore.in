@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import i1 from '../Images/i1.jpg';
 import { appContext } from '../../Statemanagement/Statecontext';
-
+import { isAutheticated } from '../../auth/helper/index';
+//icons
+import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 export default function Mobile() {
   const { state } = useContext(appContext);
   const { categorydata } = state;
@@ -45,7 +50,7 @@ export default function Mobile() {
             }}
             src={i1}
             alt="..."
-            class="rounded-circle"
+            className="rounded-circle"
           />
           {true ? (
             <button style={{ marginLeft: '10px' }}>login</button>
@@ -95,9 +100,83 @@ export default function Mobile() {
               height: '9vh',
               backdropFilter: 'blur(5px)',
               background: 'rgba(255, 255, 255, 0.9)',
+              paddingRight: '4vw',
+              paddingLeft: '4vw',
             }}
           >
-            <button onClick={toggleDrawer(anchor, true)}>{anchor}</button>
+            <div
+              className="row w-100 no-gutters align-items-center"
+              style={{ height: '9vh' }}
+            >
+              <div className="col-6 no-gutters align-items-center d-flex">
+                <MenuRoundedIcon
+                  onClick={toggleDrawer(anchor, true)}
+                  style={{ color: 'rgba(20,20,20)', fontSize: '35px' }}
+                />
+                <span className="ml-2">
+                  <Link to="/" style={{ textDecoration: 'none' }}>
+                    <p
+                      style={{
+                        fontFamily: 'Poppins',
+                        fontSize: '23px',
+                        margin: '0px',
+                        color: 'rgba(20,20,20)',
+                      }}
+                    >
+                      <span
+                        style={{
+                          color: '#ec436f',
+                          fontFamily: 'Pacifico',
+                          fontSize: '25px',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        Up
+                      </span>
+                      store
+                    </p>
+                  </Link>
+                </span>
+              </div>
+              <div className="d-flex col-6 justify-content-end">
+                <Link>
+                  <span className="mr-2">
+                    <SearchRoundedIcon
+                      onClick={toggleDrawer(anchor, true)}
+                      style={{ color: 'rgba(20,20,20)', fontSize: '28px' }}
+                    />
+                  </span>
+                </Link>
+                <Link
+                  to={
+                    !state.loggedIn
+                      ? '/wishlist'
+                      : `/wishlist/${isAutheticated().user._id}`
+                  }
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <span className="mr-2">
+                    <FavoriteBorderRoundedIcon
+                      style={{ color: 'rgba(20,20,20)', fontSize: '28px' }}
+                    />
+                  </span>
+                </Link>
+                <Link
+                  to={
+                    !state.loggedIn
+                      ? '/loginsignup'
+                      : `/cart/${isAutheticated().user._id}`
+                  }
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <span>
+                    <ShoppingCartOutlinedIcon
+                      style={{ color: 'rgba(20,20,20)', fontSize: '28px' }}
+                    />
+                  </span>
+                </Link>
+              </div>
+            </div>
           </div>
           <SwipeableDrawer
             anchor={anchor}

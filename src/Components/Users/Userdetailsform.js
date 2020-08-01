@@ -5,15 +5,10 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
 width: 70%;
-   
-    
-
-    @media  (min-width: 990px) {
-
-      margin-left: 250px;
-     }
-  
-}
+  @media  (min-width: 990px) {
+  margin-left: 250px;
+  }
+ }
 `;
 
 const Userdetailsform = (props) => {

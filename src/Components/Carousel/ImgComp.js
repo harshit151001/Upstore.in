@@ -1,15 +1,17 @@
 import React from 'react';
-//import useWindowDimensions from '../../customapis/useWindowDimensions';
-//const { width } = useWindowDimensions;
+import styled from 'styled-components';
+
+const Img = styled.img`
+  width: 100vw;
+  height: 42vw;
+  object-fit: cover;
+  @media (min-width: 991px) {
+    height: 28vw;
+  }
+`;
 
 function ImgComp({ src }) {
-  return (
-    <img
-      src={src}
-      alt="carousel-img"
-      style={{ width: '100vw', height: '30vw' }}
-    />
-  );
+  return <Img src={src} alt="carousel-img" />;
 }
 
 export default ImgComp;
