@@ -12,10 +12,14 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import KeyboardBackspaceRoundedIcon from '@material-ui/icons/KeyboardBackspaceRounded';
+
+/****************************************************************************************************/
+
 export default function Mobile() {
   const { state } = useContext(appContext);
   const { categorydata } = state;
 
+  /****************************************************************************************************/
   const [style, setStyle] = React.useState({
     top: false,
     left: false,
@@ -51,7 +55,7 @@ export default function Mobile() {
       width: '0px',
     });
   };
-
+  /****************************************************************************************************/
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&

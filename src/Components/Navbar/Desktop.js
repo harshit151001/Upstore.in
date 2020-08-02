@@ -283,7 +283,6 @@ function Desktop(props) {
                 onMouseOver={e}
                 onMouseLeave={f}
               >
-                {/* <i className="fa fa-shopping-cart" aria-hidden="true"></i> */}
                 <ShoppingCartOutlinedIcon />
               </span>
             </Link>
@@ -300,24 +299,24 @@ function Desktop(props) {
       >
         {categorydata.map(({ name, _id }) => {
           return (
-            <button
-              type="button"
-              className="btn btn-light d-block w-100 text-left deschhjb"
-              style={{ borderRadius: '0' }}
-              key={_id}
+            <Link
+              className="deschhjb"
+              style={{
+                textDecoration: 'none',
+                fontFamily: 'poppins',
+                color: 'inherit',
+              }}
+              to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
             >
-              <Link
-                className="deschhjb"
-                style={{
-                  textDecoration: 'none',
-                  fontFamily: 'poppins',
-                  color: 'inherit',
-                }}
-                to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
+              <button
+                type="button"
+                className="btn btn-light d-block w-100 text-left deschhjb"
+                style={{ borderRadius: '0' }}
+                key={_id}
               >
                 {name}
-              </Link>
-            </button>
+              </button>
+            </Link>
           );
         })}
       </CategoriesDropdown>
