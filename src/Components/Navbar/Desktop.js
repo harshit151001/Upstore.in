@@ -12,6 +12,7 @@ import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 import IconButton from '@material-ui/core/IconButton';
+
 //DESKTOP NAVBAR
 /*********************************************************************/
 const DesktopNav = styled.div`
@@ -200,19 +201,20 @@ function Desktop(props) {
             onMouseOver={a}
             onMouseLeave={b}
           >
-            <IconButton
-              style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}
-            >
-              <AppsRoundedIcon />
-            </IconButton>
+            <AppsRoundedIcon />
           </span>
         </div>
 
         <div>
           <form action="">
             <input type="text" placeholder="Aurangabad" disabled="disabled" />
-            <button disabled="disabled">
-              <GpsFixedRoundedIcon />
+            <button
+              disabled="disabled"
+              style={{ display: 'flex', height: '5vh' }}
+            >
+              <GpsFixedRoundedIcon
+                style={{ alignSelf: 'center', margin: 'auto' }}
+              />
             </button>
           </form>
           <form action="">
@@ -227,7 +229,9 @@ function Desktop(props) {
                 to={`/products/search?page=1&&search=` + enteredFilter}
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
-                <SearchRoundedIcon />
+                <SearchRoundedIcon
+                  style={{ alignSelf: 'center', margin: 'auto' }}
+                />
               </Link>
             </button>
           </form>
