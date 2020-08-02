@@ -56,6 +56,7 @@ const DesktopNav = styled.div`
         color: rgba(20, 20, 20);
         background: #f5f5f6;
         width: 15%;
+        justify-content: center;
         transition: all 0.3s ease;
         &:nth-child(2):hover {
           background: #ec436f;
@@ -224,13 +225,20 @@ function Desktop(props) {
               placeholder="search for products..."
               onChange={(event) => setEnteredFilter(event.target.value)}
             />
-            <button disabled="">
+            <button disabled="" style={{ display: 'flex', height: '5vh' }}>
               <Link
                 to={`/products/search?page=1&&search=` + enteredFilter}
-                style={{ textDecoration: 'none', color: 'inherit' }}
+                style={{
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  display: 'flex',
+                  height: '5vh',
+                }}
               >
                 <SearchRoundedIcon
-                  style={{ alignSelf: 'center', margin: 'auto' }}
+                  style={{
+                    alignSelf: 'center',
+                  }}
                 />
               </Link>
             </button>
@@ -305,6 +313,7 @@ function Desktop(props) {
           return (
             <Link
               className="deschhjb"
+              key={_id}
               style={{
                 textDecoration: 'none',
                 fontFamily: 'poppins',
