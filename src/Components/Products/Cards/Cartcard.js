@@ -116,7 +116,12 @@ const Cartcard = (props) => {
         <div className="row">
           <div className="col-12">
             <Remove id={_id}>Remove</Remove>
-            <Addtowishlist id={_id}>Move to wishlist</Addtowishlist>
+            <Addtowishlist
+              classes="btn btn-danger btn-light text-muted btn-block"
+              id={_id}
+            >
+              Move to wishlist
+            </Addtowishlist>
           </div>
         </div>
       </div>
