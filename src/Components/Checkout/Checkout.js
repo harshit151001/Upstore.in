@@ -8,11 +8,7 @@ import Invoice from '../Cart/Invoice';
 import { appContext } from '../../Statemanagement/Statecontext';
 import Razor from './Razor';
 const Wrapper = styled.div`
-width: 80%;
-   
-
-  
-}
+  width: 80%;
 `;
 const CheckoutAddress = props => {
   const { state } = useContext(appContext);
@@ -114,6 +110,7 @@ const CheckoutAddress = props => {
         price: document.product.price,
         quantity: document.quantity
       });
+      return order;
     });
 
     order = { ...order, transaction_id, amount, address: checkoutAddress, status, user: isAutheticated().user._id };

@@ -14,21 +14,19 @@ const appReducer = (draft, action) => {
       }
       break;
     case 'UPDATECART':
-      draft.cart = action.payload.filter((item) => item.wishlist === 0);
+      draft.cart = action.payload.filter(item => item.wishlist === 0);
       break;
     case 'UPDATEWISHLIST':
-      draft.wishlist = action.payload.filter((item) => item.wishlist === 1);
+      draft.wishlist = action.payload.filter(item => item.wishlist === 1);
       break;
     case 'REMOVEDFROMCART':
-      draft.cart = draft.cart.filter(
-        (item) => item.product._id !== action.payload
-      );
+      draft.cart = draft.cart.filter(item => item.product._id !== action.payload);
       break;
-    case 'REMOVEDFROMWISHLIST':
-      draft.wishlist = draft.wishlist.filter(
-        (item) => item.product._id !== action.payload
-      );
-      break;
+    // case 'REMOVEDFROMWISHLIST':
+    //   draft.wishlist = draft.wishlist.filter(
+    //     (item) => item.product._id !== action.payload
+    //   );
+    //   break;
     case 'LOADING':
       draft.loading = true;
       break;

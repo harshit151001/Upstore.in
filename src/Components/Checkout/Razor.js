@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Razor.css';
 import { isAutheticated } from '../../auth/helper/index';
 
@@ -19,7 +19,7 @@ function loadScript(src) {
 const __DEV__ = document.domain === 'localhost';
 
 function Razor() {
-  const [name, setName] = useState(isAutheticated().user.name || '');
+  const name = isAutheticated().user.name || '';
 
   async function displayRazorpay() {
     console.log(isAutheticated().token);
@@ -62,9 +62,9 @@ function Razor() {
   }
 
   return (
-    <a className="Razor-link" onClick={displayRazorpay} target="_blank" rel="noopener noreferrer">
-      <button>pay online</button>
-    </a>
+    <button className="Razor-link" onClick={displayRazorpay} target="_blank" rel="noopener noreferrer">
+      pay online
+    </button>
   );
 }
 

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { appContext } from '../../Statemanagement/Statecontext';
-import Razor from './Razor';
 
 const Invoice = () => {
   const { state } = useContext(appContext);
