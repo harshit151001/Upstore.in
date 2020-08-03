@@ -20,7 +20,7 @@ import Wishlist from './Components/Routes/Wishlist';
 import Addresses from './Components/Routes/Addresses';
 import Userpage from './Components/Routes/Userpage';
 import PrivateRoute from './auth/helper/PrivateRoute';
-
+import CheckoutAddress from './Components/Cart/CheckoutAdress';
 import OTP from './Components/Users/OTP';
 
 //!context
@@ -36,42 +36,21 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/aboutus" component={Aboutus}></Route>
-            <Route
-              exact
-              path="/termsandcondition"
-              component={Termsandcondition}
-            ></Route>
-            <Route
-              exact
-              path="/loginsignup"
-              component={Loginsignuppage}
-            ></Route>
-            <PrivateRoute
-              path="/userdashboard/details"
-              component={Userpage}
-            ></PrivateRoute>
-            <PrivateRoute
-              path="/userdashboard/orders"
-              component={Userpage}
-            ></PrivateRoute>
-            <PrivateRoute
-              path="/userdashboard/address"
-              component={Userpage}
-            ></PrivateRoute>
-            <PrivateRoute
-              path="/userdashboard"
-              component={Userpage}
-            ></PrivateRoute>
+            <Route exact path="/termsandcondition" component={Termsandcondition}></Route>
+            <Route exact path="/loginsignup" component={Loginsignuppage}></Route>
+            <PrivateRoute path="/userdashboard/details" component={Userpage}></PrivateRoute>
+            <PrivateRoute path="/userdashboard/orders" component={Userpage}></PrivateRoute>
+            <PrivateRoute path="/userdashboard/address" component={Userpage}></PrivateRoute>
+            <PrivateRoute path="/userdashboard" component={Userpage}></PrivateRoute>
             <PrivateRoute path="/wishlist" component={Wishlist}></PrivateRoute>
-            <Route
-              path="/products/:categoryId/5eff8e76d75ecb3735b243b1"
-              component={Products}
-            ></Route>
+            <Route path="/products/:categoryId/5eff8e76d75ecb3735b243b1" component={Products}></Route>
             <Route path="/productpage" component={Productpage}></Route>
             <Route path="/products/:categoryId" component={Products}></Route>
             <Route path="/cart/:userId" component={Cart}></Route>
             <Route path="/address" component={Addresses}></Route>
+            <Route path="/checkoutAddress" component={CheckoutAddress}></Route>
             <Route exact path="/OTP" component={OTP}></Route>
+
             <Route component={err}></Route>
           </Switch>
         </div>

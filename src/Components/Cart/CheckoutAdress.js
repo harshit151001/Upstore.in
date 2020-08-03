@@ -1,24 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import Addressmodal from '../../Components/Modals/Addressmodal';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
 import styled from 'styled-components';
-
+import Invoice from './Invoice';
+import { appContext } from '../../Statemanagement/Statecontext';
+import Razor from './Razor';
 const Wrapper = styled.div`
 width: 80%;
    
-@media  (min-width: 990px) {
 
-      margin-left: 250px;
-     }
   
 }
 `;
-const Addressform = props => {
+const CheckoutAddress = props => {
+  const { state } = useContext(appContext);
+  const { cart } = state;
+  let order = {};
+  console.log(cart);
   const { token, user } = isAutheticated();
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
+  const [checkoutAddress, setCheckoutAddress] = useState([]);
+  let status;
   const [values, setValues] = useState({
     name: '',
     phoneNumber: '',
@@ -61,28 +66,6 @@ const Addressform = props => {
     };
   }, []);
 
-  const deleteHandler = index => {
-    let newAddressArray = data;
-    newAddressArray.splice(index, 1);
-
-    fetch(`${API}/api/user/${user._id}`, {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({ adresses: newAddressArray })
-    })
-      .then(response => {
-        response.json().then(function (data) {
-          console.log(data);
-          setData(data.adresses);
-        });
-      })
-      .catch(err => console.log(err));
-  };
-
   const onSubmit = event => {
     event.preventDefault();
     if (building && address && name && phoneNumber) {
@@ -118,6 +101,45 @@ const Addressform = props => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
+  const placeOrder = () => {
+    console.log(status);
+    let transaction_id = new Date().toISOString();
+
+    let amount = 0;
+    order.products = [];
+    cart.map(document => {
+      amount += document.product.price;
+      order.products.push({
+        product: document.product._id,
+        name: document.product.name,
+        price: document.product.price,
+        quantity: document.quantity
+      });
+    });
+
+    order = { ...order, transaction_id, amount, address: checkoutAddress, status, user: isAutheticated().user._id };
+
+    console.log(order);
+
+    //   fetch(`${API}/api/order/create/${user._id}`, {
+    //     method: 'POST',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Bearer ${token}`
+    //     },
+    //     body: JSON.stringify({ order })
+    //   })
+    //     .then(response => {
+    //       response.json().then(function (data) {
+    //         console.log(data);
+    //       });
+    //     })
+    //     .catch(err => console.log(err));
+
+    //   return console.log(order);
+  };
+
   return (
     <>
       <Wrapper style={{ display: 'block' }}>
@@ -139,7 +161,7 @@ const Addressform = props => {
             </div>
             <div className="form-group">
               <label htmlFor="InputBuilding">FLAT,FLOOR,BUILDING NAME*</label>
-              <input onChange={handleChange('building')} value={building || ''} type="text" className="form-control" />
+              <input onChange={handleChange('building')} value={building} type="text" className="form-control" />
             </div>
             <div className="form-group">
               <label htmlFor="InputAddress">ADDRESS*</label>
@@ -156,7 +178,7 @@ const Addressform = props => {
           <Col lg={6} style={{ margin: 'auto', justifyContent: 'center' }}>
             {data.map((address, index) => {
               return (
-                <div>
+                <div key={index}>
                   <Card
                     key={index}
                     style={{
@@ -166,34 +188,33 @@ const Addressform = props => {
                   >
                     <button
                       onClick={() => {
-                        deleteHandler(index);
+                        setCheckoutAddress(address);
                       }}
                     >
-                      delete
+                      select
                     </button>
 
                     <p>{address}</p>
                   </Card>
-
-                  {/* <Card key={index}>
-                <button
-                  onClick={() => {
-                    deleteHandler(index);
-                  }}
-                >
-                  delete
-                </button>
-                <p>{address}</p>
-              </Card> */}
                 </div>
               );
             })}
           </Col>
         </Row>
         <button onClick={() => setShow(true)}>Add new Address</button>
+        <Invoice />
+        <button
+          onClick={() => {
+            status = 'Recieved';
+            placeOrder();
+          }}
+        >
+          place order with COD
+        </button>
+        <Razor />
       </Wrapper>
     </>
   );
 };
 
-export default Addressform;
+export default CheckoutAddress;
