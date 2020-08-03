@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { appContext } from '../../../Statemanagement/Statecontext';
 import Img from './Images';
 import Addtocart from '../../Buttons/Addtocart';
+import Addtowishlist from '../../Buttons/Addtowishlist';
 import API from '../../../backend';
 const Productcard = ({ product, categoryId }) => {
   //eslint-disable-next-line
+  console.log(product);
   const { name, photos, markedPrice, price, _id } = product;
   const src = photos[0].substr(6);
   //eslint-disable-next-line
@@ -24,7 +26,14 @@ const Productcard = ({ product, categoryId }) => {
             <strong>{name}</strong>
           </p>
           <p className="small text-muted mt-0 pt-0">Sold by: shop name</p>
-          <Addtocart id={_id}>Add to cart</Addtocart>
+          <p className="small mt-0 pt-0">Sold by: shop name</p>
+          <Addtowishlist classes="btn btn-outline-primary">
+            Add to wishlist
+          </Addtowishlist>
+
+          <Addtocart classes="m-2 btn btn-primary" id={_id}>
+            Add to cart
+          </Addtocart>
         </div>
       </div>
     </div>

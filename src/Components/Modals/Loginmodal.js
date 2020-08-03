@@ -3,12 +3,19 @@ import Modal from 'react-bootstrap/Modal';
 
 import Loginwithphone from '../Users/Loginwithphone';
 
-const Loginmodal = props => {
+const Loginmodal = (props) => {
   return (
     <>
-      <Modal {...props} size="md" aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal
+        {...props}
+        size="md"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">Login or Signup</Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Login or Signup
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Loginwithphone />
@@ -19,3 +26,4 @@ const Loginmodal = props => {
 };
 
 export default Loginmodal;
+// import Dialog from '@material-ui/core/Dialog';

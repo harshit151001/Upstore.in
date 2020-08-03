@@ -54,7 +54,7 @@ const Addtowishlist = (props) => {
 
   return (
     <button
-      className="btn btn-danger btn-light text-muted btn-block"
+      className={props.classes}
       onClick={() => {
         addToWishlist(props.id);
       }}

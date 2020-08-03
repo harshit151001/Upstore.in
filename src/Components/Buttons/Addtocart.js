@@ -51,6 +51,7 @@ const Addtocart = (props) => {
     };
     return (
       <button
+        className={props.classes}
         onClick={() => {
           addToCart(props.id);
         }}
@@ -59,7 +60,7 @@ const Addtocart = (props) => {
       </button>
     );
   } else {
-    return <button>add to cart</button>;
+    return <button className={props.classes}>add to cart</button>;
   }
 };
 
