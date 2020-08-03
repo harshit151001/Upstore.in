@@ -20,7 +20,7 @@ import Wishlist from './Components/Routes/Wishlist';
 import Addresses from './Components/Routes/Addresses';
 import Userpage from './Components/Routes/Userpage';
 import PrivateRoute from './auth/helper/PrivateRoute';
-import CheckoutAddress from './Components/Cart/CheckoutAdress';
+import CheckoutPage from './Components/Routes/CheckoutPage';
 import OTP from './Components/Users/OTP';
 
 //!context
@@ -48,7 +48,7 @@ function App() {
             <Route path="/products/:categoryId" component={Products}></Route>
             <Route path="/cart/:userId" component={Cart}></Route>
             <Route path="/address" component={Addresses}></Route>
-            <Route path="/checkoutAddress" component={CheckoutAddress}></Route>
+            <Route path="/checkout" component={CheckoutPage}></Route>
             <Route exact path="/OTP" component={OTP}></Route>
 
             <Route component={err}></Route>

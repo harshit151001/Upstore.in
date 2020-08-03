@@ -4,7 +4,7 @@ import Addressmodal from '../../Components/Modals/Addressmodal';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
 import styled from 'styled-components';
-import Invoice from './Invoice';
+import Invoice from '../Cart/Invoice';
 import { appContext } from '../../Statemanagement/Statecontext';
 import Razor from './Razor';
 const Wrapper = styled.div`
@@ -18,7 +18,6 @@ const CheckoutAddress = props => {
   const { state } = useContext(appContext);
   const { cart } = state;
   let order = {};
-  console.log(cart);
   const { token, user } = isAutheticated();
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
@@ -121,21 +120,21 @@ const CheckoutAddress = props => {
 
     console.log(order);
 
-    fetch(`${API}/api/order/create/${user._id}`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({ order })
-    })
-      .then(response => {
-        response.json().then(function (data) {
-          console.log(data);
-        });
-      })
-      .catch(err => console.log(err));
+    // fetch(`${API}/api/order/create/${user._id}`, {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${token}`
+    //   },
+    //   body: JSON.stringify({ order })
+    // })
+    //   .then(response => {
+    //     response.json().then(function (data) {
+    //       console.log(data);
+    //     });
+    //   })
+    //   .catch(err => console.log(err));
 
     return console.log(order);
   };
