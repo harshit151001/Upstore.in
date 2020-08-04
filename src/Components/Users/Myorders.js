@@ -11,18 +11,15 @@ const Myorders = () => {
 
     const loadData = async () => {
       const { token } = isAutheticated();
-      const response = await fetch(
-        `${API}/api/orders/user/5f0dc56ae688406e718da147`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
+      const response = await fetch(`${API}/api/orders/user/${isAutheticated().user._id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         }
-      );
+      });
 
-      response.json().then((response) => {
+      response.json().then(response => {
         if (mounted) {
           window.scroll(0, 0);
           setData(response);
@@ -44,7 +41,7 @@ const Myorders = () => {
         const { products } = order;
         return (
           <div key={count}>
-            {products.map((prodDocument) => {
+            {products.map(prodDocument => {
               const { count, product } = prodDocument;
               const { name, shopName, photos, price, _id } = product;
               console.log(_id);
@@ -55,11 +52,7 @@ const Myorders = () => {
                   <Card>
                     <Row>
                       <Col>
-                        <img
-                          style={{ maxWidth: '15vw', maxHeight: '15vw' }}
-                          src={`${API}${src}`}
-                          alt="Product"
-                        ></img>
+                        <img style={{ maxWidth: '15vw', maxHeight: '15vw' }} src={`${API}${src}`} alt="Product"></img>
                       </Col>
                       <Col>
                         <h4>{name}</h4>

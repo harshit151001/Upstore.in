@@ -22,11 +22,9 @@ const appReducer = (draft, action) => {
     case 'REMOVEDFROMCART':
       draft.cart = draft.cart.filter(item => item.product._id !== action.payload);
       break;
-    // case 'REMOVEDFROMWISHLIST':
-    //   draft.wishlist = draft.wishlist.filter(
-    //     (item) => item.product._id !== action.payload
-    //   );
-    //   break;
+    case 'REMOVEDFROMWISHLIST':
+      draft.wishlist = draft.wishlist.filter(item => item.product._id !== action.payload);
+      break;
     case 'LOADING':
       draft.loading = true;
       break;

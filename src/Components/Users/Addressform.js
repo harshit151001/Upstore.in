@@ -156,9 +156,8 @@ const Addressform = props => {
           <Col lg={6} style={{ margin: 'auto', justifyContent: 'center' }}>
             {data.map((address, index) => {
               return (
-                <div>
+                <div key={index}>
                   <Card
-                    key={index}
                     style={{
                       boxShadow: 'white 1px 1px 0px,rgba(0,0,0,0.3) 2px 0px 13px, rgba(0,0,0,0.3) 4px 10px 21px',
                       margin: '2vw'
@@ -174,17 +173,6 @@ const Addressform = props => {
 
                     <p>{address}</p>
                   </Card>
-
-                  {/* <Card key={index}>
-                <button
-                  onClick={() => {
-                    deleteHandler(index);
-                  }}
-                >
-                  delete
-                </button>
-                <p>{address}</p>
-              </Card> */}
                 </div>
               );
             })}

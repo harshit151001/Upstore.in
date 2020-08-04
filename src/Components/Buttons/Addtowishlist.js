@@ -14,6 +14,7 @@ const Addtowishlist = props => {
     const { _id } = user;
 
     const addToWishlist = id => {
+      console.log(wishlist);
       let filteredWishlist = wishlist.filter(item => item.product._id === id);
       if (filteredWishlist.length === 1) {
         alert('product already exists in your wishlist');
