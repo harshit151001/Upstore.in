@@ -62,8 +62,8 @@ function Razor() {
   }
 
   return (
-    <button className="Razor-link" onClick={displayRazorpay} target="_blank" rel="noopener noreferrer">
-      pay online
+    <button type="button" onClick={displayRazorpay} className="btn btn-danger btn mt-3 btn-block" target="_blank" rel="noopener noreferrer">
+      <strong>Pay Online</strong>
     </button>
   );
 }
