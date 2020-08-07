@@ -7,7 +7,6 @@ import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Radio from '@material-ui/core/Radio';
@@ -23,6 +22,7 @@ const SelectAddress = () => {
   const useStyles = makeStyles({
     root: {
       minWidth: 275,
+      minHeight: 191,
       boxShadow: '0px 0px 4px 1px rgba(97,97,97,0.24)',
       border: 'none',
       marginTop: '1rem'
@@ -67,6 +67,14 @@ const SelectAddress = () => {
     };
   }, []);
 
+  const totalAmount = () => {
+    let amount;
+    cart.map(document => {
+      amount += document.product.price;
+    });
+    return amount;
+  };
+
   const placeOrder = () => {
     let order = {};
 
@@ -87,21 +95,30 @@ const SelectAddress = () => {
 
     console.log(order);
 
-    // fetch(`${API}/api/order/create/${user._id}`, {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //     Authorization: `Bearer ${token}`
-    //   },
-    //   body: JSON.stringify({ order })
-    // })
-    //   .then(response => {
-    //     response.json().then(function (data) {
-    //       console.log(data);
-    //     });
-    //   })
-    //   .catch(err => console.log(err));
+    fetch(`${API}/api/order/create/${user._id}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ order })
+    })
+      .then(response => {
+        response.json().then(function (data) {
+          console.log(data);
+        });
+      })
+      .catch(err => console.log(err));
+
+    fetch(`${API}/api/clear/cart/${user._id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    }).then(response => response.json().then(res => console.log(res)));
 
     return order;
   };
@@ -175,19 +192,17 @@ const SelectAddress = () => {
           <div className="col-lg-3">
             {' '}
             <Invoice display={'none'} link={'/checkout'} />{' '}
-            <Link style={{ textDecoration: 'none' }}>
-              <button
-                onClick={() => {
-                  status = 'Recieved';
-                  placeOrder();
-                }}
-                type="button"
-                className="btn btn-danger btn mt-3 btn-block"
-              >
-                <strong>Pay on Delivery</strong>
-              </button>
-            </Link>
-            <Razor />
+            <button
+              onClick={() => {
+                status = 'Recieved';
+                placeOrder();
+              }}
+              type="button"
+              className="btn btn-danger btn mt-3 btn-block"
+            >
+              <strong>Pay on Delivery</strong>
+            </button>
+            <Razor address={data} amount={totalAmount()} />
           </div>
         </div>
       </div>

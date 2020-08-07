@@ -149,14 +149,14 @@ const ChangeCheckoutAddress = () => {
             <label htmlFor="contactName"></label>
           </div>
           <div>
-            <TextField label="Name" variant="outlined" type="text" onChange={formik.handleChange} id="contactName" value={formik.values.contactName} />
+            <TextField label="Name" fullWidth={true} variant="outlined" type="text" onChange={formik.handleChange} id="contactName" value={formik.values.contactName} />
           </div>
           <div>
             {' '}
             <label htmlFor="contactNumber"></label>
           </div>
           <div>
-            <TextField label="Mobile Number" variant="outlined" type="text" onChange={formik.handleChange} id="contactNumber" value={formik.values.contactNumber} />
+            <TextField label="Mobile Number" fullWidth={true} variant="outlined" type="text" onChange={formik.handleChange} id="contactNumber" value={formik.values.contactNumber} />
           </div>
 
           <div>
@@ -165,7 +165,7 @@ const ChangeCheckoutAddress = () => {
 
           <div>
             {' '}
-            <TextField label="Address" variant="outlined" type="text" onChange={formik.handleChange} id="address" value={formik.values.address} />
+            <TextField label="Address" fullWidth={true} variant="outlined" type="text" onChange={formik.handleChange} id="address" value={formik.values.address} />
           </div>
           <div>
             <button
