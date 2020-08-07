@@ -17,7 +17,6 @@ function loadScript(src) {
     document.body.appendChild(script);
   });
 }
-
 // const __DEV__ = document.domain === 'localhost';
 
 function Razor(props) {
@@ -53,7 +52,14 @@ function Razor(props) {
       });
       return order;
     });
-    order = { ...order, transaction_id, amount, address: props.data, status: 'Processing', user: isAutheticated().user._id };
+    order = {
+      ...order,
+      transaction_id,
+      amount,
+      address: props.data,
+      status: 'Processing',
+      user: isAutheticated().user._id
+    };
 
     console.log(order);
 

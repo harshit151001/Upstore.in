@@ -15,7 +15,10 @@ const Productcard = ({ product, categoryId }) => {
 
   return (
     <div className="card p-2 col-12 shadow-sm col-sm-6" key={_id}>
-      <div className="row no-gutters" style={{ display: 'flex', flexWrap: 'nowrap' }}>
+      <div
+        className="row no-gutters"
+        style={{ display: 'flex', flexWrap: 'nowrap' }}
+      >
         <div>
           <Img src={`${API}${src}`} alt={name} />
         </div>
@@ -27,7 +30,14 @@ const Productcard = ({ product, categoryId }) => {
             Rs.{price} {'    '}
             {Math.ceil(((markedPrice - price) / markedPrice) * 100) > 2 ? (
               <>
-                <strike className="text-muted">Rs.{markedPrice}</strike> <span style={{ color: '#ff905a' }}> ({Math.ceil(((markedPrice - price) / markedPrice) * 100) + '% Off'})</span>
+                <strike className="text-muted">Rs.{markedPrice}</strike>{' '}
+                <span style={{ color: '#ff905a' }}>
+                  {' '}
+                  (
+                  {Math.ceil(((markedPrice - price) / markedPrice) * 100) +
+                    '% Off'}
+                  )
+                </span>
               </>
             ) : (
               ''
