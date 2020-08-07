@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Invoice from '../Cart/Invoice';
-
 import { appContext } from '../../Statemanagement/Statecontext';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';

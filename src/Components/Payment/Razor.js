@@ -3,7 +3,6 @@ import './Razor.css';
 import { isAutheticated } from '../../auth/helper/index';
 import API from '../../backend';
 import { appContext } from '../../Statemanagement/Statecontext';
-import { createOrder } from './Address';
 
 function loadScript(src) {
   return new Promise(resolve => {
