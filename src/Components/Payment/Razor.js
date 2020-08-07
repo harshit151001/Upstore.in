@@ -70,7 +70,7 @@ function Razor(props) {
       }).then(t => t.json());
 
       const options = {
-        key: __DEV__ ? 'rzp_test_pKFrggt8le9TQx' : 'PRODUCTION_KEY',
+        key: 'rzp_test_pKFrggt8le9TQx',
         currency: data.currency,
         amount: data.amount.toString(),
         order_id: data.id,
