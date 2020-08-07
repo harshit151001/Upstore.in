@@ -42,7 +42,7 @@ const SelectAddress = () => {
 
   useEffect(() => {
     let mounted = true;
-    window.scroll(0, 0);
+
     const loadData = async () => {
       try {
         const response = await fetch(`${API}/api/user/${user._id}`, {
@@ -62,16 +62,21 @@ const SelectAddress = () => {
       }
     };
 
-    loadData();
+    if (mounted) {
+      window.scroll(0, 0);
+      loadData();
+    }
+
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [user, token]);
 
   const totalAmount = () => {
     let amount;
     cart.map(document => {
       amount += document.product.price;
+      return amount;
     });
     return amount;
   };
@@ -91,6 +96,7 @@ const SelectAddress = () => {
         price: document.product.price,
         quantity: document.quantity
       });
+      return amount;
     });
     order = { ...order, transaction_id, amount, address: data, status, user: isAutheticated().user._id };
 

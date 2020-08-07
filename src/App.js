@@ -23,7 +23,7 @@ import PrivateRoute from './auth/helper/PrivateRoute';
 import CheckoutPage from './Components/Routes/CheckoutPage';
 import OTP from './Components/Users/OTP';
 import ChangeAddress from './Components/Routes/ChangeCheckoutAddressPage';
-import ProductUpload from './Components/Admin/ProductUpload';
+// import ProductUpload from './Components/Admin/ProductUpload';
 //!context
 import { Statecontext } from './Statemanagement/Statecontext';
 

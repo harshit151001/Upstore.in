@@ -18,9 +18,9 @@ const ChangeCheckoutAddress = () => {
   const [data, setData] = useState([]);
   const [selectedValue, setSelectedValue] = useState('');
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleClose = () => {
     setOpen(false);
@@ -57,8 +57,9 @@ const ChangeCheckoutAddress = () => {
   const classes = useStyles();
 
   useEffect(() => {
+    const { user, token } = isAutheticated();
     let mounted = true;
-    window.scroll(0, 0);
+
     const loadData = async () => {
       try {
         const response = await fetch(`${API}/api/user/${user._id}`, {
@@ -80,7 +81,11 @@ const ChangeCheckoutAddress = () => {
       }
     };
 
-    loadData();
+    if (mounted) {
+      window.scroll(0, 0);
+      loadData();
+    }
+
     return () => {
       mounted = false;
     };

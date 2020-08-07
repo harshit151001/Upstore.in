@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import Addressmodal from '../../Components/Modals/Addressmodal';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
@@ -61,27 +61,27 @@ const Addressform = props => {
     };
   }, []);
 
-  const deleteHandler = index => {
-    let newAddressArray = data;
-    newAddressArray.splice(index, 1);
+  // const deleteHandler = index => {
+  //   let newAddressArray = data;
+  //   newAddressArray.splice(index, 1);
 
-    fetch(`${API}/api/user/${user._id}`, {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({ adresses: newAddressArray })
-    })
-      .then(response => {
-        response.json().then(function (data) {
-          console.log(data);
-          setData(data.adresses);
-        });
-      })
-      .catch(err => console.log(err));
-  };
+  //   fetch(`${API}/api/user/${user._id}`, {
+  //     method: 'PUT',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //       Authorization: `Bearer ${token}`
+  //     },
+  //     body: JSON.stringify({ adresses: newAddressArray })
+  //   })
+  //     .then(response => {
+  //       response.json().then(function (data) {
+  //         console.log(data);
+  //         setData(data.adresses);
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   const onSubmit = event => {
     event.preventDefault();

@@ -18,7 +18,7 @@ function loadScript(src) {
   });
 }
 
-const __DEV__ = document.domain === 'localhost';
+// const __DEV__ = document.domain === 'localhost';
 
 function Razor(props) {
   const { state } = useContext(appContext);
@@ -51,6 +51,7 @@ function Razor(props) {
         price: document.product.price,
         quantity: document.quantity
       });
+      return order;
     });
     order = { ...order, transaction_id, amount, address: props.data, status: 'Processing', user: isAutheticated().user._id };
 

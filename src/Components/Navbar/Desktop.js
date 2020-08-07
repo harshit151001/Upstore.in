@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
