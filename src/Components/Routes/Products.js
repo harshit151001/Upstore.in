@@ -6,10 +6,9 @@ import Filters from '../Filters/Filters';
 import Axios from 'axios';
 import API from '../../backend';
 const queryString = require('query-string');
-
+//todo: optimize perfomance
 const Products = (props) => {
   const { categoryId } = props.match.params;
-
   const { search, page } = queryString.parse(window.location.search);
   const [totalPages, setTotalPages] = useState(1);
   const [data, setData] = useState([]);
@@ -26,7 +25,6 @@ const Products = (props) => {
           window.scroll(0, 0);
           setTotalPages(Math.ceil(response.data.totalCount / 2));
           setData(response.data.products);
-          //console.log(response.data.products);
         }
       } else {
         const response = await Axios.get(
@@ -40,7 +38,6 @@ const Products = (props) => {
           setTotalPages(Math.ceil(response.data.totalCount / 10));
 
           setData(response.data.products);
-          // console.log(response.data.products);
         }
       }
     };
@@ -48,7 +45,7 @@ const Products = (props) => {
     return () => {
       mounted = false;
     };
-  }, [categoryId, currentPage, totalPages, search]);
+  }, [categoryId, currentPage, search, totalPages]);
   return (
     <>
       <WelcomeBanner />

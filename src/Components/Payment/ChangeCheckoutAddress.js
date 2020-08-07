@@ -26,7 +26,7 @@ const ChangeCheckoutAddress = () => {
     setOpen(false);
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     console.log(event.target.value);
     setSelectedValue(event.target.value);
   };
@@ -36,22 +36,22 @@ const ChangeCheckoutAddress = () => {
       minWidth: 275,
       boxShadow: '0px 0px 4px 1px rgba(97,97,97,0.24)',
       border: 'none',
-      marginTop: '1rem'
+      marginTop: '1rem',
     },
     name: {
       fontSize: 20,
       display: 'inline',
-      color: '#282c3f'
+      color: '#282c3f',
     },
     pos: {
-      marginBottom: 12
+      marginBottom: 12,
     },
     form: {
       '& > *': {
         // margin: theme.spacing(1),
-        width: '25ch'
-      }
-    }
+        width: '25ch',
+      },
+    },
   });
 
   const classes = useStyles();
@@ -67,12 +67,14 @@ const ChangeCheckoutAddress = () => {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
-        response.json().then(response => {
+        response.json().then((response) => {
           setData(response.addresses);
-          const index = response.addresses.findIndex(address => address.default === true);
+          const index = response.addresses.findIndex(
+            (address) => address.default === true
+          );
 
           setSelectedValue(index);
         });
@@ -95,9 +97,9 @@ const ChangeCheckoutAddress = () => {
     initialValues: {
       contactName: '',
       contactNumber: '',
-      address: ''
+      address: '',
     },
-    onSubmit: values => {
+    onSubmit: (values) => {
       let newAddressArray = [];
       newAddressArray = [...data, values];
       if (newAddressArray.length === 1) {
@@ -109,24 +111,24 @@ const ChangeCheckoutAddress = () => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ addresses: newAddressArray })
+        body: JSON.stringify({ addresses: newAddressArray }),
       })
-        .then(response => {
+        .then((response) => {
           response.json().then(function (response) {
             console.log(response);
           });
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
       setData([...data, values]);
       console.log('Form Date', values);
-    }
+    },
   });
 
   console.log(data.length);
   const handleConfirm = () => {
-    const initialIndex = data.findIndex(address => address.default === true);
+    const initialIndex = data.findIndex((address) => address.default === true);
     let newAddressArray = data;
     newAddressArray[initialIndex].default = false;
     newAddressArray[selectedValue].default = true;
@@ -136,34 +138,59 @@ const ChangeCheckoutAddress = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ addresses: newAddressArray })
+      body: JSON.stringify({ addresses: newAddressArray }),
     })
-      .then(response => {
+      .then((response) => {
         response.json().then(function (response) {
           console.log(response);
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   return (
     <>
-      <Addressmodal style={{ textAlign: 'center' }} show={open} onClose={handleClose}>
-        <form className="form-group" noValidate autoComplete="off" onSubmit={formik.handleSubmit}>
+      <Addressmodal
+        style={{ textAlign: 'center' }}
+        show={open}
+        onClose={handleClose}
+      >
+        <form
+          className="form-group"
+          noValidate
+          autoComplete="off"
+          onSubmit={formik.handleSubmit}
+        >
           <div>
             <label htmlFor="contactName"></label>
           </div>
           <div>
-            <TextField label="Name" fullWidth={true} variant="outlined" type="text" onChange={formik.handleChange} id="contactName" value={formik.values.contactName} />
+            <TextField
+              label="Name"
+              fullWidth={true}
+              variant="outlined"
+              type="text"
+              onChange={formik.handleChange}
+              id="contactName"
+              value={formik.values.contactName}
+            />
           </div>
           <div>
             {' '}
             <label htmlFor="contactNumber"></label>
           </div>
           <div>
-            <TextField label="Mobile Number" fullWidth={true} variant="outlined" type="text" onChange={formik.handleChange} id="contactNumber" value={formik.values.contactNumber} />
+            <TextField
+              label="Mobile Number"
+              fullWidth={true}
+              variant="outlined"
+              type="text"
+              onChange={formik.handleChange}
+              id="contactNumber"
+              value={formik.values.contactNumber}
+            />
           </div>
 
           <div>
@@ -172,7 +199,15 @@ const ChangeCheckoutAddress = () => {
 
           <div>
             {' '}
-            <TextField label="Address" fullWidth={true} variant="outlined" type="text" onChange={formik.handleChange} id="address" value={formik.values.address} />
+            <TextField
+              label="Address"
+              fullWidth={true}
+              variant="outlined"
+              type="text"
+              onChange={formik.handleChange}
+              id="address"
+              value={formik.values.address}
+            />
           </div>
           <div>
             <button
@@ -189,7 +224,10 @@ const ChangeCheckoutAddress = () => {
         </form>
       </Addressmodal>
 
-      <div className="container-fluid " style={{ background: '#fafafa', minHeight: '91vh' }}>
+      <div
+        className="container-fluid "
+        style={{ background: '#fafafa', minHeight: '91vh' }}
+      >
         <div className="container-xl pt-4 pb-5 ">
           <div className="row justify-content-center">
             <div className="col-lg-9">
@@ -197,7 +235,13 @@ const ChangeCheckoutAddress = () => {
                 return (
                   <Card className={classes.root} key={index}>
                     <CardContent>
-                      <Radio checked={selectedValue == parseInt(index)} onChange={handleChange} value={index} className="pt-0" name="radio-button-demo" />
+                      <Radio
+                        checked={selectedValue === parseInt(index)}
+                        onChange={handleChange}
+                        value={index}
+                        className="pt-0"
+                        name="radio-button-demo"
+                      />
                       <Typography className={classes.name} gutterBottom>
                         {contactName}
                       </Typography>
@@ -205,7 +249,9 @@ const ChangeCheckoutAddress = () => {
                       <Typography variant="body2" component="p">
                         {address}
                       </Typography>
-                      <Typography component="p">Mobile: {contactNumber}</Typography>
+                      <Typography component="p">
+                        Mobile: {contactNumber}
+                      </Typography>
                     </CardContent>
                   </Card>
                 );
@@ -221,7 +267,10 @@ const ChangeCheckoutAddress = () => {
                   <CardContent>
                     <Typography className={classes.name} gutterBottom>
                       <div style={{ textAlign: 'center' }}>
-                        <AddCircleIcon style={{ color: '#ec436f', fontSize: '30px' }} /> Add a new address
+                        <AddCircleIcon
+                          style={{ color: '#ec436f', fontSize: '30px' }}
+                        />{' '}
+                        Add a new address
                       </div>
                     </Typography>
                   </CardContent>
@@ -242,7 +291,11 @@ const ChangeCheckoutAddress = () => {
                 ''
               ) : (
                 <Link style={{ textDecoration: 'none' }} to="/checkout">
-                  <button onClick={handleConfirm} type="button" className="btn btn-danger btn mt-3 btn-block">
+                  <button
+                    onClick={handleConfirm}
+                    type="button"
+                    className="btn btn-danger btn mt-3 btn-block"
+                  >
                     <strong>Confirm</strong>
                   </button>
                 </Link>

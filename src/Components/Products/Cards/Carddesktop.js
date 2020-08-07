@@ -1,17 +1,13 @@
-import React, { useContext } from 'react';
-import { appContext } from '../../../Statemanagement/Statecontext';
+import React from 'react';
 import Img from './Images';
 import Addtocart from '../../Buttons/Addtocart';
 import Addtowishlist from '../../Buttons/Addtowishlist';
 import API from '../../../backend';
+//eslint-disable-next-line
 const Productcard = ({ product, categoryId }) => {
-  //eslint-disable-next-line
-
   const { name, photos, markedPrice, price, _id, shopName } = product;
   console.log(photos);
   const src = photos[0].substr(6);
-  //eslint-disable-next-line
-  const { state } = useContext(appContext);
 
   return (
     <div className="card p-2 col-12 shadow-sm col-sm-6" key={_id}>
