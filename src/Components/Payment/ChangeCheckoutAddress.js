@@ -10,6 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Radio from '@material-ui/core/Radio';
 import TextField from '@material-ui/core/TextField';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const ChangeCheckoutAddress = () => {
   const { user, token } = isAutheticated();
@@ -118,6 +119,7 @@ const ChangeCheckoutAddress = () => {
     }
   });
 
+  console.log(data.length);
   const handleConfirm = () => {
     const initialIndex = data.findIndex(address => address.default === true);
     let newAddressArray = data;
@@ -203,21 +205,43 @@ const ChangeCheckoutAddress = () => {
                   </Card>
                 );
               })}
-              <button
-                onClick={() => {
-                  setOpen(true);
-                }}
-                type="button"
-                className="btn btn-danger btn mt-3 btn-block"
-              >
-                <strong>add new address</strong>
-              </button>
-
-              <Link style={{ textDecoration: 'none' }} to="/checkout">
-                <button onClick={handleConfirm} type="button" className="btn btn-danger btn mt-3 btn-block">
-                  <strong>Confirm</strong>
+              {!data.length ? (
+                <Card
+                  onClick={() => {
+                    setOpen(true);
+                  }}
+                  className={classes.root}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <CardContent>
+                    <Typography className={classes.name} gutterBottom>
+                      <div style={{ textAlign: 'center' }}>
+                        <AddCircleIcon style={{ color: '#ec436f', fontSize: '30px' }} /> Add a new address
+                      </div>
+                    </Typography>
+                  </CardContent>
+                </Card>
+              ) : (
+                <button
+                  onClick={() => {
+                    setOpen(true);
+                  }}
+                  type="button"
+                  className="btn btn-danger btn mt-3 btn-block"
+                >
+                  <strong>add new address</strong>
                 </button>
-              </Link>
+              )}
+
+              {!data.length ? (
+                ''
+              ) : (
+                <Link style={{ textDecoration: 'none' }} to="/checkout">
+                  <button onClick={handleConfirm} type="button" className="btn btn-danger btn mt-3 btn-block">
+                    <strong>Confirm</strong>
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

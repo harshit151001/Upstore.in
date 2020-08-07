@@ -1,11 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Invoice from '../Cart/Invoice';
+
 import { appContext } from '../../Statemanagement/Statecontext';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Radio from '@material-ui/core/Radio';
@@ -159,14 +161,14 @@ const SelectAddress = () => {
         <div className="row">
           <div className="col-lg-9">
             {!data ? (
-              <>
+              <div style={{ textAlign: 'center' }}>
                 <h1>No Addresses</h1>
                 <Link to={'/checkout/address'} style={{ textDecoration: 'none' }}>
                   <button type="button" className="btn btn-outline-primary  btn mt-3 btn-block">
-                    <strong>Choose a different address</strong>
+                    <strong>Add a new address</strong>
                   </button>
                 </Link>
-              </>
+              </div>
             ) : (
               <Card className={classes.root}>
                 <CardContent>
