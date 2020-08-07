@@ -117,7 +117,7 @@ const Addressform = props => {
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
-
+  console.log(data);
   return (
     <>
       <Wrapper style={{ display: 'block' }}>
@@ -154,7 +154,7 @@ const Addressform = props => {
         </Addressmodal>
         <Row>
           <Col lg={6} style={{ margin: 'auto', justifyContent: 'center' }}>
-            {data.map((address, index) => {
+            {/* {data.map((address, index) => {
               return (
                 <div key={index}>
                   <Card
@@ -175,7 +175,7 @@ const Addressform = props => {
                   </Card>
                 </div>
               );
-            })}
+            })} */}
           </Col>
         </Row>
         <button onClick={() => setShow(true)}>Add new Address</button>
