@@ -5,7 +5,7 @@ import API from '../../backend';
 import { appContext } from '../../Statemanagement/Statecontext';
 
 function loadScript(src) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const script = document.createElement('script');
     script.src = src;
     script.onload = () => {
@@ -17,8 +17,8 @@ function loadScript(src) {
     document.body.appendChild(script);
   });
 }
-
-const __DEV__ = document.domain === 'localhost';
+//eslint disable next-line
+// const __DEV__ = document.domain === 'localhost';
 
 function Razor(props) {
   const { state } = useContext(appContext);
@@ -30,7 +30,9 @@ function Razor(props) {
 
   async function displayRazorpay() {
     console.log(token);
-    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
+    const res = await loadScript(
+      'https://checkout.razorpay.com/v1/checkout.js'
+    );
 
     if (!res) {
       alert('Razorpay SDK failed to load. Are you online?');
@@ -43,16 +45,23 @@ function Razor(props) {
 
     let amount = 0;
     order.products = [];
-    cart.map(document => {
+    cart.map((document) => {
       amount += document.product.price;
       order.products.push({
         product: document.product._id,
         name: document.product.name,
         price: document.product.price,
-        quantity: document.quantity
+        quantity: document.quantity,
       });
     });
-    order = { ...order, transaction_id, amount, address: props.data, status: 'Processing', user: isAutheticated().user._id };
+    order = {
+      ...order,
+      transaction_id,
+      amount,
+      address: props.data,
+      status: 'Processing',
+      user: isAutheticated().user._id,
+    };
 
     console.log(order);
 
@@ -62,12 +71,12 @@ function Razor(props) {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          order
-        })
-      }).then(t => t.json());
+          order,
+        }),
+      }).then((t) => t.json());
 
       const options = {
         key: 'rzp_test_pKFrggt8le9TQx',
@@ -88,27 +97,31 @@ function Razor(props) {
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`
-            }
-          }).then(response => response.json().then(res => console.log(res)));
+              Authorization: `Bearer ${token}`,
+            },
+          }).then((response) =>
+            response.json().then((res) => console.log(res))
+          );
 
           fetch(`${API}/api/order/${data.orderId}/status/${user._id}`, {
             method: 'PUT',
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`
+              Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
-              status: 'Received'
-            })
-          }).then(response => response.json().then(res => console.log(res)));
+              status: 'Received',
+            }),
+          }).then((response) =>
+            response.json().then((res) => console.log(res))
+          );
         },
         prefill: {
           name,
           email: isAutheticated().user.email || '',
-          phone_number: isAutheticated().user.phoneNumber
-        }
+          phone_number: isAutheticated().user.phoneNumber,
+        },
       };
 
       const paymentObject = new window.Razorpay(options);
@@ -117,7 +130,13 @@ function Razor(props) {
   }
 
   return (
-    <button type="button" onClick={displayRazorpay} className="btn btn-danger btn mt-3 btn-block" target="_blank" rel="noopener noreferrer">
+    <button
+      type="button"
+      onClick={displayRazorpay}
+      className="btn btn-danger btn mt-3 btn-block"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <strong>Pay Online</strong>
     </button>
   );
