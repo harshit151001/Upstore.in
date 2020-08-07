@@ -146,12 +146,19 @@ function Desktop(props) {
 
   const [enteredFilter, setEnteredFilter] = useState('');
 
+  // const onSubmit = () => {
+  //   return <Redirect to={`/products/search?page=1&&search=` + enteredFilter} />;
+  // };
+
   const inputRef = useRef();
   console.log(enteredFilter);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (inputRef.current.value && enteredFilter === inputRef.current.value) {
+      if (
+        inputRef.current.value !== '' &&
+        enteredFilter === inputRef.current.value
+      ) {
         const query =
           enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
         fetch(
@@ -218,7 +225,7 @@ function Desktop(props) {
               />
             </button>
           </form>
-          <form action="">
+          <form>
             <input
               ref={inputRef}
               value={enteredFilter}

@@ -10,24 +10,23 @@ const queryString = require('query-string');
 const Products = (props) => {
   const { categoryId } = props.match.params;
 
-
-  const parsed = queryString.parse(window.location.search);
+  const { search, page } = queryString.parse(window.location.search);
   const [totalPages, setTotalPages] = useState(1);
   const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(parseInt(parsed.page) || 1);
+  const [currentPage, setCurrentPage] = useState(parseInt(page) || 1);
 
   useEffect(() => {
     let mounted = true;
     const loadandsetdata = async () => {
-      if (parsed.search) {
+      if (search) {
         const response = await Axios.get(
-          `${API}/api/search/products/5eff8e76d75ecb3735b243b1?search=${parsed.search}&&page=${currentPage}`
+          `${API}/api/search/products/5eff8e76d75ecb3735b243b1?search=${search}&&page=${currentPage}`
         );
         if (mounted) {
           window.scroll(0, 0);
           setTotalPages(Math.ceil(response.data.totalCount / 2));
           setData(response.data.products);
-          console.log(response.data.products);
+          //console.log(response.data.products);
         }
       } else {
         const response = await Axios.get(
@@ -41,7 +40,7 @@ const Products = (props) => {
           setTotalPages(Math.ceil(response.data.totalCount / 10));
 
           setData(response.data.products);
-          console.log(response.data.products);
+          // console.log(response.data.products);
         }
       }
     };
@@ -49,12 +48,10 @@ const Products = (props) => {
     return () => {
       mounted = false;
     };
-  }, [categoryId, currentPage, totalPages, parsed.search]);
+  }, [categoryId, currentPage, totalPages, search]);
   return (
     <>
       <WelcomeBanner />
-
-
       <div className="container-fluid">
         <div className="row mt-3 w-100 no-gutters">
           <div className="col-2 d-none d-lg-block w-100 no-gutters">
@@ -62,13 +59,13 @@ const Products = (props) => {
           </div>
           <div className=" col-12 col-lg-10 w-100 no-gutters">
             <div className="row align-content-around no-gutters">
-             <Productlist categoryId={categoryId} data={data} />
+              <Productlist categoryId={categoryId} data={data} />
             </div>
           </div>
         </div>
       </div>
       <div className="row">
-        <div className="col-12 d-flex justify-content-center mt-5">
+        <div className="col-12 d-flex justify-content-center mt-5 pb-5">
           <button
             onClick={() => {
               if (currentPage > 1) {
@@ -81,7 +78,7 @@ const Products = (props) => {
               <Link
                 to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
                   currentPage - 1 || 1
-                }${parsed.search ? `&&search=` + parsed.search : ''}`}
+                }${search ? `&&search=` + search : ''}`}
               >
                 {' '}
                 back
@@ -103,7 +100,7 @@ const Products = (props) => {
               <Link
                 to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
                   totalPages > currentPage ? currentPage + 1 : totalPages
-                }${parsed.search ? `&&search=` + parsed.search : ''}`}
+                }${search ? `&&search=` + search : ''}`}
               >
                 {' '}
                 next
