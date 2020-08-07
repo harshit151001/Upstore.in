@@ -22,7 +22,8 @@ import Userpage from './Components/Routes/Userpage';
 import PrivateRoute from './auth/helper/PrivateRoute';
 import CheckoutPage from './Components/Routes/CheckoutPage';
 import OTP from './Components/Users/OTP';
-
+import ChangeAddress from './Components/Routes/ChangeCheckoutAddressPage';
+import ProductUpload from './Components/Admin/ProductUpload';
 //!context
 import { Statecontext } from './Statemanagement/Statecontext';
 
@@ -48,9 +49,10 @@ function App() {
             <Route path="/products/:categoryId" component={Products}></Route>
             <Route path="/cart/:userId" component={Cart}></Route>
             <Route path="/address" component={Addresses}></Route>
-            <Route path="/checkout" component={CheckoutPage}></Route>
+            <PrivateRoute exact path="/checkout" component={CheckoutPage}></PrivateRoute>
+            <PrivateRoute exact path="/checkout/address" component={ChangeAddress}></PrivateRoute>
             <Route exact path="/OTP" component={OTP}></Route>
-
+            {/* <PrivateRoute exact path="/ProductUpload" component={ProductUpload}></PrivateRoute> */}
             <Route component={err}></Route>
           </Switch>
         </div>

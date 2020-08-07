@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { appContext } from '../../Statemanagement/Statecontext';
+import { Link } from 'react-router-dom';
 
-const Invoice = () => {
+const Invoice = props => {
   const { state } = useContext(appContext);
   const { cart } = state;
   return (
@@ -58,9 +59,11 @@ const Invoice = () => {
         </div>
         <div className="row">
           <div className="col-12">
-            <button type="button" className="btn btn-danger btn mt-3 btn-block">
-              <strong>place order</strong>
-            </button>
+            <Link style={{ display: props.display || '' }} to={props.link}>
+              <button type="button" className="btn btn-danger btn mt-3 btn-block">
+                <strong>place order</strong>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
@@ -155,10 +155,7 @@ function Desktop(props) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (
-        inputRef.current.value !== '' &&
-        enteredFilter === inputRef.current.value
-      ) {
+      if (inputRef.current.value && enteredFilter === inputRef.current.value) {
         const query =
           enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
         fetch(
@@ -225,30 +222,34 @@ function Desktop(props) {
               />
             </button>
           </form>
-          <form>
+          <form action="">
             <input
               ref={inputRef}
               value={enteredFilter}
               placeholder="search for products..."
               onChange={(event) => setEnteredFilter(event.target.value)}
             />
-            <button disabled="" style={{ display: 'flex', height: '5vh' }}>
-              <Link
-                to={`/products/search?page=1&&search=` + enteredFilter}
-                style={{
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  display: 'flex',
-                  height: '5vh',
-                }}
-              >
+
+            {/* <button disabled=""  style={{ display: 'flex', height: '5vh' }}> */}
+            <Link
+              to={`/products/search?page=1&&search=` + enteredFilter}
+              style={{
+                textDecoration: 'none',
+                color: 'inherit',
+
+                height: '5vh',
+              }}
+            >
+              <button style={{ display: 'none' }}>
                 <SearchRoundedIcon
                   style={{
                     alignSelf: 'center',
                   }}
                 />
-              </Link>
-            </button>
+              </button>
+            </Link>
+
+            {/* </button> */}
           </form>
         </div>
         <div>
