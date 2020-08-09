@@ -1,93 +1,76 @@
 import React, { useContext, useState } from 'react';
 import { dispatchContext } from '../../Statemanagement/Statecontext';
 import { OTPVerify, authenticate } from '../../auth/helper/index';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+import { Formwrapper, Wrapper } from './Loginsignupform';
+import verified from '../Images/verified.svg';
+
+const validationSchema = Yup.object({
+  phoneNumber: Yup.string()
+    .matches(/^[6-9]\d{9}$/, { message: 'Please enter a valid mobile number (10 digits)', excludeEmptyString: false })
+    .max(10)
+});
 
 const VerifyOTP = props => {
   const dispatchLogin = useContext(dispatchContext);
 
-  const { phoneNumber, session_id } = props.location.state;
+  const formik = useFormik({
+    initialValues: {
+      OTP: ''
+    },
+    validationSchema,
+    onSubmit: ({ OTP }) => {
+      if (props.location.state) {
+        const { phoneNumber, session_id } = props.location.state;
+        OTPVerify({ phoneNumber, session_id, OTP })
+          .then(data => {
+            console.log(data);
 
-  const [values, setValues] = useState({
-    OTP: '',
-    error: '',
-    loading: false,
-    didRedirect: false
-  });
+            authenticate(data, () => {
+              dispatchLogin({ type: 'login' });
+            });
 
-  const { OTP, error, loading } = values;
-
-  const handleChange = name => event => {
-    setValues({ ...values, error: false, [name]: event.target.value });
-  };
-
-  const onSubmit = event => {
-    event.preventDefault();
-    setValues({ ...values, error: false, loading: true });
-
-    OTPVerify({ phoneNumber, session_id, OTP })
-      .then(data => {
-        console.log(data);
-
-        if (data.error) {
-          setValues({ ...values, error: data.error, loading: false });
-        } else {
-          authenticate(data, () => {
-            dispatchLogin({ type: 'login' });
+            return props.history.push({
+              pathname: '/'
+            });
+          })
+          .catch(err => {
+            console.log(err);
           });
-        }
-
-        return props.history.push({
-          pathname: '/'
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const loadingMessage = () => {
-    return (
-      loading && (
-        <div className="alert alert-info">
-          <h2>Loading...</h2>
-        </div>
-      )
-    );
-  };
-
-  const errorMessage = () => {
-    return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
-            {error}
-          </div>
-        </div>
-      </div>
-    );
-  };
+      }
+    }
+  });
 
   return (
     <>
-      {loadingMessage()}
-      {errorMessage()}
-      <form>
-        <div className="form-group">
-          <label htmlFor="OTP"></label>
+      <Wrapper>
+        <Formwrapper style={{ padding: '2vh' }}>
+          <div style={{ textAlign: 'center', marginTop: '4vh' }}>
+            <img src={verified} style={{ height: '22vh' }} alt="Verified Phone SVG" />
+          </div>
 
-          <input type="text" className="form-control" aria-describedby="emailHelp" value={OTP} onChange={handleChange('OTP')} placeholder="OTP*" />
-        </div>
-        <div className="form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-          <label className="form-check-label" htmlFor="exampleCheck1">
-            Keep me signed in
-          </label>
-        </div>
-        <button onClick={onSubmit} type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-      <p>{JSON.stringify(values)}</p>
+          <form>
+            <div className="form-group">
+              <label htmlFor="OTP"></label>
+
+              <input type="text" pattern="[0-9]+" maxLength={6} style={{ marginTop: '3vh' }} className="form-control" aria-describedby="emailHelp" id="OTP" value={formik.values.OTP} onChange={formik.handleChange} placeholder="OTP*" />
+            </div>
+
+            <button
+              style={{ width: '100%', marginTop: '3vh' }}
+              onClick={() => {
+                formik.handleSubmit();
+              }}
+              type="button"
+              className="btn btn-primary"
+            >
+              Submit
+            </button>
+          </form>
+          <p>{JSON.stringify(formik.values)}</p>
+        </Formwrapper>
+      </Wrapper>
     </>
   );
 };
