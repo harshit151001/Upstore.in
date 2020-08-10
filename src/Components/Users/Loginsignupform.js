@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-
+import MySnackbar from '../Snackbar/Snackbar';
 import Loginwithphone from './Loginwithphone';
-
+import { appContext } from '../../Statemanagement/Statecontext';
 import Login from '../Images/Login.webp';
 export const Wrapper = styled.div`
   background-image: linear-gradient(to right top, #f0e9ff, #e0edff, #c7f4ff, #affaff, #a4fff9);
@@ -29,9 +30,23 @@ export const Formbox = styled.div`
   align-items: center;
 `;
 
-const Loginsignupform = () => {
+const Loginsignupform = props => {
+  const SnackBar = () => {
+    console.log(props.location.state);
+    const [show, setShow] = useState(true);
+
+    const { snackbarMessage } = props.location.state;
+
+    setTimeout(function () {
+      setShow(false);
+    }, 2000);
+
+    return <>{show && <MySnackbar vertical={'top'} horizontal={'center'} message={snackbarMessage} />}</>;
+  };
+
   return (
     <Wrapper>
+      {props.location.state && <SnackBar />}
       <Formwrapper>
         <picture>
           <img style={{ width: '100%', heigth: '100%' }} src={Login} />
@@ -47,4 +62,4 @@ const Loginsignupform = () => {
   );
 };
 
-export default Loginsignupform;
+export default withRouter(Loginsignupform);

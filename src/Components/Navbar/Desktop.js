@@ -12,6 +12,7 @@ import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 import IconButton from '@material-ui/core/IconButton';
+import MySnackbar from '../Snackbar/Snackbar';
 
 //DESKTOP NAVBAR
 /*********************************************************************/
@@ -129,6 +130,7 @@ const CartDropdown = styled.div`
 function Desktop(props) {
   const { state } = useContext(appContext);
   const { categorydata } = state;
+  const [show, setShow] = useState(false);
 
   /****************************/
   const [x, SetX] = useState(0);
@@ -156,15 +158,12 @@ function Desktop(props) {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (inputRef.current.value && enteredFilter === inputRef.current.value) {
-        const query =
-          enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
-        fetch(
-          `${API}/api/search/products/5eff8e76d75ecb3735b243b1` + query
-        ).then((response) => {
+        const query = enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
+        fetch(`${API}/api/search/products/5eff8e76d75ecb3735b243b1` + query).then(response => {
           response
             .json()
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
         });
       }
     }, 500);
@@ -172,6 +171,13 @@ function Desktop(props) {
       clearTimeout(timer);
     };
   }, [enteredFilter, inputRef]);
+
+  const showSnackbar = () => {
+    setShow(true);
+    setTimeout(function () {
+      setShow(false);
+    }, 2000);
+  };
 
   return (
     <>
@@ -184,7 +190,7 @@ function Desktop(props) {
                   fontFamily: 'Poppins',
                   margin: '0px',
                   transform: 'translateY(-4px)',
-                  color: 'rgba(20,20,20)',
+                  color: 'rgba(20,20,20)'
                 }}
               >
                 <span
@@ -192,7 +198,7 @@ function Desktop(props) {
                     color: '#ec436f',
                     fontFamily: 'Pacifico',
                     fontSize: '30px',
-                    textDecoration: 'none',
+                    textDecoration: 'none'
                   }}
                 >
                   Up
@@ -201,11 +207,7 @@ function Desktop(props) {
               </p>
             </span>
           </Link>
-          <span
-            style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
-            onMouseOver={a}
-            onMouseLeave={b}
-          >
+          <span style={{ height: '9vh', display: 'flex', alignItems: 'center' }} onMouseOver={a} onMouseLeave={b}>
             <AppsRoundedIcon />
           </span>
         </div>
@@ -213,22 +215,12 @@ function Desktop(props) {
         <div>
           <form action="">
             <input type="text" placeholder="Aurangabad" disabled="disabled" />
-            <button
-              disabled="disabled"
-              style={{ display: 'flex', height: '5vh' }}
-            >
-              <GpsFixedRoundedIcon
-                style={{ alignSelf: 'center', margin: 'auto' }}
-              />
+            <button disabled="disabled" style={{ display: 'flex', height: '5vh' }}>
+              <GpsFixedRoundedIcon style={{ alignSelf: 'center', margin: 'auto' }} />
             </button>
           </form>
           <form action="">
-            <input
-              ref={inputRef}
-              value={enteredFilter}
-              placeholder="search for products..."
-              onChange={(event) => setEnteredFilter(event.target.value)}
-            />
+            <input ref={inputRef} value={enteredFilter} placeholder="search for products..." onChange={event => setEnteredFilter(event.target.value)} />
 
             {/* <button disabled=""  style={{ display: 'flex', height: '5vh' }}> */}
             <Link
@@ -237,13 +229,13 @@ function Desktop(props) {
                 textDecoration: 'none',
                 color: 'inherit',
 
-                height: '5vh',
+                height: '5vh'
               }}
             >
               <button style={{ display: 'none' }}>
                 <SearchRoundedIcon
                   style={{
-                    alignSelf: 'center',
+                    alignSelf: 'center'
                   }}
                 />
               </button>
@@ -253,56 +245,30 @@ function Desktop(props) {
           </form>
         </div>
         <div>
-          <IconButton
-            style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}
-          >
-            <Link
-              to="/userdashboard"
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <span
-                style={{ display: 'flex', alignItems: 'center' }}
-                onMouseOver={c}
-                onMouseLeave={d}
-              >
+          <IconButton onClick={showSnackbar} style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}>
+            <Link to={!state.loggedIn ? '/loginsignup' : '/userdashboard'} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <span style={{ display: 'flex', alignItems: 'center' }} onMouseOver={c} onMouseLeave={d}>
                 <AccountCircleOutlinedIcon />
               </span>
             </Link>
           </IconButton>
-          <IconButton
-            style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}
-          >
-            <Link
-              to="/wishlist"
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
+          <IconButton onClick={showSnackbar} style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}>
+            <Link to={!state.loggedIn ? '/loginsignup' : '/wishlist'} style={{ textDecoration: 'none', color: 'inherit' }}>
               <span
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  color: '#ec436f',
+                  color: '#ec436f'
                 }}
               >
                 <FavoriteBorderRoundedIcon />
               </span>
             </Link>
           </IconButton>
-          <IconButton
-            style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}
-          >
-            <Link
-              to={
-                !state.loggedIn
-                  ? '/loginsignup'
-                  : `/cart/${isAutheticated().user._id}`
-              }
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <span
-                style={{ display: 'flex', alignItems: 'center' }}
-                onMouseOver={e}
-                onMouseLeave={f}
-              >
+
+          <IconButton onClick={showSnackbar} style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}>
+            <Link to={!state.loggedIn ? '/loginsignup' : `/cart/${isAutheticated().user._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <span style={{ display: 'flex', alignItems: 'center' }} onMouseOver={e} onMouseLeave={f}>
                 <ShoppingCartOutlinedIcon />
               </span>
             </Link>
@@ -310,11 +276,13 @@ function Desktop(props) {
         </div>
       </DesktopNav>
 
+      {show && !state.loggedIn && <MySnackbar vertical={'top'} horizontal={'center'} message={'You should be logged in to access'} />}
+
       <CategoriesDropdown
         onMouseOver={a}
         onMouseLeave={b}
         style={{
-          transform: `translateY(${x}px)`,
+          transform: `translateY(${x}px)`
         }}
       >
         {categorydata.map(({ name, _id }) => {
@@ -325,16 +293,11 @@ function Desktop(props) {
               style={{
                 textDecoration: 'none',
                 fontFamily: 'poppins',
-                color: 'inherit',
+                color: 'inherit'
               }}
               to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
             >
-              <button
-                type="button"
-                className="btn btn-light d-block w-100 text-left deschhjb"
-                style={{ borderRadius: '0' }}
-                key={_id}
-              >
+              <button type="button" className="btn btn-light d-block w-100 text-left deschhjb" style={{ borderRadius: '0' }} key={_id}>
                 {name}
               </button>
             </Link>
@@ -346,7 +309,7 @@ function Desktop(props) {
         onMouseOver={c}
         onMouseLeave={d}
         style={{
-          transform: `translateY(${y}px)`,
+          transform: `translateY(${y}px)`
         }}
       />
 
@@ -354,7 +317,7 @@ function Desktop(props) {
         onMouseOver={e}
         onMouseLeave={f}
         style={{
-          transform: `translateY(${z}px)`,
+          transform: `translateY(${z}px)`
         }}
       ></CartDropdown>
     </>
