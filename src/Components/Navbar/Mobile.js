@@ -1,22 +1,24 @@
+//?libraries
 import React, { useContext, useEffect, useState, useRef } from 'react';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { Link } from 'react-router-dom';
+//?components
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
-import i1 from '../Images/i1.jpg';
-import { appContext } from '../../Statemanagement/Statecontext';
-import { isAutheticated } from '../../auth/helper/index';
 import Input from '@material-ui/core/Input';
 import API from '../../backend';
-//icons
+//?state
+import { appContext } from '../../Statemanagement/Statecontext';
+import { isAutheticated } from '../../auth/helper/index';
+//?icons
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import KeyboardBackspaceRoundedIcon from '@material-ui/icons/KeyboardBackspaceRounded';
-
+import i1 from '../Images/i1.jpg';
 /****************************************************************************************************/
 
-export default function Mobile() {
+const Mobile = () => {
   const { state } = useContext(appContext);
   const { categorydata } = state;
 
@@ -246,11 +248,10 @@ export default function Mobile() {
                   ref={inputRef}
                   value={enteredFilter}
                   onChange={(event) => setEnteredFilter(event.target.value)}
-                  style={{ width: '100%', fontSize: '26px', marginTop: '5vh' }}
+                  style={{ width: '100%', fontSize: '26px' }}
                   placeholder="search for products..."
                   inputProps={{ 'aria-label': 'description' }}
                 />
-
                 <Link
                   to={`/products/search?page=1&&search=` + enteredFilter}
                   style={{
@@ -277,4 +278,5 @@ export default function Mobile() {
       ))}
     </div>
   );
-}
+};
+export default Mobile;

@@ -95,7 +95,7 @@ const DesktopNav = styled.div`
 /*********************************************************************/
 const CategoriesDropdown = styled.div`
   position: fixed;
-  margin-top: 6.5vh;
+  margin-top: 6.3vh;
   border-top: 10px solid #ec436f;
   top: -600px;
   left: 10%;
@@ -145,10 +145,6 @@ function Desktop(props) {
   /****************************/
 
   const [enteredFilter, setEnteredFilter] = useState('');
-
-  // const onSubmit = () => {
-  //   return <Redirect to={`/products/search?page=1&&search=` + enteredFilter} />;
-  // };
 
   const inputRef = useRef();
   console.log(enteredFilter);
@@ -222,34 +218,30 @@ function Desktop(props) {
               />
             </button>
           </form>
-          <form action="">
+          <form>
             <input
               ref={inputRef}
               value={enteredFilter}
               placeholder="search for products..."
               onChange={(event) => setEnteredFilter(event.target.value)}
             />
-
-            {/* <button disabled=""  style={{ display: 'flex', height: '5vh' }}> */}
-            <Link
-              to={`/products/search?page=1&&search=` + enteredFilter}
-              style={{
-                textDecoration: 'none',
-                color: 'inherit',
-
-                height: '5vh',
-              }}
-            >
-              <button style={{ display: 'none' }}>
+            <button style={{ display: 'flex', height: '5vh' }}>
+              <Link
+                to={`/products/search?page=1&&search=` + enteredFilter}
+                style={{
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  height: '5vh',
+                  padding: '0px 20px 0px 20px',
+                }}
+              >
                 <SearchRoundedIcon
                   style={{
                     alignSelf: 'center',
                   }}
                 />
-              </button>
-            </Link>
-
-            {/* </button> */}
+              </Link>
+            </button>
           </form>
         </div>
         <div>
