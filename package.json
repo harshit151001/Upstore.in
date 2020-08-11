@@ -21,7 +21,7 @@
     "react-scripts": "^3.4.1",
     "styled-components": "^5.1.1",
     "use-immer": "^0.4.1",
-    "yup": "^0.29.1"
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",

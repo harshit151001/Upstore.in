@@ -12,6 +12,7 @@ import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 import IconButton from '@material-ui/core/IconButton';
+import MySnackbar from '../Snackbar/Snackbar';
 
 //DESKTOP NAVBAR
 /*********************************************************************/
@@ -129,6 +130,7 @@ const CartDropdown = styled.div`
 function Desktop(props) {
   const { state } = useContext(appContext);
   const { categorydata } = state;
+  const [show, setShow] = useState(false);
 
   /****************************/
   const [x, SetX] = useState(0);
@@ -168,6 +170,13 @@ function Desktop(props) {
       clearTimeout(timer);
     };
   }, [enteredFilter, inputRef]);
+
+  const showSnackbar = () => {
+    setShow(true);
+    setTimeout(function () {
+      setShow(false);
+    }, 2000);
+  };
 
   return (
     <>
@@ -246,10 +255,11 @@ function Desktop(props) {
         </div>
         <div>
           <IconButton
+            onClick={showSnackbar}
             style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}
           >
             <Link
-              to="/userdashboard"
+              to={!state.loggedIn ? '/loginsignup' : '/userdashboard'}
               style={{ textDecoration: 'none', color: 'inherit' }}
             >
               <span
@@ -262,10 +272,11 @@ function Desktop(props) {
             </Link>
           </IconButton>
           <IconButton
+            onClick={showSnackbar}
             style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}
           >
             <Link
-              to="/wishlist"
+              to={!state.loggedIn ? '/loginsignup' : '/wishlist'}
               style={{ textDecoration: 'none', color: 'inherit' }}
             >
               <span
@@ -279,7 +290,9 @@ function Desktop(props) {
               </span>
             </Link>
           </IconButton>
+
           <IconButton
+            onClick={showSnackbar}
             style={{ ouline: 'none', border: 'none', color: 'rgb(20,20,20)' }}
           >
             <Link
@@ -301,6 +314,14 @@ function Desktop(props) {
           </IconButton>
         </div>
       </DesktopNav>
+
+      {show && !state.loggedIn && (
+        <MySnackbar
+          vertical={'top'}
+          horizontal={'center'}
+          message={'You should be logged in to access'}
+        />
+      )}
 
       <CategoriesDropdown
         onMouseOver={a}
