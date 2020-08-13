@@ -25,7 +25,7 @@ const Card = styled.div`
   flex-direction: row;
   padding-top: 40px;
   padding-bottom: 10px;
-
+  align-items: center;
   @media (min-width: 576px) {
     width: 50%;
     &:nth-child(2n + 1) {
@@ -40,26 +40,29 @@ const Card = styled.div`
   }
 `;
 const Img = styled.div`
-  object-fit: cover;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @media (min-width: 991px) {
     width: 200px !important;
-    height: 200px;
+    height: auto;
   }
   @media (max-width: 991px) {
     width: 180px !important;
-    height: 180px;
+    height: auto;
   }
   @media (max-width: 768px) {
-    width: 160px !important;
-    height: 160px;
+    width: 140px !important;
+    height: auto;
   }
   @media (max-width: 576px) {
-    width: 180px !important;
-    height: 180px;
+    width: 170px !important;
+    height: auto;
   }
   @media (max-width: 400px) {
     width: 160px !important;
-    height: 160px;
+    height: auto;
   }
 `;
 
@@ -85,6 +88,7 @@ export const Header = styled.strong`
   }
 `;
 export const Quote = styled.strong`
+  color: #3f3f3f;
   @media (min-width: 991px) {
     font-size: 30px;
   }
@@ -117,13 +121,18 @@ const Features = () => {
               alt="Bag"
             />
           </Img>
-          <div style={{ marginLeft: '3vw' }}>
+          <div
+            style={{
+              marginLeft: '3vw',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <Quote>hygiene</Quote>
-            <p className="mt-2">
+            <strong className="mt-2" style={{ color: '#5f5f5f' }}>
               It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum
-            </p>
+              the readable content of a
+            </strong>
           </div>
         </Card>
         <Card>
@@ -134,13 +143,18 @@ const Features = () => {
               alt="map"
             />
           </Img>
-          <div style={{ marginLeft: '3vw' }}>
+          <div
+            style={{
+              marginLeft: '3vw',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <Quote>hygiene</Quote>
-            <p className="mt-2">
+            <strong className="mt-2" style={{ color: '#5f5f5f' }}>
               It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
               point of using Lorem Ipsum
-            </p>
+            </strong>
           </div>
         </Card>
         <Card>
@@ -151,13 +165,18 @@ const Features = () => {
               alt="time"
             />
           </Img>
-          <div style={{ marginLeft: '3vw' }}>
+          <div
+            style={{
+              marginLeft: '3vw',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <Quote>hygiene</Quote>
-            <p className="mt-2">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum
-            </p>
+            <strong className="mt-2" style={{ color: '#5f5f5f' }}>
+              It is a long established fact that a reader will be distracted
+              point
+            </strong>
           </div>
         </Card>
         <Card>
@@ -168,13 +187,18 @@ const Features = () => {
               alt="gift"
             />
           </Img>
-          <div style={{ marginLeft: '3vw' }}>
+          <div
+            style={{
+              marginLeft: '3vw',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <Quote>hygiene</Quote>
-            <p className="mt-2">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum
-            </p>
+            <strong className="mt-2" style={{ color: '#5f5f5f' }}>
+              of a page when looking at its layout. The point of using Lorem
+              Ipsum
+            </strong>
           </div>
         </Card>
       </Cardbox>

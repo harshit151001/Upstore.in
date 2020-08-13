@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
+
 import Addressmodal from '../../Components/Modals/Addressmodal';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
@@ -175,9 +175,9 @@ const Addressform = (props) => {
             <p>{JSON.stringify(values)}</p>
           </form>
         </Addressmodal>
-        <Row>
+        {/* <Row>
           <Col lg={6} style={{ margin: 'auto', justifyContent: 'center' }}>
-            {/* {data.map((address, index) => {
+            {data.map((address, index) => {
               return (
                 <div key={index}>
                   <Card
@@ -198,9 +198,9 @@ const Addressform = (props) => {
                   </Card>
                 </div>
               );
-            })} */}
+            })} 
           </Col>
-        </Row>
+        </Row>  */}
         <button onClick={() => setShow(true)}>Add new Address</button>
       </Wrapper>
     </>

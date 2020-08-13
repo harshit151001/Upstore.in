@@ -2,8 +2,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Categorycard from '../Cards/Categorycard';
-import { Row, Col } from 'react-bootstrap';
-
+import { Header } from '../../Feautures/Features';
 import { appContext } from '../../../Statemanagement/Statecontext';
 
 const Categorylist = () => {
@@ -11,26 +10,31 @@ const Categorylist = () => {
   const { categorydata } = state;
 
   return (
-    <Row
+    <div
+      className="row"
       style={{
         margin: 'auto',
         background: '#ffffff',
-        padding: '4vw',
+        paddingRight: '4vw',
+        paddingLeft: '4vw',
       }}
     >
+      <div className="col-12">
+        <Header>Shop for categories</Header>
+      </div>
       {categorydata.map(({ name, imagePath, _id }) => {
         return (
-          <Col xs={6} md={4} key={_id}>
+          <div className="col-md-4 col-6" key={_id}>
             <Link
               style={{ textDecoration: 'none' }}
               to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
             >
               <Categorycard name={name} path={imagePath} id={_id} />
             </Link>
-          </Col>
+          </div>
         );
       })}
-    </Row>
+    </div>
   );
 };
 
