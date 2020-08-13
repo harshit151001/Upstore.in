@@ -40,9 +40,7 @@ const Loginsignupform = (props) => {
   const SnackBar = () => {
     console.log(props.location.state);
     const [show, setShow] = useState(true);
-
     const { snackbarMessage } = props.location.state;
-
     setTimeout(function () {
       setShow(false);
     }, 2000);

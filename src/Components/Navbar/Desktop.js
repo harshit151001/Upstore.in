@@ -22,6 +22,8 @@ const DesktopNav = styled.div`
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(5px);
   height: 9vh;
+  min-height: 60px;
+  align-items: center;
   font-family: 'Poppins', sans-serif;
   margin: auto;
   box-shadow: 0px 0px 5px 3px rgba(97, 97, 97, 0.3);
@@ -241,7 +243,9 @@ function Desktop(props) {
                   textDecoration: 'none',
                   color: 'inherit',
                   height: '5vh',
-                  padding: '0px 20px 0px 20px',
+                  padding: 'auto 20px auto 20px',
+                  alignItems: 'center',
+                  display: 'flex',
                 }}
               >
                 <SearchRoundedIcon

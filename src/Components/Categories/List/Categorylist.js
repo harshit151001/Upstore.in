@@ -14,7 +14,7 @@ const Categorylist = () => {
     <Row
       style={{
         margin: 'auto',
-        background: '#fafafa',
+        background: '#ffffff',
         padding: '4vw',
       }}
     >
