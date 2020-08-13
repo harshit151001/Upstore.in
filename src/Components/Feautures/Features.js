@@ -6,11 +6,12 @@ import fm from '../Images/finallyMap .png';
 import fg from '../Images/finallyGift .png';
 import ft from '../Images/finallyTime .png';
 const Section = styled.div`
-  width: 92%;
+  width: 90%;
   padding: 0px;
   margin-left: auto;
   margin-right: auto;
   @media (min-width: 991px) {
+    width: 92%;
     padding-left: 2.3vw;
     padding-right: 2.3vw;
   }
