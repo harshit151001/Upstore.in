@@ -25,9 +25,8 @@ const Cardbox = styled.div`
 const Card = styled.div`
   display: flex;
   flex-direction: row;
-  padding-top: 40px;
+  padding-top: 20px;
   padding-bottom: 10px;
-  align-items: center;
   @media (min-width: 576px) {
     width: 50%;
     &:nth-child(2n + 1) {
@@ -39,33 +38,34 @@ const Card = styled.div`
   }
   @media (max-width: 576px) {
     width: 100%;
+    &:nth-child(1) {
+      padding-top: 30px;
+    }
   }
 `;
 const Img = styled.div`
-  pointer-events: none;
-  object-fit: cover;
+  object-fit: scale-down;
   display: flex;
-  align-items: center;
   justify-content: center;
   @media (min-width: 991px) {
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
   }
   @media (max-width: 991px) {
-    width: 160px !important;
-    height: 160px;
+    width: 120px !important;
+    height: 120px;
   }
   @media (max-width: 768px) {
-    width: 130px !important;
-    height: 130px;
+    width: 90px !important;
+    height: 90px;
   }
   @media (max-width: 576px) {
-    width: 150px !important;
-    height: 150px;
+    width: 120px !important;
+    height: 120px;
   }
   @media (max-width: 400px) {
-    width: 130px !important;
-    height: 130px;
+    width: 90px !important;
+    height: 90px;
   }
 `;
 
@@ -76,37 +76,37 @@ const Title = styled.div`
 export const Header = styled.strong`
   color: #181e2f;
   @media (min-width: 991px) {
-    font-size: 38px;
+    font-size: 36px;
   }
   @media (max-width: 991px) {
-    font-size: 34px;
+    font-size: 32px;
   }
   @media (max-width: 768px) {
-    font-size: 30px;
+    font-size: 28px;
   }
   @media (max-width: 576px) {
-    font-size: 26px;
+    font-size: 24px;
   }
   @media (max-width: 400px) {
-    font-size: 22px;
+    font-size: 20px;
   }
 `;
 export const Quote = styled.strong`
-  color: #181e2f;
+  color: #4f4f4f;
   @media (min-width: 991px) {
-    font-size: 30px;
-  }
-  @media (max-width: 991px) {
     font-size: 26px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 991px) {
     font-size: 22px;
   }
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
   @media (max-width: 576px) {
-    font-size: 20px;
+    font-size: 16px;
   }
   @media (max-width: 400px) {
-    font-size: 17px;
+    font-size: 14px;
   }
 `;
 
@@ -118,7 +118,7 @@ const Features = () => {
         <img
           src={bos}
           alt="icon"
-          style={{ width: '6vw', minWidth: '50px', paddingTop: '6px' }}
+          style={{ width: '6vw', minWidth: '50px', paddingTop: 'px' }}
         />
       </Title>
       <Cardbox>
@@ -132,7 +132,7 @@ const Features = () => {
           </Img>
           <div
             style={{
-              marginLeft: '3vw',
+              marginLeft: '4vw',
               display: 'flex',
               flexDirection: 'column',
             }}
@@ -154,7 +154,7 @@ const Features = () => {
           </Img>
           <div
             style={{
-              marginLeft: '3vw',
+              marginLeft: '4vw',
               display: 'flex',
               flexDirection: 'column',
             }}
@@ -176,7 +176,7 @@ const Features = () => {
           </Img>
           <div
             style={{
-              marginLeft: '3vw',
+              marginLeft: '4vw',
               display: 'flex',
               flexDirection: 'column',
             }}
@@ -198,7 +198,7 @@ const Features = () => {
           </Img>
           <div
             style={{
-              marginLeft: '3vw',
+              marginLeft: '4vw',
               display: 'flex',
               flexDirection: 'column',
             }}

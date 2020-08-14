@@ -214,8 +214,8 @@ function Desktop(props) {
               alt="logo"
               style={{
                 height: '6vh',
-                transform: 'translateY(3px)',
-                maxHeight: '42px',
+                transform: 'translate(-8px,3px)',
+                maxHeight: '44px',
               }}
             />
           </Link>

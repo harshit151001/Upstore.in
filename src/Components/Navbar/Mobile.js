@@ -16,6 +16,7 @@ import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded'
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import KeyboardBackspaceRoundedIcon from '@material-ui/icons/KeyboardBackspaceRounded';
 import i1 from '../Images/i1.jpg';
+import logo from '../Images/UpLogoFinal.png';
 /****************************************************************************************************/
 
 const Mobile = () => {
@@ -176,9 +177,9 @@ const Mobile = () => {
                   onClick={toggleDrawer(anchor, true)}
                   style={{ color: 'rgba(20,20,20)', fontSize: '35px' }}
                 />
-                <span className="ml-2">
+                <span className="ml-1">
                   <Link to="/" style={{ textDecoration: 'none' }}>
-                    <p
+                    {/* <p
                       style={{
                         fontFamily: 'Poppins',
                         fontSize: '23px',
@@ -197,7 +198,17 @@ const Mobile = () => {
                         Up
                       </span>
                       store
-                    </p>
+                    </p> */}
+                    <img
+                      src={logo}
+                      alt="logo"
+                      style={{
+                        height: '6vh',
+                        alignSelf: 'center',
+                        transform: 'translateY(4px)',
+                        maxHeight: '40px',
+                      }}
+                    />
                   </Link>
                 </span>
               </div>
