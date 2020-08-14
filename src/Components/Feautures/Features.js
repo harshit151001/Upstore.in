@@ -48,24 +48,24 @@ const Img = styled.div`
   align-items: center;
   justify-content: center;
   @media (min-width: 991px) {
-    width: 200px;
-    height: 200px;
-  }
-  @media (max-width: 991px) {
-    width: 180px !important;
+    width: 180px;
     height: 180px;
   }
+  @media (max-width: 991px) {
+    width: 160px !important;
+    height: 160px;
+  }
   @media (max-width: 768px) {
-    width: 140px !important;
-    height: 140px;
+    width: 130px !important;
+    height: 130px;
   }
   @media (max-width: 576px) {
-    width: 170px !important;
-    height: 170px;
-  }
-  @media (max-width: 400px) {
     width: 150px !important;
     height: 150px;
+  }
+  @media (max-width: 400px) {
+    width: 130px !important;
+    height: 130px;
   }
 `;
 
@@ -118,7 +118,7 @@ const Features = () => {
         <img
           src={bos}
           alt="icon"
-          style={{ width: '6vw', minWidth: '40px', paddingTop: '6px' }}
+          style={{ width: '6vw', minWidth: '50px', paddingTop: '6px' }}
         />
       </Title>
       <Cardbox>
@@ -205,8 +205,7 @@ const Features = () => {
           >
             <Quote>hygiene</Quote>
             <strong className="mt-2" style={{ color: '#5f5f5f' }}>
-              of a page when looking at its layout. The point of using Lorem
-              Ipsum
+              of a page when looking at its la Ipsum
             </strong>
           </div>
         </Card>
