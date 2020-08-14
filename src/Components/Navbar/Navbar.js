@@ -10,8 +10,8 @@ function Navbar() {
   const style = {
     fontFamily: 'poppins',
     top: '0',
-    width: '92vw',
     height: '9vh',
+    maxHeight: '98px'
   };
 
   const { width } = useWindowDimensions();

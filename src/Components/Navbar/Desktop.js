@@ -24,6 +24,7 @@ const DesktopNav = styled.div`
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(5px);
   height: 9vh;
+  max-height: 98px;
   min-height: 60px;
   align-items: center;
   font-family: 'Poppins', sans-serif;
@@ -37,6 +38,7 @@ const DesktopNav = styled.div`
   z-index: 100;
   div {
     height: 9vh;
+    max-height: 98px;
     width: 60%;
     display: flex !important;
     align-items: center;
@@ -101,30 +103,27 @@ const DesktopNav = styled.div`
 const CategoriesDropdown = styled.div`
   position: fixed;
   margin-top: 6.3vh;
-  border-top: 10px solid #ec436f;
-  top: -600px;
+  top: -700px;
   left: 10%;
   width: 280px;
   z-index: 20;
   transition: all 0.2s ease-out;
 `;
 const AccountsDropdown = styled.div`
-  position: fixed;
-  margin-top: 6vh;
-  top: -600px;
-  right: 10%;
+ position: fixed;
+  margin-top: 6.3vh;
+  top: -700px;
+  left: 10%;
   width: 280px;
-
   z-index: 20;
   transition: all 0.2s ease-out;
 `;
 const CartDropdown = styled.div`
   position: fixed;
-  margin-top: 6vh;
-  top: -600px;
-  right: 0;
+  margin-top: 6.3vh;
+  top: -700px;
+  left: 10%;
   width: 280px;
-
   z-index: 20;
   transition: all 0.2s ease-out;
 `;
@@ -138,15 +137,15 @@ function Desktop(props) {
 
   /****************************/
   const [x, SetX] = useState(0);
-  const a = () => SetX(620);
+  const a = () => SetX(720);
   const b = () => SetX(0);
   /****************************/
   const [y, SetY] = useState(0);
-  const c = () => SetY(620);
+  const c = () => SetY(720);
   const d = () => SetY(0);
   /****************************/
   const [z, SetZ] = useState(0);
-  const e = () => SetZ(620);
+  const e = () => SetZ(720);
   const f = () => SetZ(0);
   /****************************/
 
@@ -187,28 +186,6 @@ function Desktop(props) {
       <DesktopNav>
         <div>
           <Link to="/" style={{ textDecoration: 'none' }}>
-            {/* <span>
-              <p
-                style={{
-                  fontFamily: 'Poppins',
-                  margin: '0px',
-                  transform: 'translateY(-4px)',
-                  color: 'rgba(20,20,20)',
-                }}
-              >
-                <span
-                  style={{
-                    color: '#ec436f',
-                    fontFamily: 'Pacifico',
-                    fontSize: '30px',
-                    textDecoration: 'none',
-                  }}
-                >
-                  Up
-                </span>
-                store
-              </p>
-            </span> */}
             <img
               src={logo}
               alt="logo"

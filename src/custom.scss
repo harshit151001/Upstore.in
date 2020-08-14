@@ -12,7 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 350;
 }
 ::placeholder {
   color: #282c3f;
@@ -23,26 +23,17 @@ code {
 a {
   text-decoration: none;
 }
-
 //!importing bootstrap
-
 $theme-colors: (
   "primary": #ec436f,
   "danger": #ec436f,
   "light": #f5f5f6,
 );
-
 @import '~bootstrap/scss/bootstrap.scss';
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/mixins";
-.hoveroncategory {
-  transition: all 0.3s ease;
-  &:hover {
-    background: rgba(200, 200, 200, 0.2);
-    
-  }
-}
+
 .deschhjb {
   transition: 0.1s ease-out;
   &:hover {

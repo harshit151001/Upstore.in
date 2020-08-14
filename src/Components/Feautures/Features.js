@@ -6,26 +6,31 @@ import fm from '../Images/UpMap-01.png';
 import fg from '../Images/UpGift-01.png';
 import ft from '../Images/UpTime-01.png';
 import bos from '../Images/forJumbotron.svg';
-const Section = styled.div`
+
+export const Section = styled.div`
   width: 90%;
   padding: 0px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 50px;
   @media (min-width: 991px) {
     width: 92%;
     padding-left: 2.3vw;
     padding-right: 2.3vw;
   }
 `;
-const Cardbox = styled.div`
+export const Cardbox = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  @media (min-width: 991px) {
+    margin-top: 30px;
+  }
 `;
 const Card = styled.div`
   display: flex;
   flex-direction: row;
-  padding-top: 20px;
+  padding-top: 30px;
   padding-bottom: 10px;
   @media (min-width: 576px) {
     width: 50%;
@@ -39,7 +44,7 @@ const Card = styled.div`
   @media (max-width: 576px) {
     width: 100%;
     &:nth-child(1) {
-      padding-top: 30px;
+      padding-top: 40px;
     }
   }
 `;
@@ -69,12 +74,13 @@ const Img = styled.div`
   }
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   display: flex;
   flex-direction: column;
 `;
 export const Header = styled.strong`
   color: #181e2f;
+  max-width: 1260px;
   @media (min-width: 991px) {
     font-size: 36px;
   }
@@ -118,7 +124,7 @@ const Features = () => {
         <img
           src={bos}
           alt="icon"
-          style={{ width: '6vw', minWidth: '50px', paddingTop: 'px' }}
+          style={{ width: '6vw', minWidth: '50px', marginTop: '8px' }}
         />
       </Title>
       <Cardbox>
