@@ -1,10 +1,11 @@
 import React from 'react';
 //import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
-import fb from '../Images/finallyBag .png';
-import fm from '../Images/finallyMap .png';
-import fg from '../Images/finallyGift .png';
-import ft from '../Images/finallyTime .png';
+import fb from '../Images/UpBag-01.png';
+import fm from '../Images/UpMap-01.png';
+import fg from '../Images/UpGift-01.png';
+import ft from '../Images/UpTime-01.png';
+import bos from '../Images/forJumbotron.svg';
 const Section = styled.div`
   width: 90%;
   padding: 0px;
@@ -41,29 +42,30 @@ const Card = styled.div`
   }
 `;
 const Img = styled.div`
-  object-fit: contain;
+  pointer-events: none;
+  object-fit: cover;
   display: flex;
   align-items: center;
   justify-content: center;
   @media (min-width: 991px) {
-    width: 200px !important;
-    height: auto;
+    width: 200px;
+    height: 200px;
   }
   @media (max-width: 991px) {
     width: 180px !important;
-    height: auto;
+    height: 180px;
   }
   @media (max-width: 768px) {
     width: 140px !important;
-    height: auto;
+    height: 140px;
   }
   @media (max-width: 576px) {
     width: 170px !important;
-    height: auto;
+    height: 170px;
   }
   @media (max-width: 400px) {
-    width: 160px !important;
-    height: auto;
+    width: 150px !important;
+    height: 150px;
   }
 `;
 
@@ -72,6 +74,7 @@ const Title = styled.div`
   flex-direction: column;
 `;
 export const Header = styled.strong`
+  color: #181e2f;
   @media (min-width: 991px) {
     font-size: 38px;
   }
@@ -89,7 +92,7 @@ export const Header = styled.strong`
   }
 `;
 export const Quote = styled.strong`
-  color: #3f3f3f;
+  color: #181e2f;
   @media (min-width: 991px) {
     font-size: 30px;
   }
@@ -112,6 +115,11 @@ const Features = () => {
     <Section>
       <Title>
         <Header>Leave it on us!</Header>
+        <img
+          src={bos}
+          alt="icon"
+          style={{ width: '6vw', minWidth: '40px', paddingTop: '6px' }}
+        />
       </Title>
       <Cardbox>
         <Card>

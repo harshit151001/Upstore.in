@@ -13,6 +13,8 @@ import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 import IconButton from '@material-ui/core/IconButton';
 import MySnackbar from '../Snackbar/Snackbar';
+//logo
+import logo from '../Images/UpLogoFinal.png';
 
 //DESKTOP NAVBAR
 /*********************************************************************/
@@ -185,7 +187,7 @@ function Desktop(props) {
       <DesktopNav>
         <div>
           <Link to="/" style={{ textDecoration: 'none' }}>
-            <span>
+            {/* <span>
               <p
                 style={{
                   fontFamily: 'Poppins',
@@ -206,7 +208,16 @@ function Desktop(props) {
                 </span>
                 store
               </p>
-            </span>
+            </span> */}
+            <img
+              src={logo}
+              alt="logo"
+              style={{
+                height: '6vh',
+                transform: 'translateY(3px)',
+                maxHeight: '42px',
+              }}
+            />
           </Link>
           <span
             style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
