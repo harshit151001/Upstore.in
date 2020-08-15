@@ -7,7 +7,7 @@ import Axios from 'axios';
 import API from '../../backend';
 const queryString = require('query-string');
 //todo: optimize perfomance
-const Products = (props) => {
+const Products = props => {
   const { categoryId } = props.match.params;
   const { search, page } = queryString.parse(window.location.search);
   const [totalPages, setTotalPages] = useState(1);
@@ -18,20 +18,14 @@ const Products = (props) => {
     let mounted = true;
     const loadandsetdata = async () => {
       if (search) {
-        const response = await Axios.get(
-          `${API}/api/search/products/5eff8e76d75ecb3735b243b1?search=${search}&&page=${currentPage}`
-        );
+        const response = await Axios.get(`${API}/api/search/products/5eff8e76d75ecb3735b243b1?search=${search}&&page=${currentPage}`);
         if (mounted) {
           window.scroll(0, 0);
-          setTotalPages(Math.ceil(response.data.totalCount / 2));
+          setTotalPages(Math.ceil(response.data.totalCount / 10));
           setData(response.data.products);
         }
       } else {
-        const response = await Axios.get(
-          `${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
-            currentPage || 1
-          }`
-        );
+        const response = await Axios.get(`${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage || 1}`);
         if (mounted) {
           window.scroll(0, 0);
 
@@ -71,18 +65,7 @@ const Products = (props) => {
             }}
             className="btn btn-light mr-2"
           >
-            {currentPage > 1 ? (
-              <Link
-                to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
-                  currentPage - 1 || 1
-                }${search ? `&&search=` + search : ''}`}
-              >
-                {' '}
-                back
-              </Link>
-            ) : (
-              'back'
-            )}
+            {currentPage > 1 ? <Link to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage - 1 || 1}${search ? `&&search=` + search : ''}`}> back</Link> : 'back'}
           </button>
 
           <button
@@ -93,18 +76,7 @@ const Products = (props) => {
             }}
             className="btn btn-light ml-2"
           >
-            {currentPage < totalPages ? (
-              <Link
-                to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
-                  totalPages > currentPage ? currentPage + 1 : totalPages
-                }${search ? `&&search=` + search : ''}`}
-              >
-                {' '}
-                next
-              </Link>
-            ) : (
-              'next'
-            )}
+            {currentPage < totalPages ? <Link to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${totalPages > currentPage ? currentPage + 1 : totalPages}${search ? `&&search=` + search : ''}`}> next</Link> : 'next'}
           </button>
         </div>
       </div>
