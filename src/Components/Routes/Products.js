@@ -1,19 +1,24 @@
+//?libraries
 import React, { useEffect, useState } from 'react';
-import Productlist from '../Products/List/Productlist';
 import { Link } from 'react-router-dom';
-import WelcomeBanner from '../WelcomeBanner/WelcomeBanner';
-import Filters from '../Filters/Filters';
 import Axios from 'axios';
+import queryString from 'query-string';
+//?URL
 import API from '../../backend';
-const queryString = require('query-string');
-//todo: optimize perfomance
+//?components
+import WelcomeBanner from '../WelcomeBanner/WelcomeBanner';
+import Productlist from '../Products/List/Productlist';
+import Filters from '../Filters/Filters';
+
 const Products = props => {
+  //?using params from URL
   const { categoryId } = props.match.params;
   const { search, page } = queryString.parse(window.location.search);
+  //?declaring states
   const [totalPages, setTotalPages] = useState(1);
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(parseInt(page) || 1);
-
+  //?loading and setting data
   useEffect(() => {
     let mounted = true;
     const loadandsetdata = async () => {
@@ -28,9 +33,7 @@ const Products = props => {
         const response = await Axios.get(`${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage || 1}`);
         if (mounted) {
           window.scroll(0, 0);
-
           setTotalPages(Math.ceil(response.data.totalCount / 10));
-
           setData(response.data.products);
         }
       }

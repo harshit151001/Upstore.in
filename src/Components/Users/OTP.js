@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { dispatchContext } from '../../Statemanagement/Statecontext';
 import { OTPVerify, authenticate } from '../../auth/helper/index';
 import * as Yup from 'yup';
@@ -8,23 +8,26 @@ import verified from '../Images/verified.svg';
 
 const validationSchema = Yup.object({
   phoneNumber: Yup.string()
-    .matches(/^[6-9]\d{9}$/, { message: 'Please enter a valid mobile number (10 digits)', excludeEmptyString: false })
-    .max(10)
+    .matches(/^[6-9]\d{9}$/, {
+      message: 'Please enter a valid mobile number (10 digits)',
+      excludeEmptyString: false,
+    })
+    .max(10),
 });
 
-const VerifyOTP = props => {
+const VerifyOTP = (props) => {
   const dispatchLogin = useContext(dispatchContext);
 
   const formik = useFormik({
     initialValues: {
-      OTP: ''
+      OTP: '',
     },
     validationSchema,
     onSubmit: ({ OTP }) => {
       if (props.location.state) {
         const { phoneNumber, session_id } = props.location.state;
         OTPVerify({ phoneNumber, session_id, OTP })
-          .then(data => {
+          .then((data) => {
             console.log(data);
 
             authenticate(data, () => {
@@ -32,14 +35,14 @@ const VerifyOTP = props => {
             });
 
             return props.history.push({
-              pathname: '/'
+              pathname: '/',
             });
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
           });
       }
-    }
+    },
   });
 
   return (
@@ -47,14 +50,29 @@ const VerifyOTP = props => {
       <Wrapper>
         <Formwrapper style={{ padding: '2vh' }}>
           <div style={{ textAlign: 'center', marginTop: '4vh' }}>
-            <img src={verified} style={{ height: '22vh' }} alt="Verified Phone SVG" />
+            <img
+              src={verified}
+              style={{ height: '22vh' }}
+              alt="Verified Phone SVG"
+            />
           </div>
 
           <form>
             <div className="form-group">
               <label htmlFor="OTP"></label>
 
-              <input type="text" pattern="[0-9]+" maxLength={6} style={{ marginTop: '3vh' }} className="form-control" aria-describedby="emailHelp" id="OTP" value={formik.values.OTP} onChange={formik.handleChange} placeholder="OTP*" />
+              <input
+                type="text"
+                pattern="[0-9]+"
+                maxLength={6}
+                style={{ marginTop: '3vh' }}
+                className="form-control"
+                aria-describedby="emailHelp"
+                id="OTP"
+                value={formik.values.OTP}
+                onChange={formik.handleChange}
+                placeholder="OTP*"
+              />
             </div>
 
             <button
@@ -68,7 +86,7 @@ const VerifyOTP = props => {
               Submit
             </button>
           </form>
-          <p>{JSON.stringify(formik.values)}</p>
+          {/* <p>{JSON.stringify(formik.values)}</p> */}
         </Formwrapper>
       </Wrapper>
     </>

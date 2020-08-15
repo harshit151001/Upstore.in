@@ -1,36 +1,50 @@
 //!library
 import React, { useContext } from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Categorycard from '../Cards/Categorycard';
-import { Row, Col } from 'react-bootstrap';
 
 import { appContext } from '../../../Statemanagement/Statecontext';
+import { Section, Title, Header } from '../../Feautures/Features';
+import bos from '../../Images/forJumbotron.svg';
+
+const Box = styled.div`
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
 
 const Categorylist = () => {
   const { state } = useContext(appContext);
   const { categorydata } = state;
 
   return (
-    <Row
-      style={{
-        margin: 'auto',
-        background: '#fafafa',
-        padding: '4vw',
-      }}
-    >
-      {categorydata.map(({ name, imagePath, _id }) => {
-        return (
-          <Col xs={6} md={4} key={_id}>
+    <Section>
+      <Title>
+        <Header>Shop for...</Header>
+        <img
+          src={bos}
+          alt="icon"
+          style={{ width: '6vw', minWidth: '50px', marginTop: '8px' }}
+        />
+      </Title>
+      <Box>
+        {console.log(categorydata)}
+        {categorydata.map(({ name, imagePath, _id }) => {
+          return (
             <Link
               style={{ textDecoration: 'none' }}
               to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
             >
-              <Categorycard name={name} path={imagePath} id={_id} />
+              <Categorycard name={name} path={imagePath} key={_id} />
             </Link>
-          </Col>
-        );
-      })}
-    </Row>
+          );
+        })}
+      </Box>
+    </Section>
   );
 };
 

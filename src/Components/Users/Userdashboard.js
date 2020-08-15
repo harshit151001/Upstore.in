@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import Userdetailsform from './Userdetailsform';
 import Myorders from './Myorders';
 import Addressform from './Addressform';
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
 const MenuItems = styled.div`
   font-size: 50px;
-  color: #ffffffe6;
+  color: #ffffff;
   display: block;
   transition: 0.3s;
 `;
@@ -29,7 +29,7 @@ const Userdashboard = (props) => {
   console.log(props.match.path);
 
   return (
-    <Row style={{ justifyContent: 'center' }}>
+    <div className="row" style={{ justifyContent: 'center' }}>
       <div>
         <UserNav
           initialHeight={width < 990 ? '0' : '100%'}
@@ -41,7 +41,7 @@ const Userdashboard = (props) => {
           initialWidth={width < 990 ? '0' : '30%'}
         >
           <Link style={{ textDecoration: 'none' }} to="/userdashboard/details">
-            <MenuItems style={{textColor:'#ec436f'}}>Details</MenuItems>
+            <MenuItems style={{ textColor: '#ec436f' }}>Details</MenuItems>
           </Link>
           <Link style={{ textDecoration: 'none' }} to="/userdashboard/orders">
             <MenuItems>Orders</MenuItems>
@@ -94,7 +94,7 @@ const Userdashboard = (props) => {
           <Addressform />
         </Col>
       </Wrapper>
-    </Row>
+    </div>
   );
 };
 
