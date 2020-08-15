@@ -15,7 +15,7 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import KeyboardBackspaceRoundedIcon from '@material-ui/icons/KeyboardBackspaceRounded';
-import i1 from '../Images/i1.png';
+import userIcon from '../Images/userIcon.png';
 import logo from '../Images/UpLogoFinal.png';
 /****************************************************************************************************/
 
@@ -100,11 +100,18 @@ const Mobile = () => {
               marginTop: '5px',
               marginLeft: '8px'
             }}
-            src={i1}
+            src={userIcon}
             alt="..."
             className="rounded-circle"
           />
-          {true ? <button style={{ marginLeft: '10px' }}>login</button> : <p style={{ marginLeft: '10px' }}>hi harshit</p>}
+          {true ? (
+            <Link to="/loginsignup" style={{ textDecoration: 'none' }}>
+              {' '}
+              <button style={{ marginLeft: '10px' }}>Login</button>
+            </Link>
+          ) : (
+            <p style={{ marginLeft: '10px' }}>+91{isAutheticated().phoneNumber}</p>
+          )}
         </div>
       </List>
       <List>
