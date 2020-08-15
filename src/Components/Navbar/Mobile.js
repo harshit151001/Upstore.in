@@ -15,7 +15,7 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import KeyboardBackspaceRoundedIcon from '@material-ui/icons/KeyboardBackspaceRounded';
-import i1 from '../Images/i1.jpg';
+import i1 from '../Images/i1.png';
 import logo from '../Images/UpLogoFinal.png';
 /****************************************************************************************************/
 
@@ -28,7 +28,7 @@ const Mobile = () => {
     top: false,
     left: false,
     bottom: false,
-    right: false,
+    right: false
   });
   const [searchStyles, setSearchStyles] = React.useState({
     position: 'fixed',
@@ -38,7 +38,7 @@ const Mobile = () => {
     zIndex: '-1',
     display: 'none',
     background: 'white',
-    width: '0px',
+    width: '0px'
   });
   const handleSearch = () => {
     setSearchStyles({
@@ -50,22 +50,18 @@ const Mobile = () => {
       transform: 'translate(-5vw,-9vh)',
       zIndex: '12000',
       background: 'white',
-      width: '100%',
+      width: '100%'
     });
   };
   const closeSearch = () => {
     setSearchStyles({
       display: 'none',
-      width: '0px',
+      width: '0px'
     });
   };
   /****************************************************************************************************/
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
+  const toggleDrawer = (anchor, open) => event => {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     setStyle({ ...style, [anchor]: open });
@@ -79,15 +75,12 @@ const Mobile = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (inputRef.current.value && enteredFilter === inputRef.current.value) {
-        const query =
-          enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
-        fetch(
-          `${API}/api/search/products/5eff8e76d75ecb3735b243b1` + query
-        ).then((response) => {
+        const query = enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
+        fetch(`${API}/api/search/products/5eff8e76d75ecb3735b243b1` + query).then(response => {
           response
             .json()
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
         });
       }
     }, 500);
@@ -96,13 +89,8 @@ const Mobile = () => {
     };
   }, [enteredFilter, inputRef]);
 
-  const list = (anchor) => (
-    <div
-      style={{ width: '280px' }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
+  const list = anchor => (
+    <div style={{ width: '280px' }} role="presentation" onClick={toggleDrawer(anchor, false)} onKeyDown={toggleDrawer(anchor, false)}>
       <List>
         <div style={{ width: '94%', height: '80px', alignItems: 'center' }}>
           <img
@@ -110,34 +98,25 @@ const Mobile = () => {
               width: '75px',
               height: '75px',
               marginTop: '5px',
-              marginLeft: '8px',
+              marginLeft: '8px'
             }}
             src={i1}
             alt="..."
             className="rounded-circle"
           />
-          {true ? (
-            <button style={{ marginLeft: '10px' }}>login</button>
-          ) : (
-            <p style={{ marginLeft: '10px' }}>hi harshit</p>
-          )}
+          {true ? <button style={{ marginLeft: '10px' }}>login</button> : <p style={{ marginLeft: '10px' }}>hi harshit</p>}
         </div>
       </List>
       <List>
         {categorydata.map(({ name, _id }) => {
           return (
-            <button
-              type="button"
-              className="btn btn-light d-block w-100 text-left deschhjb"
-              style={{ borderRadius: '0' }}
-              key={_id}
-            >
+            <button type="button" className="btn btn-light d-block w-100 text-left deschhjb" style={{ borderRadius: '0' }} key={_id}>
               <Link
                 className="deschhjb"
                 style={{
                   textDecoration: 'none',
                   fontFamily: 'poppins',
-                  color: 'inherit',
+                  color: 'inherit'
                 }}
                 to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
               >
@@ -152,7 +131,7 @@ const Mobile = () => {
 
   return (
     <div>
-      {['left'].map((anchor) => (
+      {['left'].map(anchor => (
         <React.Fragment key={anchor}>
           <div
             style={{
@@ -165,18 +144,12 @@ const Mobile = () => {
               backdropFilter: 'blur(5px)',
               background: 'rgba(255, 255, 255, 0.9)',
               paddingRight: '4vw',
-              paddingLeft: '4vw',
+              paddingLeft: '4vw'
             }}
           >
-            <div
-              className="row w-100 no-gutters align-items-center"
-              style={{ height: '9vh' }}
-            >
+            <div className="row w-100 no-gutters align-items-center" style={{ height: '9vh' }}>
               <div className="col-6 no-gutters align-items-center d-flex">
-                <MenuRoundedIcon
-                  onClick={toggleDrawer(anchor, true)}
-                  style={{ color: 'rgba(20,20,20)', fontSize: '35px' }}
-                />
+                <MenuRoundedIcon onClick={toggleDrawer(anchor, true)} style={{ color: 'rgba(20,20,20)', fontSize: '35px' }} />
                 <span className="ml-1">
                   <Link to="/" style={{ textDecoration: 'none' }}>
                     {/* <p
@@ -206,7 +179,7 @@ const Mobile = () => {
                         height: '6vh',
                         alignSelf: 'center',
                         transform: 'translateY(4px)',
-                        maxHeight: '40px',
+                        maxHeight: '40px'
                       }}
                     />
                   </Link>
@@ -215,61 +188,34 @@ const Mobile = () => {
               <div className="d-flex col-6 justify-content-end">
                 <Link>
                   <span className="mr-2">
-                    <SearchRoundedIcon
-                      onClick={handleSearch}
-                      style={{ color: 'rgba(20,20,20)', fontSize: '28px' }}
-                    />
+                    <SearchRoundedIcon onClick={handleSearch} style={{ color: 'rgba(20,20,20)', fontSize: '28px' }} />
                   </span>
                 </Link>
                 <Link style={{ textDecoration: 'none', color: 'inherit' }}>
                   <span className="mr-2">
-                    <FavoriteBorderRoundedIcon
-                      style={{ color: 'rgba(20,20,20)', fontSize: '28px' }}
-                    />
+                    <FavoriteBorderRoundedIcon style={{ color: 'rgba(20,20,20)', fontSize: '28px' }} />
                   </span>
                 </Link>
-                <Link
-                  to={
-                    !state.loggedIn
-                      ? '/loginsignup'
-                      : `/cart/${isAutheticated().user._id}`
-                  }
-                  style={{ textDecoration: 'none', color: 'inherit' }}
-                >
+                <Link to={!state.loggedIn ? '/loginsignup' : `/cart/${isAutheticated().user._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   <span>
-                    <ShoppingCartOutlinedIcon
-                      style={{ color: 'rgba(20,20,20)', fontSize: '28px' }}
-                    />
+                    <ShoppingCartOutlinedIcon style={{ color: 'rgba(20,20,20)', fontSize: '28px' }} />
                   </span>
                 </Link>
               </div>
             </div>
-            <div
-              className="col-12 w-100 ml-0 justify-content-center"
-              style={{ ...searchStyles }}
-            >
+            <div className="col-12 w-100 ml-0 justify-content-center" style={{ ...searchStyles }}>
               <span className="mr-2">
-                <KeyboardBackspaceRoundedIcon
-                  onClick={closeSearch}
-                  style={{ fontSize: '35px' }}
-                />
+                <KeyboardBackspaceRoundedIcon onClick={closeSearch} style={{ fontSize: '35px' }} />
               </span>
               <form action="">
-                <Input
-                  ref={inputRef}
-                  value={enteredFilter}
-                  onChange={(event) => setEnteredFilter(event.target.value)}
-                  style={{ width: '100%', fontSize: '26px' }}
-                  placeholder="search for products..."
-                  inputProps={{ 'aria-label': 'description' }}
-                />
+                <Input ref={inputRef} value={enteredFilter} onChange={event => setEnteredFilter(event.target.value)} style={{ width: '100%', fontSize: '26px' }} placeholder="search for products..." inputProps={{ 'aria-label': 'description' }} />
                 <Link
                   to={`/products/search?page=1&&search=` + enteredFilter}
                   style={{
                     textDecoration: 'none',
                     color: 'inherit',
                     display: 'flex',
-                    height: '5vh',
+                    height: '5vh'
                   }}
                 >
                   <button style={{ display: 'none' }} />
@@ -277,12 +223,7 @@ const Mobile = () => {
               </form>
             </div>
           </div>
-          <SwipeableDrawer
-            anchor={anchor}
-            open={style[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
+          <SwipeableDrawer anchor={anchor} open={style[anchor]} onClose={toggleDrawer(anchor, false)} onOpen={toggleDrawer(anchor, true)}>
             {list(anchor)}
           </SwipeableDrawer>
         </React.Fragment>
