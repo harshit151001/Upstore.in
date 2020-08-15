@@ -24,36 +24,36 @@ const Card = styled.div`
     border: 1px solid;
     border-radius: 3px;
   }
-  @media (max-width:768px){
-   width:30vw;
-   height:30vw;
-   justify-content: center;
-   align-items: center;
-   padding: 0px;
-   display: flex;
-   flex-direction: column;
-   padding: 10px;
-   margin: 0px;
+  @media (max-width: 768px) {
+    width: 30vw;
+    height: 30vw;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 0px;
   }
   img {
     width: 65px;
     height: 65px;
     margin-right: 24px;
     object-fit: contain;
-    @media (max-width:768px){
-    margin: 0px;
-    width: 60%;
-    height: 60%;
-    align-self: center;
-    justify-self: center;
-  }
-  @media (max-width:576px){
-    margin: 0px;
-    width: 55%;
-    height: 55%;
-    align-self: center;
-    justify-self: center;
-  }
+    @media (max-width: 768px) {
+      margin: 0px;
+      width: 60%;
+      height: 60%;
+      align-self: center;
+      justify-self: center;
+    }
+    @media (max-width: 576px) {
+      margin: 0px;
+      width: 55%;
+      height: 55%;
+      align-self: center;
+      justify-self: center;
+    }
   }
 `;
 const Name = styled.strong`
@@ -66,30 +66,33 @@ const Name = styled.strong`
   letter-spacing: 2px;
   margin-top: auto;
   margin-bottom: auto;
-  @media (max-width:768px){
-   text-align: center;
-   font-size: 19px;
-   letter-spacing: 1px;
-   margin-top: 14px;
+  @media (max-width: 768px) {
+    text-align: center;
+    font-size: 19px;
+    letter-spacing: 1px;
+    margin-top: 14px;
   }
-  @media (max-width:576px){
-   text-align: center;
-   font-size: 16px;
-   line-height: 18px;
-   letter-spacing: 1px;
-   margin-top: 12px;}
-   @media (max-width:496px){
-   text-align: center;
-   font-size: 14px;
-   letter-spacing: 1px;
-   line-height: 18px;
-   margin-top: 10px;}
-   @media (max-width:440px){
-   text-align: center;
-   font-size: 12px;
-   letter-spacing: 0px;
-   line-height: 16px;
-   margin-top: 10px;}
+  @media (max-width: 576px) {
+    text-align: center;
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: 1px;
+    margin-top: 12px;
+  }
+  @media (max-width: 496px) {
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 18px;
+    margin-top: 10px;
+  }
+  @media (max-width: 440px) {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0px;
+    line-height: 16px;
+    margin-top: 10px;
+  }
 `;
 
 const Categorycard = ({ name, path }) => {
