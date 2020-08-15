@@ -61,11 +61,13 @@ const Name = styled.strong`
   color: rgb(23, 30, 48);
   text-align: left;
   flex-wrap: wrap;
+
   font-size: 20px;
   font-spacing: 0.3pt;
   letter-spacing: 2px;
-  margin-top: auto;
-  margin-bottom: auto;
+  @media (min-width: 767px) {
+    align-self: center;
+  }
   @media (max-width: 768px) {
     text-align: center;
     font-size: 19px;

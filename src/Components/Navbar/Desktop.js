@@ -110,7 +110,7 @@ const CategoriesDropdown = styled.div`
   transition: all 0.2s ease-out;
 `;
 const AccountsDropdown = styled.div`
- position: fixed;
+  position: fixed;
   margin-top: 6.3vh;
   top: -700px;
   left: 10%;
@@ -217,7 +217,7 @@ function Desktop(props) {
               />
             </button>
           </form>
-          <form>
+          <form action={`/products/search?page=1&&search=` + enteredFilter}>
             <input
               ref={inputRef}
               value={enteredFilter}
