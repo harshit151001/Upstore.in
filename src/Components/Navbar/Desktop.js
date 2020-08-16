@@ -105,7 +105,7 @@ const CategoriesDropdown = styled.div`
   margin-top: 6.3vh;
   top: -700px;
   left: 10%;
-  width: 280px;
+  width: 260px;
   z-index: 20;
   transition: all 0.2s ease-out;
 `;
@@ -330,6 +330,7 @@ function Desktop(props) {
               style={{
                 textDecoration: 'none',
                 fontFamily: 'poppins',
+                fontSize: '14px',
                 color: 'inherit',
               }}
               to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
@@ -337,7 +338,15 @@ function Desktop(props) {
               <button
                 type="button"
                 className="btn btn-light d-block w-100 text-left deschhjb"
-                style={{ borderRadius: '0' }}
+                style={{
+                  borderRadius: '0',
+                  fontSize: '16px',
+                  height: '30px',
+                  alignItems: 'center',
+                  padding: '0px 0px 0px 8px',
+                  border: 'none',
+                  outline:'none'
+                }}
                 key={_id}
               >
                 {name}
