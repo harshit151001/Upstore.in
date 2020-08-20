@@ -31,8 +31,8 @@ const Categorylist = () => {
         {console.log(categorydata)}
         {categorydata.map(({ name, imagePath, _id }) => {
           return (
-            <Link style={{ textDecoration: 'none' }} to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}>
-              <Categorycard name={name} path={imagePath} key={_id} />
+            <Link key={_id} style={{ textDecoration: 'none' }} to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}>
+              <Categorycard name={name} path={imagePath} />
             </Link>
           );
         })}

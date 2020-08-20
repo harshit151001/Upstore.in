@@ -57,7 +57,6 @@ const Loginmodal = ({ show, onhide }) => {
         keepMounted
         onClose={onhide}
         fullScreen={fullScreen}
-        positionBottom
         fullWidth="xs"
         maxWidth="xs"
         aria-labelledby="alert-dialog-slide-title"
