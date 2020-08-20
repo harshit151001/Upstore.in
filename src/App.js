@@ -23,6 +23,7 @@ import PrivateRoute from './auth/helper/PrivateRoute';
 import CheckoutPage from './Components/Routes/CheckoutPage';
 import OTP from './Components/Users/OTP';
 import ChangeAddress from './Components/Routes/ChangeCheckoutAddressPage';
+
 // import ProductUpload from './Components/Admin/ProductUpload';
 //!context
 import { Statecontext } from './Statemanagement/Statecontext';
@@ -39,7 +40,9 @@ function App() {
             <Route exact path="/aboutus" component={Aboutus}></Route>
             <Route exact path="/termsandcondition" component={Termsandcondition}></Route>
             <Route exact path="/loginsignup" component={Loginsignuppage}></Route>
+            <PrivateRoute path="/userdashboard/details/edit" component={Userpage}></PrivateRoute>
             <PrivateRoute path="/userdashboard/details" component={Userpage}></PrivateRoute>
+
             <PrivateRoute path="/userdashboard/orders" component={Userpage}></PrivateRoute>
             <PrivateRoute path="/userdashboard/address" component={Userpage}></PrivateRoute>
             <PrivateRoute path="/userdashboard" component={Userpage}></PrivateRoute>

@@ -2,13 +2,42 @@ import React, { useState, useEffect } from 'react';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
 import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
-const Wrapper = styled.div`
-width: 70%;
-  @media  (min-width: 990px) {
-  margin-left: 250px;
+export const DetailsCardWrapper = styled.div`
+  @media (min-width: 780px) {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
   }
- }
+
+  width: 100%;
+`;
+
+const TableItem = styled.div`
+  width: 50%;
+  margin: 10px 0;
+`;
+
+const DetailsTable = styled.div`
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  display: flex;
+  width: 65%;
+  flex-wrap: wrap;
+`;
+
+export const HeaderDiv = styled.div`
+  color: #696b79;
+  font-weight: 400;
+  font-size: 22px;
+  border-bottom: 1px solid #eaeaec;
+  padding-bottom: 15px;
+`;
+
+export const DetailsCard = styled.div`
+  @media (min-width: 780px) {
+    padding: 55px 40px 20px 40px;
+  }
 `;
 
 const Userdetailsform = props => {
@@ -16,10 +45,7 @@ const Userdetailsform = props => {
     name: '',
     email: '',
     password: '',
-    phoneNumber: '',
-    error: '',
-    loading: false,
-    didRedirect: false
+    phoneNumber: ''
   });
 
   useEffect(() => {
@@ -34,16 +60,16 @@ const Userdetailsform = props => {
         }
       })
         .then(response => {
+          console.log(response);
           response.json().then(function (data) {
+            console.log(data);
             const { name, phoneNumber, email } = data;
             setValues(values => {
               return {
                 ...values,
                 name,
                 email,
-                phoneNumber,
-                error: '',
-                loading: false
+                phoneNumber
               };
             });
           });
@@ -61,70 +87,29 @@ const Userdetailsform = props => {
     };
   }, []);
 
-  const { token, user } = isAutheticated();
-
-  const onSubmit = async event => {
-    event.preventDefault();
-
-    setValues({ ...values, error: false, loading: true });
-    fetch(`${API}/api/user/${user._id}`, {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        phoneNumber,
-        name,
-        email,
-        password
-      })
-    })
-      .then(response => {
-        response.json().then(function (data) {
-          console.log(data);
-        });
-      })
-      .catch(err => console.log(err));
-  };
   //eslint-disable-next-line
   const { name, email, password, phoneNumber, error, loading } = values;
-
-  const handleChange = name => event => {
-    setValues({ ...values, error: false, [name]: event.target.value });
-  };
-
+  console.log(name);
   return (
     <>
-      <Wrapper>
-        <form>
-          <div className="form-group">
-            <label htmlFor="exampleInputMobileNumber1">Mobile Number</label>
-            <input type="text" className="form-control" readOnly={phoneNumber} id="exampleInputMobileNumber1" placeholder="Mobile Number" onChange={handleChange('phoneNumber')} value={phoneNumber} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputNmae">Name</label>
-            <input type="text" className="form-control" id="exampleInputName1" aria-describedby="emailHelp" placeholder="Name" onChange={handleChange('name')} value={name || ''} />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={handleChange('email')} value={email || ''} />
-            <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={handleChange('password')} value={password} />
-          </div>
-          <button onClick={onSubmit} type="submit" style={{ backgroundColor: '#111111', color: 'white' }} className="btn btn-primary">
-            Update
-          </button>
-        </form>
-        <p>{JSON.stringify(values)}</p>
-      </Wrapper>
+      <DetailsCardWrapper>
+        <DetailsCard>
+          <HeaderDiv>Profile Details</HeaderDiv>
+          <DetailsTable>
+            <TableItem>Mobile</TableItem>
+            <TableItem>{phoneNumber}</TableItem>
+            <TableItem>Full Name</TableItem>
+            <TableItem>{name || <>-not added-</>}</TableItem>
+            <TableItem>Email</TableItem>
+            <TableItem>{email || <>-not added-</>}</TableItem>
+          </DetailsTable>
+          <Link to="/userdashboard/details/edit">
+            <Button variant="contained" style={{ backgroundColor: '#ec436f', color: 'white', width: '200px', marginBottom: '4vh', height: '6vh', fontWeight: '800' }}>
+              Edit
+            </Button>
+          </Link>
+        </DetailsCard>
+      </DetailsCardWrapper>
     </>
   );
 };

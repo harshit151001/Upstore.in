@@ -1,30 +1,82 @@
 import React, { useState, useEffect } from 'react';
-
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
 import Addressmodal from '../../Components/Modals/Addressmodal';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
 import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import useWindowDimensions from '../../customapis/useWindowDimensions';
+import { buildQueries } from '@testing-library/react';
 
-const Wrapper = styled.div`
-width: 80%;
-@media  (min-width: 990px) {
- margin-left: 250px;
-}
+const ButtonText = styled.div`
+  cursor: pointer;
+  width: 50%;
+  text-transform: uppercase;
+  padding: 14px 14px;
+  text-align: center;
+  font-weight: 800;
+`;
+
+const RemoveEditButton = styled.div`
+  display: flex;
+  color: #526cd0;
+  border-top: 1px solid #eaeaec;
+`;
+
+const CardContainer = styled.div`
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+  margin-bottom: 12px;
+  width: 100%;
+`;
+
+const AddressCard = styled.div`
+  padding: 12px;
+  width: 100%;
+  color: #696e79;
+`;
+
+const Header = styled.div`
+  margin-bottom: 4vh;
+  height: max-content;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const HeaderMobile = styled.div`
+box-shadow: 0px 1px 3px rgba(40, 44, 63, 0.3);
+    background-color: white;
+    padding: 17px 10px;
+    margin-bottom: 10px;
+    color: #696E79;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #526cd0;
+    font-size: 14px;
 }
 `;
-const Addressform = (props) => {
+
+const AddAddressButton = styled.div`
+  font-size: 14px;
+  border: 0.5px solid #d4d5d9;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #526cd0;
+  padding: 12px;
+  text-align: center;
+  width: 180px;
+  height: 43px;
+  cursor: pointer;
+`;
+
+const Addressform = props => {
+  const { width } = useWindowDimensions();
   const { token, user } = isAutheticated();
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
-  const [values, setValues] = useState({
-    name: '',
-    phoneNumber: '',
-    building: '',
-    address: '',
-    error: '',
-    loading: false,
-    didRedirect: false,
-  });
 
   useEffect(() => {
     let mounted = true;
@@ -33,19 +85,18 @@ const Addressform = (props) => {
       fetch(`${API}/api/user/${user._id}`, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       })
-        .then((response) => {
+        .then(response => {
           response.json().then(function (data) {
-            const { adresses, name, phoneNumber } = data;
-            setValues((values) => {
-              return { ...values, name, phoneNumber };
-            });
-            setData(adresses);
+            console.log(data);
+            const { addresses, contactName: name, phoneNumber } = data;
+
+            setData(addresses);
           });
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
 
       if (mounted) {
         window.scroll(0, 0);
@@ -58,151 +109,123 @@ const Addressform = (props) => {
     };
   }, []);
 
-  // const deleteHandler = index => {
-  //   let newAddressArray = data;
-  //   newAddressArray.splice(index, 1);
+  const deleteHandler = index => {
+    let newAddressArray = data;
+    newAddressArray.splice(index, 1);
 
-  //   fetch(`${API}/api/user/${user._id}`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${token}`
-  //     },
-  //     body: JSON.stringify({ adresses: newAddressArray })
-  //   })
-  //     .then(response => {
-  //       response.json().then(function (data) {
-  //         console.log(data);
-  //         setData(data.adresses);
-  //       });
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    if (building && address && name && phoneNumber) {
-      console.log([
-        ...data,
-        `${building}, ${address}, CONTACT:${name}-> ${phoneNumber}`,
-      ]);
-      setShow(false);
-      setValues({ ...values, error: false, loading: true });
-      fetch(`${API}/api/user/${user._id}`, {
-        method: 'PUT',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          adresses: [
-            ...data,
-            `${building}, ${address}, CONTACT:${name}-> ${phoneNumber}`,
-          ],
-        }),
+    fetch(`${API}/api/user/${user._id}`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ addresses: newAddressArray })
+    })
+      .then(response => {
+        response.json().then(function (data) {
+          console.log(data);
+          setData(data.addresses);
+        });
       })
-        .then((response) => {
-          response.json().then(function (data) {
-            console.log(data);
-            setData(data.adresses);
-          });
-        })
-        .catch((err) => console.log(err));
-    } else {
-      setValues({ ...values, error: 'You cannot leave any field empty!' });
-    }
+      .catch(err => console.log(err));
   };
 
-  const { name, phoneNumber, building, address, error } = values;
-
-  const handleChange = (name) => (event) => {
-    setValues({ ...values, error: false, [name]: event.target.value });
+  const onSubmit = async ({ contactName, contactNumber, address }) => {
+    setData([...data, { contactName, contactNumber, address }]);
+    const newAddressArray = [...data, { contactName, contactNumber, address }];
+    fetch(`${API}/api/user/${user._id}`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        addresses: newAddressArray
+      })
+    })
+      .then(response => {
+        response.json().then(function (data) {
+          console.log(data);
+        });
+      })
+      .catch(err => console.log(err));
   };
-  console.log(data);
+
+  const { name, phoneNumber } = user;
+  console.log(phoneNumber);
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      contactName: name,
+      contactNumber: phoneNumber,
+      address: ''
+    },
+    // validationSchema,
+    onSubmit
+  });
+
   return (
     <>
-      <Wrapper style={{ display: 'block' }}>
-        <Addressmodal
-          show={show}
-          onHide={() => {
-            setShow(false);
-          }}
-        >
-          <form>
-            <div>{error}</div>
-            <div>
-              <label htmlFor="InputName">CONTACT PERSON NAME</label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={handleChange('name')}
-                value={name || ''}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="InputContact">CONTACT DETAIL</label>
-              <input
-                onChange={handleChange('phoneNumber')}
-                value={phoneNumber}
-                type="text"
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="InputBuilding">FLAT,FLOOR,BUILDING NAME*</label>
-              <input
-                onChange={handleChange('building')}
-                value={building || ''}
-                type="text"
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="InputAddress">ADDRESS*</label>
-              <input
-                onChange={handleChange('address')}
-                value={address}
-                type="text"
-                className="form-control"
-              />
-            </div>
+      <Addressmodal
+        show={show}
+        onHide={() => {
+          setShow(false);
+        }}
+      >
+        <form>
+          <TextField value={formik.values.contactName || ''} onChange={formik.handleChange} style={{ marginTop: '2vh' }} label="Full Name" fullWidth={true} id="contactName" variant="outlined" placeholder="Full Name" />
+          <TextField style={{ marginTop: '4vh' }} label="Mobile Number" value={formik.values.contactNumber} onChange={formik.handleChange} fullWidth={true} id="contactNumber" variant="outlined" placeholder="Mobile Number" />
+          <TextField style={{ marginTop: '4vh', marginBottom: '4vh' }} label="Address" value={formik.values.address} onChange={formik.handleChange} fullWidth={true} id="address" variant="outlined" placeholder="Address" />
 
-            <button onClick={onSubmit} className="btn btn-primary">
-              Submit
-            </button>
-            <p>{JSON.stringify(values)}</p>
-          </form>
-        </Addressmodal>
-        {/* <Row>
-          <Col lg={6} style={{ margin: 'auto', justifyContent: 'center' }}>
-            {data.map((address, index) => {
-              return (
-                <div key={index}>
-                  <Card
-                    style={{
-                      boxShadow: 'white 1px 1px 0px,rgba(0,0,0,0.3) 2px 0px 13px, rgba(0,0,0,0.3) 4px 10px 21px',
-                      margin: '2vw'
-                    }}
-                  >
-                    <button
-                      onClick={() => {
-                        deleteHandler(index);
-                      }}
-                    >
-                      delete
-                    </button>
+          <Button
+            fullWidth={true}
+            onClick={() => {
+              formik.handleSubmit();
+              setShow(false);
+            }}
+            style={{ backgroundColor: '#ec436f', color: 'white', marginBottom: '4vh' }}
+            className="btn btn-primary"
+          >
+            Save
+          </Button>
+        </form>
+      </Addressmodal>
+      <div style={{ width: '100%', fontSize: '14px' }}>
+        {width >= 780 && (
+          <Header>
+            <div style={{ fontSize: '18px', fontWeight: '800', marginTop: '1vh' }}>Saved Addresses</div>
+            <AddAddressButton onClick={() => setShow(true)}>
+              <div>+ Add new address</div>
+            </AddAddressButton>
+          </Header>
+        )}
 
-                    <p>{address}</p>
-                  </Card>
-                </div>
-              );
-            })} 
-          </Col>
-        </Row>  */}
-        <button onClick={() => setShow(true)}>Add new Address</button>
-      </Wrapper>
+        {width < 780 && (
+          <HeaderMobile>
+            <div>+ Add new address</div>
+          </HeaderMobile>
+        )}
+
+        {data.map(({ contactName, contactNumber, address }, index) => {
+          return (
+            <CardContainer key={index}>
+              <AddressCard>
+                <div style={{ fontWeight: '800', marginBottom: '2vh' }}>{contactName}</div>
+                <div>{address}</div>
+                <div style={{ marginBottom: '2vh' }}>Aurangabad</div>
+                <div>Mobile: {contactNumber}</div>
+              </AddressCard>
+              <RemoveEditButton>
+                <ButtonText>Edit</ButtonText>
+                <div style={{ width: '1px', backgroundColor: '#eaeaec', height: '41px', marginTop: '5px' }}></div>
+                <ButtonText onClick={() => deleteHandler(index)}>Remove</ButtonText>
+              </RemoveEditButton>
+            </CardContainer>
+          );
+        })}
+      </div>
     </>
   );
 };

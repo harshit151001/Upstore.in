@@ -25,20 +25,13 @@ const Categorylist = () => {
     <Section>
       <Title>
         <Header>Shop for...</Header>
-        <img
-          src={bos}
-          alt="icon"
-          style={{ width: '6vw', minWidth: '50px', marginTop: '8px' }}
-        />
+        <img src={bos} alt="icon" style={{ width: '6vw', minWidth: '50px', marginTop: '8px' }} />
       </Title>
       <Box>
         {console.log(categorydata)}
         {categorydata.map(({ name, imagePath, _id }) => {
           return (
-            <Link
-              style={{ textDecoration: 'none' }}
-              to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
-            >
+            <Link style={{ textDecoration: 'none' }} to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}>
               <Categorycard name={name} path={imagePath} key={_id} />
             </Link>
           );

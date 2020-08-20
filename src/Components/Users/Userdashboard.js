@@ -1,100 +1,96 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
+import { isAutheticated } from '../../auth/helper/index';
 import styled from 'styled-components';
-import { Col } from 'react-bootstrap';
 import Userdetailsform from './Userdetailsform';
 import Myorders from './Myorders';
 import Addressform from './Addressform';
-import UserNav from '../Navbar/UserNav';
+import Overview from './Overview';
+import EditDetails from './EditDetails';
 import useWindowDimensions from '../../customapis/useWindowDimensions';
 
+const HeaderDiv = styled.div`
+  border-bottom: 1px solid #d4d5d9;
+  padding: 15px 0px;
+  text-align: left;
+`;
+
+const Text = styled.p`
+  padding: 20px 0px;
+  width: 145px;
+
+  margin: 0;
+`;
+
 const Wrapper = styled.div`
-  width: 100vw;
-  min-height: 91vh;
+  @media (min-width: 780px) {
+    margin: 4% auto;
+    width: 90%;
+  }
+  @media (min-width: 1050px) {
+    max-width: 980px;
+  }
+`;
+
+const Sidenav = styled.div`
+  vertical-align: top;
+
+  text-align: left;
+
+  border-right: 1px solid #d4d5d9;
+`;
+const Main = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
+  flex-wrap: wrap;
+  width: 100%;
+  @media (min-width: 780px) {
+    margin: 15px;
+    padding: 10px;
+  }
 `;
 
-const MenuItems = styled.div`
-  font-size: 50px;
-  color: #ffffff;
-  display: block;
-  transition: 0.3s;
-`;
-
-const Userdashboard = (props) => {
-  const { width } = useWindowDimensions();
+const Userdashboard = props => {
   console.log(props.match.path);
-
+  const { width } = useWindowDimensions();
+  const { user } = isAutheticated();
   return (
-    <div className="row" style={{ justifyContent: 'center' }}>
-      <div>
-        <UserNav
-          initialHeight={width < 990 ? '0' : '100%'}
-          finalHeight={'100%'}
-          height={'100%'}
-          textAlign={width < 990 ? 'center' : 'left'}
-          marginTop={''}
-          finalWidth={width > 990 ? '30%' : ''}
-          initialWidth={width < 990 ? '0' : '30%'}
-        >
-          <Link style={{ textDecoration: 'none' }} to="/userdashboard/details">
-            <MenuItems style={{ textColor: '#ec436f' }}>Details</MenuItems>
-          </Link>
-          <Link style={{ textDecoration: 'none' }} to="/userdashboard/orders">
-            <MenuItems>Orders</MenuItems>
-          </Link>
-          <Link style={{ textDecoration: 'none' }} to="/userdashboard/address">
-            <MenuItems>Addresses</MenuItems>
-          </Link>
-          <Link style={{ textDecoration: 'none' }} to="/support">
-            <MenuItems>Support</MenuItems>
-          </Link>
-        </UserNav>
-      </div>
+    <Wrapper>
+      {width >= 780 && (
+        <HeaderDiv>
+          <div style={{ fontSize: '18px', fontWeight: '800' }}>Account </div>
+          <div>{user.name || user.phoneNumber}</div>
+        </HeaderDiv>
+      )}
+      <div style={{ display: 'flex' }}>
+        {width >= 780 && (
+          <Sidenav>
+            <Link style={{ textDecoration: 'none' }} to="/userdashboard">
+              <Text>Overview</Text>
+            </Link>
+            <Link style={{ textDecoration: 'none' }} to="/userdashboard/details">
+              <Text>Details</Text>
+            </Link>
+            <Link style={{ textDecoration: 'none' }} to="/userdashboard/orders">
+              <Text>Orders</Text>
+            </Link>
+            <Link style={{ textDecoration: 'none' }} to="/userdashboard/address">
+              <Text>Address</Text>
+            </Link>
+            <Link style={{ textDecoration: 'none' }} to="/support">
+              <p>Support</p>
+            </Link>
+          </Sidenav>
+        )}
 
-      <Wrapper>
-        <Col
-          lg={8}
-          md={10}
-          sm={12}
-          style={
-            props.match.path === '/userdashboard/details' ||
-            props.match.path === '/userdashboard'
-              ? { display: 'inline-block' }
-              : { display: 'none' }
-          }
-        >
-          <Userdetailsform />
-        </Col>
-        <Col
-          lg={8}
-          md={10}
-          sm={12}
-          style={
-            props.match.path === '/userdashboard/orders'
-              ? { display: 'inline-block' }
-              : { display: 'none' }
-          }
-        >
-          <Myorders />
-        </Col>
-        <Col
-          lg={8}
-          md={10}
-          sm={12}
-          style={
-            props.match.path === '/userdashboard/address'
-              ? { display: 'inline-block' }
-              : { display: 'none' }
-          }
-        >
-          <Addressform />
-        </Col>
-      </Wrapper>
-    </div>
+        <Main>
+          {props.match.path === '/userdashboard' && <Overview />}
+          {props.match.path === '/userdashboard/details' && <Userdetailsform />}
+          {props.match.path === '/userdashboard/details/edit' && <EditDetails />}
+          {props.match.path === '/userdashboard/orders' && <Myorders />}
+          {props.match.path === '/userdashboard/address' && <Addressform />}
+        </Main>
+      </div>
+    </Wrapper>
   );
 };
 
