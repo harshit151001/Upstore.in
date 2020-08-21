@@ -208,7 +208,6 @@ const Mobile = () => {
         {categorydata.map(({ name, _id }) => {
           return (
             <Link
-              className="deschhjb"
               to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
               style={{
                 textDecoration: 'none',
@@ -310,7 +309,7 @@ const Mobile = () => {
               <span className="mr-2">
                 <KeyboardBackspaceRoundedIcon
                   onClick={closeSearch}
-                  style={{ fontSize: '35px' }}
+                  style={{ fontSize: '35px', marginTop: '0px' }}
                 />
               </span>
               <form action="">
@@ -318,7 +317,7 @@ const Mobile = () => {
                   ref={inputRef}
                   value={enteredFilter}
                   onChange={(event) => setEnteredFilter(event.target.value)}
-                  style={{ width: '100%', fontSize: '26px' }}
+                  style={{ width: '100%', fontSize: '26px', top: '28px' }}
                   placeholder="search for products..."
                   inputProps={{ 'aria-label': 'description' }}
                 />
