@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
@@ -6,15 +6,11 @@ import OrderImage from '../Images/profile-orders.png';
 import AddressImage from '../Images/profile-address.png';
 import EditImage from '../Images/profile-edit.png';
 import useWindowDimensions from '../../customapis/useWindowDimensions';
-import {
-  PreviousButton,
-  OrderWrapper,
-  Card as MobileCard,
-  CardContent as MobileCardContent,
-  DetailsWrapper,
-} from './Myorders';
+import { signout } from '../../auth/helper/index';
+import { PreviousButton, OrderWrapper, Card as MobileCard, CardContent as MobileCardContent, DetailsWrapper } from './Myorders';
 import UserImage from '../Images/userAccount.png';
 import GoToIcon from '../Images/arrow.png';
+import { dispatchContext } from '../../Statemanagement/Statecontext';
 
 const MobileCardImage = styled.img`
   height: 4vh;
@@ -80,36 +76,24 @@ const CardContent = styled.div`
   padding: 0px 12px;
 `;
 
-const Overview = (props) => {
+const Overview = props => {
+  const dispatchLogin = useContext(dispatchContext);
   const { width } = useWindowDimensions();
   return (
     <>
       {width < 780 && (
         <MobileJumbotronWrapper>
           <MobileJumbotron>
-            <img
-              style={{ height: '130px', marginTop: '6vh' }}
-              src={UserImage}
-              alt=""
-            />
+            <img style={{ height: '130px', marginTop: '6vh' }} src={UserImage} alt="" />
           </MobileJumbotron>
         </MobileJumbotronWrapper>
       )}
       {width >= 780 && (
         <Jumbotron>
           <PaddedContainer>
-            <img
-              style={{ height: '130px', width: '130px' }}
-              src={UserImage}
-              alt="User"
-            />
-            <Link
-              style={{ textDecoration: 'none' }}
-              to="/userdashboard/details/edit"
-            >
-              <EditProfileButtom style={{ height: '25px' }}>
-                Edit Profile
-              </EditProfileButtom>
+            <img style={{ height: '130px', width: '130px' }} src={UserImage} alt="User" />
+            <Link style={{ textDecoration: 'none' }} to="/userdashboard/details/edit">
+              <EditProfileButtom style={{ height: '25px' }}>Edit Profile</EditProfileButtom>
             </Link>
           </PaddedContainer>
         </Jumbotron>
@@ -117,95 +101,71 @@ const Overview = (props) => {
 
       {width < 780 && (
         <OrderWrapper>
-          <MobileCard
-            onClick={() => props.history.push('/userdashboard/orders')}
-          >
+          <MobileCard onClick={() => props.history.push('/userdashboard/orders')}>
             <MobileCardContent>
               <MobileCardImage src={OrderImage} alt="Product" />
               <DetailsWrapper style={{ margin: 'auto' }}>
                 <PreviousButton style={{ marginTop: '1vh' }}>
                   {' '}
-                  <img
-                    style={{ height: '12px' }}
-                    src={GoToIcon}
-                    alt="Go to svg"
-                  />{' '}
+                  <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
                 </PreviousButton>
                 <div
                   style={{
                     color: '#3E4152',
                     fontWeight: '800',
                     textTransform: 'uppercase',
-                    marginTop: '1vh',
+                    marginTop: '1vh'
                   }}
                 >
                   Orders
                 </div>
-                <div style={{ color: '#7e818c', fontSize: '14px' }}>
-                  View recent orders
-                </div>
+                <div style={{ color: '#7e818c', fontSize: '14px' }}>View recent orders</div>
               </DetailsWrapper>
             </MobileCardContent>
           </MobileCard>
 
-          <MobileCard
-            onClick={() => props.history.push('/userdashboard/address')}
-          >
+          <MobileCard onClick={() => props.history.push('/userdashboard/address')}>
             <MobileCardContent>
               <MobileCardImage src={AddressImage} alt="Product" />
               <DetailsWrapper style={{ margin: 'auto' }}>
                 <PreviousButton style={{ marginTop: '1vh' }}>
                   {' '}
-                  <img
-                    style={{ height: '12px' }}
-                    src={GoToIcon}
-                    alt="Go to svg"
-                  />{' '}
+                  <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
                 </PreviousButton>
                 <div
                   style={{
                     color: '#3E4152',
                     fontWeight: '800',
                     textTransform: 'uppercase',
-                    marginTop: '1vh',
+                    marginTop: '1vh'
                   }}
                 >
                   Address
                 </div>
-                <div style={{ color: '#7e818c', fontSize: '14px' }}>
-                  Save addresses
-                </div>
+                <div style={{ color: '#7e818c', fontSize: '14px' }}>Save addresses</div>
               </DetailsWrapper>
             </MobileCardContent>
           </MobileCard>
 
-          <MobileCard
-            onClick={() => props.history.push('/userdashboard/details/edit')}
-          >
+          <MobileCard onClick={() => props.history.push('/userdashboard/details/edit')}>
             <MobileCardContent>
               <MobileCardImage src={EditImage} alt="Product" />
               <DetailsWrapper style={{ margin: 'auto' }}>
                 <PreviousButton style={{ marginTop: '1vh' }}>
                   {' '}
-                  <img
-                    style={{ height: '12px' }}
-                    src={GoToIcon}
-                    alt="Go to svg"
-                  />{' '}
+                  <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
                 </PreviousButton>
                 <div
                   style={{
                     color: '#3E4152',
                     fontWeight: '800',
                     textTransform: 'uppercase',
-                    marginTop: '1vh',
+                    marginTop: '1vh'
                   }}
                 >
                   Profile
                 </div>
-                <div style={{ color: '#7e818c', fontSize: '14px' }}>
-                  View or edit your profile
-                </div>
+                <div style={{ color: '#7e818c', fontSize: '14px' }}>View or edit your profile</div>
               </DetailsWrapper>
             </MobileCardContent>
           </MobileCard>
@@ -216,25 +176,19 @@ const Overview = (props) => {
               <DetailsWrapper style={{ margin: 'auto' }}>
                 <PreviousButton style={{ marginTop: '1vh' }}>
                   {' '}
-                  <img
-                    style={{ height: '12px' }}
-                    src={GoToIcon}
-                    alt="Go to svg"
-                  />{' '}
+                  <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
                 </PreviousButton>
                 <div
                   style={{
                     color: '#3E4152',
                     fontWeight: '800',
                     textTransform: 'uppercase',
-                    marginTop: '1vh',
+                    marginTop: '1vh'
                   }}
                 >
                   Support
                 </div>
-                <div style={{ color: '#7e818c', fontSize: '14px' }}>
-                  Contact us for any queries you have
-                </div>
+                <div style={{ color: '#7e818c', fontSize: '14px' }}>Contact us for any queries you have</div>
               </DetailsWrapper>
             </MobileCardContent>
           </MobileCard>
@@ -242,8 +196,10 @@ const Overview = (props) => {
             <Button
               variant="contained"
               onClick={async () => {
-                // logout code
-                props.history.push('/');
+                signout(() => {
+                  dispatchLogin({ type: 'logout' });
+                  props.history.push('/');
+                });
               }}
               style={{
                 backgroundColor: '#ec436f',
@@ -251,7 +207,7 @@ const Overview = (props) => {
                 marginTop: '3vh',
                 width: '95%',
                 padding: '10px',
-                fontWeight: '800',
+                fontWeight: '800'
               }}
             >
               Logout
@@ -271,7 +227,7 @@ const Overview = (props) => {
                   style={{
                     fontSize: '12px',
                     color: '#94969F',
-                    textAlign: 'center',
+                    textAlign: 'center'
                   }}
                 >
                   View recent orders
@@ -287,7 +243,7 @@ const Overview = (props) => {
                   style={{
                     fontSize: '12px',
                     color: '#94969F',
-                    textAlign: 'center',
+                    textAlign: 'center'
                   }}
                 >
                   Save addresses{' '}
@@ -304,7 +260,7 @@ const Overview = (props) => {
                   style={{
                     fontSize: '12px',
                     color: '#94969F',
-                    textAlign: 'center',
+                    textAlign: 'center'
                   }}
                 >
                   View or edit your profile
@@ -320,7 +276,7 @@ const Overview = (props) => {
                   style={{
                     fontSize: '12px',
                     color: '#94969F',
-                    textAlign: 'center',
+                    textAlign: 'center'
                   }}
                 >
                   Contact us for any queries you have
@@ -331,15 +287,17 @@ const Overview = (props) => {
           <Button
             variant="contained"
             onClick={async () => {
-              // logout code
-              props.history.push('/');
+              signout(() => {
+                dispatchLogin({ type: 'logout' });
+                props.history.push('/');
+              });
             }}
             style={{
               backgroundColor: '#ec436f',
               color: 'white',
               width: '250px',
               height: '48px',
-              marginTop: '4vh',
+              marginTop: '4vh'
             }}
           >
             Logout

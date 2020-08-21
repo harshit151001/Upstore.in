@@ -152,9 +152,9 @@ const Features = () => {
               flexDirection: 'column'
             }}
           >
-            <Quote>hygiene</Quote>
+            <Quote>Anywhere in City </Quote>
             <strong className="mt-2" style={{ color: '#5f5f5f' }}>
-              It is a long established fact that a reader will be distracted by point of using Lorem Ipsum
+              No matter where you are, we have got you covered
             </strong>
           </div>
         </Card>
@@ -186,9 +186,9 @@ const Features = () => {
               flexDirection: 'column'
             }}
           >
-            <Quote>hygiene</Quote>
+            <Quote>Sterilized Packaging</Quote>
             <strong className="mt-2" style={{ color: '#5f5f5f' }}>
-              of a page when looking at its la Ipsum
+              We sanitize your package and practise contactless delivery
             </strong>
           </div>
         </Card>

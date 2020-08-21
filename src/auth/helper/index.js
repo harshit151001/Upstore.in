@@ -1,14 +1,14 @@
 import API from '../../backend';
 
-export const OTPVerify = async (data) => {
+export const OTPVerify = async data => {
   try {
     const response = await fetch(`${API}/api/verifyOTP`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
     return response.json();
   } catch (err) {
@@ -16,15 +16,15 @@ export const OTPVerify = async (data) => {
   }
 };
 
-export const postNumber = async (phoneNumber) => {
+export const postNumber = async phoneNumber => {
   try {
     const response = await fetch(`${API}/api/getNumber`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(phoneNumber),
+      body: JSON.stringify(phoneNumber)
     });
     return response.json();
   } catch (err) {
@@ -39,14 +39,13 @@ export const authenticate = async (data, next) => {
   }
 };
 
-export const signout = async (next) => {
+export const signout = async next => {
   if (typeof window !== 'undefined') {
     localStorage.removeItem('Upstorejwt');
     next();
-
     try {
-      const response = await fetch(`${API}/signout`, {
-        method: 'GET',
+      const response = await fetch(`${API}/api/signout`, {
+        method: 'GET'
       });
       return console.log(response);
     } catch (err) {
