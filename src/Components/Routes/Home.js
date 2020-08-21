@@ -16,7 +16,7 @@ const Home = () => {
     window.scroll(0, 0);
     const timer = setTimeout(() => {
       setModalShow(true);
-    }, 10000);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 

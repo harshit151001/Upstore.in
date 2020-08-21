@@ -8,8 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/core/styles';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -47,21 +45,17 @@ const DialogTitle = withStyles(styles)((props) => {
 });
 
 const Loginmodal = ({ show, onhide }) => {
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <>
       <Dialog
         open={show}
         TransitionComponent={Transition}
+        fullWidth={true}
+        maxWidth="xs"
         keepMounted
         onClose={onhide}
-        fullScreen={fullScreen}
-        fullWidth="xs"
-        maxWidth="xs"
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
-        style={{ bottom: '0' }}
       >
         <DialogTitle id="customized-dialog-title" onClose={onhide}>
           Login or Signup
