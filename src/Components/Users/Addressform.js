@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as Yup from 'yup';
+//import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import Addressmodal from '../../Components/Modals/Addressmodal';
 import API from '../../backend';
@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import useWindowDimensions from '../../customapis/useWindowDimensions';
-import { buildQueries } from '@testing-library/react';
+//import { buildQueries } from '@testing-library/react';
 
 const ButtonText = styled.div`
   cursor: pointer;
@@ -72,7 +72,7 @@ const AddAddressButton = styled.div`
   cursor: pointer;
 `;
 
-const Addressform = props => {
+const Addressform = (props) => {
   const { width } = useWindowDimensions();
   const { token, user } = isAutheticated();
   const [show, setShow] = useState(false);
@@ -85,18 +85,22 @@ const Addressform = props => {
       fetch(`${API}/api/user/${user._id}`, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       })
-        .then(response => {
+        .then((response) => {
           response.json().then(function (data) {
             console.log(data);
-            const { addresses, contactName: name, phoneNumber } = data;
+            const {
+              addresses,
+              // eslint-disable-next-line
+              contactName: { name, phoneNumber },
+            } = data;
 
             setData(addresses);
           });
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
 
       if (mounted) {
         window.scroll(0, 0);
@@ -109,7 +113,7 @@ const Addressform = props => {
     };
   }, []);
 
-  const deleteHandler = index => {
+  const deleteHandler = (index) => {
     let newAddressArray = data;
     newAddressArray.splice(index, 1);
 
@@ -118,17 +122,17 @@ const Addressform = props => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ addresses: newAddressArray })
+      body: JSON.stringify({ addresses: newAddressArray }),
     })
-      .then(response => {
+      .then((response) => {
         response.json().then(function (data) {
           console.log(data);
           setData(data.addresses);
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   const onSubmit = async ({ contactName, contactNumber, address }) => {
@@ -139,18 +143,18 @@ const Addressform = props => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        addresses: newAddressArray
-      })
+        addresses: newAddressArray,
+      }),
     })
-      .then(response => {
+      .then((response) => {
         response.json().then(function (data) {
           console.log(data);
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   const { name, phoneNumber } = user;
@@ -160,10 +164,10 @@ const Addressform = props => {
     initialValues: {
       contactName: name,
       contactNumber: phoneNumber,
-      address: ''
+      address: '',
     },
     // validationSchema,
-    onSubmit
+    onSubmit,
   });
 
   return (
@@ -175,9 +179,36 @@ const Addressform = props => {
         }}
       >
         <form>
-          <TextField value={formik.values.contactName || ''} onChange={formik.handleChange} style={{ marginTop: '2vh' }} label="Full Name" fullWidth={true} id="contactName" variant="outlined" placeholder="Full Name" />
-          <TextField style={{ marginTop: '4vh' }} label="Mobile Number" value={formik.values.contactNumber} onChange={formik.handleChange} fullWidth={true} id="contactNumber" variant="outlined" placeholder="Mobile Number" />
-          <TextField style={{ marginTop: '4vh', marginBottom: '4vh' }} label="Address" value={formik.values.address} onChange={formik.handleChange} fullWidth={true} id="address" variant="outlined" placeholder="Address" />
+          <TextField
+            value={formik.values.contactName || ''}
+            onChange={formik.handleChange}
+            style={{ marginTop: '2vh' }}
+            label="Full Name"
+            fullWidth={true}
+            id="contactName"
+            variant="outlined"
+            placeholder="Full Name"
+          />
+          <TextField
+            style={{ marginTop: '4vh' }}
+            label="Mobile Number"
+            value={formik.values.contactNumber}
+            onChange={formik.handleChange}
+            fullWidth={true}
+            id="contactNumber"
+            variant="outlined"
+            placeholder="Mobile Number"
+          />
+          <TextField
+            style={{ marginTop: '4vh', marginBottom: '4vh' }}
+            label="Address"
+            value={formik.values.address}
+            onChange={formik.handleChange}
+            fullWidth={true}
+            id="address"
+            variant="outlined"
+            placeholder="Address"
+          />
 
           <Button
             fullWidth={true}
@@ -185,7 +216,11 @@ const Addressform = props => {
               formik.handleSubmit();
               setShow(false);
             }}
-            style={{ backgroundColor: '#ec436f', color: 'white', marginBottom: '4vh' }}
+            style={{
+              backgroundColor: '#ec436f',
+              color: 'white',
+              marginBottom: '4vh',
+            }}
             className="btn btn-primary"
           >
             Save
@@ -195,7 +230,11 @@ const Addressform = props => {
       <div style={{ width: '100%', fontSize: '14px' }}>
         {width >= 780 && (
           <Header>
-            <div style={{ fontSize: '18px', fontWeight: '800', marginTop: '1vh' }}>Saved Addresses</div>
+            <div
+              style={{ fontSize: '18px', fontWeight: '800', marginTop: '1vh' }}
+            >
+              Saved Addresses
+            </div>
             <AddAddressButton onClick={() => setShow(true)}>
               <div>+ Add new address</div>
             </AddAddressButton>
@@ -212,15 +251,26 @@ const Addressform = props => {
           return (
             <CardContainer key={index}>
               <AddressCard>
-                <div style={{ fontWeight: '800', marginBottom: '2vh' }}>{contactName}</div>
+                <div style={{ fontWeight: '800', marginBottom: '2vh' }}>
+                  {contactName}
+                </div>
                 <div>{address}</div>
                 <div style={{ marginBottom: '2vh' }}>Aurangabad</div>
                 <div>Mobile: {contactNumber}</div>
               </AddressCard>
               <RemoveEditButton>
                 <ButtonText>Edit</ButtonText>
-                <div style={{ width: '1px', backgroundColor: '#eaeaec', height: '41px', marginTop: '5px' }}></div>
-                <ButtonText onClick={() => deleteHandler(index)}>Remove</ButtonText>
+                <div
+                  style={{
+                    width: '1px',
+                    backgroundColor: '#eaeaec',
+                    height: '41px',
+                    marginTop: '5px',
+                  }}
+                ></div>
+                <ButtonText onClick={() => deleteHandler(index)}>
+                  Remove
+                </ButtonText>
               </RemoveEditButton>
             </CardContainer>
           );

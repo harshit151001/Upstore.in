@@ -20,6 +20,7 @@ import logo from '../Images/UpLogoFinal.png';
 /*********************************************************************/
 const DesktopNav = styled.div`
   display: flex;
+  min-height: 70px;
   width: 100vw;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(5px);
@@ -345,7 +346,7 @@ function Desktop(props) {
                   alignItems: 'center',
                   padding: '0px 0px 0px 8px',
                   border: 'none',
-                  outline:'none'
+                  outline: 'none',
                 }}
                 key={_id}
               >

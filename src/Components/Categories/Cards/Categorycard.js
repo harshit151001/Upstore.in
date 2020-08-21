@@ -3,14 +3,11 @@ import API from '../../../backend';
 import styled from 'styled-components';
 
 const Card = styled.div`
-  box-shadow: rgba(235, 235, 235, 0.5) 0px 0px 6px 2px;
+  box-shadow: rgba(220, 220, 220, 0.8) 0px 0px 6px 2px;
   border-color: rgb(224, 224, 224);
   border: none !important;
   border-image: initial;
   @media (min-width: 1080px) {
-    box-shadow: 0 1px 1px rgba(235, 235, 235, 01),
-      0 2px 2px rgba(235, 235, 235, 0.9), 0 4px 4px rgba(235, 235, 235, 0.8),
-      0 8px 8px rgba(235, 235, 235, 0.7), 0 16px 16px rgba(235, 235, 235, 0.6);
     padding: 24px;
     width: 24vw;
     display: flex;
@@ -31,7 +28,7 @@ const Card = styled.div`
     border-radius: 3px;
   }
   @media (max-width: 768px) {
-    box-shadow: rgba(235, 235, 235, 0.5) 2px 2px 6px 0px;
+    box-shadow: rgba(220, 220, 220, 0.8) 2px 2px 6px 0px;
     width: 30vw;
     height: 30vw;
     justify-content: center;

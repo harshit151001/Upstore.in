@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import API from '../../backend';
 import { isAutheticated } from '../../auth/helper/index';
 import styled from 'styled-components';
-import * as Yup from 'yup';
+//import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import CorrectSvg from '../Images/correct.svg';
@@ -27,74 +27,73 @@ const MobileNumberDiv = styled.div`
   background-color: rgba(3, 166, 133, 0.15);
   border: solid 1px rgba(3, 166, 133, 0.15);
 `;
-const EditDetails = props => {
-  const { token, user } = isAutheticated();
+const EditDetails = (props) => {
+  const {
+    token,
+    user: { _id },
+  } = isAutheticated();
 
   const [values, setValues] = useState({
     name: '',
     email: '',
-
-    phoneNumber: ''
+    phoneNumber: '',
   });
 
   useEffect(() => {
     let mounted = true;
-
     const loadData = async () => {
-      fetch(`${API}/api/user/${user._id}`, {
+      fetch(`${API}/api/user/${_id}`, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       })
-        .then(response => {
+        .then((response) => {
           response.json().then(function (data) {
             console.log(data);
             const { name, phoneNumber, email } = data;
-            setValues(values => {
+            setValues((values) => {
               return {
                 ...values,
                 name,
                 email,
-                phoneNumber
+                phoneNumber,
               };
             });
           });
         })
-        .catch(err => console.log(err));
-
-      if (mounted) {
-        window.scroll(0, 0);
-      }
+        .catch((err) => console.log(err));
     };
-
-    loadData();
+    if (mounted) {
+      window.scroll(0, 0);
+      loadData();
+    }
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [token, _id]);
 
   const onSubmit = async ({ name, email }) => {
     console.log(JSON.stringify({ name, email }));
-    fetch(`${API}/api/user/${user._id}`, {
+    fetch(`${API}/api/user/${_id}`, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         name,
-        email
-      })
+        email,
+      }),
     })
-      .then(response => {
+      .then((response) => {
         response.json().then(function (data) {
           console.log(data);
           props.history.push('/userdashboard/details');
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   //eslint-disable-next-line
@@ -104,10 +103,10 @@ const EditDetails = props => {
     enableReinitialize: true,
     initialValues: {
       name,
-      email
+      email,
     },
     // validationSchema,
-    onSubmit
+    onSubmit,
   });
   console.log(formik.values.email);
 
@@ -116,22 +115,50 @@ const EditDetails = props => {
       <DetailsCard style={{ width: '80%', margin: 'auto' }}>
         <HeaderDiv>Edit Profile</HeaderDiv>
         <MobileNumberDiv>
-          <div style={{ fontSize: '12px', color: 'rgba(39, 43, 65, 0.7)' }}>Mobile Number*</div>
+          <div style={{ fontSize: '12px', color: 'rgba(39, 43, 65, 0.7)' }}>
+            Mobile Number*
+          </div>
           <div style={{ fontSize: '14px' }}>
             {phoneNumber}
-            <img style={{ width: 'auto', height: '18px' }} src={CorrectSvg} alt="Verified Icon" />
+            <img
+              style={{ width: 'auto', height: '18px' }}
+              src={CorrectSvg}
+              alt="Verified Icon"
+            />
           </div>
         </MobileNumberDiv>
         <form>
-          <TextField value={formik.values.name} onChange={formik.handleChange} style={{ marginTop: '2vh' }} label="Full Name" fullWidth={true} id="name" variant="outlined" placeholder="Full Name" />
-          <TextField style={{ marginTop: '4vh', marginBottom: '4vh' }} label="Email" value={formik.values.email} onChange={formik.handleChange} fullWidth={true} id="email" variant="outlined" placeholder="Email" />
+          <TextField
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            style={{ marginTop: '2vh' }}
+            label="Full Name"
+            fullWidth={true}
+            id="name"
+            variant="outlined"
+            placeholder="Full Name"
+          />
+          <TextField
+            style={{ marginTop: '4vh', marginBottom: '4vh' }}
+            label="Email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            fullWidth={true}
+            id="email"
+            variant="outlined"
+            placeholder="Email"
+          />
 
           <Button
             fullWidth={true}
             onClick={() => {
               formik.handleSubmit();
             }}
-            style={{ backgroundColor: '#ec436f', color: 'white', marginBottom: '4vh' }}
+            style={{
+              backgroundColor: '#ec436f',
+              color: 'white',
+              marginBottom: '4vh',
+            }}
             className="btn btn-primary"
           >
             Save Details

@@ -6,7 +6,13 @@ import OrderImage from '../Images/profile-orders.png';
 import AddressImage from '../Images/profile-address.png';
 import EditImage from '../Images/profile-edit.png';
 import useWindowDimensions from '../../customapis/useWindowDimensions';
-import { PreviousButton, OrderWrapper, Card as MobileCard, CardContent as MobileCardContent, DetailsWrapper } from './Myorders';
+import {
+  PreviousButton,
+  OrderWrapper,
+  Card as MobileCard,
+  CardContent as MobileCardContent,
+  DetailsWrapper,
+} from './Myorders';
 import UserImage from '../Images/userAccount.png';
 import GoToIcon from '../Images/arrow.png';
 
@@ -74,23 +80,36 @@ const CardContent = styled.div`
   padding: 0px 12px;
 `;
 
-const Overview = props => {
+const Overview = (props) => {
   const { width } = useWindowDimensions();
   return (
     <>
       {width < 780 && (
         <MobileJumbotronWrapper>
           <MobileJumbotron>
-            <img style={{ height: '130px', marginTop: '6vh' }} src={UserImage} alt="" />
+            <img
+              style={{ height: '130px', marginTop: '6vh' }}
+              src={UserImage}
+              alt=""
+            />
           </MobileJumbotron>
         </MobileJumbotronWrapper>
       )}
       {width >= 780 && (
         <Jumbotron>
           <PaddedContainer>
-            <img style={{ height: '130px', width: '130px' }} src={UserImage} alt="User Image" />
-            <Link style={{ textDecoration: 'none' }} to="/userdashboard/details/edit">
-              <EditProfileButtom style={{ height: '25px' }}>Edit Profile</EditProfileButtom>
+            <img
+              style={{ height: '130px', width: '130px' }}
+              src={UserImage}
+              alt="User"
+            />
+            <Link
+              style={{ textDecoration: 'none' }}
+              to="/userdashboard/details/edit"
+            >
+              <EditProfileButtom style={{ height: '25px' }}>
+                Edit Profile
+              </EditProfileButtom>
             </Link>
           </PaddedContainer>
         </Jumbotron>
@@ -98,44 +117,95 @@ const Overview = props => {
 
       {width < 780 && (
         <OrderWrapper>
-          <MobileCard onClick={() => props.history.push('/userdashboard/orders')}>
+          <MobileCard
+            onClick={() => props.history.push('/userdashboard/orders')}
+          >
             <MobileCardContent>
               <MobileCardImage src={OrderImage} alt="Product" />
               <DetailsWrapper style={{ margin: 'auto' }}>
                 <PreviousButton style={{ marginTop: '1vh' }}>
                   {' '}
-                  <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
+                  <img
+                    style={{ height: '12px' }}
+                    src={GoToIcon}
+                    alt="Go to svg"
+                  />{' '}
                 </PreviousButton>
-                <div style={{ color: '#3E4152', fontWeight: '800', textTransform: 'uppercase', marginTop: '1vh' }}>Orders</div>
-                <div style={{ color: '#7e818c', fontSize: '14px' }}>View recent orders</div>
+                <div
+                  style={{
+                    color: '#3E4152',
+                    fontWeight: '800',
+                    textTransform: 'uppercase',
+                    marginTop: '1vh',
+                  }}
+                >
+                  Orders
+                </div>
+                <div style={{ color: '#7e818c', fontSize: '14px' }}>
+                  View recent orders
+                </div>
               </DetailsWrapper>
             </MobileCardContent>
           </MobileCard>
 
-          <MobileCard onClick={() => props.history.push('/userdashboard/address')}>
+          <MobileCard
+            onClick={() => props.history.push('/userdashboard/address')}
+          >
             <MobileCardContent>
               <MobileCardImage src={AddressImage} alt="Product" />
               <DetailsWrapper style={{ margin: 'auto' }}>
                 <PreviousButton style={{ marginTop: '1vh' }}>
                   {' '}
-                  <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
+                  <img
+                    style={{ height: '12px' }}
+                    src={GoToIcon}
+                    alt="Go to svg"
+                  />{' '}
                 </PreviousButton>
-                <div style={{ color: '#3E4152', fontWeight: '800', textTransform: 'uppercase', marginTop: '1vh' }}>Address</div>
-                <div style={{ color: '#7e818c', fontSize: '14px' }}>Save addresses</div>
+                <div
+                  style={{
+                    color: '#3E4152',
+                    fontWeight: '800',
+                    textTransform: 'uppercase',
+                    marginTop: '1vh',
+                  }}
+                >
+                  Address
+                </div>
+                <div style={{ color: '#7e818c', fontSize: '14px' }}>
+                  Save addresses
+                </div>
               </DetailsWrapper>
             </MobileCardContent>
           </MobileCard>
 
-          <MobileCard onClick={() => props.history.push('/userdashboard/details/edit')}>
+          <MobileCard
+            onClick={() => props.history.push('/userdashboard/details/edit')}
+          >
             <MobileCardContent>
               <MobileCardImage src={EditImage} alt="Product" />
               <DetailsWrapper style={{ margin: 'auto' }}>
                 <PreviousButton style={{ marginTop: '1vh' }}>
                   {' '}
-                  <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
+                  <img
+                    style={{ height: '12px' }}
+                    src={GoToIcon}
+                    alt="Go to svg"
+                  />{' '}
                 </PreviousButton>
-                <div style={{ color: '#3E4152', fontWeight: '800', textTransform: 'uppercase', marginTop: '1vh' }}>Profile</div>
-                <div style={{ color: '#7e818c', fontSize: '14px' }}>View or edit your profile</div>
+                <div
+                  style={{
+                    color: '#3E4152',
+                    fontWeight: '800',
+                    textTransform: 'uppercase',
+                    marginTop: '1vh',
+                  }}
+                >
+                  Profile
+                </div>
+                <div style={{ color: '#7e818c', fontSize: '14px' }}>
+                  View or edit your profile
+                </div>
               </DetailsWrapper>
             </MobileCardContent>
           </MobileCard>
@@ -146,10 +216,25 @@ const Overview = props => {
               <DetailsWrapper style={{ margin: 'auto' }}>
                 <PreviousButton style={{ marginTop: '1vh' }}>
                   {' '}
-                  <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
+                  <img
+                    style={{ height: '12px' }}
+                    src={GoToIcon}
+                    alt="Go to svg"
+                  />{' '}
                 </PreviousButton>
-                <div style={{ color: '#3E4152', fontWeight: '800', textTransform: 'uppercase', marginTop: '1vh' }}>Support</div>
-                <div style={{ color: '#7e818c', fontSize: '14px' }}>Contact us for any queries you have</div>
+                <div
+                  style={{
+                    color: '#3E4152',
+                    fontWeight: '800',
+                    textTransform: 'uppercase',
+                    marginTop: '1vh',
+                  }}
+                >
+                  Support
+                </div>
+                <div style={{ color: '#7e818c', fontSize: '14px' }}>
+                  Contact us for any queries you have
+                </div>
               </DetailsWrapper>
             </MobileCardContent>
           </MobileCard>
@@ -160,7 +245,14 @@ const Overview = props => {
                 // logout code
                 props.history.push('/');
               }}
-              style={{ backgroundColor: '#ec436f', color: 'white', marginTop: '3vh', width: '95%', padding: '10px', fontWeight: '800' }}
+              style={{
+                backgroundColor: '#ec436f',
+                color: 'white',
+                marginTop: '3vh',
+                width: '95%',
+                padding: '10px',
+                fontWeight: '800',
+              }}
             >
               Logout
             </Button>
@@ -175,7 +267,15 @@ const Overview = props => {
               <CardContent>
                 <CardImage src={OrderImage} alt="order image" />
                 <div style={{ textAlign: 'center' }}>Orders</div>
-                <div style={{ fontSize: '12px', color: '#94969F', textAlign: 'center' }}>View recent orders</div>
+                <div
+                  style={{
+                    fontSize: '12px',
+                    color: '#94969F',
+                    textAlign: 'center',
+                  }}
+                >
+                  View recent orders
+                </div>
               </CardContent>
             </Card>
 
@@ -183,7 +283,15 @@ const Overview = props => {
               <CardContent>
                 <CardImage src={AddressImage} alt="order image" />
                 <div style={{ textAlign: 'center' }}>Addresses</div>
-                <div style={{ fontSize: '12px', color: '#94969F', textAlign: 'center' }}>Save addresses </div>
+                <div
+                  style={{
+                    fontSize: '12px',
+                    color: '#94969F',
+                    textAlign: 'center',
+                  }}
+                >
+                  Save addresses{' '}
+                </div>
               </CardContent>
             </Card>
 
@@ -192,7 +300,15 @@ const Overview = props => {
               <CardContent>
                 <CardImage src={EditImage} alt="Edit image" />
                 <div style={{ textAlign: 'center' }}>Profile</div>
-                <div style={{ fontSize: '12px', color: '#94969F', textAlign: 'center' }}>View or edit your profile</div>
+                <div
+                  style={{
+                    fontSize: '12px',
+                    color: '#94969F',
+                    textAlign: 'center',
+                  }}
+                >
+                  View or edit your profile
+                </div>
               </CardContent>
             </Card>
             <Card onClick={() => props.history.push('/support')}>
@@ -200,7 +316,15 @@ const Overview = props => {
               <CardContent>
                 <CardImage src={EditImage} alt="Edit image" />
                 <div style={{ textAlign: 'center' }}>Support</div>
-                <div style={{ fontSize: '12px', color: '#94969F', textAlign: 'center' }}>Contact us for any queries you have</div>
+                <div
+                  style={{
+                    fontSize: '12px',
+                    color: '#94969F',
+                    textAlign: 'center',
+                  }}
+                >
+                  Contact us for any queries you have
+                </div>
               </CardContent>
             </Card>
           </CardWrapper>
@@ -210,7 +334,13 @@ const Overview = props => {
               // logout code
               props.history.push('/');
             }}
-            style={{ backgroundColor: '#ec436f', color: 'white', width: '250px', height: '48px', marginTop: '4vh' }}
+            style={{
+              backgroundColor: '#ec436f',
+              color: 'white',
+              width: '250px',
+              height: '48px',
+              marginTop: '4vh',
+            }}
           >
             Logout
           </Button>
