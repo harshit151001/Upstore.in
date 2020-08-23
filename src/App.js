@@ -20,11 +20,13 @@ import Wishlist from './Components/Routes/Wishlist';
 import Addresses from './Components/Routes/Addresses';
 import Userpage from './Components/Routes/Userpage';
 import PrivateRoute from './auth/helper/PrivateRoute';
+import AdminRoute from './auth/helper/AdminRoute';
 import CheckoutPage from './Components/Routes/CheckoutPage';
 import OTP from './Components/Users/OTP';
 import ChangeAddress from './Components/Routes/ChangeCheckoutAddressPage';
+import ProductUpload from './Components/Admin/ProductUpload';
+import BulkUpload from './Components/Admin/BulkUpload';
 
-// import ProductUpload from './Components/Admin/ProductUpload';
 //!context
 import { Statecontext } from './Statemanagement/Statecontext';
 
@@ -55,7 +57,9 @@ function App() {
             <PrivateRoute exact path="/checkout" component={CheckoutPage}></PrivateRoute>
             <PrivateRoute exact path="/checkout/address" component={ChangeAddress}></PrivateRoute>
             <Route exact path="/OTP" component={OTP}></Route>
-            {/* <PrivateRoute exact path="/ProductUpload" component={ProductUpload}></PrivateRoute> */}
+            <AdminRoute exact path="/ProductUpload" component={ProductUpload}></AdminRoute>
+            <AdminRoute exact path="/BulkUpload" component={BulkUpload}></AdminRoute>
+
             <Route component={err}></Route>
           </Switch>
         </div>
