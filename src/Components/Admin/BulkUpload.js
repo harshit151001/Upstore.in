@@ -15,7 +15,11 @@ const Container = styled.div`
 
 export default function () {
   const [imagePaths, setImagePaths] = useState([]);
-  const [selectedFiles, setSelectedFiles] = useState('');
+  const [values, setValues] = useState({
+    selectedFiles: '',
+    shopName: '',
+    shopId: ''
+  });
   const { token, user } = isAutheticated();
   const config = {
     headers: { Authorization: `Bearer ${token}` }
@@ -23,7 +27,7 @@ export default function () {
 
   const handleUpload = e => {
     e.preventDefault();
-
+    const { selectedFiles } = values;
     const fd = new FormData();
     for (let i = 0; i < selectedFiles.length; i++) {
       fd.append(`images`, selectedFiles[i]);
@@ -41,12 +45,12 @@ export default function () {
 
   const handleCSVUpload = e => {
     e.preventDefault();
-
+    const { selectedFiles, shopId, shopName } = values;
     const fd = new FormData();
-
+    console.log(shopName, shopId);
     fd.append(`csvFile`, selectedFiles[0]);
-    fd.append(`shopName`, 'Chitlangi');
-    fd.append(`shopId`, '5f0344fe722f505f9b39c1bf');
+    fd.append(`shopName`, shopName);
+    fd.append(`shopId`, shopId);
 
     Axios.post(`${API}/api/products/bulkUpload/${user._id}`, fd, config).then(
       response => {
@@ -59,7 +63,7 @@ export default function () {
   };
 
   const handleChange = name => event => {
-    setSelectedFiles(event.target.files);
+    name === 'file' ? setValues({ ...values, selectedFiles: event.target.files }) : setValues({ ...values, [name]: event.target.value });
   };
   if (imagePaths.length) console.log(`${API}${imagePaths[0].split('public')[1]}`);
   return (
@@ -91,6 +95,14 @@ export default function () {
 
       <div>
         <input id="file" onChange={handleChange('file')} type="file" multiple />
+      </div>
+      <div style={{ marginTop: '2vh' }}>
+        <label htmlFor="shopName">Shop Name</label>
+        <input id="shopName" onChange={handleChange('shopName')} placeholder="Shop Name" type="text" />
+      </div>
+      <div style={{ marginTop: '2vh' }}>
+        <label htmlFor="shopId">Shop ID</label>
+        <input id="shopId" onChange={handleChange('shopId')} placeholder="Shop ID" type="text" />
       </div>
       <div>
         <button type="submit" onClick={handleCSVUpload}>
