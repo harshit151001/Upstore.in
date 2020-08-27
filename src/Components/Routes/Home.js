@@ -6,6 +6,7 @@ import { appContext } from '../../Statemanagement/Statecontext';
 import Categorylist from '../Categories/List/Categorylist';
 import Footerhome from '../Footer/Footerhome';
 import Features from '../Feautures/Features';
+import Testimonials from '../Testimonials/Testimonials'
 //import Cartlist from '../Cart/Cartlist';
 
 const Home = () => {
@@ -37,6 +38,7 @@ const Home = () => {
       />
       <Categorylist />
       <Features />
+      <Testimonials />
       <Footerhome />
     </div>
   );
