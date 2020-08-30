@@ -53,7 +53,7 @@ const Img = styled.div`
   display: flex;
   justify-content: center;
   @media (min-width: 991px) {
-    width: 140px;
+    width: 140px !important;
     height: 140px;
   }
   @media (max-width: 991px) {
@@ -121,18 +121,26 @@ const Features = () => {
     <Section>
       <Title>
         <Header>Leave it on us!</Header>
-        <img src={bos} alt="icon" style={{ width: '6vw', minWidth: '50px', marginTop: '8px' }} />
+        <img
+          src={bos}
+          alt="icon"
+          style={{ width: '6vw', minWidth: '50px', marginTop: '8px' }}
+        />
       </Title>
       <Cardbox>
         <Card>
           <Img>
-            <img style={{ height: 'inherit', width: 'inherit' }} src={fb} alt="Bag" />
+            <img
+              style={{ height: 'inherit', width: 'inherit' }}
+              src={fb}
+              alt="Bag"
+            />
           </Img>
           <div
             style={{
               marginLeft: '4vw',
               display: 'flex',
-              flexDirection: 'column'
+              flexDirection: 'column',
             }}
           >
             <Quote>Shop Smart</Quote>
@@ -143,13 +151,17 @@ const Features = () => {
         </Card>
         <Card>
           <Img>
-            <img style={{ height: 'inherit', width: 'inherit' }} src={fm} alt="map" />
+            <img
+              style={{ height: 'inherit', width: 'inherit' }}
+              src={fm}
+              alt="map"
+            />
           </Img>
           <div
             style={{
               marginLeft: '4vw',
               display: 'flex',
-              flexDirection: 'column'
+              flexDirection: 'column',
             }}
           >
             <Quote>Anywhere in City </Quote>
@@ -160,13 +172,17 @@ const Features = () => {
         </Card>
         <Card>
           <Img>
-            <img style={{ height: 'inherit', width: 'inherit' }} src={ft} alt="time" />
+            <img
+              style={{ height: 'inherit', width: 'inherit' }}
+              src={ft}
+              alt="time"
+            />
           </Img>
           <div
             style={{
               marginLeft: '4vw',
               display: 'flex',
-              flexDirection: 'column'
+              flexDirection: 'column',
             }}
           >
             <Quote>Fast Delivery</Quote>
@@ -177,13 +193,17 @@ const Features = () => {
         </Card>
         <Card>
           <Img>
-            <img style={{ height: 'inherit', width: 'inherit' }} src={fg} alt="gift" />
+            <img
+              style={{ height: 'inherit', width: 'inherit' }}
+              src={fg}
+              alt="gift"
+            />
           </Img>
           <div
             style={{
               marginLeft: '4vw',
               display: 'flex',
-              flexDirection: 'column'
+              flexDirection: 'column',
             }}
           >
             <Quote>Sterilized Packaging</Quote>

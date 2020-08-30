@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+//import { keyframes } from 'styled-components'
 import { Link, withRouter } from 'react-router-dom';
 import { appContext } from '../../Statemanagement/Statecontext';
 import API from '../../backend';
@@ -30,7 +31,7 @@ const DesktopNav = styled.div`
   align-items: center;
   font-family: 'Poppins', sans-serif;
   margin: auto;
-  box-shadow: 0px 0px 5px 3px rgba(97, 97, 97, 0.3);
+  box-shadow: 0px 4px 10px 0px rgba(97, 97, 97, 0.3);
   font-size: 25px;
   position: fixed;
   justify-content: center;
@@ -105,10 +106,15 @@ const CategoriesDropdown = styled.div`
   position: fixed;
   margin-top: 6.3vh;
   top: -700px;
-  left: 10%;
-  width: 260px;
   z-index: 20;
-  transition: all 0.2s ease-out;
+  opacity: 0;
+  left: 10%;
+   backdrop-filter: blur(5px);
+  background-color: rgba(250, 251, 252,0.9);
+  width: 260px;
+  transition: opacity 200ms, transform 150ms cubic-bezier(0.01, 1.24, 0.99, 1.57);
+  box-shadow: 0px 8px 16px 0px rgba(97, 97, 97, 0.3);
+  
 `;
 const AccountsDropdown = styled.div`
   position: fixed;
@@ -116,7 +122,7 @@ const AccountsDropdown = styled.div`
   top: -700px;
   left: 10%;
   width: 280px;
-  z-index: 20;
+  transition: opacity 200ms, transform 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: all 0.2s ease-out;
 `;
 const CartDropdown = styled.div`
@@ -125,9 +131,10 @@ const CartDropdown = styled.div`
   top: -700px;
   left: 10%;
   width: 280px;
-  z-index: 20;
+  transition: opacity 200ms, transform 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: all 0.2s ease-out;
 `;
+
 
 /*********************************************************************/
 
@@ -199,6 +206,7 @@ function Desktop(props) {
           </Link>
           <span
             style={{ height: '9vh', display: 'flex', alignItems: 'center' }}
+            className= 'hover_on_this'
             onMouseOver={a}
             onMouseLeave={b}
           >
@@ -319,8 +327,10 @@ function Desktop(props) {
       <CategoriesDropdown
         onMouseOver={a}
         onMouseLeave={b}
+        className="bounce"
         style={{
           transform: `translateY(${x}px)`,
+          opacity: `${x}`,
         }}
       >
         {categorydata.map(({ name, _id }) => {
@@ -338,7 +348,7 @@ function Desktop(props) {
             >
               <button
                 type="button"
-                className="btn btn-light d-block w-100 text-left deschhjb"
+                className="btn d-block w-100 text-left deschhjb"
                 style={{
                   borderRadius: '0',
                   fontSize: '16px',

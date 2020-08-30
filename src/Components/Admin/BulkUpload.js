@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useFormik } from 'formik';
+//import { useFormik } from 'formik';
 import Axios from 'axios';
 import API from '../../backend';
 import styled from 'styled-components';
-import arrowPng from '../Images/arrow.png';
+//import arrowPng from '../Images/arrow.png';
 import { isAutheticated } from '../../auth/helper';
 
 const Container = styled.div`

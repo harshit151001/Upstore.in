@@ -7,7 +7,7 @@ import Myorders from './Myorders';
 import Addressform from './Addressform';
 import Overview from './Overview';
 import EditDetails from './EditDetails';
-import BulkUpload from '../Admin/BulkUpload';
+//import BulkUpload from '../Admin/BulkUpload';
 import useWindowDimensions from '../../customapis/useWindowDimensions';
 
 const HeaderDiv = styled.div`

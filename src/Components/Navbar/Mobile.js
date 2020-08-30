@@ -317,7 +317,7 @@ const Mobile = () => {
                   ref={inputRef}
                   value={enteredFilter}
                   onChange={(event) => setEnteredFilter(event.target.value)}
-                  style={{ width: '100%', fontSize: '26px', top: '28px' }}
+                  style={{ width: '85vw', fontSize: '26px', top: '2.2vh' }}
                   placeholder="search for products..."
                   inputProps={{ 'aria-label': 'description' }}
                 />
