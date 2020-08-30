@@ -10,6 +10,7 @@ export const OTPVerify = async data => {
       },
       body: JSON.stringify(data)
     });
+
     return response.json();
   } catch (err) {
     return console.log(err);

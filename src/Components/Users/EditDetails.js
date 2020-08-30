@@ -27,16 +27,16 @@ const MobileNumberDiv = styled.div`
   background-color: rgba(3, 166, 133, 0.15);
   border: solid 1px rgba(3, 166, 133, 0.15);
 `;
-const EditDetails = (props) => {
+const EditDetails = props => {
   const {
     token,
-    user: { _id },
+    user: { _id }
   } = isAutheticated();
 
   const [values, setValues] = useState({
     name: '',
     email: '',
-    phoneNumber: '',
+    phoneNumber: ''
   });
 
   useEffect(() => {
@@ -45,24 +45,24 @@ const EditDetails = (props) => {
       fetch(`${API}/api/user/${_id}`, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       })
-        .then((response) => {
+        .then(response => {
           response.json().then(function (data) {
             console.log(data);
             const { name, phoneNumber, email } = data;
-            setValues((values) => {
+            setValues(values => {
               return {
                 ...values,
                 name,
                 email,
-                phoneNumber,
+                phoneNumber
               };
             });
           });
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     };
     if (mounted) {
       window.scroll(0, 0);
@@ -80,20 +80,20 @@ const EditDetails = (props) => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
         name,
-        email,
-      }),
+        email
+      })
     })
-      .then((response) => {
+      .then(response => {
         response.json().then(function (data) {
           console.log(data);
           props.history.push('/userdashboard/details');
         });
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
 
   //eslint-disable-next-line
@@ -103,10 +103,10 @@ const EditDetails = (props) => {
     enableReinitialize: true,
     initialValues: {
       name,
-      email,
+      email
     },
     // validationSchema,
-    onSubmit,
+    onSubmit
   });
   console.log(formik.values.email);
 
@@ -115,39 +115,15 @@ const EditDetails = (props) => {
       <DetailsCard style={{ width: '80%', margin: 'auto' }}>
         <HeaderDiv>Edit Profile</HeaderDiv>
         <MobileNumberDiv>
-          <div style={{ fontSize: '12px', color: 'rgba(39, 43, 65, 0.7)' }}>
-            Mobile Number*
-          </div>
+          <div style={{ fontSize: '12px', color: 'rgba(39, 43, 65, 0.7)' }}>Mobile Number*</div>
           <div style={{ fontSize: '14px' }}>
             {phoneNumber}
-            <img
-              style={{ width: 'auto', height: '18px' }}
-              src={CorrectSvg}
-              alt="Verified Icon"
-            />
+            <img style={{ width: 'auto', height: '18px' }} src={CorrectSvg} alt="Verified Icon" />
           </div>
         </MobileNumberDiv>
         <form>
-          <TextField
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            style={{ marginTop: '2vh' }}
-            label="Full Name"
-            fullWidth={true}
-            id="name"
-            variant="outlined"
-            placeholder="Full Name"
-          />
-          <TextField
-            style={{ marginTop: '4vh', marginBottom: '4vh' }}
-            label="Email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            fullWidth={true}
-            id="email"
-            variant="outlined"
-            placeholder="Email"
-          />
+          <TextField value={formik.values.name} onChange={formik.handleChange} style={{ marginTop: '2vh' }} label="Full Name" fullWidth={true} id="name" variant="outlined" placeholder="Full Name" />
+          <TextField style={{ marginTop: '4vh', marginBottom: '4vh' }} label="Email" value={formik.values.email} onChange={formik.handleChange} fullWidth={true} id="email" variant="outlined" placeholder="Email" />
 
           <Button
             fullWidth={true}
@@ -157,7 +133,7 @@ const EditDetails = (props) => {
             style={{
               backgroundColor: '#ec436f',
               color: 'white',
-              marginBottom: '4vh',
+              marginBottom: '4vh'
             }}
             className="btn btn-primary"
           >

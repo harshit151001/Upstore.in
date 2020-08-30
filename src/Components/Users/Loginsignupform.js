@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import MySnackbar from '../Snackbar/Snackbar';
 import Loginwithphone from './Loginwithphone';
 import Login from '../Images/Login.png';
+
 export const Wrapper = styled.div`
   background-image: linear-gradient(to right top, #f0e9ff, #e0edff, #c7f4ff, #affaff, #a4fff9);
-
   width: 100vw;
   min-height: 91vh;
   display: flex;
@@ -46,9 +46,11 @@ const Loginsignupform = props => {
     <Wrapper>
       {props.location.state && <SnackBar />}
       <Formwrapper>
-        <picture>
-          <img style={{ width: '100%', heigth: '100%' }} src={Login} alt="login" />
-        </picture>
+        <div style={{ width: '400px', height: '226.19px', backgroundColor: '#f5f5f5' }}>
+          <picture>
+            <img style={{ width: '100%', heigth: '100%' }} src={Login} alt="login" />
+          </picture>
+        </div>
 
         <h3 style={{ textAlign: 'center', color: '#ec436f', paddingTop: '4vh' }}>Log in with Mobile Number</h3>
 

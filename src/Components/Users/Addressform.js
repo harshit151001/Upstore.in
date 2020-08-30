@@ -2,13 +2,44 @@ import React, { useState, useEffect } from 'react';
 //import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import Addressmodal from '../../Components/Modals/Addressmodal';
-import API from '../../backend';
+
 import { isAutheticated } from '../../auth/helper/index';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import useWindowDimensions from '../../customapis/useWindowDimensions';
+import { deleteAddress, getAddresses, addAddress, editAddress } from './apiCalls';
 //import { buildQueries } from '@testing-library/react';
+import * as Yup from 'yup';
+
+export const validationSchema = Yup.object({
+  contactNumber: Yup.string()
+    .matches(/^[6-9]\d{9}$/, {
+      message: 'Please enter a valid mobile number (10 digits)',
+      excludeEmptyString: false
+    })
+    .min(10)
+    .max(10)
+    .required('Contact Number is required'),
+  contactName: Yup.string().required('Required'),
+  address: Yup.string().required('Required')
+});
+
+export const YupError = styled.div`
+  margin-top: 3px;
+  color: rgb(255, 87, 34);
+  font-size: 14px;
+`;
+
+export const Button = styled.button`
+  width: 100%;
+  background-color: rgb(236, 67, 111);
+  color: white;
+  margin-bottom: 4vh;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+`;
 
 const ButtonText = styled.div`
   cursor: pointer;
@@ -46,6 +77,7 @@ const Header = styled.div`
 `;
 
 const HeaderMobile = styled.div`
+text-align: center;
 box-shadow: 0px 1px 3px rgba(40, 44, 63, 0.3);
     background-color: white;
     padding: 17px 10px;
@@ -77,27 +109,16 @@ const Addressform = props => {
   const { token, user } = isAutheticated();
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
+  const [editIndex, setEditIndex] = useState(-1);
 
   useEffect(() => {
     let mounted = true;
+
     const { token, user } = isAutheticated();
     const loadData = async () => {
-      fetch(`${API}/api/user/${user._id}`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-        .then(response => {
-          response.json().then(function (data) {
-            console.log(data);
-            const { addresses } = data;
-
-            setData(addresses);
-          });
-        })
+      getAddresses(user._id, token)
+        .then(data => setData(data))
         .catch(err => console.log(err));
-
       if (mounted) {
         window.scroll(0, 0);
       }
@@ -110,59 +131,49 @@ const Addressform = props => {
   }, []);
 
   const deleteHandler = index => {
-    let newAddressArray = data;
-    newAddressArray.splice(index, 1);
-
-    fetch(`${API}/api/user/${user._id}`, {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({ addresses: newAddressArray })
-    })
-      .then(response => {
-        response.json().then(function (data) {
-          console.log(data);
-          setData(data.addresses);
-        });
-      })
+    deleteAddress(user._id, token, data, index)
+      .then(data => setData(data))
       .catch(err => console.log(err));
   };
 
+  const editHandler = index => {
+    setShow(true);
+    setEditIndex(index);
+  };
+
   const onSubmit = async ({ contactName, contactNumber, address }) => {
-    setData([...data, { contactName, contactNumber, address }]);
-    const newAddressArray = [...data, { contactName, contactNumber, address }];
-    fetch(`${API}/api/user/${user._id}`, {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        addresses: newAddressArray
-      })
-    })
-      .then(response => {
-        response.json().then(function (data) {
-          console.log(data);
-        });
-      })
-      .catch(err => console.log(err));
+    if (editIndex === -1) {
+      setData([...data, { contactName, contactNumber, address }]);
+      console.log([...data, { contactName, contactNumber, address }]);
+      addAddress(user._id, token, [...data, { contactName, contactNumber, address }])
+        .then(data => setData(data))
+        .catch(err => console.log(err));
+    } else {
+      editAddress(user._id, token, data, { contactName, contactNumber, address }, editIndex)
+        .then(data => setData(data))
+        .catch(err => console.log(err));
+
+      setEditIndex(-1);
+    }
+    setShow(false);
+  };
+
+  const generateInitialValues = () => {
+    return editIndex === -1
+      ? {
+          contactName: name,
+          contactNumber: phoneNumber,
+          address: ''
+        }
+      : data[editIndex];
   };
 
   const { name, phoneNumber } = user;
   console.log(phoneNumber);
   const formik = useFormik({
     enableReinitialize: true,
-    initialValues: {
-      contactName: name,
-      contactNumber: phoneNumber,
-      address: ''
-    },
-    // validationSchema,
+    initialValues: generateInitialValues(),
+    validationSchema,
     onSubmit
   });
 
@@ -176,22 +187,25 @@ const Addressform = props => {
       >
         <form>
           <TextField value={formik.values.contactName || ''} onChange={formik.handleChange} style={{ marginTop: '2vh' }} label="Full Name" fullWidth={true} id="contactName" variant="outlined" placeholder="Full Name" />
-          <TextField style={{ marginTop: '4vh' }} label="Mobile Number" value={formik.values.contactNumber} onChange={formik.handleChange} fullWidth={true} id="contactNumber" variant="outlined" placeholder="Mobile Number" />
-          <TextField style={{ marginTop: '4vh', marginBottom: '4vh' }} label="Address" value={formik.values.address} onChange={formik.handleChange} fullWidth={true} id="address" variant="outlined" placeholder="Address" />
-
-          <Button
+          <YupError>{formik.touched.contactName ? formik.errors.contactName : null}</YupError>
+          <TextField
+            InputProps={{ startAdornment: <InputAdornment position="start">+ 91 | </InputAdornment> }}
+            inputProps={{
+              maxLength: 10
+            }}
+            style={{ marginTop: '4vh' }}
+            label="Mobile Number"
+            value={formik.values.contactNumber}
+            onChange={formik.handleChange}
             fullWidth={true}
-            onClick={() => {
-              formik.handleSubmit();
-              setShow(false);
-            }}
-            style={{
-              backgroundColor: '#ec436f',
-              color: 'white',
-              marginBottom: '4vh'
-            }}
-            className="btn btn-primary"
-          >
+            id="contactNumber"
+            variant="outlined"
+            placeholder="Mobile Number"
+          />
+          <YupError>{formik.touched.contactNumber ? formik.errors.contactNumber : null}</YupError>
+          <TextField style={{ marginTop: '4vh' }} label="Address" value={formik.values.address} onChange={formik.handleChange} fullWidth={true} id="address" variant="outlined" placeholder="Address" />
+          <YupError style={{ marginBottom: '4vh' }}>{formik.touched.address ? formik.errors.address : null}</YupError>
+          <Button type="button" onClick={formik.handleSubmit}>
             Save
           </Button>
         </form>
@@ -207,7 +221,7 @@ const Addressform = props => {
         )}
 
         {width < 780 && (
-          <HeaderMobile>
+          <HeaderMobile onClick={() => setShow(true)}>
             <div>+ Add new address</div>
           </HeaderMobile>
         )}
@@ -222,7 +236,13 @@ const Addressform = props => {
                 <div>Mobile: {contactNumber}</div>
               </AddressCard>
               <RemoveEditButton>
-                <ButtonText>Edit</ButtonText>
+                <ButtonText
+                  onClick={() => {
+                    editHandler(index);
+                  }}
+                >
+                  Edit
+                </ButtonText>
                 <div
                   style={{
                     width: '1px',

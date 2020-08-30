@@ -5,34 +5,35 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { YupError } from './Addressform';
 
 const validationSchema = Yup.object({
   phoneNumber: Yup.string()
     .matches(/^[6-9]\d{9}$/, {
       message: 'Please enter a valid mobile number (10 digits)',
-      excludeEmptyString: false,
+      excludeEmptyString: false
     })
     .min(10)
     .max(10)
-    .required(),
+    .required('This is a required field')
 });
 
-const Loginwithphone = (props) => {
+const Loginwithphone = props => {
   const formik = useFormik({
     initialValues: {
-      phoneNumber: '',
+      phoneNumber: ''
     },
     validationSchema,
     onSubmit: ({ phoneNumber }) => {
-      postNumber({ phoneNumber }).then((response) => {
+      postNumber({ phoneNumber }).then(response => {
         console.log(response);
         const { session_id } = response;
         return props.history.push({
           pathname: '/OTP',
-          state: { phoneNumber, session_id },
+          state: { phoneNumber, session_id }
         });
       });
-    },
+    }
   });
 
   return (
@@ -41,9 +42,7 @@ const Loginwithphone = (props) => {
         <div className="form-group">
           <TextField
             InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">+ 91 | </InputAdornment>
-              ),
+              startAdornment: <InputAdornment position="start">+ 91 | </InputAdornment>
             }}
             label="Mobile Number"
             fullWidth={true}
@@ -55,13 +54,8 @@ const Loginwithphone = (props) => {
             placeholder="Mobile Number*"
           />
         </div>
-        <div>
-          <p style={{ color: '#FF5722', fontSize: '14px' }}>
-            {formik.errors.phoneNumber && formik.touched.phoneNumber
-              ? formik.errors.phoneNumber
-              : null}
-          </p>
-        </div>
+
+        <YupError>{formik.errors.phoneNumber && formik.touched.phoneNumber ? formik.errors.phoneNumber : null}</YupError>
 
         <div>
           <button

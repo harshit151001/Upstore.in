@@ -7,23 +7,24 @@ import Myorders from './Myorders';
 import Addressform from './Addressform';
 import Overview from './Overview';
 import EditDetails from './EditDetails';
-import BulkUpload from '../Admin/BulkUpload';
+import CheckCircle from '@material-ui/icons/CheckCircle';
+
 import useWindowDimensions from '../../customapis/useWindowDimensions';
 
-const HeaderDiv = styled.div`
+export const HeaderDiv = styled.div`
   border-bottom: 1px solid #d4d5d9;
   padding: 15px 0px;
   text-align: left;
 `;
 
-const Text = styled.p`
+export const Text = styled.p`
   padding: 20px 0px;
   width: 145px;
 
   margin: 0;
 `;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   @media (min-width: 780px) {
     margin: 4% auto;
     width: 90%;
@@ -33,14 +34,15 @@ const Wrapper = styled.div`
   }
 `;
 
-const Sidenav = styled.div`
+export const Sidenav = styled.div`
   vertical-align: top;
 
   text-align: left;
 
   border-right: 1px solid #d4d5d9;
 `;
-const Main = styled.div`
+
+export const Main = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -54,8 +56,17 @@ const Userdashboard = props => {
   console.log(props.match.path);
   const { width } = useWindowDimensions();
   const { user } = isAutheticated();
+  console.log(props);
   return (
     <Wrapper>
+      {props.location.state && (
+        <div style={{ width: '100%', padding: '14px', backgroundColor: '#DFF2BF', color: '#059' }}>
+          <div>
+            <CheckCircle />
+            {props.location.state.confirmation}
+          </div>
+        </div>
+      )}
       {width >= 780 && (
         <HeaderDiv>
           <div style={{ fontSize: '18px', fontWeight: '800' }}>Account </div>
