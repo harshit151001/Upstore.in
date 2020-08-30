@@ -84,7 +84,7 @@ const Testimonials = () => {
           <span
             className={classes.cardHeader}
             style={{
-              backgroundImage: 'url(http://placeimg.com/400/200/tech)',
+              // backgroundImage: 'url(http://placeimg.com/400/200/tech)',
             }}
           ></span>
           <span className={classes.cardSummary}>
@@ -103,7 +103,7 @@ const Testimonials = () => {
           <span
             className={classes.cardHeader}
             style={{
-              backgroundImage: 'url(http://placeimg.com/400/200/animals)',
+              // backgroundImage: 'url(http://placeimg.com/400/200/animals)',
             }}
           ></span>
           <span className={classes.cardSummary}>
@@ -122,7 +122,7 @@ const Testimonials = () => {
           <span
             className={classes.cardHeader}
             style={{
-              backgroundImage: 'url(http://placeimg.com/400/200/people)',
+              // backgroundImage: 'url(http://placeimg.com/400/200/people)',
             }}
           ></span>
           <span className={classes.cardSummary}>
@@ -140,7 +140,7 @@ const Testimonials = () => {
           <span
             className={classes.cardHeader}
             style={{
-              backgroundImage: 'url(http://placeimg.com/400/200/any)',
+              // backgroundImage: 'url(http://placeimg.com/400/200/any)',
             }}
           ></span>
           <span className={classes.cardSummary}>
