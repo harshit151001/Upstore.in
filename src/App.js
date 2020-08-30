@@ -35,7 +35,7 @@ function App() {
   return (
     <Statecontext>
       <BrowserRouter>
-        <div style={{ width: '100vw', minHeight: '90vh', overflowX: 'hidden' }}>
+        <div style={{ width: '100vw', minHeight: '90vh', overflowX: 'hidden', backgroundColor: 'white' }}>
           <Navbar />
           <Loader />
           <Switch>
