@@ -61,7 +61,7 @@ const Invoice = props => {
           <div className="col-12">
             <Link style={{ display: props.display || '' }} to={props.link}>
               <button type="button" className="btn btn-danger btn mt-3 btn-block">
-                <strong>place order</strong>
+                <strong>Proceed</strong>
               </button>
             </Link>
           </div>

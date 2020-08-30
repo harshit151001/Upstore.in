@@ -1,14 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  appContext,
-  dispatchContext,
-} from '../../Statemanagement/Statecontext';
+import { appContext, dispatchContext } from '../../Statemanagement/Statecontext';
 import { isAutheticated } from '../../auth/helper/index';
 import API from '../../backend';
 import MySnackbar from '../Snackbar/Snackbar';
 
-const Addtocart = (props) => {
+const Addtocart = props => {
   const { state } = useContext(appContext);
   const dispatch = useContext(dispatchContext);
   const { cart } = state;
@@ -17,9 +14,9 @@ const Addtocart = (props) => {
   if (state.loggedIn) {
     const { token, user } = isAutheticated();
     const { _id } = user;
-    const addToCart = (id) => {
+    const addToCart = id => {
       console.log(cart);
-      let filteredCart = cart.filter((item) => item.product._id === id);
+      let filteredCart = cart.filter(item => item.product._id === id);
       if (filteredCart.length === 1) {
         setShow(true);
         setTimeout(function () {
@@ -33,7 +30,7 @@ const Addtocart = (props) => {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`
           },
           body: JSON.stringify({
             userId: _id,
@@ -41,19 +38,19 @@ const Addtocart = (props) => {
               {
                 product: id,
                 wishlist: 0,
-                quantity: 1,
-              },
-            ],
-          }),
+                quantity: 1
+              }
+            ]
+          })
         })
-          .then((response) => {
+          .then(response => {
             response.json().then(function (data) {
               dispatch({ type: 'UPDATECART', payload: data.products });
               dispatch({ type: 'REMOVEDFROMWISHLIST', payload: id });
               dispatch({ type: 'LOADED' });
             });
           })
-          .catch((err) => console.log(err));
+          .catch(err => console.log(err));
       }
     };
     return (
@@ -64,13 +61,7 @@ const Addtocart = (props) => {
             addToCart(props.id);
           }}
         >
-          {show && (
-            <MySnackbar
-              vertical={'top'}
-              horizontal={'center'}
-              message={'Already exists in cart'}
-            />
-          )}
+          {show && <MySnackbar vertical={'top'} horizontal={'center'} message={'Already exists in cart'} />}
           {props.children}
         </button>
       </>
@@ -82,8 +73,8 @@ const Addtocart = (props) => {
           to={{
             pathname: '/loginsignup',
             state: {
-              snackbarMessage: 'Login to Add to cart',
-            },
+              snackbarMessage: 'Login to Add to cart'
+            }
           }}
         >
           <button className={props.classes}>add to cart</button>

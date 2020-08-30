@@ -24,7 +24,7 @@ function Razor(props) {
   const { user, token } = isAutheticated();
   const { cart } = state;
   console.log(cart);
-  console.log(props.amount);
+
   const name = user.name || '';
 
   async function displayRazorpay() {

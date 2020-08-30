@@ -9,7 +9,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Loader from './Components/Loader/Loader';
 //!routes
 import Home from './Components/Routes/Home';
-import err from './err';
+import Err from './Error.js'
 import Aboutus from './Components/Routes/Aboutus';
 import Termsandcondition from './Components/Routes/Termsandcondition';
 import Loginsignuppage from './Components/Routes/Loginsignuppage';
@@ -24,8 +24,9 @@ import AdminRoute from './auth/helper/AdminRoute';
 import CheckoutPage from './Components/Routes/CheckoutPage';
 import OTP from './Components/Users/OTP';
 import ChangeAddress from './Components/Routes/ChangeCheckoutAddressPage';
-import ProductUpload from './Components/Admin/ProductUpload';
-import BulkUpload from './Components/Admin/BulkUpload';
+import ProductUpload from './Components/Seller/ProductUpload';
+import BulkUpload from './Components/Seller/BulkUpload';
+import Seller from './Components/Routes/Seller';
 
 //!context
 import { Statecontext } from './Statemanagement/Statecontext';
@@ -34,7 +35,7 @@ function App() {
   return (
     <Statecontext>
       <BrowserRouter>
-        <div style={{ width: '100vw', minHeight: '90vh', overflowX: 'hidden' }}>
+        <div style={{ width: '100vw', minHeight: '90vh', overflowX: 'hidden', backgroundColor: 'white' }}>
           <Navbar />
           <Loader />
           <Switch>
@@ -101,7 +102,10 @@ function App() {
               path="/BulkUpload"
               component={BulkUpload}
             ></AdminRoute>
-            <Route component={err}></Route>
+            <AdminRoute exact path="/ProductUpload" component={ProductUpload}></AdminRoute>
+            <AdminRoute exact path="/BulkUpload" component={BulkUpload}></AdminRoute>
+            <AdminRoute path="/seller" component={Seller}></AdminRoute>
+            <Route component={Err}></Route>
           </Switch>
         </div>
       </BrowserRouter>

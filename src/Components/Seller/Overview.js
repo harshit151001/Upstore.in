@@ -7,74 +7,11 @@ import AddressImage from '../Images/profile-address.png';
 import EditImage from '../Images/profile-edit.png';
 import useWindowDimensions from '../../customapis/useWindowDimensions';
 import { signout } from '../../auth/helper/index';
-import { PreviousButton, OrderWrapper, Card as MobileCard, CardContent as MobileCardContent, DetailsWrapper } from './Myorders';
+import { PreviousButton, OrderWrapper, Card as MobileCard, CardContent as MobileCardContent, DetailsWrapper } from '../Users/Myorders';
 import UserImage from '../Images/userAccount.png';
 import GoToIcon from '../Images/arrow.png';
 import { dispatchContext } from '../../Statemanagement/Statecontext';
-
-export const MobileCardImage = styled.img`
-  height: 4vh;
-  margin: auto;
-`;
-
-export const MobileJumbotronWrapper = styled.div`
-  width: 100%;
-  padding-bottom: 25px;
-`;
-
-export const MobileJumbotron = styled.div`
-  text-align: center;
-  background: #f5f5f6;
-  height: 180px;
-  padding: 25px 30px;
-`;
-
-export const EditProfileButtom = styled.div`
-  border-radius: 2px;
-  background-color: rgba(255, 255, 255, 0.6);
-  padding: 4px 8px;
-  font-size: 11px;
-  font-weight: 800;
-  cursor: pointer;
-  border: 1px solid #3e4152;
-`;
-
-export const PaddedContainer = styled.div`
-  padding: 25px 30px;
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const CardImage = styled.img`
-  height: 5vh;
-  width: 5vh;
-`;
-
-export const Card = styled.div`
-  justify-content: center;
-  cursor: pointer;
-  margin-top: 2vh;
-  display: flex;
-  border: 0.5px solid #eaeaec;
-  width: 30%;
-`;
-export const Jumbotron = styled.div`
-  background-color: #f5f5f6;
-  width: 100%;
-`;
-export const CardWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  margin-top: 1vh;
-  flex-wrap: wrap;
-`;
-
-export const CardContent = styled.div`
-  text-align: center;
-  margin: 5vh 1vh;
-  padding: 0px 12px;
-`;
+import { MobileCardImage, MobileJumbotronWrapper, MobileJumbotron, EditProfileButtom, PaddedContainer, CardImage, Card, Jumbotron, CardWrapper, CardContent } from '../Users/Overview';
 
 const Overview = props => {
   const dispatchLogin = useContext(dispatchContext);

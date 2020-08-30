@@ -1,6 +1,7 @@
 import React from 'react';
 import API from '../../../backend';
 import styled from 'styled-components';
+import UpPlaceholder from '../../Images/UpPlaceholder.png';
 
 const Card = styled.div` 
   border: 1px solid rgb(224, 224, 224) !important;
@@ -116,10 +117,9 @@ const Name = styled.strong`
 `;
 
 const Categorycard = ({ name, path }) => {
-  const src = path.substr(6);
   return (
     <Card>
-      <img src={`${API}${src}`} alt="" />
+      <img src={!path ? UpPlaceholder : `${API + path.substr(6)}`} alt="" />
       <Name>{name}</Name>
     </Card>
   );
