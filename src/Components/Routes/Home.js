@@ -6,7 +6,7 @@ import { appContext } from '../../Statemanagement/Statecontext';
 import Categorylist from '../Categories/List/Categorylist';
 import Footerhome from '../Footer/Footerhome';
 import Features from '../Feautures/Features';
-import Testimonials from '../Testimonials/Testimonials'
+import Testimonials from '../Testimonials/Testimonials';
 //import Cartlist from '../Cart/Cartlist';
 
 const Home = () => {
@@ -26,7 +26,7 @@ const Home = () => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        width: '100%',
+        width: '100%'
       }}
     >
       <Slider />
@@ -38,7 +38,7 @@ const Home = () => {
       />
       <Categorylist />
       <Features />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Footerhome />
     </div>
   );
