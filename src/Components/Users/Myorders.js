@@ -67,37 +67,41 @@ const Myorders = () => {
     };
   }, []);
 
+  console.log(data);
   return (
     <>
       {data.map((order, count) => {
         const { products, transaction_id } = order;
+
         return (
           <OrderWrapper key={count}>
             <div>Order NO: {transaction_id}</div>
 
             {products.map(prodDocument => {
               const { quantity, product } = prodDocument;
-              const { name, shopName, photos, price, _id } = product;
+              if (product) {
+                const { name, shopName, photos, price, _id } = product;
 
-              let src = photos[0].substr(6);
+                let src = photos[0].substr(6);
 
-              return (
-                <Card key={_id}>
-                  <CardContent>
-                    <ProductImage src={`${API}${src}`} alt="Product" />
-                    <DetailsWrapper>
-                      <PreviousButton>
-                        {' '}
-                        <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
-                      </PreviousButton>
-                      <div style={{ color: '#3E4152', fontWeight: '800', textTransform: 'uppercase' }}>{shopName}</div>
-                      <div style={{ color: '#7e818c', fontSize: '14px' }}>{name}</div>
-                      <div style={{ color: '#7e818c', fontSize: '14px' }}>Qty: {quantity}</div>
-                      <div>{price}</div>
-                    </DetailsWrapper>
-                  </CardContent>
-                </Card>
-              );
+                return (
+                  <Card key={_id}>
+                    <CardContent>
+                      <ProductImage src={`${API}${src}`} alt="Product" />
+                      <DetailsWrapper>
+                        <PreviousButton>
+                          {' '}
+                          <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
+                        </PreviousButton>
+                        <div style={{ color: '#3E4152', fontWeight: '800', textTransform: 'uppercase' }}>{shopName}</div>
+                        <div style={{ color: '#7e818c', fontSize: '14px' }}>{name}</div>
+                        <div style={{ color: '#7e818c', fontSize: '14px' }}>Qty: {quantity}</div>
+                        <div>{price}</div>
+                      </DetailsWrapper>
+                    </CardContent>
+                  </Card>
+                );
+              }
             })}
           </OrderWrapper>
         );

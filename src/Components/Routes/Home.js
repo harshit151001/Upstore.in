@@ -24,7 +24,7 @@ const Home = () => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        width: '100%',
+        width: '100%'
       }}
     >
       <Slider />
@@ -36,7 +36,7 @@ const Home = () => {
       />
       <Categorylist />
       <Features />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Footerhome />
     </div>
   );
