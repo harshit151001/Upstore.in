@@ -45,7 +45,7 @@ const Testimonials = () => {
           <span
             className={classes.cardHeader}
             style={{
-             // backgroundImage: 'url(http://placeimg.com/400/200/girl)',
+             //backgroundImage: 'url(http://placeimg.com/400/200/girl)',
             }}
           ></span>
           <span className={classes.cardSummary}>
@@ -65,7 +65,7 @@ const Testimonials = () => {
           <span
             className={classes.cardHeader}
             style={{
-             // backgroundImage: 'url(http://placeimg.com/400/200/architecture)',
+             //backgroundImage: 'url(http://placeimg.com/400/200/architecture)',
             }}
           ></span>
           <span className={classes.cardSummary}>

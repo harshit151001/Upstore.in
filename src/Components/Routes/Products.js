@@ -18,7 +18,7 @@ import Stitch from '../Images/Stitch.png';
 import UpDoggy from '../Images/UpDoggy.png';
 import { ContentWrapper, Wrapper, ErrTitle } from '../../Error.js';
 
-const Products = props => {
+const Products = (props) => {
   const { width } = useWindowDimensions();
 
   //?using params from URL
@@ -33,14 +33,20 @@ const Products = props => {
     let mounted = true;
     const loadandsetdata = async () => {
       if (search) {
-        const response = await Axios.get(`${API}/api/search/products/5eff8e76d75ecb3735b243b1?search=${search}&&page=${currentPage}`);
+        const response = await Axios.get(
+          `${API}/api/search/products/5eff8e76d75ecb3735b243b1?search=${search}&&page=${currentPage}`
+        );
         if (mounted) {
           window.scroll(0, 0);
           setTotalPages(Math.ceil(response.data.totalCount / 10));
           setData(response.data.products);
         }
       } else {
-        const response = await Axios.get(`${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage || 1}`);
+        const response = await Axios.get(
+          `${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
+            currentPage || 1
+          }`
+        );
         if (mounted) {
           window.scroll(0, 0);
           setTotalPages(Math.ceil(response.data.totalCount / 10));
@@ -84,7 +90,18 @@ const Products = props => {
                   }}
                   className="btn btn-light mr-2"
                 >
-                  {currentPage > 1 ? <Link to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage - 1 || 1}${search ? `&&search=` + search : ''}`}> back</Link> : 'back'}
+                  {currentPage > 1 ? (
+                    <Link
+                      to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
+                        currentPage - 1 || 1
+                      }${search ? `&&search=` + search : ''}`}
+                    >
+                      {' '}
+                      back
+                    </Link>
+                  ) : (
+                    'back'
+                  )}
                 </button>
 
                 <button
@@ -95,7 +112,18 @@ const Products = props => {
                   }}
                   className="btn btn-light ml-2"
                 >
-                  {currentPage < totalPages ? <Link to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${totalPages > currentPage ? currentPage + 1 : totalPages}${search ? `&&search=` + search : ''}`}> next</Link> : 'next'}
+                  {currentPage < totalPages ? (
+                    <Link
+                      to={`/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${
+                        totalPages > currentPage ? currentPage + 1 : totalPages
+                      }${search ? `&&search=` + search : ''}`}
+                    >
+                      {' '}
+                      next
+                    </Link>
+                  ) : (
+                    'next'
+                  )}
                 </button>
               </div>
             </div>{' '}
@@ -105,19 +133,33 @@ const Products = props => {
             <ContentWrapper>
               <div>
                 <ErrTitle style={{ marginTop: '0' }}>Uh oh.</ErrTitle>
-                <div style={{ fontSize: '2.5vh', color: 'grey' }}>No results found for "{search}"</div>
-                <div style={{ marginBottom: '20px', padding: '0 10px' }}>Try checking your spelling or use more general terms</div>
+                <div style={{ fontSize: '2.5vh', color: 'grey' }}>
+                  No results found for "{search}"
+                </div>
+                <div style={{ marginBottom: '20px', padding: '0 10px' }}>
+                  Try checking your spelling or use more general terms
+                </div>
               </div>
-              <img style={width < 780 ? { width: '273px' } : { width: '400px' }} src={UpDoggy} alt="" />
+              <img
+                style={width < 780 ? { width: '273px' } : { width: '400px' }}
+                src={UpDoggy}
+                alt=""
+              />
             </ContentWrapper>
           </Wrapper>
         ) : (
           <Wrapper style={{ marginTop: '150px' }}>
             <ContentWrapper>
-              <img style={width < 780 ? { width: '88vw' } : { width: '550px' }} src={Stitch} alt="" />
+              <img
+                style={width < 780 ? { width: '88vw' } : { width: '550px' }}
+                src={Stitch}
+                alt=""
+              />
               <div>
                 <ErrTitle>Shhhh! </ErrTitle>
-                <div style={{ fontSize: '2.5vh' }}>This category is coming soon.... </div>
+                <div style={{ fontSize: '2.5vh' }}>
+                  This category is coming soon....{' '}
+                </div>
               </div>
             </ContentWrapper>
           </Wrapper>
