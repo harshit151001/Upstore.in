@@ -25,7 +25,7 @@ const Addtocart = props => {
       }
       if (filteredCart.length === 0) {
         dispatch({ type: 'LOADING' });
-        fetch(`${API}/api/user/addToCart/${_id}?wishlist=1`, {
+        fetch(`${API}/api/user/addToCart/${_id}`, {
           method: 'POST',
           headers: {
             Accept: 'application/json',

@@ -1,11 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Remove from '../../Buttons/Remove';
+import Quant from '../../Buttons/Quantity';
 import Addtowishlist from '../../Buttons/Addtowishlist';
 import API from '../../../backend';
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
-import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  padding: 5px px 5px px;
+  outline: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  background: #f5f5f6;
+  border-radius: 2px;
+  &:hover {
+    background: #e1e1e4;
+  }
+  &:focus {
+    border-color: 2px solid #dadade;
+  }
+`;
+
 const Cartcard = (props) => {
   const { product, quantity } = props;
+  const [number, setNumber] = useState(quantity);
+
+  const increment = () => {
+    setNumber((prev) => prev + 1);
+  };
+  const decrement = () => {
+    setNumber((prev) => {
+      if (prev > 1) {
+        return prev - 1;
+      } else {
+        return prev;
+      }
+    });
+  };
 
   const {
     _id,
@@ -13,22 +44,22 @@ const Cartcard = (props) => {
     shopName,
     price,
     stock,
-    category,
-    city,
-    shopId,
+    // category,
+    // city,
+    // shopId,
     discount,
-    size,
+    //size,
     photos,
     markedPrice,
   } = product;
-  console.log(product);
+  //console.log(product);
   return (
     <div
       className="card mt-3"
-      shopId={shopId}
-      city={city}
-      size={size}
-      category={category}
+      // shopId={shopId}
+      // city={city}
+      // size={size}
+      // category={category}
       style={{
         boxShadow: '0px 0px 4px 1px rgba(97,97,97,0.24)',
         border: 'none',
@@ -53,7 +84,7 @@ const Cartcard = (props) => {
             />
           </div>
           <div className="w-100" style={{ paddingLeft: '10px' }}>
-            <h5>{name}</h5>
+            <strong>{name}</strong>
             <div className="d-flex w-100 justify-content-between">
               <span>
                 <p className="small text-muted ">Sold by: {shopName}</p>
@@ -65,23 +96,13 @@ const Cartcard = (props) => {
             <div className="d-flex w-100 mt-0 justify-content-between">
               <span className="d-flex ">
                 <span>
-                  <button className="btn btn-light">
-                    <AddRoundedIcon />
-                  </button>
+                  <Button onClick={increment}>+</Button>
                 </span>
                 <span>
-                  <input
-                    type="text"
-                    style={{ width: '30px' }}
-                    value={quantity}
-                    className="btn"
-                    // onChange={}
-                  />
+                  <Quant quantity={number} id={_id} />
                 </span>
                 <span>
-                  <button className="btn btn-light">
-                    <RemoveRoundedIcon />
-                  </button>
+                  <Button onClick={decrement}>-</Button>
                 </span>
               </span>
               <span>

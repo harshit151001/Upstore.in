@@ -3,12 +3,11 @@ import API from '../../../backend';
 import styled from 'styled-components';
 import UpPlaceholder from '../../Images/UpPlaceholder.png';
 
-const Card = styled.div`
-  box-shadow: rgba(220, 220, 220, 0.8) 0px 0px 6px 2px;
-  border-color: rgb(224, 224, 224);
-  border: none !important;
+const Card = styled.div` 
+  border: 1px solid rgb(224, 224, 224) !important;
   border-image: initial;
   @media (min-width: 1080px) {
+    box-shadow: 0px 0px 10px 0px rgba(97, 97, 97, 0.3);
     padding: 24px;
     width: 24vw;
     display: flex;
@@ -20,6 +19,7 @@ const Card = styled.div`
     }
   }
   @media (max-width: 1080px) {
+    box-shadow: 0px 0px 10px 0px rgba(97, 97, 97, 0.3);
     width: 41vw;
     padding: 24px;
     display: flex;
@@ -29,7 +29,21 @@ const Card = styled.div`
     border-radius: 3px;
   }
   @media (max-width: 768px) {
-    box-shadow: rgba(220, 220, 220, 0.8) 2px 2px 6px 0px;
+    box-shadow: none;
+    border: 1px solid rgb(224, 224, 224);
+    width: 22.5vw;
+    height: 24vw;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 0px;
+  }
+  @media (max-width: 400px) {
+    box-shadow: none;
+    border: 1px solid rgb(224, 224, 224);
     width: 30vw;
     height: 30vw;
     justify-content: center;
@@ -63,6 +77,7 @@ const Card = styled.div`
 `;
 const Name = styled.strong`
   text-decoration: none;
+  font-family: Gilroy, sans-serif;
   color: rgb(23, 30, 48);
   text-align: left;
   flex-wrap: wrap;
@@ -78,21 +93,21 @@ const Name = styled.strong`
     letter-spacing: 1px;
     margin-top: 14px;
   }
-  @media (max-width: 576px) {
+  @media (max-width: 600px) {
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 18px;
     letter-spacing: 1px;
     margin-top: 12px;
   }
-  @media (max-width: 496px) {
+  @media (max-width: 508px) {
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 1px;
     line-height: 18px;
     margin-top: 10px;
   }
-  @media (max-width: 440px) {
+  @media (max-width: 468px) {
     text-align: center;
     font-size: 12px;
     letter-spacing: 0px;

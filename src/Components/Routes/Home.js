@@ -2,12 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import Slider from '../Carousel/Slider';
 import Loginmodal from '../Modals/Loginmodal';
 import { appContext } from '../../Statemanagement/Statecontext';
-//import Footer from '../Footer/Footer';
 import Categorylist from '../Categories/List/Categorylist';
 import Footerhome from '../Footer/Footerhome';
 import Features from '../Feautures/Features';
 import Testimonials from '../Testimonials/Testimonials';
-//import Cartlist from '../Cart/Cartlist';
 
 const Home = () => {
   const MainContext = useContext(appContext);

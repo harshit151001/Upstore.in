@@ -9,7 +9,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Loader from './Components/Loader/Loader';
 //!routes
 import Home from './Components/Routes/Home';
-import Err from './Err';
+import Err from './Error.js'
 import Aboutus from './Components/Routes/Aboutus';
 import Termsandcondition from './Components/Routes/Termsandcondition';
 import Loginsignuppage from './Components/Routes/Loginsignuppage';
@@ -41,27 +41,70 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/aboutus" component={Aboutus}></Route>
-            <Route exact path="/termsandcondition" component={Termsandcondition}></Route>
-            <Route exact path="/loginsignup" component={Loginsignuppage}></Route>
-            <PrivateRoute path="/userdashboard/details/edit" component={Userpage}></PrivateRoute>
-            <PrivateRoute path="/userdashboard/details" component={Userpage}></PrivateRoute>
+            <Route
+              exact
+              path="/termsandcondition"
+              component={Termsandcondition}
+            ></Route>
+            <Route
+              exact
+              path="/loginsignup"
+              component={Loginsignuppage}
+            ></Route>
+            <PrivateRoute
+              path="/userdashboard/details/edit"
+              component={Userpage}
+            ></PrivateRoute>
+            <PrivateRoute
+              path="/userdashboard/details"
+              component={Userpage}
+            ></PrivateRoute>
 
-            <PrivateRoute path="/userdashboard/orders" component={Userpage}></PrivateRoute>
-            <PrivateRoute path="/userdashboard/address" component={Userpage}></PrivateRoute>
-            <PrivateRoute path="/userdashboard" component={Userpage}></PrivateRoute>
+            <PrivateRoute
+              path="/userdashboard/orders"
+              component={Userpage}
+            ></PrivateRoute>
+            <PrivateRoute
+              path="/userdashboard/address"
+              component={Userpage}
+            ></PrivateRoute>
+            <PrivateRoute
+              path="/userdashboard"
+              component={Userpage}
+            ></PrivateRoute>
             <PrivateRoute path="/wishlist" component={Wishlist}></PrivateRoute>
-            <Route path="/products/:categoryId/5eff8e76d75ecb3735b243b1" component={Products}></Route>
+            <Route
+              path="/products/:categoryId/5eff8e76d75ecb3735b243b1"
+              component={Products}
+            ></Route>
             <Route path="/productpage" component={Productpage}></Route>
             <Route path="/products/:categoryId" component={Products}></Route>
             <Route path="/cart/:userId" component={Cart}></Route>
             <Route path="/address" component={Addresses}></Route>
-            <PrivateRoute exact path="/checkout" component={CheckoutPage}></PrivateRoute>
-            <PrivateRoute exact path="/checkout/address" component={ChangeAddress}></PrivateRoute>
+            <PrivateRoute
+              exact
+              path="/checkout"
+              component={CheckoutPage}
+            ></PrivateRoute>
+            <PrivateRoute
+              exact
+              path="/checkout/address"
+              component={ChangeAddress}
+            ></PrivateRoute>
             <Route exact path="/OTP" component={OTP}></Route>
+            <AdminRoute
+              exact
+              path="/ProductUpload"
+              component={ProductUpload}
+            ></AdminRoute>
+            <AdminRoute
+              exact
+              path="/BulkUpload"
+              component={BulkUpload}
+            ></AdminRoute>
             <AdminRoute exact path="/ProductUpload" component={ProductUpload}></AdminRoute>
             <AdminRoute exact path="/BulkUpload" component={BulkUpload}></AdminRoute>
             <AdminRoute path="/seller" component={Seller}></AdminRoute>
-
             <Route component={Err}></Route>
           </Switch>
         </div>

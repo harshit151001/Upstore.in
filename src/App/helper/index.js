@@ -3,13 +3,15 @@ import { isAutheticated } from '../../auth/helper/index';
 import API from '../../backend';
 
 export const getCart = async (dispatch) => {
-  const { token, user } = isAutheticated();
-
-  const { _id } = user;
+  const {
+    token,
+    user: { _id },
+  } = isAutheticated();
 
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
+
   try {
     const response = await Axios.get(
       `${API}/api//user/getCart/${_id}?wishlist=0`,

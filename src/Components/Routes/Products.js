@@ -16,7 +16,7 @@ import Filters from '../Filters/Filters';
 import UpLoader from '../Loader/UpLoader';
 import Stitch from '../Images/Stitch.png';
 import UpDoggy from '../Images/UpDoggy.png';
-import { ContentWrapper, Wrapper, ErrTitle } from '../../Err';
+import { ContentWrapper, Wrapper, ErrTitle } from '../../Error.js';
 
 const Products = props => {
   const { width } = useWindowDimensions();

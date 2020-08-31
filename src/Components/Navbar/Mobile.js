@@ -253,7 +253,17 @@ const Mobile = () => {
                 <KeyboardBackspaceRoundedIcon onClick={closeSearch} style={{ fontSize: '35px', marginTop: '0px' }} />
               </span>
               <form action="">
-                <Input ref={inputRef} value={enteredFilter} onChange={event => setEnteredFilter(event.target.value)} style={{ width: '100%', fontSize: '26px', top: '28px' }} placeholder="search for products..." inputProps={{ 'aria-label': 'description' }} />
+
+                <Input
+                  ref={inputRef}
+                  value={enteredFilter}
+                  onChange={(event) => setEnteredFilter(event.target.value)}
+                  style={{ width: '85vw', fontSize: '26px', top: '2.2vh' }}
+                  placeholder="search for products..."
+                  inputProps={{ 'aria-label': 'description' }}
+                />
+
+                
                 <Link
                   to={`/products/search?page=1&&search=` + enteredFilter}
                   style={{
