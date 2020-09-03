@@ -26,7 +26,8 @@ export const CardContent = styled.div`
   margin: 5px 0 0 0;
   padding: 7px 12px 10px 12px;
 `;
-const ProductImage = styled.img`
+export const ProductImage = styled.img`
+  object-fit: cover;
   border: 1px solid #edeeef;
   width: 111px;
   height: 123px;

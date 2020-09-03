@@ -91,7 +91,7 @@ box-shadow: 0px 1px 3px rgba(40, 44, 63, 0.3);
 `;
 
 const AddAddressButton = styled.div`
-  font-size: 14px;
+  font-size: 13px;
   border: 0.5px solid #d4d5d9;
   border-radius: 4px;
   text-transform: uppercase;
