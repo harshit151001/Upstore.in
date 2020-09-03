@@ -1,12 +1,18 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { isAutheticated } from '../../auth/helper/index';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import Overview from './Overview';
 import useWindowDimensions from '../../customapis/useWindowDimensions';
-import { HeaderDiv, Text, Wrapper, Sidenav, Main } from '../Users/Userdashboard';
+import {
+  HeaderDiv,
+  Text,
+  Wrapper,
+  Sidenav,
+  Main,
+} from '../Users/Userdashboard';
 
-const Sellerdashboard = props => {
+const Sellerdashboard = (props) => {
   console.log(props.match.path);
   const { width } = useWindowDimensions();
   const { user } = isAutheticated();
@@ -24,13 +30,19 @@ const Sellerdashboard = props => {
             <Link style={{ textDecoration: 'none' }} to="/userdashboard">
               <Text>Overview</Text>
             </Link>
-            <Link style={{ textDecoration: 'none' }} to="/userdashboard/details">
+            <Link
+              style={{ textDecoration: 'none' }}
+              to="/userdashboard/details"
+            >
               <Text>Details</Text>
             </Link>
             <Link style={{ textDecoration: 'none' }} to="/userdashboard/orders">
               <Text>Orders</Text>
             </Link>
-            <Link style={{ textDecoration: 'none' }} to="/userdashboard/address">
+            <Link
+              style={{ textDecoration: 'none' }}
+              to="/userdashboard/address"
+            >
               <Text>Address</Text>
             </Link>
 

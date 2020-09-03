@@ -45,19 +45,22 @@ const Myorders = () => {
 
     const loadData = async () => {
       const { token } = isAutheticated();
-      const response = await fetch(`${API}/api/orders/user/${isAutheticated().user._id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+      const response = await fetch(
+        `${API}/api/orders/user/${isAutheticated().user._id}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
 
-      response.json().then(response => {
+      response.json().then((response) => {
         if (mounted) {
           window.scroll(0, 0);
           setData(response);
-          console.log(response);
+          //console.log(response);
         }
       });
     };
@@ -71,37 +74,48 @@ const Myorders = () => {
   console.log(data);
   return (
     <>
-      {data.map((order, count) => {
-        const { products, transaction_id } = order;
-
+      {data.map(({ products, transaction_id }, count) => {
         return (
           <OrderWrapper key={count}>
-            <div>Order NO: {transaction_id}</div>
-
-            {products.map(prodDocument => {
-              const { quantity, product } = prodDocument;
+            <div>Order No: {transaction_id}</div>
+            {products.map(({ quantity, product }) => {
               if (product) {
                 const { name, shopName, photos, price, _id } = product;
-
                 let src = photos[0].substr(6);
-
                 return (
                   <Card key={_id}>
                     <CardContent>
                       <ProductImage src={`${API}${src}`} alt="Product" />
                       <DetailsWrapper>
                         <PreviousButton>
-                          {' '}
-                          <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
+                          <img
+                            style={{ height: '12px' }}
+                            src={GoToIcon}
+                            alt="Go to svg"
+                          />{' '}
                         </PreviousButton>
-                        <div style={{ color: '#3E4152', fontWeight: '800', textTransform: 'uppercase' }}>{shopName}</div>
-                        <div style={{ color: '#7e818c', fontSize: '14px' }}>{name}</div>
-                        <div style={{ color: '#7e818c', fontSize: '14px' }}>Qty: {quantity}</div>
+                        <div
+                          style={{
+                            color: '#3E4152',
+                            fontWeight: '800',
+                            textTransform: 'uppercase',
+                          }}
+                        >
+                          {shopName}
+                        </div>
+                        <div style={{ color: '#7e818c', fontSize: '14px' }}>
+                          {name}
+                        </div>
+                        <div style={{ color: '#7e818c', fontSize: '14px' }}>
+                          Qty: {quantity}
+                        </div>
                         <div>{price}</div>
                       </DetailsWrapper>
                     </CardContent>
                   </Card>
                 );
+              } else {
+                return null;
               }
             })}
           </OrderWrapper>
