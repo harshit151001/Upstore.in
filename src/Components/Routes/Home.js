@@ -5,7 +5,7 @@ import { appContext } from '../../Statemanagement/Statecontext';
 import Categorylist from '../Categories/List/Categorylist';
 import Footerhome from '../Footer/Footerhome';
 import Features from '../Feautures/Features';
-import Testimonials from '../Testimonials/Testimonials';
+// import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
   const MainContext = useContext(appContext);

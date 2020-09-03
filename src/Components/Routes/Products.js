@@ -12,7 +12,7 @@ import API from '../../backend';
 //?components
 import WelcomeBanner from '../WelcomeBanner/WelcomeBanner';
 import Productlist from '../Products/List/Productlist';
-import Filters from '../Filters/Filters';
+// import Filters from '../Filters/Filters';
 import UpLoader from '../Loader/UpLoader';
 import Stitch from '../Images/Stitch.png';
 import UpDoggy from '../Images/UpDoggy.png';

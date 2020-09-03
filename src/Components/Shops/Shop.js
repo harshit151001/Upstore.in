@@ -62,6 +62,7 @@ export default function Shop({ shopId }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
+    console.log('c');
     let mounted = true;
     const loadandsetdata = async () => {
       console.log(`${API}/api/shop/${shopId}`);
@@ -80,7 +81,7 @@ export default function Shop({ shopId }) {
     return () => {
       mounted = false;
     };
-  }, [currentPage]);
+  }, [currentPage, shopId]);
 
   console.log(currentPage, totalPages);
   const { name, _id } = shopData;

@@ -25,7 +25,7 @@ const FormHeader = styled.div`
   margin-top: 2vh;
 `;
 
-const SelectAddress = (props) => {
+const SelectAddress = props => {
   const { width } = useWindowDimensions();
   const { user, token } = isAutheticated();
   const { state } = useContext(appContext);
@@ -38,24 +38,22 @@ const SelectAddress = (props) => {
       minWidth: 275,
       minHeight: 191,
       boxShadow: '0px 0px 4px 1px rgba(97,97,97,0.24)',
-      border: 'none',
+      border: 'none'
     },
     name: {
       fontSize: 20,
       display: 'inline',
-      color: '#282c3f',
+      color: '#282c3f'
     },
     pos: {
-      marginBottom: 12,
-    },
+      marginBottom: 12
+    }
   });
 
   const onSubmit = async ({ contactName, contactNumber, address }) => {
     //console.log([{ contactName, contactNumber, address }]);
     setData([{ contactName, contactNumber, address }]);
-    const response = await addAddress(user._id, token, [
-      { contactName, contactNumber, address },
-    ]);
+    const response = await addAddress(user._id, token, [{ contactName, contactNumber, address }]);
     // console.log(data);
     setData(response[0]);
   };
@@ -65,19 +63,21 @@ const SelectAddress = (props) => {
     initialValues: {
       contactName: user.name,
       contactNumber: user.phoneNumber,
-      address: '',
+      address: ''
     },
     // validationSchema,
-    onSubmit,
+    onSubmit
   });
 
   const classes = useStyles();
 
   useEffect(() => {
+    console.log('c');
+    const { user, token } = isAutheticated();
+
     try {
-      getAddresses(user._id, token).then((data) => {
-        const defaultAddress =
-          data.filter((address) => address.default === true)[0] || data[0];
+      getAddresses(user._id, token).then(data => {
+        const defaultAddress = data.filter(address => address.default === true)[0] || data[0];
         console.log(defaultAddress);
         setData(defaultAddress);
       });
@@ -95,13 +95,13 @@ const SelectAddress = (props) => {
 
     let amount = 0;
     order.products = [];
-    cart.map((document) => {
+    cart.map(document => {
       amount += document.product.price;
       order.products.push({
         product: document.product._id,
         name: document.product.name,
         price: document.product.price,
-        quantity: document.quantity,
+        quantity: document.quantity
       });
 
       return amount;
@@ -112,7 +112,7 @@ const SelectAddress = (props) => {
       amount,
       address: data,
       status,
-      user: isAutheticated().user._id,
+      user: isAutheticated().user._id
     };
 
     console.log(order);
@@ -122,29 +122,29 @@ const SelectAddress = (props) => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify({ order }),
+      body: JSON.stringify({ order })
     })
-      .then((response) => {
+      .then(response => {
         response.json().then(function (data) {
           console.log(data);
           props.history.push({
             pathname: '/userdashboard/orders',
-            state: { confirmation: 'You order has been placed successfully!' },
+            state: { confirmation: 'You order has been placed successfully!' }
           });
         });
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
 
     fetch(`${API}/api/clear/cart/${user._id}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((response) => response.json().then((res) => console.log(res)));
+        Authorization: `Bearer ${token}`
+      }
+    }).then(response => response.json().then(res => console.log(res)));
 
     return order;
   };
@@ -152,45 +152,15 @@ const SelectAddress = (props) => {
   const addAddressForm = () => {
     return (
       <form>
-        <TextField
-          value={formik.values.contactName || ''}
-          onChange={formik.handleChange}
-          style={{ marginTop: '2vh' }}
-          label="Full Name"
-          fullWidth={true}
-          id="contactName"
-          variant="outlined"
-          placeholder="Full Name"
-        />
-        <TextField
-          style={{ marginTop: '8vh' }}
-          label="Mobile Number"
-          value={formik.values.contactNumber}
-          onChange={formik.handleChange}
-          fullWidth={true}
-          id="contactNumber"
-          variant="outlined"
-          placeholder="Mobile Number"
-        />
-        <TextField
-          style={{ marginTop: '8vh' }}
-          label="Address"
-          value={formik.values.address}
-          onChange={formik.handleChange}
-          fullWidth={true}
-          id="address"
-          variant="outlined"
-          placeholder="Address"
-        />
+        <TextField value={formik.values.contactName || ''} onChange={formik.handleChange} style={{ marginTop: '2vh' }} label="Full Name" fullWidth={true} id="contactName" variant="outlined" placeholder="Full Name" />
+        <TextField style={{ marginTop: '8vh' }} label="Mobile Number" value={formik.values.contactNumber} onChange={formik.handleChange} fullWidth={true} id="contactNumber" variant="outlined" placeholder="Mobile Number" />
+        <TextField style={{ marginTop: '8vh' }} label="Address" value={formik.values.address} onChange={formik.handleChange} fullWidth={true} id="address" variant="outlined" placeholder="Address" />
       </form>
     );
   };
 
   return (
-    <div
-      className="container-fluid"
-      style={{ background: '#fafafa', minHeight: '91vh' }}
-    >
+    <div className="container-fluid" style={{ background: '#fafafa', minHeight: '91vh' }}>
       <div className="container-xl pt-4 pb-5">
         <div className="row">
           <div className="col-lg-12">
@@ -200,23 +170,19 @@ const SelectAddress = (props) => {
                   className="card d-none d-sm-block"
                   style={{
                     boxShadow: '0px 0px 4px 1px rgba(97,97,97,0.24)',
-                    border: 'none',
+                    border: 'none'
                   }}
                 >
                   <div className="card-body">
                     <div className="row w-100 py-auto my-auto">
                       <div className="col-8 my-auto">
-                        <strong>
-                          My shopping bag:{`(${cart.length} items)`}
-                        </strong>
+                        <strong>My shopping bag:{`(${cart.length} items)`}</strong>
                       </div>
                       <div className="col-4  my-auto text-right">
                         {
                           <strong>
                             &#x20b9;
-                            {cart
-                              .map((items) => items.product.price)
-                              .reduce((prev, current) => prev + current, 0)}
+                            {cart.map(items => items.product.price).reduce((prev, current) => prev + current, 0)}
                           </strong>
                         }
                       </div>
@@ -234,12 +200,10 @@ const SelectAddress = (props) => {
               <>
                 <div
                   style={{
-                    boxShadow: `${
-                      width > 991 ? `0px 0px 4px 1px rgba(97,97,97,0.24)` : ''
-                    }`,
+                    boxShadow: `${width > 991 ? `0px 0px 4px 1px rgba(97,97,97,0.24)` : ''}`,
                     border: 'none',
                     padding: `${width > 991 ? `1.25rem` : ''}`,
-                    borderRadius: '5px',
+                    borderRadius: '5px'
                   }}
                 >
                   <FormHeader>Address</FormHeader>
@@ -265,7 +229,7 @@ const SelectAddress = (props) => {
                       left: '0',
                       width: '100%',
                       padding: '31px 10px',
-                      boxShadow: '0px 0px 4px 1px rgba(97,97,97,0.24)',
+                      boxShadow: '0px 0px 4px 1px rgba(97,97,97,0.24)'
                     }}
                   >
                     <Button
@@ -284,11 +248,7 @@ const SelectAddress = (props) => {
               data !== 'loading' && (
                 <Card className={classes.root}>
                   <CardContent>
-                    <Radio
-                      checked={true}
-                      className="pt-0"
-                      name="radio-button-demo"
-                    />
+                    <Radio checked={true} className="pt-0" name="radio-button-demo" />
                     <Typography className={classes.name} gutterBottom>
                       {data.contactName}
                     </Typography>
@@ -296,18 +256,10 @@ const SelectAddress = (props) => {
                       <Typography variant="body2" component="p">
                         {data.address}
                       </Typography>
-                      <Typography component="p">
-                        Mobile: {data.contactNumber}
-                      </Typography>
+                      <Typography component="p">Mobile: {data.contactNumber}</Typography>
                     </div>
-                    <Link
-                      to={'/checkout/address'}
-                      style={{ textDecoration: 'none' }}
-                    >
-                      <button
-                        type="button"
-                        className="btn btn-outline-primary   mt-3 btn-block"
-                      >
+                    <Link to={'/checkout/address'} style={{ textDecoration: 'none' }}>
+                      <button type="button" className="btn btn-outline-primary   mt-3 btn-block">
                         <strong>Choose a different address</strong>
                       </button>
                     </Link>
@@ -319,9 +271,7 @@ const SelectAddress = (props) => {
           {data !== 'loading' && (
             <div className="col-lg-3">
               {' '}
-              {(width > 990 || data) && (
-                <Invoice display={'none'} link={'/checkout'} />
-              )}
+              {(width > 990 || data) && <Invoice display={'none'} link={'/checkout'} />}
               {!data ? (
                 ''
               ) : (
