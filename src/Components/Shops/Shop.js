@@ -5,12 +5,17 @@ import LoginImage from '../Images/Login.png';
 import API from '../../backend';
 import Axios from 'axios';
 import ProductList from '../Products/List/Productlist';
+import UpPlaceholder from '../Images/UpPlaceholder.png';
 
 const Title = styled.div`
   text-transform: capitalize;
   font-weight: 800;
   font-size: 3vh;
   color: white;
+  margin-left: 2vh;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const ShopImage = styled.img`
@@ -31,8 +36,16 @@ const ImageContainer = styled.div`
 
 const Container = styled.div`
   display: flex;
-  padding: 4vh 9vh;
+  @media (min-width: 600px) {
+    padding: 4vh 9vh;
+  }
+  @media (max-width: 600px) {
+    text-align: center;
+    margin: auto;
+    justify-content: center;
+  }
   width: 100%;
+  flex-wrap: wrap;
 `;
 const Jumbotron = styled.div`
   height: 30vh;
@@ -53,6 +66,19 @@ const Wrapper = styled.div`
   @media (max-width: 990px) {
     width: 100%;
   }
+`;
+
+const ListWrapper = styled.div`
+  margin-top: 2vh;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 15px;
+`;
+
+const ButtonWrapper = styled.div`
+  width: 100%;
+  text-align: center;
+  padding: 4vh;
 `;
 
 export default function Shop({ shopId }) {
@@ -83,41 +109,42 @@ export default function Shop({ shopId }) {
     };
   }, [currentPage, shopId]);
 
-  console.log(currentPage, totalPages);
-  const { name, _id } = shopData;
+  const { name, _id, banner } = shopData;
   return (
     <Wrapper>
       <Jumbotron>
         <Container>
           <ImageContainer>
-            <ShopImage src={LoginImage} />
+            <ShopImage src={banner ? API + banner.substr(6) : UpPlaceholder} />
           </ImageContainer>
           <Title>{name}</Title>
         </Container>
         {/* <ShopImage src={'https://upstore.in/images/2020-08-03T09:01:32.500Z-assss-139991516.jpg'} /> */}
       </Jumbotron>
-      {data.length && <ProductList data={data} />}
-      <button
-        onClick={() => {
-          if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-          }
-        }}
-        className="btn btn-light mr-2"
-      >
-        {currentPage > 1 ? <Link to={`/shop/${_id}`}> back</Link> : 'back'}
-      </button>
+      <ListWrapper>{data.length && <ProductList data={data} />}</ListWrapper>
+      <ButtonWrapper>
+        <button
+          onClick={() => {
+            if (currentPage > 1) {
+              setCurrentPage(currentPage - 1);
+            }
+          }}
+          className="btn btn-light mr-2"
+        >
+          {currentPage > 1 ? <Link to={`/shop/${_id}`}> back</Link> : 'back'}
+        </button>
 
-      <button
-        onClick={() => {
-          if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-          }
-        }}
-        className="btn btn-light ml-2"
-      >
-        {currentPage < totalPages ? <Link to={`/shop/${_id}`}>next</Link> : 'next'}
-      </button>
+        <button
+          onClick={() => {
+            if (currentPage < totalPages) {
+              setCurrentPage(currentPage + 1);
+            }
+          }}
+          className="btn btn-light ml-2"
+        >
+          {currentPage < totalPages ? <Link to={`/shop/${_id}`}>next</Link> : 'next'}
+        </button>
+      </ButtonWrapper>
     </Wrapper>
   );
 }
