@@ -52,7 +52,9 @@ function App() {
             <PrivateRoute path="/userdashboard/address" component={Userpage}></PrivateRoute>
             <PrivateRoute path="/userdashboard" component={Userpage}></PrivateRoute>
             <PrivateRoute path="/wishlist" component={Wishlist}></PrivateRoute>
+            <Route path="/products/search" component={Products}></Route>
             <Route path="/products/:categoryId/5eff8e76d75ecb3735b243b1" component={Products}></Route>
+
             <Route path="/productpage" component={Productpage}></Route>
             <Route path="/shops/:categoryId/5eff8e76d75ecb3735b243b1" component={Shops}></Route>
             <Route path="/shop/:shopId" component={ShopPage}></Route>
@@ -64,8 +66,7 @@ function App() {
             <Route exact path="/OTP" component={OTP}></Route>
             <AdminRoute exact path="/ProductUpload" component={ProductUpload}></AdminRoute>
             <AdminRoute exact path="/BulkUpload" component={BulkUpload}></AdminRoute>
-            <AdminRoute exact path="/ProductUpload" component={ProductUpload}></AdminRoute>
-            <AdminRoute exact path="/BulkUpload" component={BulkUpload}></AdminRoute>
+
             <AdminRoute path="/seller" component={Seller}></AdminRoute>
             <Route component={Err}></Route>
           </Switch>
