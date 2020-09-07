@@ -150,64 +150,68 @@ const SingleProductpage = props => {
     <>
       {data ? (
         <>
-          {' '}
-          {width > 990 && <div className={classes.navbar}></div>}
-          <div className={classes.container}>
-            <div className={classes.col60}>
-              {width > 990 && <div className={classes.thumbnails}>{Thumbnails(data.photos)}</div>}
-              <div className={classes.imgbox}>
-                <div className={classes.imageContainer}>
-                  <Carousel activeIndex={index} onSelect={handleSelect}>
-                    {CarouselImages(data.photos)}
-                  </Carousel>
-                  {/* <img className={classes.image} src={productImage} alt="" /> */}
-                </div>
-              </div>
-            </div>
-
-            <div className={classes.col40}>
-              <div className={classes.col100}>
-                <div className={classes.productTitle}>
-                  <h3 className={classes.productname}>{data.name}</h3>
-
-                  <div>
-                    <DetailsWrapper>
-                      <span>Rs:{data.price}</span>
-                      <MarkedPrice>
-                        <strike>Rs:{data.markedPrice}</strike>
-                      </MarkedPrice>
-                      <Discount>({Math.ceil(((data.markedPrice - data.price) / data.markedPrice) * 100)}%) OFF</Discount>
-                    </DetailsWrapper>
-                    <Taxes>inclusive of all taxes</Taxes>
+          <div style={{ minHeight: '1000px' }}>
+            {' '}
+            {width > 990 && <div className={classes.navbar}></div>}
+            <div className={classes.container}>
+              <div className={classes.col60}>
+                {width > 990 && <div className={classes.thumbnails}>{Thumbnails(data.photos)}</div>}
+                <div className={classes.imgbox}>
+                  <div className={classes.imageContainer}>
+                    <Carousel activeIndex={index} onSelect={handleSelect}>
+                      {CarouselImages(data.photos)}
+                    </Carousel>
+                    {/* <img className={classes.image} src={productImage} alt="" /> */}
                   </div>
                 </div>
-                <div className={classes.card}>
-                  {data.variants ? (
-                    <FormControl className={selectClasses.formControl}>
-                      <InputLabel id="demo-controlled-open-select-label">Variants</InputLabel>
-                      <Select labelId="demo-controlled-open-select-label" id="demo-controlled-open-select" open={open} onClose={handleClose} onOpen={handleOpen} value={variant} onChange={handleChange}>
-                        {VariantList(data.variants)}
-                      </Select>
-                    </FormControl>
-                  ) : (
-                    <OneSize>One Size</OneSize>
-                  )}
+              </div>
 
-                  <div className={classes.buttonWrapper}>
-                    <div className={classes.buttonContainer}>
-                      {width > 990 && (
-                        <Addtocart classes={`m-2 btn btn-primary ${classes.addToCart}`} id={_id}>
-                          ADD TO CART
-                        </Addtocart>
-                      )}
-                      <Addtowishlist classes={`btn btn-outline-primary ${classes.addToWishList}`} id={_id}>
-                        WISHLIST
-                      </Addtowishlist>
-                      {width <= 990 && (
-                        <Addtocart classes={`m-2 btn btn-primary ${classes.addToCart}`} id={_id}>
-                          ADD TO CART
-                        </Addtocart>
-                      )}
+              <div className={classes.col40}>
+                <div className={classes.col100}>
+                  <div className={classes.productTitle}>
+                    <h3 className={classes.productname}>{data.name}</h3>
+
+                    <div>
+                      <DetailsWrapper>
+                        <span>Rs:{data.price}</span>
+                        <MarkedPrice>
+                          <strike>Rs:{data.markedPrice}</strike>
+                        </MarkedPrice>
+                        <Discount>({Math.ceil(((data.markedPrice - data.price) / data.markedPrice) * 100)}%) OFF</Discount>
+                      </DetailsWrapper>
+                      <Taxes>inclusive of all taxes</Taxes>
+                    </div>
+                  </div>
+                  <div className={classes.card}>
+                    {data.variants ? (
+                      <FormControl className={selectClasses.formControl}>
+                        <InputLabel id="demo-controlled-open-select-label">Variants</InputLabel>
+                        <Select labelId="demo-controlled-open-select-label" id="demo-controlled-open-select" open={open} onClose={handleClose} onOpen={handleOpen} value={variant} onChange={handleChange}>
+                          {VariantList(data.variants)}
+                        </Select>
+                      </FormControl>
+                    ) : (
+                      <OneSize>One Size</OneSize>
+                    )}
+
+                    <div className={classes.buttonWrapper}>
+                      <div className={classes.buttonContainer}>
+                        {width > 990 && (
+                          <Addtocart classes={`m-2 btn btn-primary `} id={_id}>
+                            ADD TO CART
+                          </Addtocart>
+                        )}
+                        <div style={{ width: '40%' }}>
+                          <Addtowishlist classes={`btn btn-outline-primary `} id={_id}>
+                            WISHLIST
+                          </Addtowishlist>
+                        </div>
+                        {width <= 990 && (
+                          <Addtocart classes={`m-2 btn btn-primary `} id={_id}>
+                            ADD TO CART
+                          </Addtocart>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
