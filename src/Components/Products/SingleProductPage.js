@@ -85,7 +85,9 @@ const SingleProductpage = props => {
         window.scroll(0, 0);
         setData(response.data.product);
         setVariant(response.data.product._id);
-
+        if (index + 1 > response.data.product.photos.length) {
+          setIndex(0);
+        }
         console.log(response.data.product);
       }
     };
@@ -94,8 +96,6 @@ const SingleProductpage = props => {
       mounted = false;
     };
   }, [productId]);
-
-  console.log(data);
 
   const VariantList = () => {
     return data.variants.map((variant, index) => {
