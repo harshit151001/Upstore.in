@@ -55,10 +55,10 @@ function App() {
             <Route path="/products/search" component={Products}></Route>
             <Route path="/products/:categoryId/5eff8e76d75ecb3735b243b1" component={Products}></Route>
 
-            <Route path="/productpage" component={Productpage}></Route>
+            <Route path="/productpage/:productId" component={Productpage}></Route>
             <Route path="/shops/:categoryId/5eff8e76d75ecb3735b243b1" component={Shops}></Route>
             <Route path="/shop/:shopId" component={ShopPage}></Route>
-            {/* <Route path="/products/:categoryId" component={Products}></Route> */}
+
             <Route path="/cart/:userId" component={Cart}></Route>
             <Route path="/address" component={Addresses}></Route>
             <PrivateRoute exact path="/checkout" component={CheckoutPage}></PrivateRoute>

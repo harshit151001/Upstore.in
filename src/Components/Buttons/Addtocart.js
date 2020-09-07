@@ -45,6 +45,7 @@ const Addtocart = props => {
         })
           .then(response => {
             response.json().then(function (data) {
+              console.log(data.products);
               dispatch({ type: 'UPDATECART', payload: data.products });
               dispatch({ type: 'REMOVEDFROMWISHLIST', payload: id });
               dispatch({ type: 'LOADED' });

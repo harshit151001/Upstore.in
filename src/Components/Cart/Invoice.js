@@ -20,21 +20,21 @@ const Invoice = props => {
           <span>Bag total</span>
           <span>
             &#x20b9;
-            {cart.map(item => item.product.markedPrice).reduce((prev, current) => prev + current, 0)}
+            {cart.map(item => item.product.markedPrice * item.quantity).reduce((prev, current) => prev + current, 0)}
           </span>
         </div>
         <div className="d-flex justify-content-between" style={{ color: '#ec436f' }}>
           <span>Discount</span>
           <span>
             -&#x20b9;
-            {cart.map(item => item.product.markedPrice).reduce((prev, current) => prev + current, 0) - cart.map(item => item.product.price).reduce((prev, current) => prev + current, 0)}
+            {cart.map(item => item.product.markedPrice * item.quantity).reduce((prev, current) => prev + current, 0) - cart.map(item => item.product.price * item.quantity).reduce((prev, current) => prev + current, 0)}
           </span>
         </div>
         <div className="d-flex justify-content-between" style={{ color: 'grey' }}>
           <span>Order total</span>
           <span>
             &#x20b9;
-            {cart.map(item => item.product.price).reduce((prev, current) => prev + current, 0)}
+            {cart.map(item => item.product.price * item.quantity).reduce((prev, current) => prev + current, 0)}
           </span>
         </div>
         <div className="d-flex justify-content-between" style={{ color: 'grey' }}>
@@ -53,7 +53,7 @@ const Invoice = props => {
           <span>
             <strong>
               &#x20b9;
-              {cart.map(item => item.product.price).reduce((prev, current) => prev + current, 0)}
+              {cart.map(item => item.product.price * item.quantity).reduce((prev, current) => prev + current, 0)}
             </strong>
           </span>
         </div>

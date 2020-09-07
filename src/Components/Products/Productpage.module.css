@@ -1,0 +1,161 @@
+@media (min-width: 990px) {
+  .container {
+    width: 100%;
+    margin: auto;
+    padding-left: 2.3vw;
+    padding-right: 2.3vw;
+    display: flex;
+    flex-direction: row;
+
+    min-height: 600px;
+    height: 9vh;
+  }
+  .col40 {
+    margin-top: 40px;
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    min-height: 600px;
+    height: 91vh;
+  }
+  .col60 {
+    margin-top: 40px;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    min-height: 600px;
+    height: 91vh;
+  }
+  .col100 {
+    width: 100%;
+    margin: auto;
+    min-height: 600px;
+    height: 91vh;
+  }
+  .col25 {
+    width: 30%;
+    min-height: 600px;
+    height: 91vh;
+  }
+  .productname {
+    margin: 0px;
+    margin-bottom: 8px;
+    padding-right: 20px;
+  }
+  .link {
+    text-decoration: none;
+  }
+  .card {
+    margin-top: 5vh;
+    padding-right: 20px;
+    width: 98%;
+  }
+
+  .buttonContainer {
+    justify-content: space-between;
+    width: 100%;
+
+    display: flex;
+  }
+
+  .addToCart {
+    font-size: 18px;
+    width: 58%;
+    padding: 16px;
+    font-weight: 800;
+  }
+
+  .addToWishList {
+    width: 40%;
+    margin: 8px;
+    font-weight: 800;
+    font-size: 18px;
+  }
+  .buttonWrapper {
+    margin-top: 4vh;
+  }
+}
+
+.navbar {
+  height: 5vh;
+}
+
+.thumbnailImg {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.thumbnail {
+  margin-bottom: 2vh;
+  height: 60px;
+  width: 100%;
+}
+
+.imgbox {
+  margin-left: 2vh;
+  width: 83%;
+}
+@media (max-width: 990px) {
+  .container {
+    width: 100%;
+    margin: auto;
+
+    max-height: 600px;
+    height: 9vh;
+  }
+  .imgbox {
+    margin: auto;
+    width: 100%;
+  }
+
+  .buttonContainer {
+    margin: auto;
+    justify-content: space-between;
+    width: 97%;
+    margin: auto;
+    display: flex;
+  }
+  .buttonWrapper {
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .addToCart {
+    width: 60%;
+    height: 57px;
+    font-weight: 800;
+    font-size: 18px;
+  }
+
+  .addToWishList {
+    height: 57px;
+    width: 40%;
+    margin: auto;
+    font-weight: 800;
+    font-size: 18px;
+  }
+
+  .productTitle {
+    border: solid #f4f4f5;
+    border-width: 0 0 10px 0;
+    padding: 17px 6px 17px 18px;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: unset;
+    color: #282c3f;
+  }
+}
+.image {
+  height: 450px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.thumbnails {
+  height: auto;
+  width: 10%;
+}

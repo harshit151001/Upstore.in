@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Img from './Images';
 import Addtocart from '../../Buttons/Addtocart';
 import Addtowishlist from '../../Buttons/Addtowishlist';
@@ -12,9 +13,11 @@ const Productcard = ({ product, categoryId }) => {
   return (
     <div style={{ width: '100%' }} className="card p-2 col-12 shadow-sm col-sm-6" key={_id}>
       <div className="row no-gutters" style={{ display: 'flex', flexWrap: 'nowrap' }}>
-        <div>
-          <Img src={`${API}${src}`} alt={name} />
-        </div>
+        <Link style={{ textDecoration: 'none' }} to={`/productpage/${_id}`}>
+          <div>
+            <Img src={`${API}${src}`} alt={name} />
+          </div>
+        </Link>
         <div style={{ paddingLeft: '10px' }} className="w-100">
           <p className="mb-1">
             <strong>{name}</strong>

@@ -14,6 +14,9 @@ const Slider = () => {
       <Carousel.Item>
         <ImgComp className="d-block w-100" src={i1} alt={`Second slide`} />
       </Carousel.Item>
+      <Carousel.Item>
+        <ImgComp className="d-block w-100" src={i1} alt={`Second slide`} />
+      </Carousel.Item>
     </Carousel>
   );
 };
