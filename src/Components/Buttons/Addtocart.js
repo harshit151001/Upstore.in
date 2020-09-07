@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { appContext, dispatchContext } from '../../Statemanagement/Statecontext';
 import { isAutheticated } from '../../auth/helper/index';
 import API from '../../backend';
@@ -70,19 +70,22 @@ const Addtocart = props => {
   } else {
     return (
       <>
-        <Link
-          to={{
-            pathname: '/loginsignup',
-            state: {
-              snackbarMessage: 'Login to Add to cart'
-            }
-          }}
+        <button
+          onClick={() =>
+            props.history.push({
+              pathname: '/loginsignup',
+              state: {
+                snackbarMessage: 'Login to Add to cart'
+              }
+            })
+          }
+          className={props.classes}
         >
-          <button className={props.classes}>add to cart</button>
-        </Link>
+          {props.children}
+        </button>
       </>
     );
   }
 };
 
-export default Addtocart;
+export default withRouter(Addtocart);

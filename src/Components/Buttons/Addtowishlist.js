@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import API from '../../backend';
 
 import { appContext, dispatchContext } from '../../Statemanagement/Statecontext';
@@ -65,20 +65,22 @@ const Addtowishlist = props => {
     );
   } else {
     return (
-      <Link
-        to={{
-          pathname: '/loginsignup',
-          state: {
-            snackbarMessage: 'Login to Add to wishlist'
-          }
-        }}
+      <button
+        onClick={() =>
+          props.history.push({
+            pathname: '/loginsignup',
+            state: {
+              snackbarMessage: 'Login to Add to wishlist'
+            }
+          })
+        }
+        style={{ margin: '8px' }}
+        className={props.classes}
       >
-        <button style={{ margin: '8px' }} className={props.classes}>
-          add to wishlist
-        </button>
-      </Link>
+        {props.children}
+      </button>
     );
   }
 };
 
-export default Addtowishlist;
+export default withRouter(Addtowishlist);

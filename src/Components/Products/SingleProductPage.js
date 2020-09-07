@@ -197,17 +197,17 @@ const SingleProductpage = props => {
                     <div className={classes.buttonWrapper}>
                       <div className={classes.buttonContainer}>
                         {width > 990 && (
-                          <Addtocart classes={`m-2 btn btn-primary `} id={_id}>
+                          <Addtocart classes={`m-2 btn btn-primary ${classes.addToCart}`} id={_id}>
                             ADD TO CART
                           </Addtocart>
                         )}
-                        <div style={{ width: '40%' }}>
-                          <Addtowishlist classes={`btn btn-outline-primary `} id={_id}>
-                            WISHLIST
-                          </Addtowishlist>
-                        </div>
+
+                        <Addtowishlist classes={`btn btn-outline-primary ${classes.addToWishlist}`} id={_id}>
+                          WISHLIST
+                        </Addtowishlist>
+
                         {width <= 990 && (
-                          <Addtocart classes={`m-2 btn btn-primary `} id={_id}>
+                          <Addtocart classes={`m-2 btn btn-primary ${classes.addToCart}`} id={_id}>
                             ADD TO CART
                           </Addtocart>
                         )}
