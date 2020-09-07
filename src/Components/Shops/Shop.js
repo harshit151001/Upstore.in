@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import LoginImage from '../Images/Login.png';
 import API from '../../backend';
 import Axios from 'axios';
 import ProductList from '../Products/List/Productlist';
@@ -14,7 +13,12 @@ const Title = styled.div`
   color: white;
   margin-left: 2vh;
   @media (max-width: 600px) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
     width: 100%;
+    overflow: hidden;
+    margin: 0.5vh 1.5vh;
+    font-size: 19px;
   }
 `;
 
@@ -36,13 +40,14 @@ const ImageContainer = styled.div`
 
 const Container = styled.div`
   display: flex;
-  @media (min-width: 600px) {
+  @media (min-width: 990px) {
     padding: 4vh 9vh;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 990px) {
+    padding: 4vh 3vh;
+    justify-content: left;
     text-align: center;
     margin: auto;
-    justify-content: center;
   }
   width: 100%;
   flex-wrap: wrap;
@@ -119,7 +124,6 @@ export default function Shop({ shopId }) {
           </ImageContainer>
           <Title>{name}</Title>
         </Container>
-        {/* <ShopImage src={'https://upstore.in/images/2020-08-03T09:01:32.500Z-assss-139991516.jpg'} /> */}
       </Jumbotron>
       <ListWrapper>{data.length && <ProductList data={data} />}</ListWrapper>
       <ButtonWrapper>

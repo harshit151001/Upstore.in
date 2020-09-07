@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Img from './Images';
 import Addtocart from '../../Buttons/Addtocart';
 import Addtowishlist from '../../Buttons/Addtowishlist';
 import API from '../../../backend';
 //eslint-disable-next-line
-const Productcard = ({ product, categoryId }) => {
+const Productcard = props => {
+  const { product, categoryId } = props;
   const { name, photos, markedPrice, price, _id, shopName } = product;
-  console.log(photos);
+  console.log(props);
   const src = photos[0].substr(6);
 
   return (
@@ -32,13 +33,13 @@ const Productcard = ({ product, categoryId }) => {
               ''
             )}
           </p>
-          <p className="small text-muted mt-0 pt-0">Sold by: {shopName} </p>
+          {props.match.path !== '/shop/:shopId' && <p className="small text-muted mt-0 pt-0">Sold by: {shopName} </p>}
           <Addtowishlist classes="btn btn-outline-primary" id={_id}>
-            Add to wishlist
+            WISHLIST
           </Addtowishlist>
 
           <Addtocart classes="m-2 btn btn-primary" id={_id}>
-            Add to cart
+            ADD TO CART
           </Addtocart>
         </div>
       </div>
@@ -46,4 +47,4 @@ const Productcard = ({ product, categoryId }) => {
   );
 };
 
-export default Productcard;
+export default withRouter(Productcard);

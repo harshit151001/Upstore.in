@@ -183,7 +183,7 @@ const SingleProductpage = props => {
                     </div>
                   </div>
                   <div className={classes.card}>
-                    {data.variants ? (
+                    {data.variants.length ? (
                       <FormControl className={selectClasses.formControl}>
                         <InputLabel id="demo-controlled-open-select-label">Variants</InputLabel>
                         <Select labelId="demo-controlled-open-select-label" id="demo-controlled-open-select" open={open} onClose={handleClose} onOpen={handleOpen} value={variant} onChange={handleChange}>

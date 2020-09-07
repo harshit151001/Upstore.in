@@ -9,8 +9,12 @@ const ListWrapper = styled.div`
   margin: auto;
   width: 100%;
   justify-content: space-between;
-  margin-top: 2vh;
-  padding: 0px 2vh;
+
+  padding: 2vh 2vh;
+
+  @media (max-width: 990px) {
+    padding: 2vh 0;
+  }
 `;
 
 export default function ShopList({ data }) {
