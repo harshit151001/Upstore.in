@@ -1,6 +1,6 @@
 //?libraries
 import React, { useContext, useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 //?components
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
@@ -24,7 +24,7 @@ import userIcon from '../Images/userIcon.png';
 import logo from '../Images/UpLogoFinal.png';
 /****************************************************************************************************/
 
-const Mobile = () => {
+const Mobile = props => {
   const { state } = useContext(appContext);
   const { categorydata } = state;
 
@@ -81,6 +81,7 @@ const Mobile = () => {
     const timer = setTimeout(() => {
       if (inputRef.current.value && enteredFilter === inputRef.current.value) {
         const query = enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
+        console.log(`${API}/api/search/products/5eff8e76d75ecb3735b243b1` + query);
         fetch(`${API}/api/search/products/5eff8e76d75ecb3735b243b1` + query).then(response => {
           response
             .json()
@@ -195,7 +196,7 @@ const Mobile = () => {
   );
 
   return (
-    <div>
+    <div style={props.history.location.pathname === '/full-image-view' ? { display: 'none' } : {}}>
       {['left'].map(anchor => (
         <React.Fragment key={anchor}>
           <div
@@ -252,18 +253,9 @@ const Mobile = () => {
               <span className="mr-2">
                 <KeyboardBackspaceRoundedIcon onClick={closeSearch} style={{ fontSize: '35px', marginTop: '0px' }} />
               </span>
-              <form action="">
+              <form action={`/products/search?page=1&&search=` + enteredFilter}>
+                <Input ref={inputRef} value={enteredFilter} onChange={event => setEnteredFilter(event.target.value)} style={{ width: '85vw', fontSize: '26px', top: '2.2vh' }} placeholder="search for products..." inputProps={{ 'aria-label': 'description' }} />
 
-                <Input
-                  ref={inputRef}
-                  value={enteredFilter}
-                  onChange={(event) => setEnteredFilter(event.target.value)}
-                  style={{ width: '85vw', fontSize: '26px', top: '2.2vh' }}
-                  placeholder="search for products..."
-                  inputProps={{ 'aria-label': 'description' }}
-                />
-
-                
                 <Link
                   to={`/products/search?page=1&&search=` + enteredFilter}
                   style={{
@@ -286,4 +278,4 @@ const Mobile = () => {
     </div>
   );
 };
-export default Mobile;
+export default withRouter(Mobile);

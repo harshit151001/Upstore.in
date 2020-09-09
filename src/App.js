@@ -29,6 +29,8 @@ import BulkUpload from './Components/Seller/BulkUpload';
 import Seller from './Components/Routes/Seller';
 import Shops from './Components/Routes/Shops';
 import ShopPage from './Components/Routes/ShopPage';
+import FullView from './Components/Routes/FullView';
+import DeliverOrders from './Components/Routes/DeliverOrders';
 
 //!context
 import { Statecontext } from './Statemanagement/Statecontext';
@@ -56,6 +58,8 @@ function App() {
             <Route path="/products/:categoryId/5eff8e76d75ecb3735b243b1" component={Products}></Route>
 
             <Route path="/productpage/:productId" component={Productpage}></Route>
+            <Route path="/full-image-view" component={FullView}></Route>
+
             <Route path="/shops/:categoryId/5eff8e76d75ecb3735b243b1" component={Shops}></Route>
             <Route path="/shop/:shopId" component={ShopPage}></Route>
 
@@ -68,6 +72,7 @@ function App() {
             <AdminRoute exact path="/BulkUpload" component={BulkUpload}></AdminRoute>
 
             <AdminRoute path="/seller" component={Seller}></AdminRoute>
+            <AdminRoute path="/deliver-orders" component={DeliverOrders}></AdminRoute>
             <Route component={Err}></Route>
           </Switch>
         </div>

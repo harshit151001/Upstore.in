@@ -121,7 +121,14 @@ const SingleProductpage = props => {
   const CarouselImages = images => {
     return images.map((image, index) => {
       return (
-        <Carousel.Item key={index}>
+        <Carousel.Item
+          key={index}
+          onClick={() => {
+            if (width <= 990) {
+              props.history.push({ pathname: '/full-image-view', state: { photos: data.photos, index } });
+            }
+          }}
+        >
           <img className={classes.image} src={API + image.substr(6)} alt={`Second slide`} />
         </Carousel.Item>
       );

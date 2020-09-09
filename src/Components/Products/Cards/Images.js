@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Img = styled.img`
-border-radius: 3px;
+export const Img = styled.img`
+  border-radius: 3px;
   @media (max-width: 368px) {
     width: 111px;
     height: 148px;
     object-fit: cover;
   }
-   @media (min-width: 368px) {
+  @media (min-width: 368px) {
     width: 150px;
     height: 200px;
     object-fit: cover;
@@ -28,15 +28,14 @@ border-radius: 3px;
     height: 240px;
     object-fit: cover;
   }
-   @media (min-width: 1025px) {
+  @media (min-width: 1025px) {
     width: 210px;
     height: 280px;
     object-fit: cover;
   }
-  
 `;
 
-const Images = (props) => {
+const Images = props => {
   return <Img src={props.src} alt={props.alt}></Img>;
 };
 

@@ -5,6 +5,7 @@ import API from '../../backend';
 import Axios from 'axios';
 import ProductList from '../Products/List/Productlist';
 import UpPlaceholder from '../Images/UpPlaceholder.png';
+import UpLoader from '../Loader/UpLoader';
 
 const Title = styled.div`
   text-transform: capitalize;
@@ -115,7 +116,7 @@ export default function Shop({ shopId }) {
   }, [currentPage, shopId]);
 
   const { name, _id, banner } = shopData;
-  return (
+  return data ? (
     <Wrapper>
       <Jumbotron>
         <Container>
@@ -150,5 +151,9 @@ export default function Shop({ shopId }) {
         </button>
       </ButtonWrapper>
     </Wrapper>
+  ) : (
+    <div style={{ marginTop: '10vh' }}>
+      <UpLoader />
+    </div>
   );
 }

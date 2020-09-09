@@ -4,11 +4,12 @@ import Img from './Images';
 import Addtocart from '../../Buttons/Addtocart';
 import Addtowishlist from '../../Buttons/Addtowishlist';
 import API from '../../../backend';
+import { buildQueries } from '@testing-library/react';
 //eslint-disable-next-line
 const Productcard = props => {
   const { product, categoryId } = props;
   const { name, photos, markedPrice, price, _id, shopName } = product;
-  console.log(props);
+  console.log(product);
   const src = photos[0].substr(6);
 
   return (

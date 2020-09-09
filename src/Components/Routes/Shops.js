@@ -57,31 +57,33 @@ const Shops = props => {
             <div style={{ display: 'flex' }}>
               <ShopList categoryId={categoryId} data={data} />
             </div>
-            <div className="row">
-              <div className="col-12 d-flex justify-content-center mt-5 pb-5">
-                <button
-                  onClick={() => {
-                    if (currentPage > 1) {
-                      setCurrentPage(currentPage - 1);
-                    }
-                  }}
-                  className="btn btn-light mr-2"
-                >
-                  {currentPage > 1 ? <Link to={`/shops/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage - 1 || 1}`}> back</Link> : 'back'}
-                </button>
+            {data.length > 10 && (
+              <div className="row">
+                <div className="col-12 d-flex justify-content-center mt-5 pb-5">
+                  <button
+                    onClick={() => {
+                      if (currentPage > 1) {
+                        setCurrentPage(currentPage - 1);
+                      }
+                    }}
+                    className="btn btn-light mr-2"
+                  >
+                    {currentPage > 1 ? <Link to={`/shops/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage - 1 || 1}`}> back</Link> : 'back'}
+                  </button>
 
-                <button
-                  onClick={() => {
-                    if (currentPage < totalPages) {
-                      setCurrentPage(currentPage + 1);
-                    }
-                  }}
-                  className="btn btn-light ml-2"
-                >
-                  {currentPage < totalPages ? <Link to={`/shops/${categoryId}/5eff8e76d75ecb3735b243b1?page=${totalPages > currentPage ? currentPage + 1 : totalPages}`}> next</Link> : 'next'}
-                </button>
+                  <button
+                    onClick={() => {
+                      if (currentPage < totalPages) {
+                        setCurrentPage(currentPage + 1);
+                      }
+                    }}
+                    className="btn btn-light ml-2"
+                  >
+                    {currentPage < totalPages ? <Link to={`/shops/${categoryId}/5eff8e76d75ecb3735b243b1?page=${totalPages > currentPage ? currentPage + 1 : totalPages}`}> next</Link> : 'next'}
+                  </button>
+                </div>
               </div>
-            </div>{' '}
+            )}{' '}
           </>
         ) : (
           <Wrapper style={{ marginTop: '150px' }}>
