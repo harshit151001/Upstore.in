@@ -13,9 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import Radio from '@material-ui/core/Radio';
 //?import Razor from './Razor';
 import { addAddress, getAddresses } from '../Users/apiCalls';
+import { validationSchema, YupError } from '../Users/Addressform';
 import { Button } from '../Users/Addressform';
 import useWindowDimensions from '../../customapis/useWindowDimensions';
 import styled from 'styled-components';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 const FormHeader = styled.div`
   font-weight: 900;
@@ -65,7 +67,7 @@ const SelectAddress = props => {
       contactNumber: user.phoneNumber,
       address: ''
     },
-    // validationSchema,
+    validationSchema,
     onSubmit
   });
 
@@ -153,8 +155,26 @@ const SelectAddress = props => {
     return (
       <form>
         <TextField value={formik.values.contactName || ''} onChange={formik.handleChange} style={{ marginTop: '2vh' }} label="Full Name" fullWidth={true} id="contactName" variant="outlined" placeholder="Full Name" />
-        <TextField style={{ marginTop: '8vh' }} label="Mobile Number" value={formik.values.contactNumber} onChange={formik.handleChange} fullWidth={true} id="contactNumber" variant="outlined" placeholder="Mobile Number" />
+        <YupError>{formik.touched.contactName ? formik.errors.contactName : null}</YupError>
+        <TextField
+          InputProps={{
+            startAdornment: <InputAdornment position="start">+ 91 | </InputAdornment>
+          }}
+          inputProps={{
+            maxLength: 10
+          }}
+          style={{ marginTop: '8vh' }}
+          label="Mobile Number"
+          value={formik.values.contactNumber}
+          onChange={formik.handleChange}
+          fullWidth={true}
+          id="contactNumber"
+          variant="outlined"
+          placeholder="Mobile Number"
+        />
+        <YupError>{formik.touched.contactNumber ? formik.errors.contactNumber : null}</YupError>
         <TextField style={{ marginTop: '8vh' }} label="Address" value={formik.values.address} onChange={formik.handleChange} fullWidth={true} id="address" variant="outlined" placeholder="Address" />
+        <YupError>{formik.touched.address ? formik.errors.address : null}</YupError>
       </form>
     );
   };
