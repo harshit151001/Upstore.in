@@ -42,7 +42,7 @@ const Categorylist = () => {
         {categorydata.length ? (
           categorydata.map(({ name, imagePath, _id }) => {
             return (
-              <Link key={_id} style={{ textDecoration: 'none' }} to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}>
+              <Link key={_id} style={{ textDecoration: 'none' }} to={`/shops/${_id}/5eff8e76d75ecb3735b243b1`}>
                 <Categorycard name={name} path={imagePath} />
               </Link>
             );

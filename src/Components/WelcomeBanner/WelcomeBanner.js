@@ -22,9 +22,7 @@ function WelcomeBanner({ categoryId }) {
   return (
     <>
       <Jumbotron style={{ marginBottom: 0 }}>
-        <Link to={`/shops/${categoryId}/5eff8e76d75ecb3735b243b1?page=1`}>
-          <Button>View Shops</Button>
-        </Link>
+        <div></div>
         <img style={{ height: '18vh' }} src={Up} alt="" />
       </Jumbotron>
     </>

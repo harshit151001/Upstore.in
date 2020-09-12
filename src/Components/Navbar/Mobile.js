@@ -265,7 +265,7 @@ const Mobile = props => {
                     height: '5vh'
                   }}
                 >
-                  <button style={{ display: 'none' }} />
+                  <button type="submit" style={{ marginLeft: '-1000px' }} />
                 </Link>
               </form>
             </div>
