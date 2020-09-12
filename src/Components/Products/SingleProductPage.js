@@ -101,8 +101,7 @@ const SingleProductpage = props => {
     return data.variants.map((variant, index) => {
       return (
         <MenuItem key={index} value={variant.product}>
-          {variant.size ? 'Size:' + variant.size : ''}
-          {variant.color ? 'Color:' + variant.color : ''}
+          {variant.size ? 'Size:' + variant.size : ''} {variant.color ? 'Color:' + variant.color : ''}
         </MenuItem>
       );
     });

@@ -7,11 +7,12 @@ import API from '../../../backend';
 import { buildQueries } from '@testing-library/react';
 //eslint-disable-next-line
 const Productcard = props => {
-  const { product, categoryId } = props;
-  const { name, photos, markedPrice, price, _id, shopName } = product;
+  const { product } = props;
+  const { name, photos, markedPrice, price, _id, shopName, variants } = product;
   console.log(product);
   const src = photos[0].substr(6);
 
+  console.log(variants);
   return (
     <div style={{ width: '100%' }} className="card p-2 col-12 shadow-sm col-sm-6" key={_id}>
       <div className="row no-gutters" style={{ display: 'flex', flexWrap: 'nowrap' }}>
