@@ -55,15 +55,16 @@ export default function DeliverOrders() {
                   <div>Total Rs. {amount}</div>
                   <div style={{ marginTop: '3vh' }}>
                     Products:
-                    {products.map(({ name, price, quantity, product }, index) => {
+                    {products.map(({ name, price, quantity, product: { shopName, _id } }, index) => {
                       return (
                         <div style={{ marginTop: '1vh' }} key={index}>
                           <div>Name: {name}</div>
+                          <div>Shop: {shopName}</div>
                           <div>Price: {price}</div>
                           <div>Qty: {quantity}</div>
                           <div>
                             {' '}
-                            <Link to={`/productpage/${product}`}>Click to view</Link>{' '}
+                            <Link to={`/productpage/${_id}`}>Click to view</Link>{' '}
                           </div>
                         </div>
                       );
