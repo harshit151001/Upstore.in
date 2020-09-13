@@ -10,16 +10,13 @@ import UpLoader from '../Loader/UpLoader';
 const Title = styled.div`
   text-transform: capitalize;
   font-weight: 800;
-  font-size: 3vh;
+
   color: white;
   margin-left: 2vh;
-  @media (max-width: 600px) {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 100%;
-    overflow: hidden;
-    margin: 0.5vh 1.5vh;
-    font-size: 19px;
+
+  @media (max-width: 990px) {
+    font-size: 14px;
+    margin-left: 1vh;
   }
 `;
 
@@ -27,16 +24,20 @@ const ShopImage = styled.img`
   object-fit: cover;
   border-radius: 20px;
 
-  height: 22vh;
-
-  width: 180px;
   margin: auto;
-  width: 180px;
+  @media (min-width: 990px) {
+    height: 22vh;
+
+    width: 180px;
+  }
+
+  @media (max-width: 990px) {
+    height: 100px;
+  }
 `;
 
 const ImageContainer = styled.div`
-  height: 180px;
-  width: 180px;
+  margin-left: 1.5vh;
 `;
 
 const Container = styled.div`
@@ -45,9 +46,8 @@ const Container = styled.div`
     padding: 4vh 9vh;
   }
   @media (max-width: 990px) {
-    padding: 4vh 3vh;
-    justify-content: left;
-    text-align: center;
+    padding: 1vh 0;
+    margin-left: 1vh;
     margin: auto;
   }
   width: 100%;
@@ -59,6 +59,9 @@ const Jumbotron = styled.div`
   background: linear-gradient(90deg, rgba(236, 67, 111, 1) 0%, rgba(99, 50, 96, 1) 100%);
   width: 100%;
   margin: auto;
+  @media (max-width: 990px) {
+    height: 16vh;
+  }
 `;
 
 const Wrapper = styled.div`
