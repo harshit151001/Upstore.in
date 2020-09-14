@@ -121,26 +121,18 @@ const Features = () => {
     <Section>
       <Title>
         <Header>Leave it on us!</Header>
-        <img
-          src={bos}
-          alt="icon"
-          style={{ width: '6vw', minWidth: '50px', marginTop: '8px' }}
-        />
+        <img src={bos} alt="icon" style={{ width: '6vw', minWidth: '50px', marginTop: '8px' }} />
       </Title>
       <Cardbox>
         <Card>
           <Img>
-            <img
-              style={{ height: 'inherit', width: 'inherit' }}
-              src={fb}
-              alt="Bag"
-            />
+            <img style={{ height: 'inherit', width: 'inherit' }} src={fb} alt="Bag" />
           </Img>
           <div
             style={{
               marginLeft: '4vw',
               display: 'flex',
-              flexDirection: 'column',
+              flexDirection: 'column'
             }}
           >
             <Quote>Shop Smart</Quote>
@@ -151,17 +143,13 @@ const Features = () => {
         </Card>
         <Card>
           <Img>
-            <img
-              style={{ height: 'inherit', width: 'inherit' }}
-              src={fm}
-              alt="map"
-            />
+            <img style={{ height: 'inherit', width: 'inherit' }} src={fm} alt="map" />
           </Img>
           <div
             style={{
               marginLeft: '4vw',
               display: 'flex',
-              flexDirection: 'column',
+              flexDirection: 'column'
             }}
           >
             <Quote>Anywhere in City </Quote>
@@ -172,38 +160,30 @@ const Features = () => {
         </Card>
         <Card>
           <Img>
-            <img
-              style={{ height: 'inherit', width: 'inherit' }}
-              src={ft}
-              alt="time"
-            />
+            <img style={{ height: 'inherit', width: 'inherit' }} src={ft} alt="time" />
           </Img>
           <div
             style={{
               marginLeft: '4vw',
               display: 'flex',
-              flexDirection: 'column',
+              flexDirection: 'column'
             }}
           >
             <Quote>Fast Delivery</Quote>
             <strong className="mt-2" style={{ color: '#5f5f5f' }}>
-              We deliver any product within 45 mins
+              We deliver any product within 2 hrs
             </strong>
           </div>
         </Card>
         <Card>
           <Img>
-            <img
-              style={{ height: 'inherit', width: 'inherit' }}
-              src={fg}
-              alt="gift"
-            />
+            <img style={{ height: 'inherit', width: 'inherit' }} src={fg} alt="gift" />
           </Img>
           <div
             style={{
               marginLeft: '4vw',
               display: 'flex',
-              flexDirection: 'column',
+              flexDirection: 'column'
             }}
           >
             <Quote>Sterilized Packaging</Quote>

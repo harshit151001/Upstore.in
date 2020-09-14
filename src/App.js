@@ -31,6 +31,7 @@ import Shops from './Components/Routes/Shops';
 import ShopPage from './Components/Routes/ShopPage';
 import FullView from './Components/Routes/FullView';
 import DeliverOrders from './Components/Routes/DeliverOrders';
+import Support from './Components/Routes/Support';
 
 //!context
 import { Statecontext } from './Statemanagement/Statecontext';
@@ -65,6 +66,7 @@ function App() {
 
             <Route path="/cart/:userId" component={Cart}></Route>
             <Route path="/address" component={Addresses}></Route>
+            <Route path="/support" component={Support}></Route>
             <PrivateRoute exact path="/checkout" component={CheckoutPage}></PrivateRoute>
             <PrivateRoute exact path="/checkout/address" component={ChangeAddress}></PrivateRoute>
             <Route exact path="/OTP" component={OTP}></Route>
