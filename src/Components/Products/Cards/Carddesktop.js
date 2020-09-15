@@ -12,7 +12,18 @@ const Productcard = props => {
   console.log(product);
   const src = photos[0].substr(6);
 
-  console.log(variants);
+  const ShowVariant = variants => {
+    if (variants.length) {
+      let variant = variants.find(doc => doc.product === _id);
+
+      return (
+        <div style={{ fontSize: '80%', color: 'lightseagreen' }}>
+          {variant.size ? `Size: ${variant.size}` : ''} {variant.color ? `Color: ${variant.color}` : ''}
+        </div>
+      );
+    }
+  };
+
   return (
     <div style={{ width: '100%' }} className="card p-2 col-12 shadow-sm col-sm-6" key={_id}>
       <div className="row no-gutters" style={{ display: 'flex', flexWrap: 'nowrap' }}>
@@ -22,20 +33,31 @@ const Productcard = props => {
           </div>
         </Link>
         <div style={{ paddingLeft: '10px' }} className="w-100">
-          <p className="mb-1">
-            <strong>{name}</strong>
-          </p>
-          <p className="small  mt-0 pt-0">
-            Rs.{price} {'    '}
-            {Math.ceil(((markedPrice - price) / markedPrice) * 100) > 2 ? (
-              <>
-                <strike className="text-muted">Rs.{markedPrice}</strike> <span style={{ color: '#ff905a' }}> ({Math.ceil(((markedPrice - price) / markedPrice) * 100) + '% Off'})</span>
-              </>
+          <Link style={{ textDecoration: 'none' }} to={`/productpage/${_id}`}>
+            <p style={{ color: '#212529' }} className="mb-1">
+              <strong>{name}</strong>
+            </p>
+            <p style={{ marginBottom: '0.25rem' }} className="small  mt-0 pt-0">
+              Rs.{price} {'    '}
+              {Math.ceil(((markedPrice - price) / markedPrice) * 100) > 2 ? (
+                <>
+                  <strike className="text-muted">Rs.{markedPrice}</strike> <span style={{ color: '#ff905a' }}> ({Math.ceil(((markedPrice - price) / markedPrice) * 100) + '% Off'})</span>
+                </>
+              ) : (
+                ''
+              )}
+            </p>
+            <p style={{ marginBottom: '0.25rem' }}>{ShowVariant(variants)}</p>
+            {variants.length ? (
+              <Link style={{ textDecoration: 'none' }} to={`/productpage/${_id}`}>
+                <div>View all variants</div>
+              </Link>
             ) : (
-              ''
+              <div style={{ height: '2vh' }}></div>
             )}
-          </p>
-          {props.match.path !== '/shop/:shopId' && <p className="small text-muted mt-0 pt-0">Sold by: {shopName} </p>}
+            {props.match.path !== '/shop/:shopId' && <p className="small text-muted mt-0 pt-0">Sold by: {shopName} </p>}
+          </Link>
+
           <Addtowishlist classes="btn btn-outline-primary" id={_id}>
             WISHLIST
           </Addtowishlist>

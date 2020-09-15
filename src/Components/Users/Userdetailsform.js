@@ -32,9 +32,14 @@ export const HeaderDiv = styled.div`
   font-size: 22px;
   border-bottom: 1px solid #eaeaec;
   padding-bottom: 15px;
+  @media (max-width: 990px) {
+    margin-top: 5vh;
+  }
 `;
 
 export const DetailsCard = styled.div`
+  padding: 0 2vh;
+
   @media (min-width: 780px) {
     padding: 55px 40px 20px 40px;
   }

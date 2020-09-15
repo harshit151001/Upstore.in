@@ -139,7 +139,7 @@ const SingleProductpage = props => {
   };
 
   const handleChange = event => {
-    props.history.push(`/productpage/${event.target.value}`);
+    props.history.replace(`/productpage/${event.target.value}`);
   };
 
   const handleClose = name => {

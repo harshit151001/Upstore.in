@@ -33,6 +33,7 @@ const ShopImage = styled.img`
 
   @media (max-width: 990px) {
     height: 100px;
+    max-width: 140px;
   }
 `;
 
