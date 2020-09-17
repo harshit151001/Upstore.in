@@ -5,10 +5,22 @@ import Addtocart from '../../Buttons/Addtocart';
 import Addtowishlist from '../../Buttons/Addtowishlist';
 import API from '../../../backend';
 import { buildQueries } from '@testing-library/react';
+import styled from 'styled-components';
 //eslint-disable-next-line
+
+const ClosedDiv = styled.div`
+  font-weight: 620;
+  color: grey;
+  background-color: #f5f5f6;
+  width: fit-content;
+  padding: 0 14px;
+  border-radius: 20px;
+  font-size: 13px;
+`;
+
 const Productcard = props => {
   const { product } = props;
-  const { name, photos, markedPrice, price, _id, shopName, variants } = product;
+  const { name, photos, markedPrice, price, _id, shopName, variants, open } = product;
   console.log(product);
   const src = photos[0].substr(6);
 
@@ -62,9 +74,15 @@ const Productcard = props => {
             WISHLIST
           </Addtowishlist>
 
-          <Addtocart classes="m-2 btn btn-primary" id={_id}>
-            ADD TO CART
-          </Addtocart>
+          {open ? (
+            <Addtocart classes="m-2 btn btn-primary" id={_id}>
+              ADD TO CART
+            </Addtocart>
+          ) : (
+            <div>
+              <ClosedDiv disabled>Shop Closed</ClosedDiv>
+            </div>
+          )}
         </div>
       </div>
     </div>
