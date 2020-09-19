@@ -40,6 +40,18 @@ export default function DeliverOrders() {
     };
   }, []);
 
+  const ShowVariant = (variants, _id) => {
+    if (variants.length) {
+      let variant = variants.find(doc => doc.product === _id);
+
+      return (
+        <div style={{ fontSize: '80%', color: 'lightseagreen' }}>
+          {variant.size ? `Size: ${variant.size}` : ''} {variant.color ? `Color: ${variant.color}` : ''}
+        </div>
+      );
+    }
+  };
+
   return (
     <Wrapper>
       {data
@@ -55,11 +67,12 @@ export default function DeliverOrders() {
                   <div>Total Rs. {amount}</div>
                   <div style={{ marginTop: '3vh' }}>
                     Products:
-                    {products.map(({ name, price, quantity, product: { shopName, _id } }, index) => {
+                    {products.map(({ name, price, quantity, product: { shopName, _id, variants } }, index) => {
                       return (
                         <div style={{ marginTop: '1vh' }} key={index}>
-                          <div>Name: {name}</div>
                           <div>Shop: {shopName}</div>
+                          <div>Name: {name}</div>
+                          <div>{ShowVariant(variants, _id)}</div>
                           <div>Price: {price}</div>
                           <div>Qty: {quantity}</div>
                           <div>
