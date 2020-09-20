@@ -61,7 +61,7 @@ const Products = props => {
       mounted = false;
     };
   }, [categoryId, currentPage, search, totalPages]);
-  console.log(data);
+
   return (
     <>
       {data ? (

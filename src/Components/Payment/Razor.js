@@ -23,12 +23,10 @@ function Razor(props) {
   const { state } = useContext(appContext);
   const { user, token } = isAutheticated();
   const { cart } = state;
-  console.log(cart);
 
   const name = user.name || '';
 
   async function displayRazorpay() {
-    console.log(token);
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
 
     if (!res) {
@@ -61,8 +59,6 @@ function Razor(props) {
       user: isAutheticated().user._id
     };
 
-    console.log(order);
-
     if (cart.length) {
       const data = await fetch(`${API}/api/razorpay/${user._id}`, {
         method: 'POST',
@@ -85,7 +81,6 @@ function Razor(props) {
         description: 'Thank you for choosing Up Store',
         // image: 'http://localhost:1337/logo.svg',
         handler: function (response) {
-          console.log(response);
           // alert(response.razorpay_payment_id);
           // alert(response.razorpay_order_id);
           // alert(response.razorpay_signature);

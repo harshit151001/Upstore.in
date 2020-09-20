@@ -144,7 +144,7 @@ const Addressform = props => {
   const onSubmit = async ({ contactName, contactNumber, address }) => {
     if (editIndex === -1) {
       setData([...data, { contactName, contactNumber, address }]);
-      console.log([...data, { contactName, contactNumber, address }]);
+
       addAddress(user._id, token, [...data, { contactName, contactNumber, address }])
         .then(data => setData(data))
         .catch(err => console.log(err));
@@ -169,7 +169,7 @@ const Addressform = props => {
   };
 
   const { name, phoneNumber } = user;
-  console.log(phoneNumber);
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: generateInitialValues(),

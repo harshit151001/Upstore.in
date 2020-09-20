@@ -6,8 +6,6 @@ import API from '../../backend';
 const FullSizeView = props => {
   const [index, setIndex] = useState(parseInt(`${!props.location.state ? 0 : props.location.state.index}`));
 
-  console.log(props);
-
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };

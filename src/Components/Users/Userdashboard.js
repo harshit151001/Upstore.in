@@ -54,10 +54,9 @@ export const Main = styled.div`
 `;
 
 const Userdashboard = props => {
-  console.log(props.match.path);
   const { width } = useWindowDimensions();
   const { user } = isAutheticated();
-  console.log(props);
+
   return (
     <Wrapper>
       {props.location.state && (

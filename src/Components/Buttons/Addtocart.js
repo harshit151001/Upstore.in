@@ -4,6 +4,7 @@ import { appContext, dispatchContext } from '../../Statemanagement/Statecontext'
 import { isAutheticated } from '../../auth/helper/index';
 import API from '../../backend';
 import MySnackbar from '../Snackbar/Snackbar';
+import styled from 'styled-components';
 
 const Addtocart = props => {
   const { state } = useContext(appContext);
@@ -15,7 +16,6 @@ const Addtocart = props => {
     const { token, user } = isAutheticated();
     const { _id } = user;
     const addToCart = id => {
-      console.log(cart);
       let filteredCart = cart.filter(item => item.product._id === id);
       if (filteredCart.length === 1) {
         setShow(true);
@@ -45,7 +45,6 @@ const Addtocart = props => {
         })
           .then(response => {
             response.json().then(function (data) {
-              console.log(data.products);
               dispatch({ type: 'UPDATECART', payload: data.products });
               dispatch({ type: 'REMOVEDFROMWISHLIST', payload: id });
               dispatch({ type: 'LOADED' });
@@ -56,33 +55,41 @@ const Addtocart = props => {
     };
     return (
       <>
-        <button
-          className={props.classes}
-          onClick={() => {
-            addToCart(props.id);
-          }}
-        >
-          {show && <MySnackbar vertical={'top'} horizontal={'center'} message={'Already exists in cart'} />}
-          {props.children}
-        </button>
+        {props.open ? (
+          <button
+            className={props.classes}
+            onClick={() => {
+              addToCart(props.id);
+            }}
+          >
+            {show && <MySnackbar vertical={'top'} horizontal={'center'} message={'Already exists in cart'} />}
+            {props.children}
+          </button>
+        ) : (
+          <button className={props.closed}>Shop Closed</button>
+        )}
       </>
     );
   } else {
     return (
       <>
-        <button
-          onClick={() =>
-            props.history.push({
-              pathname: '/loginsignup',
-              state: {
-                snackbarMessage: 'Login to Add to cart'
-              }
-            })
-          }
-          className={props.classes}
-        >
-          {props.children}
-        </button>
+        {props.open ? (
+          <button
+            onClick={() =>
+              props.history.push({
+                pathname: '/loginsignup',
+                state: {
+                  snackbarMessage: 'Login to Add to cart'
+                }
+              })
+            }
+            className={props.classes}
+          >
+            {props.children}
+          </button>
+        ) : (
+          <button className={props.closed}>Shop Closed</button>
+        )}
       </>
     );
   }

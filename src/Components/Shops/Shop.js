@@ -98,14 +98,12 @@ export default function Shop({ shopId }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    console.log('c');
     let mounted = true;
     const loadandsetdata = async () => {
-      console.log(`${API}/api/shop/${shopId}`);
       const shopResponse = await Axios.get(`${API}/api/shop/${shopId}`);
       const productsResponse = await Axios.get(`${API}/api/shop/products/${shopId}?page=${currentPage}`);
       setTotalPages(Math.ceil(productsResponse.data.totalCount / 10));
-      console.log(shopResponse);
+
       if (mounted) {
         window.scroll(0, 0);
         setData(productsResponse.data.products);

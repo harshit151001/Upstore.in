@@ -26,7 +26,6 @@ const Loginwithphone = props => {
     validationSchema,
     onSubmit: ({ phoneNumber }) => {
       postNumber({ phoneNumber }).then(response => {
-        console.log(response);
         const { session_id } = response;
         return props.history.push({
           pathname: '/OTP',

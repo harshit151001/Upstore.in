@@ -31,8 +31,6 @@ export const Formbox = styled.div`
 
 const Loginsignupform = props => {
   const SnackBar = () => {
-    console.log(props.location.state);
-
     const [show, setShow] = useState(true);
     const { snackbarMessage } = props.location.state;
     setTimeout(function () {

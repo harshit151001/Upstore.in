@@ -31,9 +31,8 @@ const Shops = props => {
   useEffect(() => {
     let mounted = true;
     const loadandsetdata = async () => {
-      console.log(`${API}/api/shops/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage || 1}`);
       const response = await Axios.get(`${API}/api/shops/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage || 1}`);
-      console.log(response);
+
       if (mounted) {
         window.scroll(0, 0);
         setTotalPages(Math.ceil(response.data.totalCount / 10));
@@ -46,7 +45,7 @@ const Shops = props => {
       mounted = false;
     };
   }, [categoryId, currentPage, totalPages]);
-  console.log(data);
+
   return (
     <>
       {data ? (

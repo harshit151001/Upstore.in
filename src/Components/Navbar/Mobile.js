@@ -75,13 +75,12 @@ const Mobile = props => {
   const [enteredFilter, setEnteredFilter] = useState('');
 
   const inputRef = useRef();
-  console.log(enteredFilter);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (inputRef.current.value && enteredFilter === inputRef.current.value) {
         const query = enteredFilter.length === 0 ? '' : `?search=${enteredFilter}`;
-        console.log(`${API}/api/search/products/5eff8e76d75ecb3735b243b1` + query);
+
         fetch(`${API}/api/search/products/5eff8e76d75ecb3735b243b1` + query).then(response => {
           response
             .json()

@@ -41,7 +41,6 @@ const Cartcard = props => {
     photos,
     markedPrice
   } = product;
-  console.log(stock, number);
 
   const increment = _id => {
     setNumber(prev => {
@@ -90,7 +89,6 @@ const Cartcard = props => {
         dispatch({ type: 'UPDATECART', payload: response.data.products });
         dispatch({ type: 'REMOVEDFROMWISHLIST', payload: _id });
         dispatch({ type: 'LOADED' });
-        console.log(response.data);
       },
       error => {
         console.log(error);

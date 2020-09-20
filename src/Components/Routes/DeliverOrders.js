@@ -30,7 +30,7 @@ export default function DeliverOrders() {
       const response = await Axios.get(`${API}/api//orders/all`);
 
       window.scroll(0, 0);
-      console.log(response.data);
+
       setData(response.data);
     };
     loadandsetdata();

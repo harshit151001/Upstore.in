@@ -18,7 +18,6 @@ export default function ProductUpload() {
   const [currency, setCurrency] = React.useState('EUR');
   const { state } = useContext(appContext);
   const { categorydata } = state;
-  console.log(categorydata);
 
   const handleChange = event => {
     setCurrency(event.target.value);

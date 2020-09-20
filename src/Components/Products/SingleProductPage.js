@@ -83,12 +83,12 @@ const SingleProductpage = props => {
       const response = await Axios.get(`${API}/api/product/${productId}`);
       if (mounted) {
         window.scroll(0, 0);
+
         setData(response.data.product);
         setVariant(response.data.product._id);
         if (index + 1 > response.data.product.photos.length) {
           setIndex(0);
         }
-        console.log(response.data.product);
       }
     };
     loadandsetdata();
@@ -203,7 +203,7 @@ const SingleProductpage = props => {
                     <div className={classes.buttonWrapper}>
                       <div className={classes.buttonContainer}>
                         {width > 990 && (
-                          <Addtocart classes={`m-2 btn btn-primary ${classes.addToCart}`} id={_id}>
+                          <Addtocart classes={`m-2 btn btn-primary ${classes.addToCart}`} closed={classes.closed} open={data.shopId.open} id={_id}>
                             ADD TO CART
                           </Addtocart>
                         )}
@@ -213,7 +213,7 @@ const SingleProductpage = props => {
                         </Addtowishlist>
 
                         {width <= 990 && (
-                          <Addtocart classes={`m-2 btn btn-primary ${classes.addToCart}`} id={_id}>
+                          <Addtocart classes={`m-2 btn btn-primary ${classes.addToCart}`} closed={`m-2 btn  ${classes.closed}`} open={data.shopId.open} id={_id}>
                             ADD TO CART
                           </Addtocart>
                         )}

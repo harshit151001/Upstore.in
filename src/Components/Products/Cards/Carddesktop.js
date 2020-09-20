@@ -5,23 +5,13 @@ import Addtocart from '../../Buttons/Addtocart';
 import Addtowishlist from '../../Buttons/Addtowishlist';
 import API from '../../../backend';
 import { buildQueries } from '@testing-library/react';
-import styled from 'styled-components';
+import classes from './SomeCardClasses.module.css';
 //eslint-disable-next-line
-
-const ClosedDiv = styled.div`
-  font-weight: 620;
-  color: grey;
-  background-color: #f5f5f6;
-  width: fit-content;
-  padding: 0 14px;
-  border-radius: 20px;
-  font-size: 13px;
-`;
 
 const Productcard = props => {
   const { product } = props;
   const { name, photos, markedPrice, price, _id, shopName, variants, open } = product;
-  console.log(product);
+
   const src = photos[0].substr(6);
 
   const ShowVariant = variants => {
@@ -74,15 +64,9 @@ const Productcard = props => {
             WISHLIST
           </Addtowishlist>
 
-          {open ? (
-            <Addtocart classes="m-2 btn btn-primary" id={_id}>
-              ADD TO CART
-            </Addtocart>
-          ) : (
-            <div>
-              <ClosedDiv disabled>Shop Closed</ClosedDiv>
-            </div>
-          )}
+          <Addtocart classes="m-2 btn btn-primary" closed={classes.closed} id={_id} open={open}>
+            ADD TO CART
+          </Addtocart>
         </div>
       </div>
     </div>

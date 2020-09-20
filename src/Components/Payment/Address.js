@@ -53,10 +53,9 @@ const SelectAddress = props => {
   });
 
   const onSubmit = async ({ contactName, contactNumber, address }) => {
-    //console.log([{ contactName, contactNumber, address }]);
     setData([{ contactName, contactNumber, address }]);
     const response = await addAddress(user._id, token, [{ contactName, contactNumber, address }]);
-    // console.log(data);
+
     setData(response[0]);
   };
 
@@ -74,13 +73,12 @@ const SelectAddress = props => {
   const classes = useStyles();
 
   useEffect(() => {
-    console.log('c');
     const { user, token } = isAutheticated();
 
     try {
       getAddresses(user._id, token).then(data => {
         const defaultAddress = data.filter(address => address.default === true)[0] || data[0];
-        console.log(defaultAddress);
+
         setData(defaultAddress);
       });
     } catch (err) {
@@ -117,8 +115,6 @@ const SelectAddress = props => {
       user: isAutheticated().user._id
     };
 
-    console.log(order);
-
     fetch(`${API}/api/order/create/${user._id}`, {
       method: 'POST',
       headers: {
@@ -130,7 +126,6 @@ const SelectAddress = props => {
     })
       .then(response => {
         response.json().then(function (data) {
-          console.log(data);
           props.history.push({
             pathname: '/userdashboard/orders',
             state: { confirmation: 'You order has been placed successfully!' }

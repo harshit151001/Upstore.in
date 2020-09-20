@@ -19,7 +19,6 @@ const Box = styled.div`
 const Categorylist = () => {
   const { state } = useContext(appContext);
   const { categorydata } = state;
-  console.log(categorydata);
 
   let arr = ['Groceries', 'Beauty and Grooming', 'Staitonary', 'Clothing', 'Health Supplements', 'Pet Supplies', 'Meat and Poultry', 'Gift', 'Sports'];
 
@@ -39,7 +38,6 @@ const Categorylist = () => {
               );
             })
           : arr.map((name, index) => {
-              console.log(name);
               return (
                 <Link key={index} style={{ textDecoration: 'none' }} to={`/`}>
                   <Categorycard name={name} />

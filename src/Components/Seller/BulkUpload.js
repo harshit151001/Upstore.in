@@ -47,7 +47,7 @@ export default function () {
     e.preventDefault();
     const { selectedFiles, shopId, shopName } = values;
     const fd = new FormData();
-    console.log(shopName, shopId);
+
     fd.append(`csvFile`, selectedFiles[0]);
     fd.append(`shopName`, shopName);
     fd.append(`shopId`, shopId);
@@ -65,7 +65,7 @@ export default function () {
   const handleChange = name => event => {
     name === 'file' ? setValues({ ...values, selectedFiles: event.target.files }) : setValues({ ...values, [name]: event.target.value });
   };
-  if (imagePaths.length) console.log(`${API}${imagePaths[0].split('public')[1]}`);
+
   return (
     <Container>
       <div style={{ display: 'flex', width: '100%', margin: 'auto' }}>

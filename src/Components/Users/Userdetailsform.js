@@ -65,9 +65,7 @@ const Userdetailsform = props => {
         }
       })
         .then(response => {
-          console.log(response);
           response.json().then(function (data) {
-            console.log(data);
             const { name, phoneNumber, email } = data;
             setValues(values => {
               return {
@@ -94,7 +92,7 @@ const Userdetailsform = props => {
 
   //eslint-disable-next-line
   const { name, email, password, phoneNumber, error, loading } = values;
-  console.log(name);
+
   return (
     <>
       <DetailsCardWrapper>

@@ -45,22 +45,18 @@ const Myorders = () => {
 
     const loadData = async () => {
       const { token } = isAutheticated();
-      const response = await fetch(
-        `${API}/api/orders/user/${isAutheticated().user._id}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
+      const response = await fetch(`${API}/api/orders/user/${isAutheticated().user._id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         }
-      );
+      });
 
-      response.json().then((response) => {
+      response.json().then(response => {
         if (mounted) {
           window.scroll(0, 0);
           setData(response);
-          //console.log(response);
         }
       });
     };
@@ -71,7 +67,6 @@ const Myorders = () => {
     };
   }, []);
 
-  console.log(data);
   return (
     <>
       {data.map(({ products, transaction_id }, count) => {
@@ -88,27 +83,19 @@ const Myorders = () => {
                       <ProductImage src={`${API}${src}`} alt="Product" />
                       <DetailsWrapper>
                         <PreviousButton>
-                          <img
-                            style={{ height: '12px' }}
-                            src={GoToIcon}
-                            alt="Go to svg"
-                          />{' '}
+                          <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
                         </PreviousButton>
                         <div
                           style={{
                             color: '#3E4152',
                             fontWeight: '800',
-                            textTransform: 'uppercase',
+                            textTransform: 'uppercase'
                           }}
                         >
                           {shopName}
                         </div>
-                        <div style={{ color: '#7e818c', fontSize: '14px' }}>
-                          {name}
-                        </div>
-                        <div style={{ color: '#7e818c', fontSize: '14px' }}>
-                          Qty: {quantity}
-                        </div>
+                        <div style={{ color: '#7e818c', fontSize: '14px' }}>{name}</div>
+                        <div style={{ color: '#7e818c', fontSize: '14px' }}>Qty: {quantity}</div>
                         <div>{price}</div>
                       </DetailsWrapper>
                     </CardContent>

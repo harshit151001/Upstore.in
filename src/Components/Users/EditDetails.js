@@ -50,7 +50,6 @@ const EditDetails = props => {
       })
         .then(response => {
           response.json().then(function (data) {
-            console.log(data);
             const { name, phoneNumber, email } = data;
             setValues(values => {
               return {
@@ -74,7 +73,6 @@ const EditDetails = props => {
   }, [token, _id]);
 
   const onSubmit = async ({ name, email }) => {
-    console.log(JSON.stringify({ name, email }));
     fetch(`${API}/api/user/${_id}`, {
       method: 'PUT',
       headers: {
@@ -89,7 +87,6 @@ const EditDetails = props => {
     })
       .then(response => {
         response.json().then(function (data) {
-          console.log(data);
           props.history.push('/userdashboard/details');
         });
       })
@@ -108,7 +105,6 @@ const EditDetails = props => {
     // validationSchema,
     onSubmit
   });
-  console.log(formik.values.email);
 
   return (
     <DetailsCardWrapper>
