@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { appContext } from '../../Statemanagement/Statecontext';
+
 import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles(theme => ({
@@ -16,8 +16,6 @@ const useStyles = makeStyles(theme => ({
 export default function ProductUpload() {
   const classes = useStyles();
   const [currency, setCurrency] = React.useState('EUR');
-  const { state } = useContext(appContext);
-  const { categorydata } = state;
 
   const handleChange = event => {
     setCurrency(event.target.value);

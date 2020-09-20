@@ -1,5 +1,5 @@
 //!library
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 //!Css import
 import './custom.scss';
@@ -32,11 +32,17 @@ import ShopPage from './Components/Routes/ShopPage';
 import FullView from './Components/Routes/FullView';
 import DeliverOrders from './Components/Routes/DeliverOrders';
 import Support from './Components/Routes/Support';
+import ReactGa from 'react-ga';
 
 //!context
 import { Statecontext } from './Statemanagement/Statecontext';
 
 function App() {
+  useEffect(() => {
+    ReactGa.initialize('UA-167597172-2');
+    ReactGa.pageview(window.location.pathname + window.location.search);
+  }, []);
+
   return (
     <Statecontext>
       <BrowserRouter>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Up from '../Images/Up.png';
 
@@ -11,11 +10,6 @@ const Jumbotron = styled.div`
   margin-top: -10px;
   justify-content: space-between;
   display: flex;
-`;
-
-const Button = styled.button`
-  margin-top: 7vh;
-  margin-left: 9vh;
 `;
 
 function WelcomeBanner({ categoryId }) {

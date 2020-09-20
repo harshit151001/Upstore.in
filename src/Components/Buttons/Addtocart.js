@@ -4,7 +4,6 @@ import { appContext, dispatchContext } from '../../Statemanagement/Statecontext'
 import { isAutheticated } from '../../auth/helper/index';
 import API from '../../backend';
 import MySnackbar from '../Snackbar/Snackbar';
-import styled from 'styled-components';
 
 const Addtocart = props => {
   const { state } = useContext(appContext);

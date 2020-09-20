@@ -25,7 +25,6 @@ const OrderWrapper = styled.div`
 export default function DeliverOrders() {
   const [data, setData] = useState('');
   useEffect(() => {
-    let mounted = true;
     const loadandsetdata = async () => {
       const response = await Axios.get(`${API}/api//orders/all`);
 
@@ -34,10 +33,6 @@ export default function DeliverOrders() {
       setData(response.data);
     };
     loadandsetdata();
-
-    return () => {
-      mounted = false;
-    };
   }, []);
 
   const ShowVariant = (variants, _id) => {
