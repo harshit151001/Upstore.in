@@ -4,13 +4,13 @@ import API from '../../backend';
 import Axios from 'axios';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   padding: 0 20px;
   display: flex;
   flex-wrap: wrap;
 `;
 
-const OrderWrapper = styled.div`
+export const OrderWrapper = styled.div`
   width: 100%;
   margin-top: 1rem;
   padding: 16px;

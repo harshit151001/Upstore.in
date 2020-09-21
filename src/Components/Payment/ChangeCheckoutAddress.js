@@ -56,8 +56,10 @@ const ChangeCheckoutAddress = props => {
     try {
       getAddresses(user._id, token).then(data => {
         setData(data);
-        const index = data.findIndex(address => address.default === true || 0);
-        setSelectedValue(index);
+        const index = data.findIndex(address => address.default === true);
+        if (index !== -1) {
+          setSelectedValue(index);
+        } else setSelectedValue(0);
       });
     } catch (err) {
       return console.log(err);

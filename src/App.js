@@ -78,7 +78,9 @@ function App() {
             <Route exact path="/OTP" component={OTP}></Route>
             <AdminRoute exact path="/ProductUpload" component={ProductUpload}></AdminRoute>
             <AdminRoute exact path="/BulkUpload" component={BulkUpload}></AdminRoute>
-
+            <AdminRoute path="/seller/my-shop" component={Seller}></AdminRoute>
+            <AdminRoute path="/seller/orders" component={Seller}></AdminRoute>
+            <AdminRoute path="/seller/upload" component={Seller}></AdminRoute>
             <AdminRoute path="/seller" component={Seller}></AdminRoute>
             <AdminRoute path="/deliver-orders" component={DeliverOrders}></AdminRoute>
             <Route component={Err}></Route>

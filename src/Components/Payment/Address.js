@@ -98,6 +98,7 @@ const SelectAddress = props => {
     cart.map(document => {
       amount += document.product.price * document.quantity;
       order.products.push({
+        shopId: document.product.shopId,
         product: document.product._id,
         name: document.product.name,
         price: document.product.price,
