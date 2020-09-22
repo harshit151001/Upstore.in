@@ -69,7 +69,7 @@ const Invoice = props => {
         </div>
         <div className="row">
           <div className="col-12">
-            {cart.map(item => item.product.markedPrice * item.quantity).reduce((prev, current) => prev + current, 0) > 100 ? (
+            {cart.map(item => item.product.markedPrice * item.quantity).reduce((prev, current) => prev + current, 0) > 150 ? (
               <Link style={{ display: props.display || '' }} to={props.link}>
                 <button type="button" className="btn btn-danger btn mt-3 btn-block">
                   {' '}
