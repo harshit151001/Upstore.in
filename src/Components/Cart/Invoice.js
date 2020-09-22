@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { appContext } from '../../Statemanagement/Statecontext';
 import { Link } from 'react-router-dom';
-import { styled } from '@material-ui/core';
+import styled from 'styled-components';
 
 const ErrorDiv = styled.div`
   color: red;
