@@ -177,7 +177,7 @@ const Mobile = props => {
           return (
             <Link
               key={_id}
-              to={`/products/${_id}/5eff8e76d75ecb3735b243b1`}
+              to={`/shops/${_id}/5eff8e76d75ecb3735b243b1`}
               style={{
                 textDecoration: 'none',
                 fontFamily: 'poppins',
