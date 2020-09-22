@@ -1,6 +1,16 @@
 import React, { useContext } from 'react';
 import { appContext } from '../../Statemanagement/Statecontext';
 import { Link } from 'react-router-dom';
+import { styled } from '@material-ui/core';
+
+const ErrorDiv = styled.div`
+  color: red;
+  background: #fde4e3;
+  opacity: 10;
+  border: solid #fecdd0;
+  padding: 5px;
+  font-size: 20px;
+`;
 
 const Invoice = props => {
   const { state } = useContext(appContext);
@@ -59,11 +69,16 @@ const Invoice = props => {
         </div>
         <div className="row">
           <div className="col-12">
-            <Link style={{ display: props.display || '' }} to={props.link}>
-              <button type="button" className="btn btn-danger btn mt-3 btn-block">
-                <strong>Proceed</strong>
-              </button>
-            </Link>
+            {cart.map(item => item.product.markedPrice * item.quantity).reduce((prev, current) => prev + current, 0) > 100 ? (
+              <Link style={{ display: props.display || '' }} to={props.link}>
+                <button type="button" className="btn btn-danger btn mt-3 btn-block">
+                  {' '}
+                  <strong>Proceed</strong>
+                </button>
+              </Link>
+            ) : (
+              <ErrorDiv>Min order amount = Rs 100 </ErrorDiv>
+            )}
           </div>
         </div>
       </div>
