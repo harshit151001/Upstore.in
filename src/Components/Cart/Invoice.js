@@ -77,7 +77,7 @@ const Invoice = props => {
                 </button>
               </Link>
             ) : (
-              <ErrorDiv>Min order amount = Rs 100 </ErrorDiv>
+              <ErrorDiv>Min order amount = Rs 150 </ErrorDiv>
             )}
           </div>
         </div>
