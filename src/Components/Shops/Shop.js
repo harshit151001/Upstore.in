@@ -102,7 +102,7 @@ export default function Shop({ shopId }) {
     const loadandsetdata = async () => {
       const shopResponse = await Axios.get(`${API}/api/shop/${shopId}`);
       const productsResponse = await Axios.get(`${API}/api/shop/products/${shopId}?page=${currentPage}`);
-      setTotalPages(Math.ceil(productsResponse.data.totalCount / 10));
+      setTotalPages(Math.ceil(productsResponse.data.totalCount / 30));
 
       if (mounted) {
         window.scroll(0, 0);

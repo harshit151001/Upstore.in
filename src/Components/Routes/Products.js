@@ -43,14 +43,14 @@ const Products = props => {
         const response = await Axios.get(`${API}/api/search/products/5eff8e76d75ecb3735b243b1?search=${search}&&page=${currentPage}`);
         if (mounted) {
           window.scroll(0, 0);
-          setTotalPages(Math.ceil(response.data.totalCount / 10));
+          setTotalPages(Math.ceil(response.data.totalCount / 30));
           setData(response.data.products);
         }
       } else {
         const response = await Axios.get(`${API}/api/products/${categoryId}/5eff8e76d75ecb3735b243b1?page=${currentPage || 1}`);
         if (mounted) {
           window.scroll(0, 0);
-          setTotalPages(Math.ceil(response.data.totalCount / 10));
+          setTotalPages(Math.ceil(response.data.totalCount / 30));
           setData(response.data.products);
         }
       }
