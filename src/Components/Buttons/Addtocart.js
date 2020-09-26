@@ -52,18 +52,25 @@ const Addtocart = props => {
           .catch(err => console.log(err));
       }
     };
+
     return (
       <>
         {props.open ? (
-          <button
-            className={props.classes}
-            onClick={() => {
-              addToCart(props.id);
-            }}
-          >
-            {show && <MySnackbar vertical={'top'} horizontal={'center'} message={'Already exists in cart'} />}
-            {props.children}
-          </button>
+          props.stock ? (
+            <button
+              className={props.classes}
+              onClick={() => {
+                addToCart(props.id);
+              }}
+            >
+              {show && <MySnackbar vertical={'top'} horizontal={'center'} message={'Already exists in cart'} />}
+              {props.children}
+            </button>
+          ) : (
+            <div style={{ backgroundColor: 'rgb(253, 228, 227)', color: 'red', border: 'none', fontWeight: '700', padding: '1.5vh' }} className={props.classes}>
+              OUT OF STOCK
+            </div>
+          )
         ) : (
           <button className={props.closed}>Shop Closed</button>
         )}

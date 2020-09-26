@@ -10,7 +10,7 @@ import classes from './SomeCardClasses.module.css';
 
 const Productcard = props => {
   const { product } = props;
-  const { name, photos, markedPrice, price, _id, shopName, variants, open } = product;
+  const { name, photos, markedPrice, price, _id, shopName, variants, open, stock } = product;
 
   const src = photos[0].substr(6);
 
@@ -26,6 +26,7 @@ const Productcard = props => {
     }
   };
 
+  console.log(stock);
   return (
     <div style={{ width: '100%' }} className="card p-2 col-12 shadow-sm col-sm-6" key={_id}>
       <div className="row no-gutters" style={{ display: 'flex', flexWrap: 'nowrap' }}>
@@ -64,7 +65,7 @@ const Productcard = props => {
             WISHLIST
           </Addtowishlist>
 
-          <Addtocart classes="m-2 btn btn-primary" closed={classes.closed} id={_id} open={open}>
+          <Addtocart classes="m-2 btn btn-primary" stock={stock} closed={classes.closed} id={_id} open={open}>
             ADD TO CART
           </Addtocart>
         </div>
