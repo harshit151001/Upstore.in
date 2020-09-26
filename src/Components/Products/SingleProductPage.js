@@ -203,7 +203,7 @@ const SingleProductpage = props => {
                     <div className={classes.buttonWrapper}>
                       <div className={classes.buttonContainer}>
                         {width > 990 && (
-                          <Addtocart classes={`m-2 btn btn-primary ${classes.addToCart}`} closed={classes.closed} open={data.shopId.open} id={_id}>
+                          <Addtocart stock={data.stock} classes={`m-2 btn btn-primary ${classes.addToCart}`} closed={classes.closed} open={data.shopId.open} id={_id}>
                             ADD TO CART
                           </Addtocart>
                         )}
@@ -213,7 +213,7 @@ const SingleProductpage = props => {
                         </Addtowishlist>
 
                         {width <= 990 && (
-                          <Addtocart classes={`m-2 btn btn-primary ${classes.addToCart}`} closed={`m-2 btn  ${classes.closed}`} open={data.shopId.open} id={_id}>
+                          <Addtocart stock={data.stock} classes={`m-2 btn btn-primary ${classes.addToCart}`} closed={`m-2 btn  ${classes.closed}`} open={data.shopId.open} id={_id}>
                             ADD TO CART
                           </Addtocart>
                         )}
