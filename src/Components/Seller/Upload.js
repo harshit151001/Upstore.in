@@ -322,15 +322,17 @@ export default function Upload({ shop }) {
   const Upload = e => {
     e.preventDefault();
     const { images, name, description, markedPrice, stock, price } = state;
+
     const checkErr = [];
     for (const key in state) {
       if (state[key].hasErrors) {
         checkErr.push(1);
+        console.log(checkErr);
         dispatch({ type: key, value: '' });
       }
     }
-
-    if (!checkErr) {
+    console.log(checkErr);
+    if (!checkErr.length) {
       const fd = new FormData();
       for (let i = 0; i < images.value.length; i++) {
         fd.append(`images`, images.value[i]);
