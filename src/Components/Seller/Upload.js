@@ -8,7 +8,7 @@ import useWindowDimensions from '../../customapis/useWindowDimensions';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { useImmerReducer } from 'use-immer';
-
+import MySnackbar from '../Snackbar/Snackbar';
 import styled from 'styled-components';
 
 const RequiredErr = styled.div`
@@ -182,7 +182,7 @@ export default function Upload({ shop }) {
     selectedFiles: ''
   });
   const [errors, setErrors] = useState(0);
-
+  const [showSnack, setShowSnack] = useState(false);
   const [state, dispatch] = useImmerReducer(ourReducer, initialState);
   const [inputFields, setInputFields] = useState([
     {
@@ -200,7 +200,7 @@ export default function Upload({ shop }) {
       price: ''
     }
   ]);
-
+  console.log(inputFields.length);
   const [hasVariants, setHasVariants] = useState(false);
 
   const { width } = useWindowDimensions();
@@ -300,6 +300,8 @@ export default function Upload({ shop }) {
 
       Axios.post(`${API}/api/productWithVariants/create/${user._id}`, inputFields, config).then(
         response => {
+          setShowSnack(true);
+          setTimeout(() => setShowSnack(false), 3000);
           return;
         },
         error => {
@@ -351,6 +353,8 @@ export default function Upload({ shop }) {
 
       Axios.post(`${API}/api/product/create/${user._id}`, fd, config).then(
         response => {
+          setShowSnack(true);
+          setTimeout(() => setShowSnack(false), 3000);
           console.log(response.data);
         },
         error => {
@@ -364,6 +368,7 @@ export default function Upload({ shop }) {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      {showSnack && <MySnackbar vertical={width > 990 ? 'top' : 'bottom'} horizontal={'center'} message={'Product created successfully'} />}
       <div style={width < 780 ? { margin: 'auto', width: '100%' } : { width: '100%' }}>
         Does this product have variants?
         <div style={{ marginLeft: '2vh' }}>
@@ -373,70 +378,77 @@ export default function Upload({ shop }) {
       </div>
       <div style={{ width: '100%' }}>
         {hasVariants ? (
-          <>
-            <div style={{ display: 'flex', width: '100%', margin: 'auto' }}>
-              <div style={{ display: 'flex' }}>
-                <div style={{ margin: 'auto' }}>
-                  <input id="file" onChange={handleBulkImage('file')} type="file" multiple />
+          width > 1020 ? (
+            <>
+              <div style={{ display: 'flex', width: '100%', margin: 'auto' }}>
+                <div style={{ display: 'flex' }}>
+                  <div style={{ margin: 'auto' }}>
+                    <input id="file" onChange={handleBulkImage('file')} type="file" multiple />
 
-                  <Button type="submit" onClick={handleUpload}>
-                    UPLOAD
-                  </Button>
+                    <Button type="submit" onClick={handleUpload}>
+                      UPLOAD
+                    </Button>
+                  </div>
+                </div>
+                <div style={{ height: '400px', backgroundColor: '#FFFAFA', overflow: 'scroll', width: '50%', margin: 'auto' }}>
+                  {imagePaths.map((path, index) => {
+                    return (
+                      <ImgCard key={index}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                          <ImageHolder>
+                            <Image src={`${API}${path.split('public')[1]}`} alt="" />
+                          </ImageHolder>
+                          <CopyButton
+                            onClick={() => {
+                              navigator.clipboard.writeText(path);
+                            }}
+                          >
+                            Copy
+                          </CopyButton>
+                        </div>
+
+                        {path}
+                      </ImgCard>
+                    );
+                  })}
                 </div>
               </div>
-              <div style={{ height: '400px', backgroundColor: '#FFFAFA', overflow: 'scroll', width: '50%', margin: 'auto' }}>
-                {imagePaths.map((path, index) => {
-                  return (
-                    <ImgCard key={index}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <ImageHolder>
-                          <Image src={`${API}${path.split('public')[1]}`} alt="" />
-                        </ImageHolder>
-                        <CopyButton
-                          onClick={() => {
-                            navigator.clipboard.writeText(path);
-                          }}
-                        >
-                          Copy
-                        </CopyButton>
-                      </div>
 
-                      {path}
-                    </ImgCard>
-                  );
-                })}
+              <div>
+                {' '}
+                {inputFields.map((fields, index) => (
+                  <VariantWrapper key={index}>
+                    <TextField className={classes.root} style={ErrorVariantUpload(index, 'name')} variant="filled" name="name" label="Name" value={fields.name} onChange={event => handleChangeInput(index, event)} />
+
+                    <TextField className={classes.root} variant="filled" name="size" label="Size" value={fields.size} onChange={event => handleChangeInput(index, event)} />
+                    <TextField className={classes.root} variant="filled" name="color" label="Color" value={fields.color} onChange={event => handleChangeInput(index, event)} />
+
+                    <TextField className={classes.root} style={ErrorVariantUpload(index, 'markedPrice')} variant="filled" name="markedPrice" type="number" label="Marked Price" value={fields.markedPrice} onChange={event => handleChangeInput(index, event)} />
+                    <TextField className={classes.root} style={ErrorVariantUpload(index, 'price')} variant="filled" name="price" type="number" label="Price" value={fields.price} onChange={event => handleChangeInput(index, event)} />
+                    <TextField className={classes.root} style={ErrorVariantUpload(index, 'stock')} variant="filled" name="stock" type="number" label="Stock" value={fields.stock} onChange={event => handleChangeInput(index, event)} />
+                    <TextField className={`${classes.root} ${classes.rootWidth}`} multiline variant="filled" name="description" label="Description" value={fields.description} onChange={event => handleChangeInput(index, event)} />
+
+                    <TextField className={`${classes.root} ${classes.rootWidth}`} style={ErrorVariantUpload(index, 'photos')} multiline variant="filled" name="photos" label="Image Paths" value={fields.photos} onChange={event => handleChangeInput(index, event)} />
+
+                    <ButtonWrapper>
+                      {inputFields.length > 1 && (
+                        <AddSubtract style={{ marginRight: '0.5vh' }} onClick={() => handleRemoveFields(index)}>
+                          <RemoveIcon />
+                        </AddSubtract>
+                      )}
+
+                      <AddSubtract onClick={() => handleAddFields()}>
+                        <AddIcon />
+                      </AddSubtract>
+                    </ButtonWrapper>
+                  </VariantWrapper>
+                ))}
+                <Button onClick={handleSubmit}>UPLOAD</Button>
               </div>
-            </div>
-
-            <div>
-              {' '}
-              {inputFields.map((fields, index) => (
-                <VariantWrapper key={index}>
-                  <TextField className={classes.root} style={ErrorVariantUpload(index, 'name')} variant="filled" name="name" label="Name" value={fields.name} onChange={event => handleChangeInput(index, event)} />
-
-                  <TextField className={classes.root} variant="filled" name="size" label="Size" value={fields.size} onChange={event => handleChangeInput(index, event)} />
-                  <TextField className={classes.root} variant="filled" name="color" label="Color" value={fields.color} onChange={event => handleChangeInput(index, event)} />
-
-                  <TextField className={classes.root} style={ErrorVariantUpload(index, 'markedPrice')} variant="filled" name="markedPrice" type="number" label="Marked Price" value={fields.markedPrice} onChange={event => handleChangeInput(index, event)} />
-                  <TextField className={classes.root} style={ErrorVariantUpload(index, 'price')} variant="filled" name="price" type="number" label="Price" value={fields.price} onChange={event => handleChangeInput(index, event)} />
-                  <TextField className={classes.root} style={ErrorVariantUpload(index, 'stock')} variant="filled" name="stock" type="number" label="Stock" value={fields.stock} onChange={event => handleChangeInput(index, event)} />
-                  <TextField className={`${classes.root} ${classes.rootWidth}`} multiline variant="filled" name="description" label="Description" value={fields.description} onChange={event => handleChangeInput(index, event)} />
-
-                  <TextField className={`${classes.root} ${classes.rootWidth}`} style={ErrorVariantUpload(index, 'photos')} multiline variant="filled" name="photos" label="Image Paths" value={fields.photos} onChange={event => handleChangeInput(index, event)} />
-
-                  <ButtonWrapper>
-                    <AddSubtract style={{ marginRight: '0.5vh' }} onClick={() => handleRemoveFields(index)}>
-                      <RemoveIcon />
-                    </AddSubtract>
-                    <AddSubtract onClick={() => handleAddFields()}>
-                      <AddIcon />
-                    </AddSubtract>
-                  </ButtonWrapper>
-                </VariantWrapper>
-              ))}
-              <Button onClick={handleSubmit}>UPLOAD</Button>
-            </div>
-          </>
+            </>
+          ) : (
+            'This feature is available in Desktop Only'
+          )
         ) : (
           <div style={{ textAlign: 'center' }}>
             <form className={classes.root} noValidate autoComplete="off">
