@@ -110,7 +110,7 @@ export default function MyProducts({ shop }) {
     return () => {
       mounted = false;
     };
-  }, [shop, currentPage, totalPages, check]);
+  }, [shop, currentPage, totalPages, check, mainDispatch]);
 
   const editHandler = index => {
     dispatch({ type: 'markedPrice', value: data[index].markedPrice.toString() });
@@ -147,7 +147,7 @@ export default function MyProducts({ shop }) {
       fd.append(`price`, price.value);
 
       setShow(false);
-      const updateResponse = await Axios.put(`${API}/api/product/update/${data[editIndex]._id}/${user._id}`, fd, config);
+      await Axios.put(`${API}/api/product/update/${data[editIndex]._id}/${user._id}`, fd, config);
 
       if (images.value.length) {
         setCheck(check => check + 1);
