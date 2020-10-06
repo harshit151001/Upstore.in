@@ -10,7 +10,7 @@ const Cart = () => {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
-  console.log(cart);
+
   return (
     <div className="container-fluid" style={{ background: '#fafafa', minHeight: '91vh' }}>
       <div className="container-xl pt-4 pb-5">

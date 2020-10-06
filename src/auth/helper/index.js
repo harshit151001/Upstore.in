@@ -65,35 +65,3 @@ export const isAutheticated = () => {
     return false;
   }
 };
-
-// export const signup = async user => {
-//   try {
-//     const response = await fetch(`${API}/api/signupEmail`, {
-//       method: 'POST',
-//       headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(user)
-//     });
-//     return response.json();
-//   } catch (err) {
-//     return console.log(err);
-//   }
-// };
-
-// export const signin = async user => {
-//   try {
-//     const response = await fetch(`${API}/api/signinEmail`, {
-//       method: 'POST',
-//       headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(user)
-//     });
-//     return response.json();
-//   } catch (err) {
-//     return console.log(err);
-//   }
-// };

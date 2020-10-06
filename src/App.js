@@ -1,5 +1,5 @@
 //!library
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 //!Css import
 import './custom.scss';
@@ -10,28 +10,36 @@ import Loader from './Components/Loader/Loader';
 //!routes
 import Home from './Components/Routes/Home';
 import Err from './Error.js';
+
 import Aboutus from './Components/Routes/Aboutus';
 import Termsandcondition from './Components/Routes/Termsandcondition';
+
 import Loginsignuppage from './Components/Routes/Loginsignuppage';
 import Products from './Components/Routes/Products';
 import Productpage from './Components/Routes/Productpage';
 import Cart from './Components/Routes/Cart';
 import Wishlist from './Components/Routes/Wishlist';
 import Addresses from './Components/Routes/Addresses';
+
 import Userpage from './Components/Routes/Userpage';
+import Support from './Components/Routes/Support';
 import PrivateRoute from './auth/helper/PrivateRoute';
+
 import AdminRoute from './auth/helper/AdminRoute';
 import CheckoutPage from './Components/Routes/CheckoutPage';
 import OTP from './Components/Users/OTP';
 import ChangeAddress from './Components/Routes/ChangeCheckoutAddressPage';
+
 import ProductUpload from './Components/Seller/ProductUpload';
 import BulkUpload from './Components/Seller/BulkUpload';
 import Seller from './Components/Routes/Seller';
+
 import Shops from './Components/Routes/Shops';
 import ShopPage from './Components/Routes/ShopPage';
 import FullView from './Components/Routes/FullView';
+
 import DeliverOrders from './Components/Routes/DeliverOrders';
-import Support from './Components/Routes/Support';
+
 import ReactGa from 'react-ga';
 
 //!context
@@ -79,6 +87,7 @@ function App() {
             <AdminRoute exact path="/ProductUpload" component={ProductUpload}></AdminRoute>
             <AdminRoute exact path="/BulkUpload" component={BulkUpload}></AdminRoute>
             <AdminRoute path="/seller/my-shop" component={Seller}></AdminRoute>
+            <AdminRoute path="/seller/my-products" component={Seller}></AdminRoute>
             <AdminRoute path="/seller/orders" component={Seller}></AdminRoute>
             <AdminRoute path="/seller/upload" component={Seller}></AdminRoute>
             <AdminRoute path="/seller" component={Seller}></AdminRoute>

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-//import styled from 'styled-components';
+// import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import OrderImage from '../Images/profile-orders.png';
 import AddressImage from '../Images/profile-address.png';
@@ -30,7 +30,7 @@ const Overview = props => {
           <PaddedContainer>
             <img style={{ height: '130px', width: '130px' }} src={UserImage} alt="User" />
             <Link style={{ textDecoration: 'none' }} to="/userdashboard/details/edit">
-              <EditProfileButtom style={{ height: '25px' }}>Edit Profile</EditProfileButtom>
+              <EditProfileButtom style={{ height: '25px' }}>Edit Shop</EditProfileButtom>
             </Link>
           </PaddedContainer>
         </Jumbotron>
@@ -78,6 +78,29 @@ const Overview = props => {
                   }}
                 >
                   Upload
+                </div>
+                <div style={{ color: '#7e818c', fontSize: '14px' }}>Upload Products</div>
+              </DetailsWrapper>
+            </MobileCardContent>
+          </MobileCard>
+
+          <MobileCard onClick={() => props.history.push('/seller/my-products')}>
+            <MobileCardContent>
+              <MobileCardImage src={AddressImage} alt="Product" />
+              <DetailsWrapper style={{ margin: 'auto' }}>
+                <PreviousButton style={{ marginTop: '1vh' }}>
+                  {' '}
+                  <img style={{ height: '12px' }} src={GoToIcon} alt="Go to svg" />{' '}
+                </PreviousButton>
+                <div
+                  style={{
+                    color: '#3E4152',
+                    fontWeight: '800',
+                    textTransform: 'uppercase',
+                    marginTop: '1vh'
+                  }}
+                >
+                  My Products
                 </div>
                 <div style={{ color: '#7e818c', fontSize: '14px' }}>Upload Products</div>
               </DetailsWrapper>
@@ -184,6 +207,22 @@ const Overview = props => {
                   }}
                 >
                   Upload Products{' '}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card onClick={() => props.history.push('/seller/my-products')}>
+              <CardContent>
+                <CardImage src={AddressImage} alt="order image" />
+                <div style={{ textAlign: 'center' }}>My Products</div>
+                <div
+                  style={{
+                    fontSize: '12px',
+                    color: '#94969F',
+                    textAlign: 'center'
+                  }}
+                >
+                  View and edit your products{' '}
                 </div>
               </CardContent>
             </Card>

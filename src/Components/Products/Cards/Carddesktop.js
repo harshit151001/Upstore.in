@@ -4,7 +4,7 @@ import Img from './Images';
 import Addtocart from '../../Buttons/Addtocart';
 import Addtowishlist from '../../Buttons/Addtowishlist';
 import API from '../../../backend';
-import { buildQueries } from '@testing-library/react';
+// import { buildQueries } from '@testing-library/react';
 import classes from './SomeCardClasses.module.css';
 //eslint-disable-next-line
 
@@ -26,7 +26,6 @@ const Productcard = props => {
     }
   };
 
-  console.log(stock);
   return (
     <div style={{ width: '100%' }} className="card p-2 col-12 shadow-sm col-sm-6" key={_id}>
       <div className="row no-gutters" style={{ display: 'flex', flexWrap: 'nowrap' }}>
@@ -50,14 +49,8 @@ const Productcard = props => {
                 ''
               )}
             </p>
-            <p style={{ marginBottom: '0.25rem' }}>{ShowVariant(variants)}</p>
-            {variants.length ? (
-              <Link style={{ textDecoration: 'none' }} to={`/productpage/${_id}`}>
-                <div>View all variants</div>
-              </Link>
-            ) : (
-              <div style={{ height: '2vh' }}></div>
-            )}
+            <div style={{ marginBottom: '0.25rem' }}>{ShowVariant(variants)}</div>
+            {variants.length ? <div>View all variants</div> : <div style={{ height: '2vh' }}></div>}
             {props.match.path !== '/shop/:shopId' && <p className="small text-muted mt-0 pt-0">Sold by: {shopName} </p>}
           </Link>
 
