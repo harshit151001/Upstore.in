@@ -5,7 +5,7 @@ import { appContext } from '../../Statemanagement/Statecontext';
 const Wishlist = props => {
   const { state } = useContext(appContext);
   const { wishlist } = state;
-
+  console.log(wishlist);
   return (
     <>
       <div className="container-fluid " style={{ background: '#fafafa', minHeight: '100vh' }}>

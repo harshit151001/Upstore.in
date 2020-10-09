@@ -51,15 +51,17 @@ const Addtowishlist = props => {
     };
 
     return (
-      <button
-        style={{ margin: '8px' }}
-        className={props.classes}
-        onClick={() => {
-          addToWishlist(props.id);
-        }}
-      >
-        {props.children}
-      </button>
+      props.history.location.pathname !== '/wishlist' && (
+        <button
+          style={{ margin: '8px' }}
+          className={props.classes}
+          onClick={() => {
+            addToWishlist(props.id);
+          }}
+        >
+          {props.children}
+        </button>
+      )
     );
   } else {
     return (

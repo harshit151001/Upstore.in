@@ -4,14 +4,8 @@ import Productcard from '../Cards/Carddesktop';
 const Productlist = ({ data, categoryId }) => {
   return (
     <>
-      {data.map((product) => {
-        return (
-          <Productcard
-            product={product.product ? product.product : product}
-            categoryId={categoryId}
-            key={product._id}
-          />
-        );
+      {data.map(product => {
+        return <Productcard product={product.product ? product.product : product} categoryId={categoryId} key={product._id} />;
       })}
     </>
   );

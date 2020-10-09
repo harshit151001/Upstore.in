@@ -3,18 +3,22 @@ import { appContext } from '../../Statemanagement/Statecontext';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const ErrorDiv = styled.div`
+export const ErrorDiv = styled.div`
   color: red;
   background: #fde4e3;
   opacity: 10;
   border: solid #fecdd0;
   padding: 5px;
   font-size: 20px;
+  margin-top: 2vh;
+  border-radius: 5px;
 `;
 
 const Invoice = props => {
   const { state } = useContext(appContext);
   const { cart } = state;
+  console.log(cart.filter(item => item.product.open === false).length);
+
   return (
     <div
       className="card mt-3"
@@ -69,7 +73,9 @@ const Invoice = props => {
         </div>
         <div className="row">
           <div className="col-12">
-            {cart.map(item => item.product.price * item.quantity).reduce((prev, current) => prev + current, 0) > 150 ? (
+            {cart.filter(item => item.product.open === false).length ? (
+              <ErrorDiv>Your cart contains products from shops which have closed. Please remove them to proceed.</ErrorDiv>
+            ) : cart.map(item => item.product.price * item.quantity).reduce((prev, current) => prev + current, 0) > 150 ? (
               <Link style={{ display: props.display || '' }} to={props.link}>
                 <button type="button" className="btn btn-danger btn mt-3 btn-block">
                   {' '}

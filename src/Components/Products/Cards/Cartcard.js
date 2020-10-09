@@ -7,7 +7,7 @@ import API from '../../../backend';
 import styled from 'styled-components';
 import Axios from 'axios';
 import { dispatchContext } from '../../../Statemanagement/Statecontext';
-
+import { ErrorDiv } from '../../Cart/Invoice';
 import { isAutheticated } from '../../../auth/helper/index';
 
 const Button = styled.button`
@@ -30,17 +30,7 @@ const Cartcard = props => {
   const { product, quantity } = props;
   const [number, setNumber] = useState(quantity);
   const dispatch = useContext(dispatchContext);
-  const {
-    _id,
-    name,
-    shopName,
-    price,
-    stock,
-
-    discount,
-    photos,
-    markedPrice
-  } = product;
+  const { _id, name, shopName, price, stock, open, discount, photos, markedPrice } = product;
 
   const increment = _id => {
     setNumber(prev => {
@@ -172,6 +162,13 @@ const Cartcard = props => {
           </div>
         </div>
         <hr />
+        {!open && (
+          <>
+            <ErrorDiv>Shop Closed!</ErrorDiv>
+
+            <hr />
+          </>
+        )}
         <div className="row">
           <div className="col-12">
             <Remove id={_id}>Remove</Remove>

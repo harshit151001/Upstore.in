@@ -180,10 +180,12 @@ const SingleProductpage = props => {
                     <div>
                       <DetailsWrapper>
                         <span>Rs:{data.price}</span>
-                        <MarkedPrice>
-                          <strike>Rs:{data.markedPrice}</strike>
-                        </MarkedPrice>
-                        <Discount>({Math.ceil(((data.markedPrice - data.price) / data.markedPrice) * 100)}%) OFF</Discount>
+                        {data.markedPrice > data.price && (
+                          <MarkedPrice>
+                            <strike>Rs:{data.markedPrice}</strike>
+                          </MarkedPrice>
+                        )}
+                        {Math.ceil(((data.markedPrice - data.price) / data.markedPrice) * 100) > 1 && <Discount>({Math.ceil(((data.markedPrice - data.price) / data.markedPrice) * 100)}%) OFF</Discount>}
                       </DetailsWrapper>
                       <Taxes>inclusive of all taxes</Taxes>
                     </div>
