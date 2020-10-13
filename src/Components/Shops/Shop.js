@@ -6,6 +6,7 @@ import Axios from 'axios';
 import ProductList from '../Products/List/Productlist';
 import UpPlaceholder from '../Images/UpPlaceholder.png';
 import UpLoader from '../Loader/UpLoader';
+import queryString from 'query-string';
 
 const Title = styled.div`
   text-transform: capitalize;
@@ -95,7 +96,8 @@ export default function Shop({ shopId }) {
   const [shopData, setShopData] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [data, setData] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  const { page } = queryString.parse(window.location.search);
+  const [currentPage, setCurrentPage] = useState(parseInt(page) || 1);
 
   useEffect(() => {
     let mounted = true;
@@ -138,7 +140,7 @@ export default function Shop({ shopId }) {
           }}
           className="btn btn-light mr-2"
         >
-          {currentPage > 1 ? <Link to={`/shop/${_id}`}> back</Link> : 'back'}
+          {currentPage > 1 ? <Link to={`/shop/${_id}?page=${currentPage - 1 || 1}`}> back</Link> : 'back'}
         </button>
 
         <button
@@ -149,7 +151,7 @@ export default function Shop({ shopId }) {
           }}
           className="btn btn-light ml-2"
         >
-          {currentPage < totalPages ? <Link to={`/shop/${_id}`}>next</Link> : 'next'}
+          {currentPage < totalPages ? <Link to={`/shop/${_id}?page=${totalPages > currentPage ? currentPage + 1 : totalPages}`}>next</Link> : 'next'}
         </button>
       </ButtonWrapper>
     </Wrapper>
