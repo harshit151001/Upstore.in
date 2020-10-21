@@ -159,7 +159,7 @@ export default function MyProducts({ shop }) {
           newObject.name = name.value;
           newObject.description = description.value;
           newObject.markedPrice = markedPrice.value;
-          newObject.atock = stock.value;
+          newObject.stock = stock.value;
           newObject.price = price.value;
 
           newData[editIndex] = newObject;
