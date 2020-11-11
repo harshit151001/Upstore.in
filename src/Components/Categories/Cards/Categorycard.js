@@ -1,9 +1,9 @@
-import React from 'react';
-import API from '../../../backend';
-import styled from 'styled-components';
-import UpPlaceholder from '../../Images/UpPlaceholder.png';
+import React from "react";
+import API from "../../../backend";
+import styled from "styled-components";
+import UpPlaceholder from "../../Images/UpPlaceholder.png";
 
-const Card = styled.div` 
+const Card = styled.div`
   border: 1px solid rgb(224, 224, 224) !important;
   border-image: initial;
   @media (min-width: 1080px) {
@@ -119,7 +119,7 @@ const Name = styled.strong`
 const Categorycard = ({ name, path }) => {
   return (
     <Card>
-      <img src={!path ? UpPlaceholder : `${API + path.substr(6)}`} alt="" />
+      <img src={!path ? UpPlaceholder : `${API + path.substr(6)}`} alt={name} />
       <Name>{name}</Name>
     </Card>
   );

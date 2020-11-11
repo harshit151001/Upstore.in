@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 //import Typography from '@material-ui/core/Typography';
-import styled from 'styled-components';
-import fb from '../Images/UpBag-01.png';
-import fm from '../Images/UpMap-01.png';
-import fg from '../Images/UpGift-01.png';
-import ft from '../Images/UpTime-01.png';
-import bos from '../Images/forJumbotron.svg';
+import styled from "styled-components";
+import fb from "../Images/UpBag-01.png";
+import fm from "../Images/UpMap-01.png";
+import fg from "../Images/UpGift-01.png";
+import ft from "../Images/UpTime-01.png";
+import bos from "../Images/forJumbotron.svg";
 
 export const Section = styled.div`
   width: 90%;
@@ -121,73 +121,93 @@ const Features = () => {
     <Section>
       <Title>
         <Header>Leave it on us!</Header>
-        <img src={bos} alt="icon" style={{ width: '6vw', minWidth: '50px', marginTop: '8px' }} />
+        <img
+          src={bos}
+          alt="icon"
+          style={{ width: "6vw", minWidth: "50px", marginTop: "8px" }}
+        />
       </Title>
       <Cardbox>
         <Card>
           <Img>
-            <img style={{ height: 'inherit', width: 'inherit' }} src={fb} alt="Bag" />
+            <img
+              style={{ height: "inherit", width: "inherit" }}
+              src={fb}
+              alt="Bag"
+            />
           </Img>
           <div
             style={{
-              marginLeft: '4vw',
-              display: 'flex',
-              flexDirection: 'column'
+              marginLeft: "4vw",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             <Quote>Shop Smart</Quote>
-            <strong className="mt-2" style={{ color: '#5f5f5f' }}>
+            <strong className="mt-2" style={{ color: "#5f5f5f" }}>
               Shop for any product in the city on a single platform.
             </strong>
           </div>
         </Card>
         <Card>
           <Img>
-            <img style={{ height: 'inherit', width: 'inherit' }} src={fm} alt="map" />
+            <img
+              style={{ height: "inherit", width: "inherit" }}
+              src={fm}
+              alt="map"
+            />
           </Img>
           <div
             style={{
-              marginLeft: '4vw',
-              display: 'flex',
-              flexDirection: 'column'
+              marginLeft: "4vw",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             <Quote>Anywhere in City </Quote>
-            <strong className="mt-2" style={{ color: '#5f5f5f' }}>
+            <strong className="mt-2" style={{ color: "#5f5f5f" }}>
               No matter where you are, we have got you covered
             </strong>
           </div>
         </Card>
         <Card>
           <Img>
-            <img style={{ height: 'inherit', width: 'inherit' }} src={ft} alt="time" />
+            <img
+              style={{ height: "inherit", width: "inherit" }}
+              src={ft}
+              alt="time"
+            />
           </Img>
           <div
             style={{
-              marginLeft: '4vw',
-              display: 'flex',
-              flexDirection: 'column'
+              marginLeft: "4vw",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             <Quote>Fast Delivery</Quote>
-            <strong className="mt-2" style={{ color: '#5f5f5f' }}>
+            <strong className="mt-2" style={{ color: "#5f5f5f" }}>
               We deliver any product within 2 hrs
             </strong>
           </div>
         </Card>
         <Card>
           <Img>
-            <img style={{ height: 'inherit', width: 'inherit' }} src={fg} alt="gift" />
+            <img
+              style={{ height: "inherit", width: "inherit" }}
+              src={fg}
+              alt="gift"
+            />
           </Img>
           <div
             style={{
-              marginLeft: '4vw',
-              display: 'flex',
-              flexDirection: 'column'
+              marginLeft: "4vw",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             <Quote>Sterilized Packaging</Quote>
-            <strong className="mt-2" style={{ color: '#5f5f5f' }}>
+            <strong className="mt-2" style={{ color: "#5f5f5f" }}>
               We sanitize your package and practise contactless delivery
             </strong>
           </div>

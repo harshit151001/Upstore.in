@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react';
-import Invoice from '../Cart/Invoice';
-import Cartcard from '../Products/Cards/Cartcard';
+import React, { useContext, useEffect } from "react";
+import Invoice from "../Cart/Invoice";
+import Cartcard from "../Products/Cards/Cartcard";
 
-import { appContext } from '../../Statemanagement/Statecontext';
+import { appContext } from "../../Statemanagement/Statecontext";
 
 const Cart = () => {
   const { state } = useContext(appContext);
@@ -12,15 +12,18 @@ const Cart = () => {
   }, []);
 
   return (
-    <div className="container-fluid" style={{ background: '#fafafa', minHeight: '91vh' }}>
+    <div
+      className="container-fluid"
+      style={{ background: "#fafafa", minHeight: "91vh" }}
+    >
       <div className="container-xl pt-4 pb-5">
         <div className="row mt-0 mb-1">
           <div className="col-12">
             <div
               className="card d-none d-sm-block"
               style={{
-                boxShadow: '0px 0px 4px 1px rgba(97,97,97,0.24)',
-                border: 'none'
+                boxShadow: "0px 0px 4px 1px rgba(97,97,97,0.24)",
+                border: "none",
               }}
             >
               <div className="card-body">
@@ -31,7 +34,9 @@ const Cart = () => {
                   <div className="col-4  my-auto text-right">
                     <strong>
                       &#x20b9;
-                      {cart.map(items => items.product.price).reduce((prev, current) => prev + current, 0)}
+                      {cart
+                        .map((items) => items.product.price)
+                        .reduce((prev, current) => prev + current, 0)}
                     </strong>
                   </div>
                 </div>
@@ -42,10 +47,21 @@ const Cart = () => {
         <div className="row">
           <div className="col-lg-9">
             {cart.map(({ wishlist, product, quantity, _id }) => (
-              <Cartcard product={product} quantity={quantity} key={_id} wishlist={wishlist} />
+              <Cartcard
+                product={product}
+                quantity={quantity}
+                key={_id}
+                wishlist={wishlist}
+              />
             ))}
           </div>
-          <div className="col-lg-3">{cart.map(items => items.product.price).reduce((prev, current) => prev + current, 0) ? <Invoice link={'/checkout'} /> : null}</div>
+          <div className="col-lg-3">
+            {cart
+              .map((items) => items.product.price)
+              .reduce((prev, current) => prev + current, 0) ? (
+              <Invoice link={"/checkout"} />
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

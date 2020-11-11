@@ -1,7 +1,7 @@
-import React, { createContext, useEffect } from 'react';
-import appReducer from './appReducer';
-import useThunkReducer from '../customapis/useThunkReducer';
-import { getCart, getWishlist, getCategories } from '../App/helper/index';
+import React, { createContext, useEffect } from "react";
+import appReducer from "./appReducer";
+import useThunkReducer from "../customapis/useThunkReducer";
+import { getCart, getWishlist, getCategories } from "../App/helper/index";
 
 export const appContext = createContext();
 export const dispatchContext = createContext();
@@ -11,7 +11,7 @@ export const Statecontext = (props) => {
     categorydata: [],
     cart: [],
     wishlist: [],
-    loggedIn: Boolean(localStorage.getItem('Upstorejwt')),
+    loggedIn: Boolean(localStorage.getItem("Upstorejwt")),
     loading: false,
   };
 
