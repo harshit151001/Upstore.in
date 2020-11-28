@@ -7,6 +7,7 @@ import { appContext } from "../../Statemanagement/Statecontext";
 const Cart = () => {
   const { state } = useContext(appContext);
   const { cart } = state;
+  console.log(cart);
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
@@ -35,7 +36,7 @@ const Cart = () => {
                     <strong>
                       &#x20b9;
                       {cart
-                        .map((items) => items.product.price)
+                        .map((items) => items.product.price * items.quantity)
                         .reduce((prev, current) => prev + current, 0)}
                     </strong>
                   </div>
